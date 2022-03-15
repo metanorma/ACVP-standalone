@@ -1,0 +1,18 @@
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP ANS X9.63 Key Derivation Function Algorithm JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP ANS X9.63 Key Derivation Function Algorithm JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-ANSI-X963</uri><docidentifier type="NIST">ACVP KDF-ANSI-X963 Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-ANSI-X963 Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-ANSI-X963.r-1.eng</docidentifier><docnumber>KDF-ANSI-X963</docnumber><date type="issued"><on>2019-06-05</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing ANS X9.63 KDF implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>

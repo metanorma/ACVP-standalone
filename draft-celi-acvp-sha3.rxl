@@ -1,0 +1,18 @@
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP SHA3 and SHAKE JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP SHA3 and SHAKE JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SHA3</uri><docidentifier type="NIST">ACVP SHA3 Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol SHA3 Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.SHA3.r-1.eng</docidentifier><docnumber>SHA3</docnumber><date type="issued"><on>2018-11-01</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing SHA3 and SHAKE implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2018</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>

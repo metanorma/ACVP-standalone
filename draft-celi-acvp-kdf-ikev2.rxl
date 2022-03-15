@@ -1,0 +1,18 @@
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-IKEv2</uri><docidentifier type="NIST">ACVP KDF-IKEv2 Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-IKEv2 Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-IKEv2.r-1.eng</docidentifier><docnumber>KDF-IKEv2</docnumber><date type="issued"><on>2019-06-05</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing SP800-135 IKEv2 KDF implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>

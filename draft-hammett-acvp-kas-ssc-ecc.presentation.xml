@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="presentation" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP KAS SSC ECC Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP KAS SSC ECC Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-SSC-ECC</uri><docidentifier type="NIST">ACVP KAS-SSC-ECC Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-SSC-ECC Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-SSC-ECC.r-1.eng</docidentifier><docnumber>KAS-SSC-ECC</docnumber><date type="issued"><on>2020-06-26</on></date><contributor><role type="author"/><person>
+<name><completename>Russell Hammett</completename></name>
+<affiliation><organization>
+<name>HII Technical Solutions Division</name>
+<address><formattedAddress>302 Sentinel Drive, Suite #300, Annapolis Junction, MD 20701</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language current="true">en</language><script current="true">Latn</script><abstract><p>This document defines the JSON schema for testing KAS-SSC-ECC SP800-56Ar3 implementations with the ACVP specification.</p>
+</abstract><status><stage language="">final</stage><substage language="">active</substage></status><copyright><from>2020</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype language="">standard</doctype></ext></bibdata><localized-strings><localized-string key="scope" language="en">Scope</localized-string><localized-string key="symbolsabbrev" language="en">Symbols and abbreviated terms</localized-string><localized-string key="abbrev" language="en">Abbreviated terms</localized-string><localized-string key="symbols" language="en">Symbols</localized-string><localized-string key="table_of_contents" language="en">Table of contents</localized-string><localized-string key="introduction" language="en">Introduction</localized-string><localized-string key="foreword" language="en">Foreword</localized-string><localized-string key="abstract" language="en">Abstract</localized-string><localized-string key="acknowledgements" language="en">Acknowledgements</localized-string><localized-string key="termsdef" language="en">Terms and definitions</localized-string><localized-string key="termsdefsymbolsabbrev" language="en">Terms, definitions, symbols and abbreviated terms</localized-string><localized-string key="termsdefsymbols" language="en">Terms, definitions and symbols</localized-string><localized-string key="termsdefabbrev" language="en">Terms, definitions and abbreviated terms</localized-string><localized-string key="normref" language="en">References</localized-string><localized-string key="bibliography" language="en">Bibliography</localized-string><localized-string key="preface" language="en">Preface</localized-string><localized-string key="clause" language="en">Section</localized-string><localized-string key="annex" language="en">Appendix</localized-string><localized-string key="appendix" language="en">Appendix</localized-string><localized-string key="no_terms_boilerplate" language="en"><p>No terms and definitions are listed in this document.</p>
+</localized-string><localized-string key="internal_terms_boilerplate" language="en"><p>For the purposes of this document, 
+    the following terms and definitions apply.</p>
+</localized-string><localized-string key="norm_with_refs_pref" language="en">The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</localized-string><localized-string key="norm_empty_pref" language="en">There are no normative references in this document.</localized-string><localized-string key="external_terms_boilerplate" language="en"><p>For the purposes of this document, 
+  the terms and definitions given in % apply.</p>
+</localized-string><localized-string key="internal_external_terms_boilerplate" language="en"><p>For the purposes of this document, the terms and definitions 
+  given in % and the following apply.</p>
+</localized-string><localized-string key="term_defined_in" language="en">[term defined in %]</localized-string><localized-string key="binary_and" language="en">%1 and %2</localized-string><localized-string key="multiple_and" language="en">%1, and %2</localized-string><localized-string key="binary_or" language="en">%1 or %2</localized-string><localized-string key="multiple_or" language="en">%1, or %2</localized-string><localized-string key="chain_and" language="en">%1 and %2</localized-string><localized-string key="chain_or" language="en">%1 or %2</localized-string><localized-string key="chain_from" language="en">%1 from %2</localized-string><localized-string key="chain_to" language="en">%1 to %2</localized-string><localized-string key="note" language="en">NOTE</localized-string><localized-string key="note_xref" language="en">Note</localized-string><localized-string key="termnote" language="en">Note % to entry</localized-string><localized-string key="list" language="en">List</localized-string><localized-string key="deflist" language="en">Definition List</localized-string><localized-string key="figure" language="en">Figure</localized-string><localized-string key="formula" language="en">Formula</localized-string><localized-string key="inequality" language="en">Formula</localized-string><localized-string key="table" language="en">Table</localized-string><localized-string key="requirement" language="en">Requirement</localized-string><localized-string key="recommendation" language="en">Recommendation</localized-string><localized-string key="permission" language="en">Permission</localized-string><localized-string key="key" language="en">Key</localized-string><localized-string key="example" language="en">EXAMPLE</localized-string><localized-string key="example_xref" language="en">Example</localized-string><localized-string key="where" language="en">where</localized-string><localized-string key="wholeoftext" language="en">Whole of text</localized-string><localized-string key="draft_label" language="en">draft</localized-string><localized-string key="inform_annex" language="en">informative</localized-string><localized-string key="norm_annex" language="en">normative</localized-string><localized-string key="modified" language="en">modified</localized-string><localized-string key="deprecated" language="en">DEPRECATED</localized-string><localized-string key="source" language="en">SOURCE</localized-string><localized-string key="and" language="en">and</localized-string><localized-string key="all_parts" language="en">All Parts</localized-string><localized-string key="toc_figures" language="en">List of figures</localized-string><localized-string key="toc_tables" language="en">List of tables</localized-string><localized-string key="toc_recommendations" language="en">List of recommendations</localized-string><localized-string key="month_january" language="en">January</localized-string><localized-string key="month_february" language="en">February</localized-string><localized-string key="month_march" language="en">March</localized-string><localized-string key="month_april" language="en">April</localized-string><localized-string key="month_may" language="en">May</localized-string><localized-string key="month_june" language="en">June</localized-string><localized-string key="month_july" language="en">July</localized-string><localized-string key="month_august" language="en">August</localized-string><localized-string key="month_september" language="en">September</localized-string><localized-string key="month_october" language="en">October</localized-string><localized-string key="month_november" language="en">November</localized-string><localized-string key="month_december" language="en">December</localized-string><localized-string key="obligation" language="en">Obligation</localized-string><localized-string key="subject" language="en">Subject</localized-string><localized-string key="inherits" language="en">Inherits</localized-string><localized-string key="admonition.danger" language="en">Danger</localized-string><localized-string key="admonition.warning" language="en">Warning</localized-string><localized-string key="admonition.caution" language="en">Caution</localized-string><localized-string key="admonition.important" language="en">Important</localized-string><localized-string key="admonition.safety_precautions" language="en">Safety Precautions</localized-string><localized-string key="locality.section" language="en">Section</localized-string><localized-string key="locality.clause" language="en">Clause</localized-string><localized-string key="locality.part" language="en">Part</localized-string><localized-string key="locality.paragraph" language="en">Paragraph</localized-string><localized-string key="locality.chapter" language="en">Chapter</localized-string><localized-string key="locality.page" language="en">Page</localized-string><localized-string key="locality.table" language="en">Table</localized-string><localized-string key="locality.annex" language="en">Annex</localized-string><localized-string key="locality.figure" language="en">Figure</localized-string><localized-string key="locality.example" language="en">Example</localized-string><localized-string key="locality.note" language="en">Note</localized-string><localized-string key="locality.formula" language="en">Formula</localized-string><localized-string key="grammar_abbrevs.masculine" language="en">m</localized-string><localized-string key="grammar_abbrevs.feminine" language="en">f</localized-string><localized-string key="grammar_abbrevs.neuter" language="en">n</localized-string><localized-string key="grammar_abbrevs.common" language="en">common</localized-string><localized-string key="grammar_abbrevs.singular" language="en">sg</localized-string><localized-string key="grammar_abbrevs.dual" language="en">dual</localized-string><localized-string key="grammar_abbrevs.pl" language="en">pl</localized-string><localized-string key="grammar_abbrevs.isPreposition" language="en">prep</localized-string><localized-string key="grammar_abbrevs.isParticiple" language="en">part</localized-string><localized-string key="grammar_abbrevs.isAdjective" language="en">adj</localized-string><localized-string key="grammar_abbrevs.isAdverb" language="en">adv</localized-string><localized-string key="grammar_abbrevs.isNoun" language="en">noun</localized-string><localized-string key="grammar_abbrevs.isVerb" language="en">verb</localized-string><localized-string key="relatedterms.deprecates" language="en">deprecates</localized-string><localized-string key="relatedterms.supersedes" language="en">supersedes</localized-string><localized-string key="relatedterms.narrower" language="en">narrower</localized-string><localized-string key="relatedterms.broader" language="en">broader</localized-string><localized-string key="relatedterms.equivalent" language="en">equivalent</localized-string><localized-string key="relatedterms.compare" language="en">compare</localized-string><localized-string key="relatedterms.contrast" language="en">contrast</localized-string><localized-string key="relatedterms.see" language="en">see</localized-string><localized-string key="Clause.sg" language="en">Clause</localized-string><localized-string key="Clause.pl" language="en">Clauses</localized-string><localized-string key="Annex.sg" language="en">Annex</localized-string><localized-string key="Annex.pl" language="en">Annexes</localized-string><localized-string key="Appendix.sg" language="en">Appendix</localized-string><localized-string key="Appendix.pl" language="en">Appendixes</localized-string><localized-string key="Note.sg" language="en">Note</localized-string><localized-string key="Note.pl" language="en">Notes</localized-string><localized-string key="Note_%_to_entry.sg" language="en">Note % to entry</localized-string><localized-string key="Note_%_to_entry.pl" language="en">Notes % to entry</localized-string><localized-string key="List.sg" language="en">List</localized-string><localized-string key="List.pl" language="en">Lists</localized-string><localized-string key="Figure.sg" language="en">Figure</localized-string><localized-string key="Figure.pl" language="en">Figures</localized-string><localized-string key="Formula.sg" language="en">Formula</localized-string><localized-string key="Formula.pl" language="en">Formulas</localized-string><localized-string key="Table.sg" language="en">Table</localized-string><localized-string key="Table.pl" language="en">Tables</localized-string><localized-string key="Requirement.sg" language="en">Requirement</localized-string><localized-string key="Requirement.pl" language="en">Requirements</localized-string><localized-string key="Recommendation.sg" language="en">Recommendation</localized-string><localized-string key="Recommendation.pl" language="en">Recommendations</localized-string><localized-string key="Permission.sg" language="en">Permission</localized-string><localized-string key="Permission.pl" language="en">Permissions</localized-string><localized-string key="Example.sg" language="en">Example</localized-string><localized-string key="Example.pl" language="en">Examples</localized-string><localized-string key="Part.sg" language="en">Part</localized-string><localized-string key="Part.pl" language="en">Parts</localized-string><localized-string key="Section.sg" language="en">Section</localized-string><localized-string key="Section.pl" language="en">Sections</localized-string><localized-string key="Paragraph.sg" language="en">Paragraph</localized-string><localized-string key="Paragraph.pl" language="en">Paragraphs</localized-string><localized-string key="Chapter.sg" language="en">Chapter</localized-string><localized-string key="Chapter.pl" language="en">Chapters</localized-string><localized-string key="Page.sg" language="en">Page</localized-string><localized-string key="Page.pl" language="en">Pages</localized-string><localized-string key="draft-internal-boilerplate" language="en">This document is currently under development and is <br/><b>NOT INTENDED FOR PUBLIC RELEASE.</b></localized-string><localized-string key="draft-wip-boilerplate" language="en">This document is currently under development. The draft is not yet complete, and organizations should not attempt to implement it. The content is in an early stage of development, rough, incomplete and experimental; it has not been extensively edited or vetted. This provides an insider view of the iterative process to develop the content and it gives NIST an opportunity to share early thoughts, ideas, and approaches with the community. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period.</localized-string><localized-string key="draft-prelim-boilerplate" language="en">This document incorporates comments from the work-in-progress draft. It is a relatively cohesive document and is considered stable, although there are gaps in the content and the overall document is incomplete. Some changes are expected. Organizations may consider experimenting with guidelines, with the understanding that they will identify gaps and challenges. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period; a full public draft is expected to follow.</localized-string><localized-string key="draft-public-boilerplate" language="en">This draft represents a complete document that is released for public comment as part of NIST’s official review process, in support of an open and transparent process for developing guidelines and standards. The language is normalized and is consistent throughout the document. Comments received during previous review cycles (if any) have been adjudicated and are addressed in this release. Early adopters may attempt to implement the guidelines in a test or development environment; however, comments received on this draft may cause NIST to determine that a subsequent public draft and comment period are necessary. The content of this document will not be considered “final” until it is formally published and announced by NIST.</localized-string><localized-string key="withdrawal-pending-boilerplate" language="en">This document has been superseded by the document identified below. It will remain active until the withdrawal date, when it will be officially withdrawn.</localized-string><localized-string key="draft-retired-boilerplate" language="en">The attached draft document has been RETIRED. NIST has discontinued additional development of this document, which is provided here in its entirety for historical purposes.</localized-string><localized-string key="draft-withdrawn-boilerplate" language="en">The attached draft document has been withdrawn, and is provided solely for historical purposes. It has been superseded by the document identified below.</localized-string><localized-string key="publication-withdrawn-boilerplate" language="en">The attached publication has been withdrawn (archived), and is provided solely for historical purposes. It may have been superseded by another publication (indicated below).</localized-string><localized-string key="keywords" language="en">Keywords</localized-string><localized-string key="keywords_intro" language="en"><p>The following are keywords to be used by search engines and document catalogues.</p></localized-string><localized-string key="language" language="en">en</localized-string><localized-string key="script" language="en">Latn</localized-string></localized-strings>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title depth="2">Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title depth="2">Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract" displayorder="1"><title>Abstract</title><p id="_044863b4-1f4f-ab52-9447-f9f173f6cd47">This document defines the JSON schema for testing KAS-SSC-ECC SP800-56Ar3 implementations with the ACVP specification.</p>
+</abstract><clause id="_3e4556c6-d75d-4b28-a9b8-38d64fb4523b" type="keyword" displayorder="2">
+<title depth="1">Keywords</title>
+<p>The following are keywords to be used by search engines and document catalogues.</p>
+<p>ACVP; cryptography</p></clause>
+<foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative" displayorder="3">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative" displayorder="4">
+<title depth="1">Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative" displayorder="5">
+<title depth="1">Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119">[RFC 2119]</eref> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174">[RFC 8174]</eref> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative" displayorder="6"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative" displayorder="7">
+<title>Executive Summary</title>
+<p id="_2c33713e-e56a-cc16-3576-d39e23bc24a1">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing KAS-SSC-ECC SP800-56Ar3 implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative" displayorder="8">
+<title depth="1">1.<tab/>Introduction</title>
+<p id="_180fdd65-bc2c-ccba-e566-8ffd6577d013">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing KAS-SSC-ECC SP800-56Ar3 implementations using ACVP.</p>
+</clause>
+
+<clause id="supported_algs" obligation="normative" displayorder="9">
+<title depth="1">2.<tab/>Supported KAS SSC ECC</title>
+<p id="_e4573723-5946-ef6c-ca48-a82fafad6a33">The following KAS algorithms <strong>MAY</strong> be advertised by this ACVP compliant crypto module:</p>
+
+<ul id="_1af2c9a1-a0a4-fc43-40c7-af19b8f5fed1"><li><p id="_eff4fb15-abda-1f16-2d8c-b22173ce334b">KAS-ECC-SSC / null / Sp800-56Ar3</p>
+</li>
+</ul>
+
+<p id="_7ac1379e-9f7f-7f12-b68b-c7737c616654">Other KAS algorithms <strong>MAY</strong> be advertised by the ACVP module elsewhere.</p>
+</clause>
+
+<clause id="testtypes" obligation="normative" displayorder="10">
+<title depth="1">3.<tab/>Test Types and Test Coverage</title>
+<p id="_c636d487-7db5-9fcb-3022-b9139c18fc28">This section describes the design of the tests used to validate KAS-SSC-ECC SP800-56Ar3 implementations.</p>
+
+<clause id="_test_types" obligation="normative">
+<title depth="2">3.1.<tab/>Test Types</title>
+<ul id="_134048a1-ad98-12df-a8fc-06aaf40b8ff5"><li><p id="_75335667-8e92-9df5-039e-00f69ddb2e89">“AFT” — Algorithm Function Test. In the AFT test mode, the IUT SHALL act as a party in the Key Agreement with the ACVP server. The server SHALL generate and provide all necessary information for the IUT to compute a shared secret <tt>z</tt>; both the server and IUT MAY act as party U/V.</p>
+</li>
+<li><p id="_2d9d0dc7-01e1-998c-95e2-a117009a666e">“VAL” — Validation test. In the VAL test mode, The ACVP server MUST generate a complete (from both party U and party V’s perspectives) shared secret <tt>z</tt>, and expects the IUT to be able to determine if that shared secret is valid. Various types of conditions/errors MUST be introduced in varying portions of the key agreement process (changed Z, Z with leading zero nibble, etc), that the IUT MUST be able to detect and report on.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_test_coverage" obligation="normative">
+<title depth="2">3.2.<tab/>Test Coverage</title>
+<p id="_566fdfb0-0dc3-30f5-bd6e-e4f9293c0ef4">The tests described in this document have the intention of ensuring an implementation is conformant to SP800-56Ar3 KAS Shared Secret Computation (SSC).</p>
+
+<clause id="_requirements_covered" obligation="normative">
+<title depth="3">3.2.1.<tab/>Requirements Covered</title>
+<ul id="_2df23030-9975-29f3-6baa-0ef2c1a5614d"><li><p id="_36373755-8bdf-76f5-9309-4be020a80fc0">SP 800-56Ar3 — 4.1 Key Establishment Preparations. The ACVP server is responsible for generating domain parameters as per the IUT’s capability registration.</p>
+</li>
+<li><p id="_dff21bec-4115-6230-a616-2ec3f928bfab">SP 800-56Ar3 — 4.2 Key-Agreement Process. Both the ACVP server and IUT participate in the shared secret computation. The server and IUT can both take the roles of party U/V, and as such the “performer” of steps depicted in “Figure 2: Key Agreement process” can vary.</p>
+</li>
+<li><p id="_69c0ffd1-2302-73ed-a808-fba19c8c6ded">SP 800-56Ar3 — 5.6 Domain Parameters. Domain Parameter Generation SHALL be performed solely from the ACVP server, with constraints from the IUTs capabilities registration. The same set of domain parameters SHALL generate all keypairs (party U/V, static/ephemeral) for a single test case.</p>
+</li>
+<li><p id="_b3cf58ce-c012-7799-e362-71ccf6e7f03a">SP 800-56Ar3 — 5.6 Key-Pair Generation. While Key-Pairs are used in each KAS scheme, the generation of said key-pairs is out of scope for KAS testing.</p>
+</li>
+<li><p id="_8ee051a0-d833-5733-b9e3-c577f7af081d">SP 800-56Ar3 — 4.3 DLC-based Key-Transport Process / 5.7 DLC Primitives. Depending on the scheme used, either Diffie Hellman or MQV SHALL be used to negotiate a shared secret of z. Testing and validation of such key exchanges is covered under their respective schemes.</p>
+</li>
+<li><p id="_bff78bb9-84b4-a1b5-0e9f-dea5b04d01f8">SP 800-56Ar3 — 6 Key Agreement Schemes. All schemes specified in referenced document are supported for validation with the ACVP server.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_requirements_not_covered" obligation="normative">
+<title depth="3">3.2.2.<tab/>Requirements Not Covered</title>
+<ul id="_f1263e25-a794-9ec9-23d6-b283dde60468"><li><p id="_5c6b95be-bf9e-cf25-422e-086623ff8047">KAS SSC testing only covers testing of SP800-56Ar3 through the computation of a shared secret <tt>z</tt>.  Additional functions of KAS as a whole such as KDF, KC, etc. MAY be covered within the scope of the full KAS testing; please see that document for further details.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative" displayorder="11">
+<title depth="1">4.<tab/>Capabilities Registration</title>
+<p id="_91d900a4-0b50-ab35-f400-0a89e6e8e45b">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of KAS-SSC-ECC SP800-56Ar3 algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP">[ACVP]</eref> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title depth="2">4.1.<tab/>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Table 1 — Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json"><name>Figure 1</name>"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="prereq_algs" obligation="normative">
+<title depth="2">4.2.<tab/>Prerequisite Algorithms for KAS FFC Validations</title>
+<p id="_27b0f3cd-de6e-aa66-5728-230526b634c5">Some algorithm implementations rely on other cryptographic primitives. For example, IKEv2 uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same 	submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<table id="rereqs_table">
+<name>Table 2 — Prerequisite Algorithms JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">DRBG, ECDSA</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">actual number or “same”</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">prereqAlgVal</td>
+<td valign="top" align="left">prerequisite algorithm validation</td>
+<td valign="top" align="left">object with algorithm and valValue properties</td>
+<td valign="top" align="left">see above</td>
+<td valign="top" align="left">Yes</td>
+</tr></tbody>
+</table>
+
+<p id="_958b4d7b-94bb-c95e-86e7-b4faae21bbae">KAS has conditional prerequisite algorithms, depending on the capabilities registered:</p>
+
+<table id="prereqs_requirements_table">
+<name>Table 3 — Prerequisite requirement conditions</name>
+<thead><tr><th valign="top" align="left">Prerequisite Algorithm</th>
+<th valign="top" align="left">Condition</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">DRBG</td>
+<td valign="top" align="left">Always <strong>REQUIRED</strong></td>
+</tr><tr><td valign="top" align="left">SHA</td>
+<td valign="top" align="left">Always <strong>REQUIRED</strong></td>
+</tr><tr><td valign="top" align="left">ECDSA</td>
+<td valign="top" align="left">ECDSA KeyGen/KeyVer validation <strong>REQUIRED</strong> when IUT makes use of the generation/validation of keys within the module boundary.</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="properties" obligation="normative">
+<title depth="2">4.3.<tab/>Property Registration</title>
+<p id="_15e82fde-2df9-4732-bcbc-e508a528c0fa">The KAS-SSC-ECC SP800-56Ar3 mode capabilities are advertised as JSON objects within a root “algorithm” object.</p>
+
+<p id="_462d6d67-b9ea-2b0f-708d-1568ff9741b0">A registration <strong>SHALL</strong> use these properties:</p>
+
+<table id="_72d7b54a-b5b8-44dd-5912-80616dd77527">
+<name>Table 4 — Registration Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Name of the algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“KAS-ECC-SSC”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">ACVP Test version</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“Sp800-56Ar3”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisites of the algorithm</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="prerequisites">Section 4.1</xref></td>
+</tr><tr><td valign="top" align="left">scheme</td>
+<td valign="top" align="left">Array of schemes supported</td>
+<td valign="top" align="left">array of objects</td>
+<td valign="top" align="left">See <xref target="scheme">Section 4.3.1</xref></td>
+</tr><tr><td valign="top" align="left">domainParameterGenerationMethods</td>
+<td valign="top" align="left">Array of strings representing the supported means of generating domain parameters</td>
+<td valign="top" align="left">array of strings</td>
+<td valign="top" align="left">See <xref target="domainParameterGenerationMethods">Section 4.3.2</xref></td>
+</tr><tr><td valign="top" align="left">scheme</td>
+<td valign="top" align="left">Array of schemes supported</td>
+<td valign="top" align="left">dictionary</td>
+<td valign="top" align="left">See <xref target="scheme">Section 4.3.1</xref></td>
+</tr><tr><td valign="top" align="left">hashFunctionZ</td>
+<td valign="top" align="left">Optional hash function to apply to the shared secret <tt>z</tt> in instances where the IUT is unable to return the <tt>z</tt> in the clear.</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="hashFunctionZ">Section 4.3.3</xref></td>
+</tr></tbody>
+</table>
+
+<clause id="scheme" obligation="normative">
+<title depth="3">4.3.1.<tab/>Schemes</title>
+<p id="_1f93b980-72a0-5d68-985a-2c6f78e4795d">Schemes <strong>MUST</strong> be registered as a dictionary (key/value pairs) where the key is a valid <xref target="schemeId">Section 4.3.1.1</xref>, and the value is a <xref target="schemeObject">Section 4.3.1.2</xref>.</p>
+
+<clause id="schemeId" obligation="normative">
+<title depth="4">4.3.1.1.<tab/>Scheme Identifier</title>
+<ul id="_a6a4f51a-ea62-79f6-d8ed-2e805a60d06b"><li><p id="_3e59baea-0e08-f67f-9441-afd8dc6c68d3">ephemeralUnified</p>
+</li>
+<li><p id="_aafab635-93ab-33e3-1cdd-3383e069dc6d">onePassMqv</p>
+</li>
+<li><p id="_5e1b27c3-f4d6-d16a-2079-ad5ac6ac4b24">fullUnified</p>
+</li>
+<li><p id="_af624294-c7a8-8699-9f0e-90bf5b767faf">fullMqv</p>
+</li>
+<li><p id="_a3d6c897-108a-e407-0b50-46dbc73fb553">onePassUnified</p>
+</li>
+<li><p id="_e7f06677-2c64-2ec3-3396-ecf16ca349d7">onePassDh</p>
+</li>
+<li><p id="_79cefaaf-e02a-77a5-77da-7e760e68f60a">staticUnified</p>
+</li>
+</ul>
+</clause>
+
+<clause id="schemeObject" obligation="normative">
+<title depth="4">4.3.1.2.<tab/>Scheme Object</title>
+<p id="_30ab6484-7ddd-cfcf-5593-3fc473285bf9">The scheme object is made up of the following properties:</p>
+
+<table id="_be948590-97fb-5047-c5b9-e5e5135d310e">
+<name>Table 5 — Scheme Properties</name>
+<tbody><tr><td valign="top" align="left">JSON Property</td>
+<td valign="top" align="left">Description</td>
+<td valign="top" align="left">JSON Type</td>
+<td valign="top" align="left">Valid Values</td>
+</tr><tr><td valign="top" align="left">kasRole</td>
+<td valign="top" align="left">The roles the IUT can support for the scheme</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">“initiator”, “responder”</td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="domainParameterGenerationMethods" obligation="normative">
+<title depth="3">4.3.2.<tab/>Domain Parameter Generation Methods</title>
+<ul id="_7218dc1d-21c8-6745-1de1-c2836bab1433"><li><p id="_4023c82f-e844-7736-43e9-5272710a05b7">P-224</p>
+</li>
+<li><p id="_8a5e8999-733b-2fd4-9232-9ffb5db105f1">P-256</p>
+</li>
+<li><p id="_cae1fd5c-466a-4784-4da2-86b3d3874634">P-384</p>
+</li>
+<li><p id="_9f0aa063-35f2-a79c-a370-5355012daab8">P-521</p>
+</li>
+<li><p id="_ea59412f-0bcd-fed1-ef64-26cfa716c5c9">K-233</p>
+</li>
+<li><p id="_5392a707-a42d-b27f-180d-184039c85e55">K-283</p>
+</li>
+<li><p id="_439de575-4d9e-278d-ee82-2fd5ff3fd0ea">K-409</p>
+</li>
+<li><p id="_c0feb47c-af58-1e18-fe35-0855901ed420">K-571</p>
+</li>
+<li><p id="_1f82f157-9129-4404-29f7-243e072501c9">B-233</p>
+</li>
+<li><p id="_61a932c4-2e10-78cc-32d4-4c165552eab0">B-283</p>
+</li>
+<li><p id="_e681b8fc-30bf-122e-fb48-9b0b37be3add">B-409</p>
+</li>
+<li><p id="_8177aee3-a9c1-2c90-9df1-1806f043be65">B-571</p>
+</li>
+</ul>
+</clause>
+
+<clause id="hashFunctionZ" obligation="normative">
+<title depth="3">4.3.3.<tab/>Hash Function Z</title>
+<p id="_2b780017-9186-2e2d-09e1-4886c878bf7d">An optional hash function that should be applied to <tt>z</tt> from both the ACVP server and IUT for comparison purposes.  The provided `hashFunctionZ’s security strength MUST be at least as strong as the greatest security strength domain parameter selected from <xref target="domainParameterGenerationMethods">Section 4.3.2</xref></p>
+
+<p id="_9992dca7-f3c9-c916-f33c-5f6dab47f9d3">The following hash functions <strong>MAY</strong> be advertised by an ACVP compliant server:</p>
+
+<ul id="_9b097b99-0aa4-8595-5c1a-4a4ea0dfefeb"><li><p id="_c37e0ff1-ebd0-0939-68a6-26c92e31aefb">SHA2-224</p>
+</li>
+<li><p id="_f4de4c6e-e207-bd3d-df63-aad5d70c12e2">SHA2-256</p>
+</li>
+<li><p id="_f863c5d1-dfaa-2251-4d94-f36ce8c5ab15">SHA2-384</p>
+</li>
+<li><p id="_06487e78-9829-3cdd-110e-79823d98c516">SHA2-512</p>
+</li>
+<li><p id="_389dd205-0ac6-c3a7-9a1e-fab403e24ace">SHA2-512/224</p>
+</li>
+<li><p id="_2977699b-09de-ddfb-fcd3-14522f38bd83">SHA2-512/256</p>
+</li>
+<li><p id="_a32db3e0-aba0-020b-031d-37b1e4b021b8">SHA3-224</p>
+</li>
+<li><p id="_8f483e7e-7c53-2f31-dd8f-81a7b3b12c1f">SHA3-256</p>
+</li>
+<li><p id="_1a6de166-2e80-d811-4aba-7d5156b15ff1">SHA3-384</p>
+</li>
+<li><p id="_22b90d79-a418-5b29-84fc-9fa84e116572">SHA3-512</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="_registration_example" obligation="normative">
+<title depth="2">4.4.<tab/>Registration Example</title>
+<sourcecode id="_9d57c954-d86e-075b-080b-14b312a41cf9" lang="json">
+<name>Figure 2 — Registration JSON Example</name>
+{
+  "algorithm": "KAS-ECC-SSC",
+  "revision": "Sp800-56Ar3",
+  "scheme": {
+    "fullMqv": {
+      "kasRole": [
+        "initiator",
+        "responder"
+      ]
+    },
+    "staticUnified": {
+      "kasRole": [
+        "initiator"
+      ]
+    }
+  },
+  "domainParameterGenerationMethods": [
+    "K-233"
+  ],
+  "hashFunctionZ": "SHA3-512"
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative" displayorder="12">
+<title depth="1">5.<tab/>Test Vectors</title>
+<p id="_d99e1db0-b03a-c42b-a857-8b54166163c4">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with KAS-SSC-ECC SP800-56Ar3 algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Table 6 — Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs">Section 5.1</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json"><name>Figure 3</name>{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title depth="2">5.1.<tab/>Test Groups</title>
+<p id="_aa2c0c35-04d0-80bb-a9c1-eaad47806e68">The testGroups element at the top level in the test vector JSON object is an array of test	groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped	together. The Test Group JSON object contains meta data that applies to all test vectors within	the group. The following table describes the KAS-SSC-ECC SP800-56Ar3 JSON elements of the Test Group JSON object</p>
+
+<table id="_3e56a4a7-a9fb-7010-84f4-168b2dfcd1f3">
+<name>Table 7 — Test Group Properties</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the tests data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">domainParameterGenerationMode</td>
+<td valign="top" align="left">The curve in use for key generation for the test group</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">scheme</td>
+<td valign="top" align="left">KAS scheme under test</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">kasRole</td>
+<td valign="top" align="left">The IUT role under test</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hashFunctionZ</td>
+<td valign="top" align="left">The hash function applied to <tt>z</tt> (optional)</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">See <xref target="testCase">Section 5.2</xref></td>
+</tr></tbody>
+</table>
+
+<p id="_2d806ef2-756e-7fb7-09f3-c49996cb7023">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ the group is addressing.</p>
+</clause>
+
+<clause id="testCase" obligation="normative">
+<title depth="2">5.2.<tab/>Test Cases</title>
+<p id="_6e29427c-aae3-e445-94d8-5574840341f5">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each KAS-SSC-ECC SP800-56Ar3 test vector.</p>
+
+<table id="_64f961ad-90eb-b43c-8e39-c041a83bfe98">
+<name>Table 8 — Test Case Properties</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">staticPublicServerX</td>
+<td valign="top" align="left">The server static public key X. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">staticPublicServerY</td>
+<td valign="top" align="left">The server static public key Y. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicServerX</td>
+<td valign="top" align="left">The server ephemeral public key X. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicServerY</td>
+<td valign="top" align="left">The server ephemeral public key Y. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">staticPrivateIut</td>
+<td valign="top" align="left">The IUT static private key. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">staticPublicIutX</td>
+<td valign="top" align="left">The IUT static public key X. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">staticPublicIutY</td>
+<td valign="top" align="left">The IUT static public key Y. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">ephemeralPrivateIut</td>
+<td valign="top" align="left">The IUT ephemeral private key. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicIutX</td>
+<td valign="top" align="left">The IUT ephemeral public key X. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicIutY</td>
+<td valign="top" align="left">The IUT ephemeral public key Y. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">z</td>
+<td valign="top" align="left">The computed shared secret.  Included for VAL tests when registered without a <tt>hashFunctionZ</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">hashZ</td>
+<td valign="top" align="left">The hashed computed shared secret.  Included for VAL tests when registered with a <tt>hashFunctionZ</tt></td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_33876949-c49d-6688-24d9-71d6cdd40414">Here is an abbreviated yet fully constructed example of the prompt</p>
+
+<sourcecode id="_821918ec-5147-fdc2-dc9f-8312307d6342" lang="json">
+<name>Figure 4 — Vector Set JSON Example</name>
+{
+  "vsId": 1,
+  "algorithm": "KAS-ECC-SSC",
+  "revision": "Sp800-56Ar3",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "tests": [
+        {
+          "staticPublicServerX": "009DDB6E0B7488CA9B1C7E90C9EA6415055C2FC692DB320ABCD6247974A6",
+          "staticPublicServerY": "003FF7BFDCD30EF76728DE7B788096A099013831EE19362B3E7839D9AFC1",
+          "ephemeralPublicServerX": "011A0F740FFCBDD59453181575D3E90948876330F6AB53C9F1D879E5401E",
+          "ephemeralPublicServerY": "00A2EF391F38BF071B63900DF1E046A6CABE8AFEEA8EF2D5A2C6FAECB420",
+          "tcId": 1
+        },
+        {
+          "staticPublicServerX": "0066EAAC997E1E4AB6DA167BB1D4AC7EDE71A3E31CFDF0246747AE4AD310",
+          "staticPublicServerY": "01C099445608C29300F1C0B7B9D1246C3BD53239C893AF196635EE9CADC8",
+          "ephemeralPublicServerX": "006E2F044F0BB01A82F25437014322C39943378AC17B67DF5FC03ED8EB8A",
+          "ephemeralPublicServerY": "018265FC80EE45EBE0E4703C94C9E3E88AB12313F19E095F872CCA3D9454",
+          "tcId": 2
+        }
+      ],
+      "domainParameterGenerationMode": "K-233",
+      "scheme": "fullMqv",
+      "kasRole": "initiator"
+    },
+    {
+      "tgId": 2,
+      "testType": "VAL",
+      "tests": [
+        {
+          "staticPublicServerX": "00099EA32CEF0B847A89359CE0ECA6CD90BCBEFB2E4760FE57C5D33E8AE4",
+          "staticPublicServerY": "009736F48E1C165C86398B343CA5E0C4140B1D9A193770504D11DD04D6A6",
+          "ephemeralPublicServerX": "00898BC3D22EA3CFF21185557EBEED8741807E4E26796D6C7AC3BAEAA727",
+          "ephemeralPublicServerY": "00DE13014770A4E8E2189AD7759BE40158CB88F24C01EF6A93C1AEB69AC0",
+          "staticPrivateIut": "002432C57C2FA1BAAD45E0904A26590794EF5607EB2801CF16A50BC37268",
+          "staticPublicIutX": "004E3F12349A545F9B7BD5C80C1D02AAF86C59DDA60E7F9365969ED7D3F5",
+          "staticPublicIutY": "00F2217558C507B02976293D804BAE9D90AE3AEB29740A7526F03B7E3A7A",
+          "ephemeralPrivateIut": "0052448C1E027D3C54A0EF78A2E5AE5147F03EBAFF16CFC62D997B299984",
+          "ephemeralPublicIutX": "0000C875EC6B96E960DA28CCA013FD66281F0646DB75042F523AA08B4804",
+          "ephemeralPublicIutY": "0088FCD24C2A9DCCFB45A5DBEF59761E9D35B14CFE4AB8D19817A1DEE768",
+          "tcId": 6,
+          "z": "006DE2AF8A3C44EC58FE36CF89BDD64EA8009029DC9B96D46441159D2166"
+        },
+        {
+          "staticPublicServerX": "01DBD694E146FF567AE27722F9A0D28484A6C73E946136DEE0D53BFA1398",
+          "staticPublicServerY": "01EFDBA338166C752858881ADA717B3F3459F65F4D5A8DE1542ED48BD090",
+          "ephemeralPublicServerX": "019A288B9BC2424EF2930B093E17BE2E427DB45D571DB25EA307BF5FB042",
+          "ephemeralPublicServerY": "019683B12459C385BAC1819AA13778C253CA85BF56825F0EF3E1B8C891CC",
+          "staticPrivateIut": "000441DC0EB9061313A3501E346DFBB1E914DA4407388DF54193B0542098",
+          "staticPublicIutX": "005F489ECBD43EBF3D02A6514DA99B1DCFDED0E42633405C0D5671920571",
+          "staticPublicIutY": "00E75125D3DE971B8DC7CF9D57300E959372616B24131BCBC0EE680CA9AF",
+          "ephemeralPrivateIut": "0010938CC688C9036923838EB607A468ADB81A6A8D5544DA3A7BF1774D33",
+          "ephemeralPublicIutX": "0151C3AFF22BA9390947FD8C59EC1A77879A1491B369B226961747B50475",
+          "ephemeralPublicIutY": "00DD94325FDF311D9056512FB15A5E4AAEAC278E90533698AF9D7A8F4144",
+          "tcId": 7,
+          "z": "017236827F9EB5498DF3151627AE2F5D6835056F669D6D448EA219AE8E2A"
+        }
+      ],
+      "domainParameterGenerationMode": "K-233",
+      "scheme": "fullMqv",
+      "kasRole": "initiator"
+    }]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative" displayorder="13">
+<title depth="1">6.<tab/>Responses</title>
+<p id="_95e26399-cf6a-e160-2f71-58f636a96e1b">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="_e77c5e78-8394-f3db-9552-7ea4e39bd2b4">
+<name>Table 9 — Vector Set Response Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_f4cfc48f-1b32-a66b-f82e-b34f051c5bde">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that.</p>
+
+<table id="_fcc7fe6b-29eb-fab9-dd55-8a6d3cda5ed1">
+<name>Table 10 — Test Group Response Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_52c5d366-47b9-5e20-292e-8d90534eab53">The following table describes the JSON object that represents a test case response for a KAS-SSC-ECC SP800-56Ar3.</p>
+
+<table id="_2449f6ae-aa0a-c208-5357-7cd3370aee24">
+<name>Table 11 — Test Case Response Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">Was the provided <tt>z</tt> or <tt>hashZ</tt> valid? Only valid for the “VAL” test type.</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">staticPublicIutX</td>
+<td valign="top" align="left">The IUT static public key X. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">staticPublicIutY</td>
+<td valign="top" align="left">The IUT static public key Y. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicIutX</td>
+<td valign="top" align="left">The IUT ephemeral public key X. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicIutY</td>
+<td valign="top" align="left">The IUT ephemeral public key Y. Optional depending on scheme and test type.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">z</td>
+<td valign="top" align="left">The shared secret <tt>z</tt>.  Only included for “AFT” test type when a <tt>hashFunctionZ</tt> is not in use.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">hashZ</td>
+<td valign="top" align="left">The shared secret <tt>z</tt> run through a hash function.  Only included for “AFT” test type when a <tt>hashFunctionZ</tt> is in use.</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_056e4a42-2303-587c-926a-8defbab86d3c">Here is an abbreviated example of the response</p>
+
+<sourcecode id="_95e105f3-5007-e659-b4f8-e7bad0ad58c3" lang="json">
+<name>Figure 5 — Example Response JSON</name>
+{
+  "vsId": 1,
+  "algorithm": "KAS-ECC-SSC",
+  "revision": "Sp800-56Ar3",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "staticPublicIutX": "01ED7A443C08F1C9BDE87DB3658C10CAA4056E0B333CDEC2D65E2C15A982",
+          "staticPublicIutY": "01F81685DFB8444F6EF21D98ECCFA18E368C278DEA95C08CC9D2C68BB701",
+          "ephemeralPublicIutX": "001ACA6CE2243C5D3A43FFD0B4AC46997519D53AE7B0D9A5D235A5E1361B",
+          "ephemeralPublicIutY": "013A61A2174371DA0DAC4CE323D90F118717B2F7BC58B35F3AEAF22413B2",
+          "tcId": 1,
+          "z": "0157C230E9CF02BFD5BC8D5113E10C17C9E06187413950120B0BD617BB9B"
+        },
+        {
+          "staticPublicIutX": "00CE26A621F2E6D1B609A378F1E808BF56B6C3693B89624E6913F55B80AF",
+          "staticPublicIutY": "01402453E700A4CF284403E2F4137EDBBE82D0462E7EA0AFEC57C65D328E",
+          "ephemeralPublicIutX": "01B5A9002B1EDAE4F318068E60F35550C7EDFBA715A5CE3DDAD46ECF156E",
+          "ephemeralPublicIutY": "011EBCC4657C8B89243A21984110603BB259B25DC7728414EC53ECE01806",
+          "tcId": 2,
+          "z": "00A3410290DC37BD32169B3817222D90D4CD644A0EEE44BA9F32EBE71761"
+        }
+      ]
+    },
+    {
+      "tgId": 2,
+      "tests": [
+        {
+          "tcId": 6,
+          "testPassed": true
+        },
+        {
+          "tcId": 7,
+          "testPassed": true
+        },
+        {
+          "tcId": 8,
+          "testPassed": false
+        },
+        {
+          "tcId": 9,
+          "testPassed": true
+        },
+        {
+          "tcId": 10,
+          "testPassed": true
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="security" obligation="normative" displayorder="14">
+<title depth="1">7.<tab/>Security Considerations</title>
+<p id="_e00ec061-56a6-9331-9b16-9e2a17a53e3f">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative" displayorder="15">
+<title xref="Appendix A"><strong>Appendix A</strong> — <strong>Terminology</strong></title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><title>A.1.</title><term id="term-prompt"><name>A.1.1.</name><preferred><strong>Prompt</strong></preferred>
+<definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></definition>
+ </term>
+
+<term id="term-registration"><name>A.1.2.</name><preferred><strong>Registration</strong></preferred>
+<definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></definition>
+ </term>
+
+<term id="term-response"><name>A.1.3.</name><preferred><strong>Response</strong></preferred>
+<definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></definition>
+ </term>
+
+<term id="term-test-case"><name>A.1.4.</name><preferred><strong>Test Case</strong></preferred>
+<definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-group"><name>A.1.5.</name><preferred><strong>Test Group</strong></preferred>
+<definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-vector-set"><name>A.1.6.</name><preferred><strong>Test Vector Set</strong></preferred>
+<definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></definition>
+ </term>
+
+<term id="term-validation"><name>A.1.7.</name><preferred><strong>Validation</strong></preferred>
+<definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative" displayorder="16">
+<title xref="Appendix B"><strong>Appendix B</strong> — <strong>Abbreviations and Acronyms</strong></title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative" displayorder="17">
+<title xref="Appendix C"><strong>Appendix C</strong> — <strong>Revision History</strong></title>
+<table id="_29406b55-d51f-2763-b914-88595abbc3d1"><name>Table C-1</name><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_bf8cbff7-2de6-2dfb-ebf7-eb18dc1a143e">2020-06-26</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_dad460f6-a06d-bf9e-b809-ccaf11188006" obligation="normative" displayorder="18">
+<title xref="Appendix D"><strong>Appendix D</strong> — <strong>References</strong></title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard"><formattedref>S. Bradner (March 1997) <em>Key words for use in RFCs to Indicate Requirement Levels</em> (Internet Engineering Task Force),  BCP 14, March 1997. RFC 2119. RFC RFC2119. DOI 10.17487/RFC2119. https://www.rfc-editor.org/info/rfc2119.</formattedref><docidentifier type="RFC" primary="true">RFC 2119</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC2119</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC2119</docidentifier></bibitem>
+ <bibitem id="RFC3526" type="standard"><formattedref>T. Kivinen, M. Kojo (May 2003) <em>More Modular Exponential (MODP) Diffie-Hellman groups for Internet Key Exchange (IKE)</em> (Internet Engineering Task Force),  RFC 3526, May 2003. RFC 3526. RFC RFC3526. DOI 10.17487/RFC3526. https://www.rfc-editor.org/info/rfc3526.</formattedref><docidentifier type="RFC" primary="true">RFC 3526</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC3526</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC3526</docidentifier></bibitem>
+ <bibitem id="RFC7919" type="standard"><formattedref>D. Gillmor (August 2016) <em>Negotiated Finite Field Diffie-Hellman Ephemeral Parameters for Transport Layer Security (TLS)</em> (Internet Engineering Task Force),  RFC 7919, August 2016. RFC 7919. RFC RFC7919. DOI 10.17487/RFC7919. https://www.rfc-editor.org/info/rfc7919.</formattedref><docidentifier type="RFC" primary="true">RFC 7919</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC7919</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC7919</docidentifier></bibitem>
+ <bibitem id="RFC7991" type="standard"><formattedref>P. Hoffman (December 2016) <em>The “xml2rfc” Version 3 Vocabulary</em> (Internet Engineering Task Force),  RFC 7991, December 2016. RFC 7991. RFC RFC7991. DOI 10.17487/RFC7991. https://www.rfc-editor.org/info/rfc7991.</formattedref><docidentifier type="RFC" primary="true">RFC 7991</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC7991</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC7991</docidentifier></bibitem>
+ <bibitem id="RFC8174" type="standard"><formattedref>B. Leiba (May 2017) <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em> (Internet Engineering Task Force),  BCP 14, May 2017. RFC 8174. RFC RFC8174. DOI 10.17487/RFC8174. https://www.rfc-editor.org/info/rfc8174.</formattedref><docidentifier type="RFC" primary="true">RFC 8174</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC8174</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC8174</docidentifier></bibitem>
+ <bibitem id="FIPS186-4" type="standard"><formattedref>National Institute of Standards and Technology (July 2013) <em>Digital Signature Standard (DSS)</em> (Gaithersburg, MD), July 2013. FIPS 186-4. https://doi.org/10.6028/NIST.FIPS.186-4.</formattedref><docidentifier type="NIST" primary="true">FIPS 186-4</docidentifier></bibitem>
+ <bibitem id="SP800-56Ar3" type="standard"><formattedref>Elaine B. Barker, Lily Chen, Allen Roginsky, Apostol Vassilev, Richard Davis (April 2018) <em>Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm Cryptography</em> (Gaithersburg, MD), April 2018. SP 800-56A Rev. 3. https://doi.org/10.6028/NIST.SP.800-56Ar3.</formattedref><docidentifier type="NIST" primary="true">SP 800-56A Rev. 3</docidentifier></bibitem>
+
+<bibitem id="ACVP"><formattedref>Fussell B, Vassilev A, Booth H, Celi C, Hammett R (July 01, 2019) <em>Automatic Cryptographic Validation Protocol</em> (National Institute of Standards and Technology, Gaithersburg, MD), July 01, 2019.</formattedref><docidentifier>ACVP</docidentifier></bibitem>
+</references>
+</annex>
+</nist-standard>

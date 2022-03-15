@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-IKEv2</uri><docidentifier type="NIST">ACVP KDF-IKEv2 Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-IKEv2 Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-IKEv2.r-1.eng</docidentifier><docnumber>KDF-IKEv2</docnumber><date type="issued"><on>2019-06-05</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing SP800-135 IKEv2 KDF implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_2caec260-7df2-09b1-7572-0b016fa33cc5">This document defines the JSON schema for testing SP800-135 IKEv2 KDF implementations with the ACVP specification.</p>
+</abstract><foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative">
+<title>Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative">
+<title>Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174"/> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative">
+<title>Executive Summary</title>
+<p id="_22c8bfb2-a708-64fb-a3b0-b16454da3389">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-135 IKEv2 KDF implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_62008213-a21b-a625-2e66-5c3448ff329c">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-135 IKEv2 KDF implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative">
+<title>Supported KDFs</title>
+<p id="_c1c22e5d-d403-aeba-a2e1-2341b8a93d2d">The following key derivation functions <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_9b886c9c-dee3-bbcc-b1fe-3a31b7807c9c"><li><p id="_5eeacddb-c862-455b-81ca-1fdb149bee54">kdf-components / ikev2</p>
+</li>
+</ul>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_430b4cdd-9139-a491-39bf-0a079d83fa2c">This section describes the design of the tests used to validate SP800-135 IKEv2 KDF implementations. There is only one test type: functional tests. Each has a specific value to be used in the testType field. The testType field definitions are:</p>
+
+<p id="_1f94f2cd-1232-77ec-e997-43ed59e86399">“AFT” — Algorithm Functional Test. These tests can be processed by the client using a normal ‘derive_key’ operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the key deriviation process are operating correctly.</p>
+
+<clause id="_test_coverage" obligation="normative">
+<title>Test Coverage</title>
+<p id="_6a0a046f-8fa7-b061-1fa1-3cbedbb7023f">The tests described in this document have the intention of ensuring an implementation is conformant to XXX.</p>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_55634209-abae-7179-bcdc-df1f0c28855a">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of IKEv2 KDF algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="properties" obligation="normative">
+<title>Property Registration</title>
+<p id="_083d9de3-c645-c259-8871-3d150f546303">The IKEv2 KDF mode capabilities are advertised as JSON objects within the ‘capabilities_exchange’ property.</p>
+</clause>
+
+<clause id="registration" obligation="normative">
+<title>Registration Example</title>
+<p id="_bb189b9e-66ff-dac0-5db9-e42b5e5b2703">A registration <strong>SHALL</strong> use these properties</p>
+
+<table id="_45affab6-f54d-68ae-809f-c31f6f29320f">
+<name>IKEv2 KDF Mode Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Name of the algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“kdf-components”</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode of the algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“ikev2”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">ACVP Test version</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+</tr><tr><td valign="top" align="left">capabilities</td>
+<td valign="top" align="left">Array of objects describing capabilities</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Contains each of the below properties</td>
+</tr><tr><td valign="top" align="left">initiatorNonceLength</td>
+<td valign="top" align="left">The supported initiator nonce lengths used by the IUT in bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 64, Max: 2048</td>
+</tr><tr><td valign="top" align="left">responderNonceLength</td>
+<td valign="top" align="left">The lengths of data the IUT supports in bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 64, Max: 2048</td>
+</tr><tr><td valign="top" align="left">diffieHellmanSharedSecretLength</td>
+<td valign="top" align="left">The lengths of Diffie Hellman shared secrets the IUT supports in bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 224, Max: 8192</td>
+</tr><tr><td valign="top" align="left">derivedKeyingMaterialLength</td>
+<td valign="top" align="left">The lengths of derived key material the IUT supports in bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 160, Max: 16384</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">Valid hash algorithms used by the IUT</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="valid-sha"/></td>
+</tr></tbody>
+</table>
+
+<p id="_2ea08e62-efd0-d45b-0c7d-ed3fcaeb4823">An example registration within an algorithm capability exchange looks like this</p>
+
+<sourcecode id="_44046c35-220c-3000-5085-a13b235c7567" lang="json">"capability_exchange":
+[
+    {
+        "algorithm": "kdf-components",
+        "mode": "IKEv2",
+        "revision": "1.0",
+        "capabilities": [
+            {
+                "hashAlg": [
+                    "sha-1",
+                    "sha2-224",
+                    "sha2-256"
+                ],
+                "initiatorNonceLength": [
+                    {
+                        "min": 64,
+                        "max": 2048,
+                        "increment": 1
+                    }
+                ],
+                "responderNonceLength": [
+                    {
+                        "min": 64,
+                        "max": 2048,
+                        "increment": 1
+                    }
+                ],
+                "diffieHellmanSharedSecretLength": [
+                    {
+                        "min": 224,
+                        "max": 8192,
+                        "increment": 1
+                    }
+                ],
+                "derivedKeyingMaterialLength": [
+                    {
+                        "min": 384,
+                        "max": 16384,
+                        "increment": 1
+                    }
+                ]
+            },
+            {
+                "hashAlg": [
+                    "sha2-384",
+                    "sha2-512"
+                ],
+                "initiatorNonceLength": [
+                    {
+                        "min": 64,
+                        "max": 2048,
+                        "increment": 1
+                    }
+                ],
+                "responderNonceLength": [
+                    {
+                        "min": 64,
+                        "max": 2048,
+                        "increment": 1
+                    }
+                ],
+                "diffieHellmanSharedSecretLength": [
+                    {
+                        "min": 224,
+                        "max": 8192,
+                        "increment": 1
+                    }
+                ],
+                "derivedKeyingMaterialLength": [
+                    {
+                        "min": 1024,
+                        "max": 16384,
+                        "increment": 1
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+
+<clause id="valid-sha" obligation="normative">
+<title>Valid Hash Functions</title>
+<p id="_db25253b-53d0-7868-5ca7-3fc57e5a618d">The following hash functions <strong>MAY</strong> be advertised by an ACVP compliant client under the ‘hashAlg’ property</p>
+
+<ul id="_07fcf2bf-da53-4f84-556e-4bff92afb65c"><li><p id="_36c40fec-a7f9-1bf1-6d4a-b56c55d38847">SHA-1</p>
+</li>
+<li><p id="_9e23155a-82bc-44bb-f866-01a3d3dda680">SHA2-224</p>
+</li>
+<li><p id="_4e35a197-7236-2815-3593-05dd6050cb9d">SHA2-256</p>
+</li>
+<li><p id="_389a33be-4c14-3a29-c155-74aa908b6b13">SHA2-384</p>
+</li>
+<li><p id="_6d22183f-666e-cb21-7667-f6ead02ed9c6">SHA2-512</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_7f0f6749-92c4-4d49-219d-882f4c28bd09">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SP800-135 IKEv2 KDF algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title>Test Groups</title>
+<p id="_60b379c9-9bbc-7fbc-8327-a4b99ae9e424">The testGroups element at the top level in the test vector JSON object is an array of test  groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the SP800-135 IKEv2 KDF JSON elements of the Test Group JSON object</p>
+
+<table id="_75347fa7-00d6-abf9-07a5-63320f1d8590">
+<name>Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test operations to be performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The SHA type used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">nInitLength</td>
+<td valign="top" align="left">Length of initiator nonce in bits</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">nRespLength</td>
+<td valign="top" align="left">Length of responder nonce in bits</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">derivedKeyingMaterialLength</td>
+<td valign="top" align="left">Derived Key Matrerial length expected in bits</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">dhLength</td>
+<td valign="top" align="left">Diffie Hellman shared secret length in bits</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_f6ad9232-292b-8f26-72cc-a69a652ea555">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes"/>) the group is addressing.</p>
+</clause>
+
+<clause id="_test_cases" obligation="normative">
+<title>Test Cases</title>
+<p id="_8bc049be-412c-3766-8292-d0cf03cd88c7">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each SP800-135 IKEv2 KDF test vector.</p>
+
+<table id="_f59b828c-07b8-f4e0-bbd9-be467a1739ea">
+<name>Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case idenfitier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">nInit</td>
+<td valign="top" align="left">Value of the initiator nonce</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">nResp</td>
+<td valign="top" align="left">Value of the responder nonce</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">gir</td>
+<td valign="top" align="left">Diffie-Hellman shared secret</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">girNew</td>
+<td valign="top" align="left">New Diffie-Hellman shared secret</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">spiInit</td>
+<td valign="top" align="left">security parameter indice of the initiator</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">spiResp</td>
+<td valign="top" align="left">security parameter indice of the responder</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_264e574a-c5bf-fdd8-1151-8341e740f738">Here is an abbreviated yet fully constructed example of the prompt.</p>
+
+<sourcecode id="_49607e38-129e-2c14-d6cb-53e6f973382e" lang="json">{
+  "vsId": 1,
+  "algorithm": "kdf-components",
+  "mode": "IKEv2",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "hashAlg": "SHA-1",
+      "dhLength": 224,
+      "nInitLength": 64,
+      "nRespLength": 2048,
+      "derivedKeyingMaterialLength": 16384,
+      "testType": "AFT",
+      "tests": [
+        {
+          "tcId": 1,
+          "nInit": "258A2A59B5A960A3",
+          "nResp": "1BC7543704848EF6...",
+          "gir": "9528B0F97999E1C7FE...",
+          "girNew": "EC54C9B02FFAFEC...",
+          "spiInit": "52D5397B0061602B",
+          "spiResp": "E45E291943E3E5ED"
+        },
+        {
+          "tcId": 2,
+          "nInit": "9986940729199F59",
+          "nResp": "479E9DC203FFE874...",
+          "gir": "4380C15BC19F4872EF...",
+          "girNew": "57D5AFAE6D80C15...",
+          "spiInit": "C383DF2C6F9072BF",
+          "spiResp": "5A7026194D4ACF79"
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative">
+<title>Responses</title>
+<p id="_95e26399-cf6a-e160-2f71-58f636a96e1b">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="_a460042b-04df-9eef-9647-d5499abc8408">
+<name>Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_8d940860-5be5-5322-d1cd-802096fbc183">An example of this is the following</p>
+
+<sourcecode id="_51f993f6-452f-22d4-475a-a2a74dd64189" lang="json">{
+    "acvVersion": "version",
+    "vsId": 1,
+    "testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_c559c8d6-f165-27f7-7003-eb0d0f52da36">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that.</p>
+
+<table id="_86c2307a-fe22-ac24-e27b-66e5ce986557">
+<name>Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_04cadd0e-15a7-eabd-e218-2c25ec5dd0ca">An example of this is the following</p>
+
+<sourcecode id="_88758155-8302-6439-bd0c-6be6ee4131b3" lang="json">{
+    "tgId": 1,
+    "tests": [ ... ]
+}</sourcecode>
+
+
+<p id="_ef71c1cf-a222-d58c-d439-b058cf666853">The following table describes the JSON object that represents a test case response for a SP800-135 IKEv2 KDF.</p>
+
+<table id="_a49d7401-e0e9-327f-4e64-e36a1825fc04">
+<name>Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">sKeySeed</td>
+<td valign="top" align="left">Results of the extraction step</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">sKeySeedReKey</td>
+<td valign="top" align="left">Results of the newly created skeyid</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">derivedKeyingMaterial</td>
+<td valign="top" align="left">Derived key Material from expansion step</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">derivedKeyingMaterialChild</td>
+<td valign="top" align="left">Expansion step results for child SA</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">derivedKeyingMaterialDh</td>
+<td valign="top" align="left">Expansion step results for child SA DH</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_7b4d3c64-728b-1fc5-ae40-036182831868">Here is an abbreviated example of the response</p>
+
+<sourcecode id="_957028af-3571-5f47-7122-798b89ba18d5" lang="json">{
+  "vsId": 1,
+  "algorithm": "kdf-components",
+  "mode": "IKEv2",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "sKeySeed": "B5B0B203F931C2BD06D9...",
+          "derivedKeyingMaterial": "C807976...",
+          "derivedKeyingMaterialChild": "BA...",
+          "derivedKeyingMaterialDh": "4A222...",
+          "sKeySeedReKey": "7076E7DB098CE1A..."
+        },
+        {
+          "tcId": 2,
+          "sKeySeed": "DAF33468A586B7E705CA...",
+          "derivedKeyingMaterial": "5659749...",
+          "derivedKeyingMaterialChild": "2A...",
+          "derivedKeyingMaterialDh": "4554A...",
+          "sKeySeedReKey": "CF78ADF8EE17348..."
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_e00ec061-56a6-9331-9b16-9e2a17a53e3f">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+
+<clause id="app-reg-ex" obligation="normative">
+<title>Example SP800-135 IKEv2 KDF Capabilities JSON Object</title>
+<p id="_d9012e8e-f24c-24fc-eb1b-1f7ce3239cc8">The following is a example JSON object advertising support for SHA-256.</p>
+
+<figure id="_3f5486da-83f3-ea61-b617-2e2bf2615422"><pre id="_a2317a21-99c5-5cd8-afce-fb2841c6a3f1" alt="">
+{
+       "algorithm": "kdf-components",
+       "mode": "ikev2",
+       "revision": "1.0",
+       "prereqVals": [
+           {
+               "algorithm": "SHA",
+               "valValue": "123456"
+           },
+           {
+               "algorithm": "HMAC",
+               "valValue": "123456"
+           }
+       ],
+       "capabilities": {
+           "hashAlg": [
+               "SHA-1",
+               "SHA2-224",
+               "SHA2-256",
+               "SHA2-384",
+               "SHA2-512"
+            ],
+           "initiatorNonceLength": [
+               {
+                   "min": 64,
+                   "max": 2048,
+                   "increment": 1
+               }
+           ],
+           "responderNonceLength": [
+               {
+                   "min": 64,
+                   "max": 2048,
+                   "increment": 1
+               }
+           ],
+           "diffieHellmanSharedSecretLength": [
+               {
+                   "min": 224,
+                   "max": 8192,
+                   "increment": 1
+               }
+           ],
+           "derivedKeyingMaterialLength": [
+               {
+                   "min": 512,
+                   "max": 16384,
+                   "increment": 1
+               }
+           ]
+       }
+   }
+</pre></figure>
+</clause>
+
+<clause id="app-vs-ex" obligation="normative">
+<title>Example Test Vectors JSON Object</title>
+<p id="_dd532848-c6d1-af2a-73c2-b361bb58b7a4">The following is a example JSON object for SP800-135 IKEv2 KDF test vectors sent from the ACVP server to the crypto module.</p>
+
+<figure id="_a1a421d0-4c7b-fb09-289e-3f4a12268198"><pre id="_222631a3-deb7-9f41-2f46-58179b7ee11e" alt="">
+[
+    {
+        "acvVersion": &lt;acvp-version&gt;
+    },
+    {
+        "vsId": 1564,
+        "algorithm": "kdf-components",
+        "mode": "ikev2",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "hashAlg": "SHA-1",
+                "nInitLength": 837,
+                "nRespLength": 64,
+                "dhLength": 8192,
+                "derivedKeyingMaterialLength": 512,
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "nInit": "7608C5146A67DFA155DCD559F6F4771183035A8ACA913A0105922DEC57A79DBEFF0B5C0312EB7215F6AA5F6B3E2C21C02F8BE5379804B4D20BDFFFDC7DCE53B548138E18BCA6A56832F2977F6B4DD90576A3B2A35CE5CA852418A1B053AD008629C2B91F319863E230",
+                        "nResp": "F3486687B23C20B4",
+                        "spiInit": "EEBB344F716A0421",
+                        "spiResp": "4EBA56C083C2366A",
+                        "gir": "BC9505DF26B41AE3403D725D388FC679B753DBAD7F860E1F9229C2286833A248180C1CE061DF1C3F05B1645476592A192A61717515A5F0D87566BF43F41F94A592E9B763A9F0DA29C9F052705F8485526CB747FCD83531CF6FC5D03C08E52F5821C4D9FCAB97D0715E4AAA4675609E46A3C8292377B6696BE563FA796239737336C7D0FDCA291A95DABFB342A01732693F32757B59651FF2C2A325C62CAB30118C4B5DA7CADD791943838997A82B0F0B292625924AFFBF946F9ADB44425E1864565C6DB0225B9064C5C07A19FA8F8D9DE868244510876EFAFC80035A413FD9BE9C832735C9F7744D6C351AB8F9BB1472F51D831C1DB5E87D9237A897A9FD99E07974D50E0282BA6B8441FAF8040031A517AC58DB1F5333719229B88463F88F672D1FB92A612C1F4DF8A26F50277AA74ABB0B903964C7FF329E363B22D0B30DF4922273AC4BEDB1A7E5BDA31E86D2A8CD4B883770ED2289A1CB041712D4050A9BC0F522CF48F2D3F27C7D5BEE68CA37B6480F27DA4ECDE9B5F1BB9E1EE02D2540AB0BE8BD89F0DD7363863ED6D77A5C6923F73FF946B6A7A9B3ABC025653778BA533269C5345AAE88096D91F5769C61B1E1045558E7787315D11C183778E6E0F47BB473382C3E6E79502772B9CB78C6CBE3390C462BF46FC76A9504A2D4FFAF7B265C6E3C6844EAEE4A814D5640DDAAD5BFEC3728610751E9F1DB7D162CB8FB9E7DB296764D85B71B616E4D7DDE60A3E7AC315ACF9E2D2EBDD3BBC120604B5C98FF2CB7E3C5570619BBD5558FC524A5B3FBDD628951FACA35965CCE549E73F1B6FE13A284149FC50FBAABC96962C41AA110609351025AABA1B1CC828A67C1C5853FB754DFC6B6148F2F65E3FD9C7B0118E7351564F9306E52F2683A292EF4759DA965E564DD01D626C58D8271AC9E09EBF5B17FDC5F6EEB241B31E09DDCDA1DB1D7909BA567F7CA661274D3E4558A84D30517034CA64C2D440B4D5BA767E99B9971D7FB30720F03F9FD26298CB3F77176D9488677738E89D3C00EB56BF0C78D3B0187DBC6015D1C8B8F77DA301FEE52C0B84B6FF5249D204D9EFD8E8E9A9270D857487B06B729C2483EAB1494DC27D04E9C4FFD61A0E4837D8E93F0C3A65A36A30CB758EF3DEF10B5AC10DAA81AAEE18EC134E8D1357D8FAF38B9F5C8DE6E5918532F43BDB59183852133DE3093BC36845CCF32FF728AD350740D81C07432E88B406D6451323D5DF3335A5C08CE04BCB9796AFBC7FA9985B88076FA1385B6DF7E3CAD355075B0EE57962C98F84353C76F20067754B1243875BEDA012194F320CC52A05C9574DDC0F0BEACEC320F439381988F06A583321E9842A92E36A0AD03825FA83CD7D55FFE27ACFA87CFBD7B1FEC11A2CE98767F758E7731F573056CEB457CA9AD2E30A42366287D25F8C196CA371C34A38CF27F2C0DD76C7CF8C627A5D1",
+                        "girNew": "F639A0018F3F2674796AE876850513194C29F970AA0C755C2897F89FEF85BFD31DE7B55A615D1F472B00CCF81E5F01E75A23D5313D2109AB93025EAF875175456307D587EC6D3C225A3691B4B7095F874680F064CB23DAF26FA1C79E7F7A7EBCB584027DE648674A88A0541713794D5BA1DD29050E2AC96584BBD054B8C4C3AE4DA52D046400647086FE8E94885FAE40F57F634228CB62E289667E4BB8ED491635DD76C2B942DA042052D1710C52CC0206894101DBF88BC467E6473F0485C2576F9BE75561B5C937813F3BB490CAC8D0A583D07B45B9B11C32D877827A5C435B06613BD5237285D70486BB8D15BE9CDF69C29B48E1C9B9AB700AC7E78CCEBE3CCC51722DAA329341CBB144FE642227FAC00450389910AD798EE507B6B35188488520AF3DB85CE3BAFB34588E42489178C17B391516435D7C8E2A898DEC8E75243F8646F69AE975F919677CF68C3BA41873F4442976C8CFCC164A262D56FD21772BE5C9E661046C06A4B0DEE60F73C6B458E08B0E05A109096DA8FA07EF1AAAF74E8B6A52F0FCF9FE024ACA80D23C741052154700F56F029538BAE35A026E506F30B022838418CAA0E1807D083741C35002FD76408ADAA8700FEF6BBA9DDB7E7F5202C2968D770EC855D2DB9DE01285A374813681EEA372F246AFFB92E12072BD1D5E1BBCE538D1397E65E3FCCDEF200A824CDB10989CDE6DBEA7CE5EB08C2D39CEA88C011D07F05091CF1DCD11309A150EAB1F0E594065AA5F38C3D68862089B32F42C67042FB6A15B3551FE463EA6827E57C1B9285F2EFB109130D3A84B85E2CD640BB7B3186CD064476D883B753C900C6C220D45D6003DACDF8071FF1BE8C9BD8C7482CEB2EEA064068F289DDADA90022FEF9115426F42E7D96AA1B9D1D6F4700B6216063EBFFBFD374FB418E71716813A42D50F58D420A37BC18EADEBD8B4BBA810B4F15CCA4405FEE9E96213BDA868178D9185929D80C05373D183C5FAE720B2C7D690802E0ECBC768ADD89474164C4454A8D3F866837FA0341F6B960C6DACC27ED62A09EDBCBF608AEB151C20F573DE678F33A6AA9E88F1E07E3CEE6F56B37DC9F989E7F5B4D4874E7D97EE745F1E710DDAECC0EB75BC07BD1FBEC2430EDD22DA8A7B3F6680B8544F1E1C66A645109E4080FC4D788E074439F067AD0924A66AE43E3485FD5FF10927654EF2BAF6F725CCC7E6E978C1600F10799F588AE0BA9D11D65C9D6BDD65266A750ED99D17BED848F28DC3C2B74140DCA06363865C7E363FEB0A78CE40175A8AA8A1BA023DAF73DC25B40916FA891B4F2BDD8338F0CF0B2F11164C8B9AFDFDFBA4BD4BD3906CBA239C535568AE4756389513CC3D13FE48F4744A6EF7D2102F7B1CB75E50C2B162F81B963738C48079800E1F9BCA791AB3020E0D84F364D5BAD38C19E828C8645831DD4557C6015602F93DD3CC8DE4"
+                    }
+                ]
+            }
+        ]
+    }
+]
+</pre></figure>
+</clause>
+
+<clause id="app-vs-ex1" obligation="normative">
+<title>Example Test Results JSON Object</title>
+<p id="_48f85158-cac1-8adf-6330-d76836e79224">The following is a example JSON object for SP800-135 IKEv2 KDF test results sent from the crypto module to the ACVP server.</p>
+
+<figure id="_2ffaf0cb-b7f8-d7d1-044f-c534822087c3"><pre id="_c237ce3e-500c-3b9b-a423-8a87254b8e67" alt="">
+[
+		{
+                "acvVersion": &lt;acvp-version&gt;
+        },
+        {
+                "vsId": 1564,
+                "testGroups": [{
+                        "tgId": 1,
+                        "tests": [{
+                                "tcId": 1,
+                                "sKeySeed": "08F33F57DE075F1FC4033066BA42AA66E41B4CA7",
+                                "derivedKeyingMaterialDh": "527566D0861C294D92F633B6FDDF1CAC56AADAB92386D37126D12E6588EF9621C4EA1D33D20B1A9BF43ED2FD74E4D42E757CB89FA8F3D29C50B853D3D72577A30F44FD98B7413D68774637B48CE54D72AC2862551E36510E84FE8CD9EE0A5DE449AAAD8A9920FD89DA124F9F878DF3FDD0254E4104C5DBD9DFE85DFB65BD688C5704589B14713A734A584F073C7EB9D055C6CABF8EF61A266DAF40B87D9DF459B8A7DD16E1566BE6FBAAF0751D4C596AE47D87C52134453848E51D51D22F3EB4EAFB226F67262F3DDFCF894DAB1871B663EEC3145F1DD271CE0B2C86086EDBC368C750A77CFE10DA944AC6D88F7F4847492F3315710F5DE3E7EF1E9A1E19CFC27E0B14F6F17E0AEFA8C3F21980",
+                                "derivedKeyingMaterialChild": "A5E3D4BA0C794393772C82229625621503F6E2007DD1199664B7D2AA42E5F380AA49D4F7D044DC256604982459978DAB8A00180682C31B722C3D8E8428CCEB681B45A241B253C4E4D9DB2290CF8B30B4E70CC16042E43F0E1CE4E6F2A34CDD26BD52CC14D62A690C5A843F2947AD89AD410CA9A864101DACB256A72B4120602FE3EC00C5813686B2E89A86492BD49AB7871BE6C0F0B93C003E263A8ED488F5E336E91DEDFA0DCFA19885EF4A024300BFB534AC7F1AA3F5D3CC215FAF23B0975270F8371E35C6551F906DB05E490B5A55B0C9F7AE52E899216871BA68652017117DC48EF600CA5C771FB8951316296C3A01A1B2FCB34CA9C02803E1AE8683EDE4346B5DE039C9FAC730E67B2CE0",
+                                "derivedKeyingMaterialDh": "9D157EFE06B56A872BBF682168E2A3D6AA301C178540B4EE433AE44667C737C80B318BB9E4637CA2474F15751FABB9C84D03673A9EBC80E942C2C56E6552EE4F9BE120B3F687730BA455D54550A929CEEFDDBDDFC5B5D6786478AC24C1C0AB4D2F93D148B37DCE0BF7AC7B4C489A707557FAB43CE7056D57D8C92CA1324C37A57FCF65A8C48B7D5A9E2098E344582D5B18B1428AD2C4AFA3D2BEFD1AFAB561AC989FE5B4F058D986DCC4B3FDA4A188B0C84F77C689B2A152BCB25AC46D12176854FAD38601328D364EC2A146D5547DE0A9D69855BAAAF344C0B23EF6F135ADEA1C64A7C862E6508E31CEE305A8B30223420BFD075C55A49A9131B17541B1AF1149E6404D4233C8B5F790A29700",
+                                "sKeySeedReKey": "04C03F09F09701151B7772D4196796EE08448EA8"
+                        }]
+                }]
+        }
+]
+
+</pre></figure>
+</clause>
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_479c87ad-1122-2fff-56e3-1ae94f21d1bc"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_34eda5c8-1e1a-ca3d-fcf3-1e36f1a455ab">2019-06-05</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_07788b80-769f-0b10-fd1f-21da7dbf27ad" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_8bf4f1ec-81cc-bf05-fdc8-97a1a79d601e">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f2760c4d-df02-193b-b0c9-1bb493e0eb6d">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

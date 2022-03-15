@@ -1,0 +1,2802 @@
+<relaton-collection xmlns="https://open.ribose.com/relaton-xml"><title>Automated Cryptographic Validation Protocol</title><contributor><role type='author'/><organization><name>National Institute of Standards and Technology > Computer Security Division</name></organization></contributor><relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KDA OneStep Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KDA OneStep Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-KDF-OneStep</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-kdf-onestep.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-kdf-onestep.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-kdf-onestep.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-kdf-onestep.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-KDF-OneStep Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-KDF-OneStep Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-KDF-OneStep.r-1.eng</docidentifier>
+  <docnumber>KAS-KDF-OneStep</docnumber>
+  <date type="issued">
+    <on>2020-12-11</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing KDA-OneStep SP800-56C implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KDA HKDF Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KDA HKDF Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-KDF-HKDF</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-kdf-hkdf.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-kdf-hkdf.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-kdf-hkdf.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-kdf-hkdf.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-KDF-HKDF Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-KDF-HKDF Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-KDF-HKDF.r-1.eng</docidentifier>
+  <docnumber>KAS-KDF-HKDF</docnumber>
+  <date type="issued">
+    <on>2020-12-11</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing KDA-HKDF SP800-56C implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS FFC JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS FFC JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-FFC</uri>
+  <uri type="xml">documents/src/draft-fussell-acvp-kas-ffc.xml</uri>
+  <uri type="pdf">documents/src/draft-fussell-acvp-kas-ffc.pdf</uri>
+  <uri type="html">documents/src/draft-fussell-acvp-kas-ffc.html</uri>
+  <uri type="rxl">documents/src/draft-fussell-acvp-kas-ffc.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-FFC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-FFC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-FFC.r-1.eng</docidentifier>
+  <docnumber>KAS-FFC</docnumber>
+  <date type="issued">
+    <on>2018-09-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Barry Fussell</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco Systems, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>G2, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-56a KAS FFC implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2018</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS ECC SP800-56Ar3 JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS ECC SP800-56Ar3 JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-ECC-SP800-56Ar3</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-ecc-sp800-56ar3.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-ecc-sp800-56ar3.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-ecc-sp800-56ar3.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-ecc-sp800-56ar3.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-ECC-SP800-56Ar3 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-ECC-SP800-56Ar3 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-ECC-SP800-56Ar3.r-1.eng</docidentifier>
+  <docnumber>KAS-ECC-SP800-56Ar3</docnumber>
+  <date type="issued">
+    <on>2020-01-31</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-56Ar3 KAS ECC implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SHA</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-sha.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-sha.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-sha.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-sha.rxl</uri>
+  <docidentifier type="NIST">ACVP SHA Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol SHA Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.SHA.r-1.eng</docidentifier>
+  <docnumber>SHA</docnumber>
+  <date type="issued">
+    <on>2018-11-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing Secure Hash Algorithm (SHA) implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2018</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS SSC FFC Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS FFC ECC Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-SSC-FFC</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-ssc-ffc.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-ssc-ffc.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-ssc-ffc.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-ssc-ffc.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-SSC-FFC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-SSC-FFC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-SSC-FFC.r-1.eng</docidentifier>
+  <docnumber>KAS-SSC-FFC</docnumber>
+  <date type="issued">
+    <on>2020-06-26</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing KAS-SSC-FFC SP800-56Ar3 implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP Symmetric Block Cipher Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP Symmetric Block Cipher Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SYMMETRIC</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-symmetric.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-symmetric.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-symmetric.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-symmetric.rxl</uri>
+  <docidentifier type="NIST">ACVP SYMMETRIC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol SYMMETRIC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.SYMMETRIC.r-1.eng</docidentifier>
+  <docnumber>SYMMETRIC</docnumber>
+  <date type="issued">
+    <on>2020-12-10</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing Symmetric Block Cipher implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS IFC JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS IFC JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-IFC</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-ifc.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-ifc.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-ifc.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-ifc.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-IFC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-IFC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-IFC.r-1.eng</docidentifier>
+  <docnumber>KAS-IFC</docnumber>
+  <date type="issued">
+    <on>2019-10-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-56Br2 KAS IFC implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP ECDSA Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP ECDSA Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.ECDSA</uri>
+  <uri type="xml">documents/src/draft-fussell-acvp-ecdsa.xml</uri>
+  <uri type="pdf">documents/src/draft-fussell-acvp-ecdsa.pdf</uri>
+  <uri type="html">documents/src/draft-fussell-acvp-ecdsa.html</uri>
+  <uri type="rxl">documents/src/draft-fussell-acvp-ecdsa.rxl</uri>
+  <docidentifier type="NIST">ACVP ECDSA Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol ECDSA Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.ECDSA.r-1.eng</docidentifier>
+  <docnumber>ECDSA</docnumber>
+  <date type="issued">
+    <on>2016-06-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Barry Fussell</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco Systems, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing FIPS PUB 186 ECDSA implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2016</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS IFC SSC Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS IFC SSC Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-SSC-IFC</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-ssc-ifc.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-ssc-ifc.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-ssc-ifc.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-ssc-ifc.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-SSC-IFC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-SSC-IFC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-SSC-IFC.r-1.eng</docidentifier>
+  <docnumber>KAS-SSC-IFC</docnumber>
+  <date type="issued">
+    <on>2020-08-19</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing KAS-IFC-SSC SP800-56Br2 implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP SRTP Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP SRTP Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-SRTP</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-srtp.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-srtp.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-srtp.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-srtp.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-SRTP Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-SRTP Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-SRTP.r-1.eng</docidentifier>
+  <docnumber>KDF-SRTP</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-135 SRTP KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP SafePrimes JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP SafePrimes JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SafePrimes</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-safe-primes.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-safe-primes.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-safe-primes.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-safe-primes.rxl</uri>
+  <docidentifier type="NIST">ACVP SafePrimes Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol SafePrimes Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.SafePrimes.r-1.eng</docidentifier>
+  <docnumber>SafePrimes</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SafePrimes implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP TPM Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP TPM Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-TPM</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-tpm.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-tpm.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-tpm.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-tpm.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-TPM Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-TPM Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-TPM.r-1.eng</docidentifier>
+  <docnumber>KDF-TPM</docnumber>
+  <date type="issued">
+    <on>2018-08-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-135 TPM KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2018</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS SSC ECC Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS SSC ECC Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-SSC-ECC</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-ssc-ecc.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-ssc-ecc.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-ssc-ecc.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-ssc-ecc.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-SSC-ECC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-SSC-ECC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-SSC-ECC.r-1.eng</docidentifier>
+  <docnumber>KAS-SSC-ECC</docnumber>
+  <date type="issued">
+    <on>2020-06-26</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing KAS-SSC-ECC SP800-56Ar3 implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP Deterministic Random Bit Generator (DRBG) Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP Deterministic Random Bit Generator (DRBG) Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.DRBG</uri>
+  <uri type="xml">documents/src/draft-vassilev-acvp-drbg.xml</uri>
+  <uri type="pdf">documents/src/draft-vassilev-acvp-drbg.pdf</uri>
+  <uri type="html">documents/src/draft-vassilev-acvp-drbg.html</uri>
+  <uri type="rxl">documents/src/draft-vassilev-acvp-drbg.rxl</uri>
+  <docidentifier type="NIST">ACVP DRBG Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol DRBG Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.DRBG.r-1.eng</docidentifier>
+  <docnumber>DRBG</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Apostol Vassilev</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-90A DRBG implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP SP800-108 Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP SP800-108 Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KBKDF</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kbkdf.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kbkdf.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kbkdf.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kbkdf.rxl</uri>
+  <docidentifier type="NIST">ACVP KDBDF Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDBDF Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDBDF.r-1.eng</docidentifier>
+  <docnumber>KDBDF</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP 800-108 KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP TLS Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP TLS Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-TLS-V1.3</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kdf-tls-v1.3.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kdf-tls-v1.3.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kdf-tls-v1.3.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kdf-tls-v1.3.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-TLS-V1.3 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-TLS-V1.3 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-TLS-V1.3.r-1.eng</docidentifier>
+  <docnumber>KDF-TLS-V1.3</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing RFC8446 TLS v1.3 KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP Password-based Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP Password-based Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.PBKDF</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-pbkdf.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-pbkdf.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-pbkdf.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-pbkdf.rxl</uri>
+  <docidentifier type="NIST">ACVP PBKDF Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol PBKDF Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.PBKDF.r-1.eng</docidentifier>
+  <docnumber>PBKDF</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing Password-based KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP ANS X9.63 Key Derivation Function Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP ANS X9.63 Key Derivation Function Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-ANSI-X963</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-ansi-x963.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-ansi-x963.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-ansi-x963.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-ansi-x963.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-ANSI-X963 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-ANSI-X963 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-ANSI-X963.r-1.eng</docidentifier>
+  <docnumber>KDF-ANSI-X963</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing ANS X9.63 KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP ANS x9.42 Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP ANS x9.42 Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-ANSI-X942</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-ansi-x942.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-ansi-x942.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-ansi-x942.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-ansi-x942.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-ANSI-X942 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-ANSI-X942 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-ANSI-X942.r-1.eng</docidentifier>
+  <docnumber>KDF-ANSI-X942</docnumber>
+  <date type="issued">
+    <on>2021-01-04</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing ANS x9.42 KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP SNMP Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP SNMP Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-SNMP</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-snmp.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-snmp.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-snmp.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-snmp.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-SNMP Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-SNMP Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-SNMP.r-1.eng</docidentifier>
+  <docnumber>KDF-SNMP</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-135 SNMP KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS ECC JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS ECC JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-ECC</uri>
+  <uri type="xml">documents/src/draft-fussell-acvp-kas-ecc.xml</uri>
+  <uri type="pdf">documents/src/draft-fussell-acvp-kas-ecc.pdf</uri>
+  <uri type="html">documents/src/draft-fussell-acvp-kas-ecc.html</uri>
+  <uri type="rxl">documents/src/draft-fussell-acvp-kas-ecc.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-ECC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-ECC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-ECC.r-1.eng</docidentifier>
+  <docnumber>KAS-ECC</docnumber>
+  <date type="issued">
+    <on>2018-11-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Barry Fussell</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco Systems, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>G2, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-56a KAS ECC implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2018</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-IKEv2</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-ikev2.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-ikev2.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-ikev2.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-ikev2.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-IKEv2 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-IKEv2 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-IKEv2.r-1.eng</docidentifier>
+  <docnumber>KDF-IKEv2</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-135 IKEv2 KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP ConditioningComponents JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP ConditioningComponents</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.CONDITIONING-COMPONENTS</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-conditioning-components.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-conditioning-components.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-conditioning-components.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-conditioning-components.rxl</uri>
+  <docidentifier type="NIST">ACVP CONDITIONING-COMPONENTS Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol CONDITIONING-COMPONENTS Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.CONDITIONING-COMPONENTS.r-1.eng</docidentifier>
+  <docnumber>CONDITIONING-COMPONENTS</docnumber>
+  <date type="issued">
+    <on>2020-09-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing Conditioning Component implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KDA OneStep No Counter Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KDA OneStepNoCounter</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-KDF-HKDF</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-kdf-onestepnocounter.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-kdf-onestepnocounter.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-kdf-onestepnocounter.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-kdf-onestepnocounter.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-KDF-ONESTEPNOCOUNTER Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-KDF-ONESTEPNOCOUNTER Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-KDF-ONESTEPNOCOUNTER.r-1.eng</docidentifier>
+  <docnumber>KAS-KDF-ONESTEPNOCOUNTER</docnumber>
+  <date type="issued">
+    <on>2021-07-26</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing KDA-OneStepNoCounter SP800-56C implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2021</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP IKEv1 Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-IKEv1</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-ikev1.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-ikev1.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-ikev1.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-ikev1.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-IKEv1 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-IKEv1 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-IKEv1.r-1.eng</docidentifier>
+  <docnumber>KDF-IKEv1</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-135 IKEv1 KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP SHA3 and SHAKE JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP SHA3 and SHAKE JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SHA3</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-sha3.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-sha3.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-sha3.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-sha3.rxl</uri>
+  <docidentifier type="NIST">ACVP SHA3 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol SHA3 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.SHA3.r-1.eng</docidentifier>
+  <docnumber>SHA3</docnumber>
+  <date type="issued">
+    <on>2018-11-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SHA3 and SHAKE implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2018</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP DSA Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP DSA Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.DSA</uri>
+  <uri type="xml">documents/src/draft-fussell-acvp-dsa.xml</uri>
+  <uri type="pdf">documents/src/draft-fussell-acvp-dsa.pdf</uri>
+  <uri type="html">documents/src/draft-fussell-acvp-dsa.html</uri>
+  <uri type="rxl">documents/src/draft-fussell-acvp-dsa.rxl</uri>
+  <docidentifier type="NIST">ACVP DSA Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol DSA Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.DSA.r-1.eng</docidentifier>
+  <docnumber>DSA</docnumber>
+  <date type="issued">
+    <on>2016-06-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Barry Fussell</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco Systems, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing FIPS 186-4 DSA implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2016</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP TLS Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP TLS Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-TLS</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-tls.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-tls.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-tls.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-tls.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-TLS Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-TLS Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-TLS.r-1.eng</docidentifier>
+  <docnumber>KDF-TLS</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-135 TLS KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">Automated Cryptographic Validation Protocol (ACVP) JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">Automated Cryptographic Validation Protocol (ACVP) JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SPEC</uri>
+  <uri type="xml">documents/src/draft-fussell-acvp-spec.xml</uri>
+  <uri type="pdf">documents/src/draft-fussell-acvp-spec.pdf</uri>
+  <uri type="html">documents/src/draft-fussell-acvp-spec.html</uri>
+  <uri type="rxl">documents/src/draft-fussell-acvp-spec.rxl</uri>
+  <docidentifier type="NIST">ACVP SPEC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol SPEC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.SPEC.r-1.eng</docidentifier>
+  <docnumber>SPEC</docnumber>
+  <date type="issued">
+    <on>2019-01-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Barry Fussell</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco Systems, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Apostol Vassilev</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Harold Booth</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>The ACV Protocol provides a method for communication between a cryptographic module that is embedded inside of a device or otherwise running on a platform accessible via computer network, and an external testing system, using standard network communication interfaces and protocols. This communication protocol can also be used to validate the correctness of the algorithm implementations in the cryptographic module with a validation authority.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS FFC SP800-56Ar3 JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP FFC ECC SP800-56Ar3 JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-FFC-SP800-56Ar3</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-ffc-sp800-56ar3.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-ffc-sp800-56ar3.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-ffc-sp800-56ar3.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-ffc-sp800-56ar3.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-FFC-SP800-56Ar3 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-FFC-SP800-56Ar3 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-FFC-SP800-56Ar3.r-1.eng</docidentifier>
+  <docnumber>KAS-FFC-SP800-56Ar3</docnumber>
+  <date type="issued">
+    <on>2020-01-31</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-56Ar3 KAS FFC implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP SSH Key Derivation Function JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP SSH Key Derivation Function JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-SSH</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-kdf-ssh.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-kdf-ssh.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-kdf-ssh.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-kdf-ssh.rxl</uri>
+  <docidentifier type="NIST">ACVP KDF-SSH Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-SSH Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-SSH.r-1.eng</docidentifier>
+  <docnumber>KDF-SSH</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-135 SSH KDF implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KAS KC SP 800-56 JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KAS KC SP 800-56 JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-KDF-TwoStep</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-kc-sp800-56.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-kc-sp800-56.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-kc-sp800-56.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-kc-sp800-56.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-KDF-KCSP800-56 Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-KDF-KCSP800-56 Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-KDF-KCSP800-56.r-1.eng</docidentifier>
+  <docnumber>KAS-KDF-KCSP800-56</docnumber>
+  <date type="issued">
+    <on>2021-07-22</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing SP800-56 KAS KC implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2021</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP IANA Registry</title>
+  <title type="short-title" format="text/plain" language="en">ACVP IANA Registry</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.IANA</uri>
+  <uri type="xml">documents/src/draft-vassilev-acvp-iana.xml</uri>
+  <uri type="pdf">documents/src/draft-vassilev-acvp-iana.pdf</uri>
+  <uri type="html">documents/src/draft-vassilev-acvp-iana.html</uri>
+  <uri type="rxl">documents/src/draft-vassilev-acvp-iana.rxl</uri>
+  <docidentifier type="NIST">ACVP IANA Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol IANA Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.IANA.r-1.eng</docidentifier>
+  <docnumber>IANA</docnumber>
+  <date type="issued">
+    <on>2019-06-05</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Apostol Vassilev</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines a set of IANA registries for supported cryptographic algorithm test specifications in the Automated Cryptographic Validation Protocol (ACVP) <eref type="inline" bibitemid="ACVP" citeas="ACVP"/>. This document also shows how to extend the capabilities of ACVP with testing for new cryptographic algorithms.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP RSA Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP RSA Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.RSA</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-rsa.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-rsa.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-rsa.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-rsa.rxl</uri>
+  <docidentifier type="NIST">ACVP RSA Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol RSA Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.RSA.r-1.eng</docidentifier>
+  <docnumber>RSA</docnumber>
+  <date type="issued">
+    <on>2019-11-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing RSA implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP EdDSA Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP EdDSA Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.EDDSA</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-eddsa.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-eddsa.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-eddsa.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-eddsa.rxl</uri>
+  <docidentifier type="NIST">ACVP EDDSA Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol EDDSA Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.EDDSA.r-1.eng</docidentifier>
+  <docnumber>EDDSA</docnumber>
+  <date type="issued">
+    <on>2018-08-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing FIPS Pub 186 EdDSA implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2018</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP Extendable Output Function (XOF) JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP Extendable Output Function (XOF) JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.XOF</uri>
+  <uri type="xml">documents/src/draft-celi-acvp-xof.xml</uri>
+  <uri type="pdf">documents/src/draft-celi-acvp-xof.pdf</uri>
+  <uri type="html">documents/src/draft-celi-acvp-xof.html</uri>
+  <uri type="rxl">documents/src/draft-celi-acvp-xof.rxl</uri>
+  <docidentifier type="NIST">ACVP XOF Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol XOF Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.XOF.r-1.eng</docidentifier>
+  <docnumber>XOF</docnumber>
+  <date type="issued">
+    <on>2019-01-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Information Technology Laboratory</name>
+          <subdivision>Computer Security Division</subdivision>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing Extendable Output Function implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2019</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP KDA TwoStep Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP KDA TwoStep Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-KDF-TwoStep</uri>
+  <uri type="xml">documents/src/draft-hammett-acvp-kas-kdf-twostep.xml</uri>
+  <uri type="pdf">documents/src/draft-hammett-acvp-kas-kdf-twostep.pdf</uri>
+  <uri type="html">documents/src/draft-hammett-acvp-kas-kdf-twostep.html</uri>
+  <uri type="rxl">documents/src/draft-hammett-acvp-kas-kdf-twostep.rxl</uri>
+  <docidentifier type="NIST">ACVP KAS-KDF-TwoStep Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-KDF-TwoStep Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-KDF-TwoStep.r-1.eng</docidentifier>
+  <docnumber>KAS-KDF-TwoStep</docnumber>
+  <date type="issued">
+    <on>2020-12-11</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>HII Technical Solutions Division</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing KDA-TwoStep SP800-56C implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2020</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+<relation type='partOf'><bibdata type="standard">
+  <title type="main" format="text/plain" language="en">ACVP Message Authentication Algorithm JSON Specification</title>
+  <title type="short-title" format="text/plain" language="en">ACVP Message Authentication Algorithm JSON Specification</title>
+  <uri type="email">algotest@list.nist.gov</uri>
+  <uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.MAC</uri>
+  <uri type="xml">documents/src/draft-fussell-acvp-mac.xml</uri>
+  <uri type="pdf">documents/src/draft-fussell-acvp-mac.pdf</uri>
+  <uri type="html">documents/src/draft-fussell-acvp-mac.html</uri>
+  <uri type="rxl">documents/src/draft-fussell-acvp-mac.rxl</uri>
+  <docidentifier type="NIST">ACVP MAC Revision 1</docidentifier>
+  <docidentifier type="nist-long">Automated Cryptographic Validation Protocol MAC Revision 1</docidentifier>
+  <docidentifier type="nist-mr">NIST.CSRC.ACVP.MAC.r-1.eng</docidentifier>
+  <docnumber>MAC</docnumber>
+  <date type="issued">
+    <on>2018-08-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Barry Fussell</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco Systems, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Russell Hammett</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>G2, Inc.</name>
+          <address>
+            <city/>
+            <country/>
+          </address>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <subdivision>Computer Security Division, Information Technology Laboratory</subdivision>
+    </organization>
+  </contributor>
+  <edition>Revision 1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract><p>This document defines the JSON schema for testing HMAC, CMAC, and GMAC implementations with the ACVP specification.</p>
+</abstract>
+  <status>
+    <stage>final</stage>
+    <substage>active</substage>
+  </status>
+  <copyright>
+    <from>2018</from>
+    <owner>
+      <organization>
+        <name>National Institute of Standards and Technology</name>
+      </organization>
+    </owner>
+  </copyright>
+  <series type="main">
+    <title>NIST Cybersecurity Technical Specification</title>
+    <abbreviation>NIST CSTS</abbreviation>
+  </series>
+  <series type="secondary">
+    <title>Automated Cryptographic Validation Protocol</title>
+    <abbreviation>ACVP</abbreviation>
+  </series>
+  <keyword>ACVP</keyword>
+  <keyword>cryptography</keyword>
+  <ext>
+    <doctype>standard</doctype>
+  </ext>
+</bibdata></relation>
+</relaton-collection>

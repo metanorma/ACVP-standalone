@@ -1,0 +1,1901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="presentation" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP ECDSA Algorithm JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP ECDSA Algorithm JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.ECDSA</uri><docidentifier type="NIST">ACVP ECDSA Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol ECDSA Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.ECDSA.r-1.eng</docidentifier><docnumber>ECDSA</docnumber><date type="issued"><on>2016-06-01</on></date><contributor><role type="author"/><person>
+<name><completename>Barry Fussell</completename></name>
+<affiliation><organization>
+<name>Cisco Systems, Inc.</name>
+<address><formattedAddress>170 West Tasman Drive, San Jose, California</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language current="true">en</language><script current="true">Latn</script><abstract><p>This document defines the JSON schema for testing FIPS PUB 186 ECDSA implementations with the ACVP specification.</p>
+</abstract><status><stage language="">final</stage><substage language="">active</substage></status><copyright><from>2016</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype language="">standard</doctype></ext></bibdata><localized-strings><localized-string key="scope" language="en">Scope</localized-string><localized-string key="symbolsabbrev" language="en">Symbols and abbreviated terms</localized-string><localized-string key="abbrev" language="en">Abbreviated terms</localized-string><localized-string key="symbols" language="en">Symbols</localized-string><localized-string key="table_of_contents" language="en">Table of contents</localized-string><localized-string key="introduction" language="en">Introduction</localized-string><localized-string key="foreword" language="en">Foreword</localized-string><localized-string key="abstract" language="en">Abstract</localized-string><localized-string key="acknowledgements" language="en">Acknowledgements</localized-string><localized-string key="termsdef" language="en">Terms and definitions</localized-string><localized-string key="termsdefsymbolsabbrev" language="en">Terms, definitions, symbols and abbreviated terms</localized-string><localized-string key="termsdefsymbols" language="en">Terms, definitions and symbols</localized-string><localized-string key="termsdefabbrev" language="en">Terms, definitions and abbreviated terms</localized-string><localized-string key="normref" language="en">References</localized-string><localized-string key="bibliography" language="en">Bibliography</localized-string><localized-string key="preface" language="en">Preface</localized-string><localized-string key="clause" language="en">Section</localized-string><localized-string key="annex" language="en">Appendix</localized-string><localized-string key="appendix" language="en">Appendix</localized-string><localized-string key="no_terms_boilerplate" language="en"><p>No terms and definitions are listed in this document.</p>
+</localized-string><localized-string key="internal_terms_boilerplate" language="en"><p>For the purposes of this document, 
+    the following terms and definitions apply.</p>
+</localized-string><localized-string key="norm_with_refs_pref" language="en">The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</localized-string><localized-string key="norm_empty_pref" language="en">There are no normative references in this document.</localized-string><localized-string key="external_terms_boilerplate" language="en"><p>For the purposes of this document, 
+  the terms and definitions given in % apply.</p>
+</localized-string><localized-string key="internal_external_terms_boilerplate" language="en"><p>For the purposes of this document, the terms and definitions 
+  given in % and the following apply.</p>
+</localized-string><localized-string key="term_defined_in" language="en">[term defined in %]</localized-string><localized-string key="binary_and" language="en">%1 and %2</localized-string><localized-string key="multiple_and" language="en">%1, and %2</localized-string><localized-string key="binary_or" language="en">%1 or %2</localized-string><localized-string key="multiple_or" language="en">%1, or %2</localized-string><localized-string key="chain_and" language="en">%1 and %2</localized-string><localized-string key="chain_or" language="en">%1 or %2</localized-string><localized-string key="chain_from" language="en">%1 from %2</localized-string><localized-string key="chain_to" language="en">%1 to %2</localized-string><localized-string key="note" language="en">NOTE</localized-string><localized-string key="note_xref" language="en">Note</localized-string><localized-string key="termnote" language="en">Note % to entry</localized-string><localized-string key="list" language="en">List</localized-string><localized-string key="deflist" language="en">Definition List</localized-string><localized-string key="figure" language="en">Figure</localized-string><localized-string key="formula" language="en">Formula</localized-string><localized-string key="inequality" language="en">Formula</localized-string><localized-string key="table" language="en">Table</localized-string><localized-string key="requirement" language="en">Requirement</localized-string><localized-string key="recommendation" language="en">Recommendation</localized-string><localized-string key="permission" language="en">Permission</localized-string><localized-string key="key" language="en">Key</localized-string><localized-string key="example" language="en">EXAMPLE</localized-string><localized-string key="example_xref" language="en">Example</localized-string><localized-string key="where" language="en">where</localized-string><localized-string key="wholeoftext" language="en">Whole of text</localized-string><localized-string key="draft_label" language="en">draft</localized-string><localized-string key="inform_annex" language="en">informative</localized-string><localized-string key="norm_annex" language="en">normative</localized-string><localized-string key="modified" language="en">modified</localized-string><localized-string key="deprecated" language="en">DEPRECATED</localized-string><localized-string key="source" language="en">SOURCE</localized-string><localized-string key="and" language="en">and</localized-string><localized-string key="all_parts" language="en">All Parts</localized-string><localized-string key="toc_figures" language="en">List of figures</localized-string><localized-string key="toc_tables" language="en">List of tables</localized-string><localized-string key="toc_recommendations" language="en">List of recommendations</localized-string><localized-string key="month_january" language="en">January</localized-string><localized-string key="month_february" language="en">February</localized-string><localized-string key="month_march" language="en">March</localized-string><localized-string key="month_april" language="en">April</localized-string><localized-string key="month_may" language="en">May</localized-string><localized-string key="month_june" language="en">June</localized-string><localized-string key="month_july" language="en">July</localized-string><localized-string key="month_august" language="en">August</localized-string><localized-string key="month_september" language="en">September</localized-string><localized-string key="month_october" language="en">October</localized-string><localized-string key="month_november" language="en">November</localized-string><localized-string key="month_december" language="en">December</localized-string><localized-string key="obligation" language="en">Obligation</localized-string><localized-string key="subject" language="en">Subject</localized-string><localized-string key="inherits" language="en">Inherits</localized-string><localized-string key="admonition.danger" language="en">Danger</localized-string><localized-string key="admonition.warning" language="en">Warning</localized-string><localized-string key="admonition.caution" language="en">Caution</localized-string><localized-string key="admonition.important" language="en">Important</localized-string><localized-string key="admonition.safety_precautions" language="en">Safety Precautions</localized-string><localized-string key="locality.section" language="en">Section</localized-string><localized-string key="locality.clause" language="en">Clause</localized-string><localized-string key="locality.part" language="en">Part</localized-string><localized-string key="locality.paragraph" language="en">Paragraph</localized-string><localized-string key="locality.chapter" language="en">Chapter</localized-string><localized-string key="locality.page" language="en">Page</localized-string><localized-string key="locality.table" language="en">Table</localized-string><localized-string key="locality.annex" language="en">Annex</localized-string><localized-string key="locality.figure" language="en">Figure</localized-string><localized-string key="locality.example" language="en">Example</localized-string><localized-string key="locality.note" language="en">Note</localized-string><localized-string key="locality.formula" language="en">Formula</localized-string><localized-string key="grammar_abbrevs.masculine" language="en">m</localized-string><localized-string key="grammar_abbrevs.feminine" language="en">f</localized-string><localized-string key="grammar_abbrevs.neuter" language="en">n</localized-string><localized-string key="grammar_abbrevs.common" language="en">common</localized-string><localized-string key="grammar_abbrevs.singular" language="en">sg</localized-string><localized-string key="grammar_abbrevs.dual" language="en">dual</localized-string><localized-string key="grammar_abbrevs.pl" language="en">pl</localized-string><localized-string key="grammar_abbrevs.isPreposition" language="en">prep</localized-string><localized-string key="grammar_abbrevs.isParticiple" language="en">part</localized-string><localized-string key="grammar_abbrevs.isAdjective" language="en">adj</localized-string><localized-string key="grammar_abbrevs.isAdverb" language="en">adv</localized-string><localized-string key="grammar_abbrevs.isNoun" language="en">noun</localized-string><localized-string key="grammar_abbrevs.isVerb" language="en">verb</localized-string><localized-string key="relatedterms.deprecates" language="en">deprecates</localized-string><localized-string key="relatedterms.supersedes" language="en">supersedes</localized-string><localized-string key="relatedterms.narrower" language="en">narrower</localized-string><localized-string key="relatedterms.broader" language="en">broader</localized-string><localized-string key="relatedterms.equivalent" language="en">equivalent</localized-string><localized-string key="relatedterms.compare" language="en">compare</localized-string><localized-string key="relatedterms.contrast" language="en">contrast</localized-string><localized-string key="relatedterms.see" language="en">see</localized-string><localized-string key="Clause.sg" language="en">Clause</localized-string><localized-string key="Clause.pl" language="en">Clauses</localized-string><localized-string key="Annex.sg" language="en">Annex</localized-string><localized-string key="Annex.pl" language="en">Annexes</localized-string><localized-string key="Appendix.sg" language="en">Appendix</localized-string><localized-string key="Appendix.pl" language="en">Appendixes</localized-string><localized-string key="Note.sg" language="en">Note</localized-string><localized-string key="Note.pl" language="en">Notes</localized-string><localized-string key="Note_%_to_entry.sg" language="en">Note % to entry</localized-string><localized-string key="Note_%_to_entry.pl" language="en">Notes % to entry</localized-string><localized-string key="List.sg" language="en">List</localized-string><localized-string key="List.pl" language="en">Lists</localized-string><localized-string key="Figure.sg" language="en">Figure</localized-string><localized-string key="Figure.pl" language="en">Figures</localized-string><localized-string key="Formula.sg" language="en">Formula</localized-string><localized-string key="Formula.pl" language="en">Formulas</localized-string><localized-string key="Table.sg" language="en">Table</localized-string><localized-string key="Table.pl" language="en">Tables</localized-string><localized-string key="Requirement.sg" language="en">Requirement</localized-string><localized-string key="Requirement.pl" language="en">Requirements</localized-string><localized-string key="Recommendation.sg" language="en">Recommendation</localized-string><localized-string key="Recommendation.pl" language="en">Recommendations</localized-string><localized-string key="Permission.sg" language="en">Permission</localized-string><localized-string key="Permission.pl" language="en">Permissions</localized-string><localized-string key="Example.sg" language="en">Example</localized-string><localized-string key="Example.pl" language="en">Examples</localized-string><localized-string key="Part.sg" language="en">Part</localized-string><localized-string key="Part.pl" language="en">Parts</localized-string><localized-string key="Section.sg" language="en">Section</localized-string><localized-string key="Section.pl" language="en">Sections</localized-string><localized-string key="Paragraph.sg" language="en">Paragraph</localized-string><localized-string key="Paragraph.pl" language="en">Paragraphs</localized-string><localized-string key="Chapter.sg" language="en">Chapter</localized-string><localized-string key="Chapter.pl" language="en">Chapters</localized-string><localized-string key="Page.sg" language="en">Page</localized-string><localized-string key="Page.pl" language="en">Pages</localized-string><localized-string key="draft-internal-boilerplate" language="en">This document is currently under development and is <br/><b>NOT INTENDED FOR PUBLIC RELEASE.</b></localized-string><localized-string key="draft-wip-boilerplate" language="en">This document is currently under development. The draft is not yet complete, and organizations should not attempt to implement it. The content is in an early stage of development, rough, incomplete and experimental; it has not been extensively edited or vetted. This provides an insider view of the iterative process to develop the content and it gives NIST an opportunity to share early thoughts, ideas, and approaches with the community. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period.</localized-string><localized-string key="draft-prelim-boilerplate" language="en">This document incorporates comments from the work-in-progress draft. It is a relatively cohesive document and is considered stable, although there are gaps in the content and the overall document is incomplete. Some changes are expected. Organizations may consider experimenting with guidelines, with the understanding that they will identify gaps and challenges. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period; a full public draft is expected to follow.</localized-string><localized-string key="draft-public-boilerplate" language="en">This draft represents a complete document that is released for public comment as part of NIST’s official review process, in support of an open and transparent process for developing guidelines and standards. The language is normalized and is consistent throughout the document. Comments received during previous review cycles (if any) have been adjudicated and are addressed in this release. Early adopters may attempt to implement the guidelines in a test or development environment; however, comments received on this draft may cause NIST to determine that a subsequent public draft and comment period are necessary. The content of this document will not be considered “final” until it is formally published and announced by NIST.</localized-string><localized-string key="withdrawal-pending-boilerplate" language="en">This document has been superseded by the document identified below. It will remain active until the withdrawal date, when it will be officially withdrawn.</localized-string><localized-string key="draft-retired-boilerplate" language="en">The attached draft document has been RETIRED. NIST has discontinued additional development of this document, which is provided here in its entirety for historical purposes.</localized-string><localized-string key="draft-withdrawn-boilerplate" language="en">The attached draft document has been withdrawn, and is provided solely for historical purposes. It has been superseded by the document identified below.</localized-string><localized-string key="publication-withdrawn-boilerplate" language="en">The attached publication has been withdrawn (archived), and is provided solely for historical purposes. It may have been superseded by another publication (indicated below).</localized-string><localized-string key="keywords" language="en">Keywords</localized-string><localized-string key="keywords_intro" language="en"><p>The following are keywords to be used by search engines and document catalogues.</p></localized-string><localized-string key="language" language="en">en</localized-string><localized-string key="script" language="en">Latn</localized-string></localized-strings>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title depth="2">Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title depth="2">Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract" displayorder="1"><title>Abstract</title><p id="_a8302651-6726-fc5f-3fe5-336412551f04">This document defines the JSON schema for testing FIPS PUB 186 ECDSA implementations with the ACVP specification.</p>
+</abstract><clause id="_16eddd88-e593-4ad7-be38-5d6efb03db3b" type="keyword" displayorder="2">
+<title depth="1">Keywords</title>
+<p>The following are keywords to be used by search engines and document catalogues.</p>
+<p>ACVP; cryptography</p></clause>
+<foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative" displayorder="3">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative" displayorder="4">
+<title depth="1">Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative" displayorder="5">
+<title depth="1">Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119">[RFC 2119]</eref> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174">[RFC 8174]</eref> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative" displayorder="6"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative" displayorder="7">
+<title>Executive Summary</title>
+<p id="_2ded545b-4770-d868-c6fd-7e6b47120c93">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing FIPS PUB 186 ECDSA implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative" displayorder="8">
+<title depth="1">1.<tab/>Introduction</title>
+<p id="_29f8ae8d-a8b2-67e7-c2ed-5f55c5f0f1be">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing FIPS PUB 186 ECDSA implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative" displayorder="9">
+<title depth="1">2.<tab/>Supported ECDSA Algorithms</title>
+<p id="_f2083860-365a-7f87-f243-8ebfe88ef608">The following ECDSA algorithms <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module. The list is in the form “algorithm / mode / revision”.</p>
+
+<ul id="_91025b94-c9d2-038c-b3e7-3cf25ff178ef"><li><p id="_25fc1f80-2f5b-c51c-4297-9649948d66df">ECDSA / keyGen / 1.0</p>
+</li>
+<li><p id="_8fa6e4d3-03e1-7e08-f871-16a7ed72c90c">ECDSA / keyVer / 1.0</p>
+</li>
+<li><p id="_5e8ccd89-7127-eb2a-98d7-a94b1adb6570">ECDSA / sigGen / 1.0</p>
+</li>
+<li><p id="_fefa2367-34bd-ce83-9b53-3d780244d0e7">ECDSA / sigVer / 1.0</p>
+</li>
+<li><p id="_8fafacac-82cd-687d-2f72-7e04721885ab">ECDSA / keyGen / FIPS186-5</p>
+</li>
+<li><p id="_6bccb53c-b577-f8d3-ec92-f1009e9113fd">ECDSA / keyVer / FIPS186-5</p>
+</li>
+<li><p id="_ab80ba5b-0402-d3e0-d045-266963f4cb2f">ECDSA / sigGen / FIPS186-5</p>
+</li>
+<li><p id="_fffc7f58-e271-a061-d188-18275be1cca3">ECDSA / sigVer / FIPS186-5</p>
+</li>
+<li><p id="_337ace66-ac3d-be28-1ef9-3dba315199c3">DetECDSA / sigGen / FIPS186-5</p>
+</li>
+</ul>
+
+<clause id="supported_conformances" obligation="normative">
+<title depth="2">2.1.<tab/>Supported Conformances for ECDSA Algorithms</title>
+<p id="_20110bdf-10e1-cf80-6e09-e574a736f667">The following ECDSA algorithms <strong>MAY</strong> claim conformance to <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref>:</p>
+
+<ul id="_eadcdf59-71ed-7827-4070-226042ed23a8"><li><p id="_9223b426-ef1e-b4d4-a6d2-6a2aad4f8c92">ECDSA / sigGen / 1.0</p>
+</li>
+<li><p id="_d854f30b-3fd0-195f-c412-18a3e1517580">ECDSA / sigVer / 1.0</p>
+</li>
+<li><p id="_bee92add-05f9-080b-4905-4d2056600dc1">ECDSA / sigGen / FIPS186-5</p>
+</li>
+<li><p id="_60b8c0eb-97ea-3912-d604-8fad12e05d61">ECDSA / sigVer / FIPS186-5</p>
+</li>
+<li><p id="_035a8570-ac53-6c40-fba3-512a53572697">DetECDSA / sigGen / FIPS186-5</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="testtypes" obligation="normative" displayorder="10">
+<title depth="1">3.<tab/>Test Types and Test Coverage</title>
+<clause id="ttypes" obligation="normative">
+<title depth="2">3.1.<tab/>Test Types</title>
+<p id="_f4387f21-bd2b-3799-e547-0afe408d64f9">The ACVP server performs a set of tests on the specified ECDSA algorithm in order to assess the correctness and robustness of the implementation. A typical ACVP validation session <strong>SHALL</strong> require multiple tests to be performed for every supported permutation of ECDSA capabilities. This section describes the design of the tests used to validate implementations of the ECDSA algorithms.</p>
+
+<ul id="_dec831fe-9684-850e-371d-8fe22884f6a9"><li><p id="_f5cc2ffb-1206-9dc2-f2bb-7b2d9e90ffba">ECDSA / keyGen / * “AFT” — Algorithm Functional Test. The IUT is <strong>REQUIRED</strong> for each test case provided, to generate a key pair based on an approved curve. This information is then communicated to the ACVP server and validated.</p>
+</li>
+<li><p id="_dce7180b-1a09-1fb7-afb0-b007366528c9">ECDSA / keyVer / * “AFT” — Algorithm Functional Test. The ACVP server is <strong>REQUIRED</strong> to generate a series of keys based on the IUT provided NIST curve(s). The keys generated by the server <strong>MAY</strong> or <strong>MAY NOT</strong> be valid, the IUT is <strong>REQUIRED</strong> to determine if the keys provided in the test cases are valid or invalid keys as they relate to the curve.</p>
+</li>
+<li><p id="_6d36571a-fafd-7bc4-d352-810adb60799e">ECDSA / sigGen / * “AFT” — Algorithm Functional Test. This testing mode expects the IUT to generate valid signatures based on the ACVP provided message. The signature is then validated with the ACVP server given the IUT’s communicated curve, public key, and signature.</p>
+</li>
+<li><p id="_85ebe463-58d9-57cb-c540-a74abb74cd8c">ECDSA / sigVer / * “AFT” — Algorithm Functional Test. The ACVP server generates a series of signatures to communicate to the IUT. The IUT is <strong>REQUIRED</strong> to determine the validity of the signature given the curve, key, and message.</p>
+</li>
+<li><p id="_f0707e11-969b-972d-b878-5a6b471c02cc">DetECDSA / sigGen / FIPS186-5 “AFT” — Algorithm Functional Test. This testing mode expects the IUT to generate valid signatures based on the ACVP provided message. The signature is then validated with the ACVP server given the IUT’s communicated curve, public key, and signature. The random value used in the signature is generated according to the Deterministic ECDSA algorithm in <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="test_coverage" obligation="normative">
+<title depth="2">3.2.<tab/>Test Coverage</title>
+<p id="_b497bffb-efe9-29e5-00e6-f2539692ee66">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, <eref type="inline" bibitemid="SP800-89" citeas="SP 800-89">[SP 800-89]</eref>, and <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref>.</p>
+
+<clause id="requirements_covered" obligation="normative">
+<title depth="3">3.2.1.<tab/>Requirements Covered</title>
+<ul id="_fb39e3b1-1934-56ca-9b09-3a4b0b0cb3a3"><li><p id="_00dc040d-35cc-c16c-fe8c-afee5f4d2933">FIPS 186-4 — Section 3. General Discussion. Domain parameter generation, key generation, signature generation, and signature validation are all within scope of ACVP server testing.</p>
+</li>
+<li><p id="_6bbb3ab8-0e89-4856-5eaf-50596d23f933">FIPS 186-4 — Section 6. The Eliliptic Curve Digital Signature Algorithm (ECDSA). The ACVP server <strong>SHALL</strong> allow testing with the recommended NIST curves. The ACVP server <strong>SHALL</strong> support a variety of curves/hash function for creation and delivery to/from the IUT. Key pair generation/verification testing <strong>SHALL</strong> be provided by the ACVP server. Both Signature Generation and Validation testing mechanmisms <strong>SHALL</strong> be provided by the ACVP server.</p>
+</li>
+<li><p id="_2383246c-36b9-43f8-8ddd-5b917d77841d">SP800-106 — Sections 3. Randomized Hashing and 4. Digital Signatures Using Randomized Hashing. The IUT <strong>SHALL</strong> be provided or provide a random value that should be used to “randomize” a message prior to signing and/or verifying an original message.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_not_covered" obligation="normative">
+<title depth="3">3.2.2.<tab/>Requirements Not Covered</title>
+<ul id="_b0e22a41-6b1a-7fa1-02bc-41bd4e66b165"><li><p id="_cc451905-9954-b8cf-b1e5-035948e81638">FIPS 186-4 — Section 3. General Discussion. Assurances of private key secrecy and ownership <strong>SHALL NOT</strong> be within scope of ACVP testing.</p>
+</li>
+<li><p id="_d3d9c5cf-4eea-e0ef-f050-2c2973d9a20c">FIPS 186-4 — Section 6. The Elliptic Curve Digital Signature Algorithm (ECDSA). Though the ACVP server <strong>SHALL</strong> support a variety of parameter sizes/hash functions, the IUT’s selection of these is out of scope of testing. The ACVP server <strong>SHALL NOT</strong> provide testing for the validity of domain parameters as testing is (currently) limited to approved NIST curves. Testing <strong>SHALL NOT</strong> provide assurances the IUT has validated a set of domain parameters prior to their use. Domain parameter and key pair management <strong>SHALL NOT</strong> be within scope of ACVP testing.</p>
+</li>
+<li><p id="_9543ddf7-653c-d361-900a-7db14013b5dc">SP800-106 — Section 3.3. The Random Value. DSA, ECDSA, and RSA have random values generated as per their signing process, this random value can be used as the input to the message randomization function, doing so however is out of scope of this testing.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative" displayorder="11">
+<title depth="1">4.<tab/>Capabilities Registration</title>
+<p id="_b26d4ed1-8b47-88b0-3d86-27109238fd68">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of ECDSA algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP">[ACVP]</eref> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title depth="2">4.1.<tab/>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Table 1 — Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json"><name>Figure 1</name>"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="prereq_algs" obligation="normative">
+<title depth="2">4.2.<tab/>Required Prerequisite Algorithms for ECDSA Validations</title>
+<p id="_e2cfbdef-7f3d-6d8f-902e-f000b2a70bdf">Each ECDSA implementation relies on other cryptographic primitives. For example, ECDSA sigGen uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<table id="rereqs_table">
+<name>Table 2 — Required ECDSA Prerequisite Algorithms JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">SHA, or DRBG</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">Actual number or “same”</td>
+</tr><tr><td valign="top" align="left">prereqAlgVal</td>
+<td valign="top" align="left">prerequisite algorithm validation</td>
+<td valign="top" align="left">object with algorithm and valValue properties</td>
+<td valign="top" align="left">See above</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="_ecdsa_algorithm_registration_properties" obligation="normative">
+<title depth="2">4.3.<tab/>ECDSA Algorithm Registration Properties</title>
+<p id="_148663d1-48aa-2974-fe31-28156d66acc7">Each ECDSA algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="ecdsa_caps_table">
+<name>Table 3 — ECDSA Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The ECDSA algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The ECDSA mdoe to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisite algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs">Section 4.2</xref></td>
+</tr><tr><td valign="top" align="left">capabilities</td>
+<td valign="top" align="left">The individual ECDSA Mode and Revision capabilities</td>
+<td valign="top" align="left">array of capability objects</td>
+<td valign="top" align="left">See <xref target="ecdsa_keyGen_capabilities">Section 4.3.1</xref>, <xref target="ecdsa_keyVer_capabilities">Section 4.3.2</xref>, <xref target="ecdsa_sigGen_capabilities">Section 4.3.3</xref>, <xref target="ecdsa_sigVer_capabilities">Section 4.3.4</xref>, <xref target="ecdsa_detsigGen_capabilities">Section 4.3.5</xref></td>
+</tr><tr><td valign="top" align="left">conformances</td>
+<td valign="top" align="left">Used to denote the conformances that can apply to specific modes of ECDSA</td>
+<td valign="top" align="left">array of strings</td>
+<td valign="top" align="left">See <xref target="supported_conformances">Section 2.1</xref></td>
+</tr><tr><td valign="top" align="left">componentTest</td>
+<td valign="top" align="left">If the hash is performed outside of the boundary of the algorithm, setting this to true will cause the messages to be pre-hashed when provided by the server</td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">true or false</td>
+</tr></tbody>
+<note id="_d6586fa8-89b9-09ef-2003-1ec067fdcd16"><name>NOTE</name><p id="_cdd4f94d-1860-df02-29a5-46a0049a184f">The ‘componentTest’ property is only valid for detECDSA / sigGen / FIPS186-5, ECDSA / sigGen / * and ECDSA / sigVer / * registrations.</p>
+</note></table>
+
+
+
+<clause id="ecdsa_keyGen_capabilities" obligation="normative">
+<title depth="3">4.3.1.<tab/>The keyGen Mode Capabilities</title>
+<p id="_45af7eed-8a76-e1fd-9700-983c631437ea">The ECDSA keyGen mode capabilities are advertised as JSON objects, which are elements of the ‘capabilities’ array in the ACVP registration message. See the ACVP specification for details on the registration message.</p>
+
+<p id="_ba8006fd-5e29-b645-dd8a-29274f0e19d2">Each ECDSA keyGen mode capability set is advertised as a self-contained JSON object.</p>
+
+<clause id="mode_keyGen1.0" obligation="normative">
+<title depth="4">4.3.1.1.<tab/>keyGen Capabilities For Revision “1.0”</title>
+<p id="_87addc2e-4281-4bd2-9fc4-5fe7600f944d">The complete list of ECDSA / keyGen / 1.0 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="keyGen_table_1.0">
+<name>Table 4 — ECDSA keyGen 1.0 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve names supported for the IUT in keyGen.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-224”, “P-256”, “P-384”, “P-521”, “B-233”, “B-283”, “B-409”, “B-571”, “K-233”, “K-283”, “K-409”, “K-571”}</td>
+</tr><tr><td valign="top" align="left">secretGenerationMode</td>
+<td valign="top" align="left">The method used to generate the randomness incoporated in the key.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”extra bits”, “testing candidates”}</td>
+</tr></tbody>
+<note id="_33c393d4-f4d0-5245-8dfe-5ff605fdc0f4"><name>NOTE</name><p id="_d9ab151d-acf0-ba1d-cc0f-b031a26221eb">The ‘secretGenerationMode’ can be found in <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> Appendix B.4.</p>
+</note></table>
+
+
+
+<p id="_985b77f6-e5c7-683c-2c1d-21fb3e8e9913">Below is an example of the registration for ECDSA / keyGen / 1.0</p>
+
+<sourcecode id="_75046725-e2d3-f907-4531-8b507590055c" lang="json"><name>Figure 2</name>{
+    "algorithm": "ECDSA",
+    "mode": "keyGen",
+    "revision": "1.0",
+    "prereqVals": [
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "curve": [
+        "P-224",
+        "P-256",
+        "P-384",
+        "P-521",
+        "B-233",
+        "B-283",
+        "B-409",
+        "B-571",
+        "K-233",
+        "K-283",
+        "K-409",
+        "K-571"
+    ],
+    "secretGenerationMode": [
+        "extra bits",
+        "testing candidates"
+    ]
+}</sourcecode>
+
+</clause>
+
+<clause id="mode_keyGenFIPS186-5" obligation="normative">
+<title depth="4">4.3.1.2.<tab/>keyGen Capabilities For Revision “FIPS186-5”</title>
+<p id="_61c0c57b-5cbe-f844-0d57-f6086763f8d0">The complete list of ECDSA / keyGen / FIPS186-5 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="keyGen_table_FIPS186-5">
+<name>Table 5 — ECDSA keyGen FIPS186-5 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve names supported for the IUT in keyGen.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-224”, “P-256”, “P-384”, “P-521”}</td>
+</tr><tr><td valign="top" align="left">secretGenerationMode</td>
+<td valign="top" align="left">The method used to generate the randomness incoporated in the key.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”extra bits”, “testing candidates”}</td>
+</tr></tbody>
+<note id="_65a2c526-d7bc-aca4-c9da-4a61338090c9"><name>NOTE</name><p id="_3706b521-4b4f-8497-3a9a-83185a7f0b6b">The ‘secretGenerationMode’ can be found in <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref> Appendix A.2.</p>
+</note></table>
+
+
+
+<p id="_f8f816bd-2f0b-1068-3435-08b231d40266">Below is an example of the registration for ECDSA / keyGen / FIPS186-5</p>
+
+<sourcecode id="_00abe23b-7f93-999f-1ce1-c80c0145c0dc" lang="json"><name>Figure 3</name>{
+    "algorithm": "ECDSA",
+    "mode": "keyGen",
+    "revision": "FIPS186-5",
+    "prereqVals": [
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "curve": [
+        "P-224",
+        "P-256",
+        "P-384",
+        "P-521"
+    ],
+    "secretGenerationMode": [
+        "extra bits",
+        "testing candidates"
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_keyVer_capabilities" obligation="normative">
+<title depth="3">4.3.2.<tab/>The keyVer Mode Capabilities</title>
+<p id="_d5afd760-27a0-edf1-a24d-69467b51bc34">The ECDSA keyVer mode capabilities are advertised as JSON objects, which are elements of the ‘capabilities’ array in the ACVP registration message. See the ACVP specification for details on the registration message.</p>
+
+<p id="_440b8b02-acc3-ffcd-3352-4fec160fe1ea">Each ECDSA keyVer mode capability set is advertised as a self-contained JSON object.</p>
+
+<clause id="mode_keyVer1.0" obligation="normative">
+<title depth="4">4.3.2.1.<tab/>keyVer Capabilities For Revision “1.0”</title>
+<p id="_c177b3b9-ed96-32b5-978e-7d67f2e541d8">The complete list of ECDSA / keyVer / 1.0 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="keyVer_table_1.0">
+<name>Table 6 — ECDSA keyVer 1.0 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve names supported for the IUT in keyVer.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-192”, “P-224”, “P-256”, “P-384”, “P-521”, “B-163”, “B-233”, “B-283”, “B-409”, “B-571”, “K-163”, “K-233”, “K-283”, “K-409”, “K-571”}</td>
+</tr></tbody>
+</table>
+
+<p id="_872efe27-335f-fb0f-ac83-d4ac231f9848">Below is an example of the registration for ECDSA / keyVer / 1.0</p>
+
+<sourcecode id="_2ed3a3a2-544e-40e7-3e63-92b0949d3478" lang="json"><name>Figure 4</name>{
+    "algorithm": "ECDSA",
+    "mode": "keyVer",
+    "revision": "1.0",
+    "prereqVals": [
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "curve": [
+        "P-192",
+        "P-224",
+        "P-256",
+        "P-384",
+        "P-521",
+        "B-163",
+        "B-233",
+        "B-283",
+        "B-409",
+        "B-571",
+        "K-163",
+        "K-233",
+        "K-283",
+        "K-409",
+        "K-571"
+    ]
+}</sourcecode>
+
+</clause>
+
+<clause id="mode_keyVerFIPS18605" obligation="normative">
+<title depth="4">4.3.2.2.<tab/>keyVer Capabilities For Revision “FIPS186-5”</title>
+<p id="_71eaf6e8-28b2-1412-014a-25992ba3ff84">The complete list of ECDSA / keyVer / FIPS186-5 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="keyVer_table_FIPS186-5">
+<name>Table 7 — ECDSA keyVer FIPS186-5 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve names supported for the IUT in keyVer.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-224”, “P-256”, “P-384”, “P-521”}</td>
+</tr></tbody>
+</table>
+
+<p id="_003e7d50-a54b-7734-8910-1292d67ecee9">Below is an example of the registration for ECDSA / keyVer / FIPS186-5</p>
+
+<sourcecode id="_caeebc8a-22ff-79bf-2291-f7f25268c56e" lang="json"><name>Figure 5</name>{
+    "algorithm": "ECDSA",
+    "mode": "keyVer",
+    "revision": "FIPS186-5",
+    "prereqVals": [
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "curve": [
+        "P-224",
+        "P-256",
+        "P-384",
+        "P-521"
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_sigGen_capabilities" obligation="normative">
+<title depth="3">4.3.3.<tab/>The sigGen Mode Capabilities</title>
+<p id="_81e5cf1b-9928-7f7c-f0d2-eaddceec6ae9">The ECDSA sigGen mode capabilities are advertised as JSON objects, which are elements of the ‘capabilities’ array in the ACVP registration message. See the ACVP specification for details on the registration message.</p>
+
+<p id="_fa0ec5cf-7bd2-b0c2-7c7a-845e34fd4082">Each ECDSA sigGen mode capability set is advertised as a self-contained JSON object.</p>
+
+<clause id="mode_sigGen1.0" obligation="normative">
+<title depth="4">4.3.3.1.<tab/>sigGen Capabilities For Revision “1.0”</title>
+<p id="_13cdcaf6-b465-f2d8-ac6d-7d35c6f8aa54">The complete list of ECDSA / sigGen / 1.0 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="sigGen_table_1.0">
+<name>Table 8 — ECDSA sigGen 1.0 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curves supported with a particular set of hash algorithms.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-224”, “P-256”, “P-384”, “P-521”, “B-233”, “B-283”, “B-409”, “B-571”, “K-233”, “K-283”, “K-409”, “K-571”}</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash functions supported when signing a message for a particular set of curves.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”, “SHA3-224”, “SHA3-256”, “SHA3-384”, “SHA3-512”}</td>
+</tr></tbody>
+<note id="_9541c56e-d547-efe4-c2bb-db85e0072c9e"><name>NOTE</name><p id="_349aa2ac-4bc8-872c-1b40-5663c0828300">Separate capability JSON objects in the array <strong>MAY</strong> represent different groupings of curves and hash algorithms. For example if one object in the ‘capabilities’ array has ‘curve’ “P-224” and ‘hashAlg’ “SHA2-224” while the next object has ‘curve’ “P-256” and ‘hashAlg’ “SHA2-256”, then the tests generated will maintain those relations. A test group will be generated with cases for signatures over “P-224” using “SHA2-224” and a test group will be generated with cases for signatures over “P-256” using “SHA2-256”.</p>
+</note></table>
+
+
+
+<p id="_e7d8b3eb-5a51-009c-f42e-dee0ec7bc330">Below is an example of the registration for ECDSA / sigGen / 1.0</p>
+
+<sourcecode id="_183a1c69-dbf7-6247-f2f4-fda4622d61a9" lang="json"><name>Figure 6</name>{
+    "algorithm": "ECDSA",
+    "mode": "sigGen",
+    "revision": "1.0",
+    "prereqVals": [{
+            "algorithm": "SHA",
+            "valValue": "123456"
+        },
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "componentTest": false,
+    "capabilities": [
+    {
+        "curve": [
+            "P-224",
+            "P-256"
+        ],
+        "hashAlg": [
+            "SHA2-224",
+            "SHA2-256"
+        ]
+    },
+    {
+        "curve": [
+            "P-512"
+        ],
+        "hashAlg": [
+            "SHA3-512"
+        ]
+    }],
+    "conformances": [
+        "SP800-106"
+    ]
+}</sourcecode>
+
+</clause>
+
+<clause id="mode_sigGenFIPS186-5" obligation="normative">
+<title depth="4">4.3.3.2.<tab/>sigGen Capabilities For Revision “FIPS186-5”</title>
+<p id="_b0f94d5b-95e7-4cd4-ea36-3bbda4b8b9ea">The complete list of ECDSA / sigGen / FIPS186-5 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="sigGen_table_FIPS186-5">
+<name>Table 9 — ECDSA sigGen FIPS186-5 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curves supported with a particular set of hash algorithms.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-224”, “P-256”, “P-384”, “P-521”}</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash functions supported when signing a message for a particular set of curves.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”, “SHA3-224”, “SHA3-256”, “SHA3-384”, “SHA3-512”, “SHAKE-128”, “SHAKE-256”}</td>
+</tr></tbody>
+<note id="_ae97cf7e-0e99-15c9-e126-8e645776196b"><name>NOTE</name><p id="_1efd3655-4f83-511e-42e6-dd873754c439">Separate capability JSON objects in the array <strong>MAY</strong> represent different groupings of curves and hash algorithms. For example if one object in the ‘capabilities’ array has ‘curve’ “P-224” and ‘hashAlg’ “SHA2-224” while the next object has ‘curve’ “P-256” and ‘hashAlg’ “SHA2-256”, then the tests generated will maintain those relations. A test group will be generated with cases for signatures over “P-224” using “SHA2-224” and a test group will be generated with cases for signatures over “P-256” using “SHA2-256”.</p>
+</note></table>
+
+
+
+<p id="_4ec5e42f-e2ad-a260-e978-5b2514b50b94">Below is an example of the registration for ECDSA / sigGen / FIPS186-5</p>
+
+<sourcecode id="_11dd8928-48ad-60dc-771f-5e4918b290b7" lang="json"><name>Figure 7</name>{
+    "algorithm": "ECDSA",
+    "mode": "sigGen",
+    "revision": "FIPS186-5",
+    "prereqVals": [{
+            "algorithm": "SHA",
+            "valValue": "123456"
+        },
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "componentTest": false,
+    "capabilities": [
+    {
+        "curve": [
+            "P-224",
+            "P-256"
+        ],
+        "hashAlg": [
+            "SHA2-224",
+            "SHA2-256"
+        ]
+    },
+    {
+        "curve": [
+            "P-512"
+        ],
+        "hashAlg": [
+            "SHA3-512"
+        ]
+    }],
+    "conformances": [
+        "SP800-106"
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_sigVer_capabilities" obligation="normative">
+<title depth="3">4.3.4.<tab/>The sigVer Mode Capabilities</title>
+<p id="_4cb8caad-9647-8fcc-c59d-343e4f02661e">The ECDSA sigVer mode capabilities are advertised as JSON objects, which are elements of the ‘capabilities’ array in the ACVP registration message. See the ACVP specification for details on the registration message.</p>
+
+<p id="_9fb6b6bb-ee18-849f-696f-48ed57343bde">Each ECDSA sigVer mode capability set is advertised as a self-contained JSON object.</p>
+
+<clause id="mode_sigVer1.0" obligation="normative">
+<title depth="4">4.3.4.1.<tab/>sigVer Capabilities For Revision “1.0”</title>
+<p id="_0b43920e-0abc-8bdb-14ee-1a1412108fb7">The complete list of ECDSA / sigVer / 1.0 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="sigVer_table_1.0">
+<name>Table 10 — ECDSA sigVer Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curves supported with a particular set of hash algorithms.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-192”, “P-224”, “P-256”, “P-384”, “P-521”, “B-163”, “B-233”, “B-283”, “B-409”, “B-571”, “K-163”, “K-233”, “K-283”, “K-409”, “K-571”}</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash functions supported when signing a message for a particular set of curves.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”SHA-1”, “SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”, “SHA3-224”, “SHA3-256”, “SHA3-384”, “SHA3-512”}</td>
+</tr></tbody>
+<note id="_2e3df80e-96f5-a2e2-7aeb-8a6e11236e35"><name>NOTE</name><p id="_8b2e63fa-0301-6a24-a35c-5f574f1cfea3">Separate capability JSON objects in the array <strong>MAY</strong> represent different groupings of curves and hash algorithms. For example if one object in the ‘capabilities’ array has ‘curve’ “P-224” and ‘hashAlg’ “SHA2-224” while the next object has ‘curve’ “P-256” and ‘hashAlg’ “SHA2-256”, then the tests generated will maintain those relations. A test group will be generated with cases for signatures over “P-224” using “SHA2-224” and a test group will be generated with cases for signatures over “P-256” using “SHA2-256”.</p>
+</note></table>
+
+
+
+<p id="_83ba1c0b-fd31-f426-29b2-20356236664c">Below is an example of the registration for ECDSA / sigVer / 1.0</p>
+
+<sourcecode id="_f7c546dc-c76a-d429-2144-1a05387bcc30" lang="json"><name>Figure 8</name>{
+    "algorithm": "ECDSA",
+    "mode": "sigVer",
+    "revision": "1.0",
+    "prereqVals": [{
+            "algorithm": "SHA",
+            "valValue": "123456"
+        },
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "componentTest": false,
+    "capabilities": [
+    {
+        "curve": [
+            "P-224",
+            "P-256"
+        ],
+        "hashAlg": [
+            "SHA2-224",
+            "SHA2-256"
+        ]
+    },
+    {
+        "curve": [
+            "P-512"
+        ],
+        "hashAlg": [
+            "SHA3-512"
+        ]
+    }],
+    "conformances": [
+        "SP800-106"
+    ]
+}</sourcecode>
+
+</clause>
+
+<clause id="mode_sigVerFIPS186-5" obligation="normative">
+<title depth="4">4.3.4.2.<tab/>sigVer Capabilities For Revision “FIPS186-5”</title>
+<p id="_61c1a698-2502-cc06-468c-086ee4022c11">The complete list of ECDSA / sigVer / FIPS186-5 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="sigVer_table_FIPS186-5">
+<name>Table 11 — ECDSA sigVer Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curves supported with a particular set of hash algorithms.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-224”, “P-256”, “P-384”, “P-521”}</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash functions supported when signing a message for a particular set of curves.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”, “SHA3-224”, “SHA3-256”, “SHA3-384”, “SHA3-512”, “SHAKE-128”, “SHAKE-256”}</td>
+</tr></tbody>
+<note id="_61b31c1b-e571-c7db-08cb-8cd26a74aec5"><name>NOTE</name><p id="_643049d6-bde0-3b90-53f3-f850ecd8058c">Separate capability JSON objects in the array <strong>MAY</strong> represent different groupings of curves and hash algorithms. For example if one object in the ‘capabilities’ array has ‘curve’ “P-224” and ‘hashAlg’ “SHA2-224” while the next object has ‘curve’ “P-256” and ‘hashAlg’ “SHA2-256”, then the tests generated will maintain those relations. A test group will be generated with cases for signatures over “P-224” using “SHA2-224” and a test group will be generated with cases for signatures over “P-256” using “SHA2-256”.</p>
+</note></table>
+
+
+
+<p id="_1049e22a-8716-daa3-a3bd-59f212f1bdb2">Below is an example of the registration for ECDSA / sigVer / FIPS186-5</p>
+
+<sourcecode id="_3bfae258-eb25-2ff3-9821-d8269885540d" lang="json"><name>Figure 9</name>{
+    "algorithm": "ECDSA",
+    "mode": "sigVer",
+    "revision": "FIPS186-5",
+    "prereqVals": [{
+            "algorithm": "SHA",
+            "valValue": "123456"
+        },
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "componentTest": false,
+    "capabilities": [
+    {
+        "curve": [
+            "P-224",
+            "P-256"
+        ],
+        "hashAlg": [
+            "SHA2-224",
+            "SHA2-256"
+        ]
+    },
+    {
+        "curve": [
+            "P-512"
+        ],
+        "hashAlg": [
+            "SHA3-512"
+        ]
+    }],
+    "conformances": [
+        "SP800-106"
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_detsigGen_capabilities" obligation="normative">
+<title depth="3">4.3.5.<tab/>The Deterministic ECDSA sigGen Mode Capabilities</title>
+<p id="_9151c264-08ee-2544-9ec7-226eb8b21b16">The ECDSA sigGen mode capabilities are advertised as JSON objects, which are elements of the ‘capabilities’ array in the ACVP registration message. See the ACVP specification for details on the registration message.</p>
+
+<p id="_3a8fe2c0-bf0a-890e-71df-585ef10a3020">Each ECDSA sigGen mode capability set is advertised as a self-contained JSON object.</p>
+
+<clause id="mode_detsigGenFIPS186-5" obligation="normative">
+<title depth="4">4.3.5.1.<tab/>Deterministic ECDSA sigGen Capabilities For Revision “FIPS186-5”</title>
+<p id="_c1df0107-fdf6-49d9-ade6-72ae04eac011">The complete list of DetECDSA / sigGen / FIPS186-5 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="detsigGen_table_FIPS186-5">
+<name>Table 12 — Deterministic ECDSA sigGen FIPS186-5 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curves supported with a particular set of hash algorithms.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”P-224”, “P-256”, “P-384”, “P-521”}</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash functions supported when signing a message for a particular set of curves.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-empty subset of {”SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”, “SHA3-224”, “SHA3-256”, “SHA3-384”, “SHA3-512”, “SHAKE-128”, “SHAKE-256”}</td>
+</tr></tbody>
+<note id="_6214325d-bbe7-15b1-27b9-43ceea3d0f1d"><name>NOTE</name><p id="_9449825c-5687-0946-6585-de7bec33479f">Separate capability JSON objects in the array <strong>MAY</strong> represent different groupings of curves and hash algorithms. For example if one object in the ‘capabilities’ array has ‘curve’ “P-224” and ‘hashAlg’ “SHA2-224” while the next object has ‘curve’ “P-256” and ‘hashAlg’ “SHA2-256”, then the tests generated will maintain those relations. A test group will be generated with cases for signatures over “P-224” using “SHA2-224” and a test group will be generated with cases for signatures over “P-256” using “SHA2-256”.</p>
+</note></table>
+
+
+
+<p id="_2349eb4e-518f-d2e9-8f14-32d8bbe2ddfc">Below is an example of the registration for detECDSA / sigGen / FIPS186-5</p>
+
+<sourcecode id="_be92997e-0c6c-60c5-2384-c1a35c2e9061" lang="json"><name>Figure 10</name>{
+    "algorithm": "DetECDSA",
+    "mode": "sigGen",
+    "revision": "FIPS186-5",
+    "prereqVals": [{
+            "algorithm": "SHA",
+            "valValue": "123456"
+        },
+        {
+            "algorithm": "DRBG",
+            "valValue": "123456"
+        }
+    ],
+    "componentTest": false,
+    "capabilities": [
+    {
+        "curve": [
+            "P-224",
+            "P-256"
+        ],
+        "hashAlg": [
+            "SHA2-224",
+            "SHA2-256"
+        ]
+    },
+    {
+        "curve": [
+            "P-512"
+        ],
+        "hashAlg": [
+            "SHA3-512"
+        ]
+    }],
+    "conformances": [
+        "SP800-106"
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative" displayorder="12">
+<title depth="1">5.<tab/>Test Vectors</title>
+<p id="_412c0e7c-186a-f2df-b95e-57ae6fda5c62">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with FIPS PUB 186 ECDSA algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Table 13 — Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs">Section 6</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json"><name>Figure 11</name>{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+</clause>
+
+<clause id="tgjs" obligation="normative" displayorder="13">
+<title depth="1">6.<tab/>Test Vectors</title>
+<p id="_6efd0e7d-6ddc-af0a-eb5b-08738d7dc37a">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual crypto algorithm, such as ECDSA / sigGen / 1.0, ECDSA / keyVer / FIPS186-5, etc. This section describes the JSON schema for a test vector set used with ECDSA crypto algorithms.</p>
+
+<p id="_f20358a6-1915-581f-f00b-4b9d90dee7f9">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="ecdsa_vs_top_table">
+<name>Table 14 — ECDSA Vector Set JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The mode used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test group JSON objects, which are defined in <xref target="ecdsa_keyGen_tgjs">Section 6.1.1</xref>, <xref target="ecdsa_keyVer_tgjs">Section 6.2.1</xref>, <xref target="ecdsa_sigGen_tgjs">Section 6.3.1</xref>, <xref target="ecdsa_sigVer_tgjs">Section 6.4.1</xref> or <xref target="ecdsa_detsigGen_tgjs">Section 6.5.1</xref> depending on the algorithm</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<clause id="ecdsa_keyGen_test_vectors" obligation="normative">
+<title depth="2">6.1.<tab/>ECDSA keyGen Test Vectors</title>
+<clause id="ecdsa_keyGen_tgjs" obligation="normative">
+<title depth="3">6.1.1.<tab/>ECDSA keyGen Test Groups JSON Schema</title>
+<p id="_1c6b7f54-5588-cdf1-c842-d69d39453448">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_58ec2e8d-0e7d-ac5c-d570-78e2120253fd">The test group for ECDSA / keyGen / * is as follows:</p>
+
+<table id="ecdsa_keyGen_vs_tg_table">
+<name>Table 15 — ECDSA keyGen Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test operation performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve type used for the test group</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">secretGenerationMode</td>
+<td valign="top" align="left">The secret generation mode used for the group</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="ecdsa_keyGen_tvjs">Section 6.1.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="ecdsa_keyGen_tvjs" obligation="normative">
+<title depth="3">6.1.2.<tab/>ECDSA keyGen Test Groups JSON Schema</title>
+<p id="_e8fdab1e-15d3-b768-7d1e-13bd6ab152c2">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA test vector.</p>
+
+<table id="ecdsa_keyGen_vs_tc_table">
+<name>Table 16 — ECDSA keyGen Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+</table>
+
+<p id="_47058fba-4c88-be99-a23b-f80a53f92add">The following is an example JSON object sent from the server to the client for ECDSA / keyGen. While the example will specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_52ad5d8f-2e65-e3bd-dacb-4a899c088a4c" lang="json"><name>Figure 12</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "algorithm": "ECDSA",
+        "mode": "keyGen",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "curve": "P-224",
+                "secretGenerationMode": "extra bits",
+                "tests": [
+                    {
+                        "tcId": 1
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_keyVer_test_vectors" obligation="normative">
+<title depth="2">6.2.<tab/>ECDSA keyVer Test Vectors</title>
+<clause id="ecdsa_keyVer_tgjs" obligation="normative">
+<title depth="3">6.2.1.<tab/>ECDSA keyVer Test Groups JSON Schema</title>
+<p id="_40ecd5a9-05e0-9b26-2b80-34752ecc9633">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_af5ce1d2-12a5-f34c-ab59-82ee33bbf072">The test group for ECDSA / keyVer / * is as follows:</p>
+
+<table id="ecdsa_keyVer_vs_tg_table">
+<name>Table 17 — ECDSA keyVer Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test operation performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve type used for the test group</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="ecdsa_keyVer_tvjs">Section 6.2.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="ecdsa_keyVer_tvjs" obligation="normative">
+<title depth="3">6.2.2.<tab/>ECDSA keyVer Test Groups JSON Schema</title>
+<p id="_68f9196d-e319-7284-868a-48169929251f">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA test vector.</p>
+
+<table id="ecdsa_keyVer_vs_tc_table">
+<name>Table 18 — ECDSA keyVer Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">qx</td>
+<td valign="top" align="left">The public key curve point x</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qy</td>
+<td valign="top" align="left">The public key curve point y</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_0a3467a2-54f0-c680-8210-3737e8755d0d">The following is an example JSON object sent from the server to the client for ECDSA / keyVer. While the example will specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_0251e1ea-8ac6-b804-fce1-3c7ce2d693ac" lang="json"><name>Figure 13</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "algorithm": "ECDSA",
+        "mode": "keyVer",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "curve": "P-192",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "qx": "01ED77E3F1591D2EC730D0ED6D592F8DD24158D0E696408DBD",
+                        "qy": "BF31C6463EB1B6B55C8930550B88CF8D1F6432A832B40FB4"
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_sigGen_test_vectors" obligation="normative">
+<title depth="2">6.3.<tab/>ECDSA sigGen Test Vectors</title>
+<clause id="ecdsa_sigGen_tgjs" obligation="normative">
+<title depth="3">6.3.1.<tab/>ECDSA sigGen Test Groups JSON Schema</title>
+<p id="_f26a8bd3-4ebb-619f-4736-092888d28fea">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_7bc77993-dce9-bacd-8558-8ee8760e13f5">The test group for ECDSA / sigGen / * is as follows:</p>
+
+<table id="ecdsa_sigGen_vs_tg_table">
+<name>Table 19 — ECDSA sigGen Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test operation performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve type used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">SHA version used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">conformance</td>
+<td valign="top" align="left">Signifies all test cases within the group should utilize random message hashing as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="ecdsa_sigGen_tvjs">Section 6.3.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="ecdsa_sigGen_tvjs" obligation="normative">
+<title depth="3">6.3.2.<tab/>ECDSA sigGen Test Groups JSON Schema</title>
+<p id="_d04c9f0e-1cd6-4234-1c3f-1905ebfebd53">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA test vector.</p>
+
+<table id="ecdsa_sigGen_vs_tc_table">
+<name>Table 20 — ECDSA sigGen Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">message</td>
+<td valign="top" align="left">The message used to generate signature or verify signature</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+<note id="_fed5944c-87df-0413-5f12-8d85c90e0473"><name>NOTE</name><p id="_7be935f9-6eda-bb70-832f-ac07715b385f">The ‘randomValue’ and ‘randomValueLen’ will only be present if the ‘conformance’ “SP800-106” is present in the group.</p>
+</note></table>
+
+
+
+<p id="_e3eda06a-9482-82d7-e546-bed6c3231c3c">The following is an example JSON object sent from the server to the client for ECDSA / sigGen. While the example will specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_08a43427-f7b4-8c3a-37ba-f0e868848582" lang="json"><name>Figure 14</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "algorithm": "ECDSA",
+        "mode": "sigGen",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "curve": "P-224",
+                "hashAlg": "SHA2-224",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "message": "AB6F57713A3BD323B4AFDCFBE202EE0..."
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "curve": "P-224",
+                "hashAlg": "SHA2-224",
+                "conformance": "SP800-106",
+                "tests": [
+                    {
+                        "tcId": 2,
+                        "message": "23B4AFDCFBE202EE00A9CF5C787D19FD90..."
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_sigVer_test_vectors" obligation="normative">
+<title depth="2">6.4.<tab/>ECDSA sigVer TestVectors</title>
+<clause id="ecdsa_sigVer_tgjs" obligation="normative">
+<title depth="3">6.4.1.<tab/>ECDSA sigVer Test Groups JSON Schema</title>
+<p id="_1f685050-a296-460d-a441-5d7e13719f04">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_407d2396-d8cf-132c-a159-c7bb20750447">The test group for ECDSA / sigVer / * is as follows:</p>
+
+<table id="ecdsa_sigVer_vs_tg_table">
+<name>Table 21 — ECDSA sigVer Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test operation performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve type used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">SHA version used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">conformance</td>
+<td valign="top" align="left">Signifies all test cases within the group should utilize random message hashing as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="ecdsa_sigVer_tvjs">Section 6.4.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="ecdsa_sigVer_tvjs" obligation="normative">
+<title depth="3">6.4.2.<tab/>ECDSA sigVer Test Groups JSON Schema</title>
+<p id="_62bfcd95-a390-2ebc-d3c1-2c2a01c941c1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA test vector.</p>
+
+<table id="ecdsa_sigVer_vs_tc_table">
+<name>Table 22 — ECDSA sigVer Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">message</td>
+<td valign="top" align="left">The message used to generate signature or verify signature</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qx</td>
+<td valign="top" align="left">The public key curve point x</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qy</td>
+<td valign="top" align="left">The public key curve point y</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">r</td>
+<td valign="top" align="left">The signature component R</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">s</td>
+<td valign="top" align="left">The signature component S</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+<note id="_6387aa62-68cc-637c-15c7-d85cbce901ad"><name>NOTE</name><p id="_2b3d61a2-fcac-5643-a49e-af4d14463a6e">The ‘randomValue’ and ‘randomValueLen’ will only be present if the ‘conformance’ “SP800-106” is present in the group.</p>
+</note></table>
+
+
+
+<p id="_27887f99-4364-2a58-2da6-31274e69d439">The following is an example JSON object sent from the server to the client for ECDSA / sigVer. While the example will specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_bc36a6b9-25f2-a95b-05d0-88886e854d40" lang="json"><name>Figure 15</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "algorithm": "ECDSA",
+        "mode": "sigVer",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "curve": "P-192",
+                "hashAlg": "SHA-1",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "message": "D38A81D0C5201BA4A06A8C4760AC15DB266B1...",
+                        "qx": "B08AFEAC74E42C66EBAF13807E2EB5769F5123645C...",
+                        "qy": "55847857E5E48025BE9053952E0E1ECFB1D883CF9F...",
+                        "r": "E31121E544D476DC3FA79B4DCB0A7252B6E80468BBF...",
+                        "s": "6E3F47F2327E36AD936E0F4BE245C05F264BA9300E9..."
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "curve": "P-192",
+                "hashAlg": "SHA-1",
+                "conformance": "SP800-106",
+                "tests": [
+                    {
+                        "tcId": 2,
+                        "message": "D38A81D04A06A8C4760AC15DB266B17B48B...",
+                        "randomValue": "1527E0FE37FD1162F5DD0D975E83C0D...",
+                        "randomValueLen": 1024
+                        "qx": "D1E896486D9D986A464D3469941F93FC65556E2CB...",
+                        "qy": "ADCB8D50375DC76907195B6AF6C06F...",
+                        "r": "6D9D986A464D3469941F93FC65556E2CB8AB5F113...",
+                        "s": "8E713EB6106EF0E19E241DB4B4831E06437E5C..."
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="ecdsa_detsigGen_test_vectors" obligation="normative">
+<title depth="2">6.5.<tab/>Deterministic ECDSA sigGen Test Vectors</title>
+<clause id="ecdsa_detsigGen_tgjs" obligation="normative">
+<title depth="3">6.5.1.<tab/>Deterministic ECDSA sigGen Test Groups JSON Schema</title>
+<p id="_4fb7482d-bdb8-be6b-12bd-805cbdcb20e0">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_8dbb5ac6-75b9-707e-b947-329fa99f138f">The test group for DetECDSA / sigGen / * is as follows:</p>
+
+<table id="ecdsa_detsigGen_vs_tg_table">
+<name>Table 23 — Deterministic ECDSA sigGen Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test operation performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve type used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">SHA version used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">conformance</td>
+<td valign="top" align="left">Signifies all test cases within the group should utilize random message hashing as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="ecdsa_sigGen_tvjs">Section 6.3.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="ecdsa_detsigGen_tvjs" obligation="normative">
+<title depth="3">6.5.2.<tab/>detECDSA sigGen Test Case JSON Schema</title>
+<p id="_87dec476-8bcc-87e6-2481-56f05773690b">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA test vector.</p>
+
+<table id="ecdsa_detsigGen_vs_tc_table">
+<name>Table 24 — Deterministic ECDSA sigGen Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">message</td>
+<td valign="top" align="left">The message used to generate signature or verify signature</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+<note id="_c0f28d59-64df-cf31-c030-42b6bcd0bbd5"><name>NOTE</name><p id="_c57adee9-5568-5e36-cfad-57caafe0fcfb">The ‘randomValue’ and ‘randomValueLen’ will only be present if the ‘conformance’ “SP800-106” is present in the group.</p>
+</note></table>
+
+
+
+<p id="_583125d3-c214-9d90-8bef-f5a6bd7fc0e7">The following is an example JSON object sent from the server to the client for DetECDSA / sigGen / FIPS186-5.</p>
+
+<sourcecode id="_9c5deda0-cf72-1cc5-0af8-60bbdd0a83c7" lang="json"><name>Figure 16</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "algorithm": "DetECDSA",
+        "mode": "sigGen",
+        "revision": "FIPS186-5",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "curve": "P-224",
+                "hashAlg": "SHA2-224",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "message": "AB6F57713A3BD323B4AFDCFBE202EE0..."
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "curve": "P-224",
+                "hashAlg": "SHA2-224",
+                "conformance": "SP800-106",
+                "tests": [
+                    {
+                        "tcId": 2,
+                        "message": "23B4AFDCFBE202EE00A9CF5C787D19FD90..."
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative" displayorder="14">
+<title depth="1">7.<tab/>Test Vector Responses</title>
+<p id="_049aa42b-4146-9760-0262-b77702639188">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="response_table">
+<name>Table 25 — Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The ACVP version used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group objects in the response, see <xref target="response_group_table">Table 26</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_cd544524-432e-bdbe-53fb-9ad5ed2a5abf">An example of this is the following</p>
+
+<sourcecode id="_0a795f20-9da6-763d-2cbe-f763770553aa" lang="json"><name>Figure 17</name>{
+    "acvVersion": "version",
+    "vsId": 1,
+    "testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_f7ae3203-78e9-d0ed-c54d-29f8a91130a9">The ‘testGroups’ section is used to organize the ACVP client response in a similar manner to how it distributes vectors.</p>
+
+<table id="response_group_table">
+<name>Table 26 — Response Group Objects</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case objects in the response, depending on the algorithm see <xref target="ecdsa_keyGen_vs_tr_table">Table 27</xref>, <xref target="ecdsa_keyVer_vs_tr_table">Table 28</xref>, <xref target="ecdsa_sigGen_vs_tr_table">Table 30</xref>, <xref target="ecdsa_sigVer_vs_tr_table">Table 31</xref> or <xref target="ecdsa_detsigGen_vs_tr_table">Table 33</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_7a72c26f-9132-3fa7-e28e-1158fdd2a9a9">An example of this is the following</p>
+
+<sourcecode id="_8dc30335-6651-e3dc-9209-1be54d967db3"><name>Figure 18</name>{
+    "tgId": 1,
+    "tests": [ ... ]
+}</sourcecode>
+
+
+<clause id="ecdsa_keyGen_vector_responses" obligation="normative">
+<title depth="2">7.1.<tab/>ECDSA keyGen Test Vector Responses</title>
+<p id="_34d6b536-0cd4-683f-67d2-c3f43c017e41">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA / keyGen / * test vector.</p>
+
+<table id="ecdsa_keyGen_vs_tr_table">
+<name>Table 27 — ECDSA keyGen Test Case Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">d</td>
+<td valign="top" align="left">The private key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qx</td>
+<td valign="top" align="left">The public key curve point x</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qy</td>
+<td valign="top" align="left">The public key curve point y</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_761346be-2bc0-ff53-36b9-f3d18967daf2">The following is an example JSON test vector response object for ECDSA / keyGen. While the example will not specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_d051d0b0-80ac-98df-bd1a-a2793d12c446" lang="json"><name>Figure 19</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "testGroups": [
+            {
+                "tgId": 1,
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "qx": "7B1AA6BE712542282B8D088C23316...",
+                        "qy": "BCC9213347A7F988A2FF9EF14C852...",
+                        "d": "38524F26660BBA72E74EB39DEF3855..."
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="ecdsa_keyVer_vector_responses" obligation="normative">
+<title depth="2">7.2.<tab/>ECDSA keyVer Test Vector Responses</title>
+<p id="_f5b423b0-25a0-8065-0dca-c023398ec38e">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA / keyVer / * test vector.</p>
+
+<table id="ecdsa_keyVer_vs_tr_table">
+<name>Table 28 — ECDSA keyVer Test Case Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">Whether or not the key verified</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+
+<p id="_40c6798f-5b5e-37d2-8592-5c2344fa406b">The following is an example JSON test vector response object for ECDSA / keyVer. While the example will not specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_77a69ddb-a294-da2b-e193-61a5480363d7" lang="json"><name>Figure 20</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "testGroups": [
+            {
+                "tgId": 1,
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "testPassed": false
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="ecdsa_sigGen_vector_responses" obligation="normative">
+<title depth="2">7.3.<tab/>ECDSA sigGen Test Vector Responses</title>
+<p id="_52c5eb8e-78bc-5bd3-69cf-fecb8645f102">The test groups for ECDSA / sigGen / * contain public key properties. The groups can be described using the following table.</p>
+
+<table id="ecdsa_sigGen_group_table">
+<name>Table 29 — ECDSA sigGen Test Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">qx</td>
+<td valign="top" align="left">The x component of the public key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qy</td>
+<td valign="top" align="left">The y component of the public key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The individual test cases for the group</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_d331fe93-e7e3-4331-5f93-5060d77fad26">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA / sigGen / * test vector.</p>
+
+<table id="ecdsa_sigGen_vs_tr_table">
+<name>Table 30 — ECDSA sigGen Test Case Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">r</td>
+<td valign="top" align="left">The signature component R</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">s</td>
+<td valign="top" align="left">The signature component S</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+<note id="_154e115a-d378-b87c-4153-17eef5d6e011"><name>NOTE</name><p id="_5091d34a-86fe-b768-81ed-6368b2ce48ca">The properties ‘randomValue’ and ‘randomValueLen’ <strong>SHALL</strong> only be present in test groups where the corresponding test group in the prompt had the ‘conformance’ property set to “SP800-106”.</p>
+</note></table>
+
+
+
+<p id="_a12c6dfc-7719-aa8b-767a-95fd80841137">The following is an example JSON test vector response object for ECDSA / sigGen. While the example will not specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_71e58959-8dc8-3b55-2cde-aea71261c302" lang="json"><name>Figure 21</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "testGroups": [
+            {
+                "tgId": 1,
+                "qx": "3B1D9E4D986F651C3C213B2A1304693BDB...",
+                "qy": "E56F7B7C9E6355E573B7B3B6C0E1ECD70E...",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "r": "3E2A9588DF3D3F11B16368A30C8...",
+                        "s": "C6E4A8C51E0A0E11C4C6D6F8F3C..."
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "qx": "A1304693BDBA632CB93A3B8BA632CB93A3...",
+                "qy": "ECD70E4ABBA632CB93A3BA632CB93A3DF1...",
+                "tests": [
+                    {
+                        "tcId": 2,
+                        "r": "3E2A9588DF3D3F11B16368A30C8...",
+                        "s": "C6E4A8C51E0A0E11C4C6D6F8F3C...",
+                        "randomValue": "0A0E11C4C6D6F8F3C..."
+                        "randomValueLen": 1024
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="ecdsa_sigVer_vector_responses" obligation="normative">
+<title depth="2">7.4.<tab/>ECDSA sigVer Test Vector Responses</title>
+<p id="_688e0e46-edbf-4aba-7e50-152ef4ac8114">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ECDSA / sigVer / * test vector.</p>
+
+<table id="ecdsa_sigVer_vs_tr_table">
+<name>Table 31 — ECDSA sigVer Test Case Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">Whether or not the signature verified</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+
+<p id="_70585935-35f9-e96a-b50f-defe169beaee">The following is an example JSON test vector response object for ECDSA / sigVer. While the example will not specify a revision, the format is identical for both revisions available.</p>
+
+<sourcecode id="_efff0e4a-8e66-802e-7030-05f70648ac94" lang="json"><name>Figure 22</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "testGroups": [
+            {
+                "tgId": 1,
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "testPassed": false
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="ecdsa_detsigGen_vector_responses" obligation="normative">
+<title depth="2">7.5.<tab/>Deterministic ECDSA sigGen Test Vector Responses</title>
+<p id="_e9eada54-33f6-3463-9315-818312596a7c">The test groups for detECDSA / sigGen / FIPS186-5 contain public key properties. The groups can be described using the following table.</p>
+
+<table id="ecdsa_detsigGen_group_table">
+<name>Table 32 — Deterministic ECDSA sigGen Test Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">qx</td>
+<td valign="top" align="left">The x component of the public key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qy</td>
+<td valign="top" align="left">The y component of the public key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The individual test cases for the group</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_70507e20-dcd7-b2e0-7a8f-1ab432b99377">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each DetECDSA / sigGen / FIPS186-5 test vector.</p>
+
+<table id="ecdsa_detsigGen_vs_tr_table">
+<name>Table 33 — Deterministic ECDSA sigGen Test Case Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">r</td>
+<td valign="top" align="left">The signature component R</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">s</td>
+<td valign="top" align="left">The signature component S</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+<note id="_30eb752c-8d51-a17f-0572-9b43af251daa"><name>NOTE</name><p id="_f212a21c-f04f-0a95-51ff-18f890935c2b">The properties ‘randomValue’ and ‘randomValueLen’ <strong>SHALL</strong> only be present in test groups where the corresponding test group in the prompt had the ‘conformance’ property set to “SP800-106”.</p>
+</note></table>
+
+
+
+<p id="_a7ab8c19-614f-b03b-4412-5d2a88b15819">The following is an example JSON test vector response object for DetECDSA / sigGen / FIPS186-5.</p>
+
+<sourcecode id="_6dff7659-f650-3435-7399-fc38b3dc7b9c" lang="json"><name>Figure 23</name>[
+    {
+        "acvVersion": &#x3c;acvp-version&#x3e;
+    },
+    {
+        "vsId": 1564,
+        "testGroups": [
+            {
+                "tgId": 1,
+                "qx": "3B1D9E4D986F651C3C213B2A1304693BDB...",
+                "qy": "E56F7B7C9E6355E573B7B3B6C0E1ECD70E...",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "r": "3E2A9588DF3D3F11B16368A30C8...",
+                        "s": "C6E4A8C51E0A0E11C4C6D6F8F3C..."
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "qx": "A1304693BDBA632CB93A3B8BA632CB93A3...",
+                "qy": "ECD70E4ABBA632CB93A3BA632CB93A3DF1...",
+                "tests": [
+                    {
+                        "tcId": 2,
+                        "r": "3E2A9588DF3D3F11B16368A30C8...",
+                        "s": "C6E4A8C51E0A0E11C4C6D6F8F3C...",
+                        "randomValue": "0A0E11C4C6D6F8F3C..."
+                        "randomValueLen": 1024
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative" displayorder="15">
+<title depth="1">8.<tab/>Security Considerations</title>
+<p id="_26e42885-fd06-7cb0-0381-6b9f258267ca">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative" displayorder="16">
+<title xref="Appendix A"><strong>Appendix A</strong> — <strong>Terminology</strong></title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><title>A.1.</title><term id="term-prompt"><name>A.1.1.</name><preferred><strong>Prompt</strong></preferred>
+<definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></definition>
+ </term>
+
+<term id="term-registration"><name>A.1.2.</name><preferred><strong>Registration</strong></preferred>
+<definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></definition>
+ </term>
+
+<term id="term-response"><name>A.1.3.</name><preferred><strong>Response</strong></preferred>
+<definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></definition>
+ </term>
+
+<term id="term-test-case"><name>A.1.4.</name><preferred><strong>Test Case</strong></preferred>
+<definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-group"><name>A.1.5.</name><preferred><strong>Test Group</strong></preferred>
+<definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-vector-set"><name>A.1.6.</name><preferred><strong>Test Vector Set</strong></preferred>
+<definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></definition>
+ </term>
+
+<term id="term-validation"><name>A.1.7.</name><preferred><strong>Validation</strong></preferred>
+<definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative" displayorder="17">
+<title xref="Appendix B"><strong>Appendix B</strong> — <strong>Abbreviations and Acronyms</strong></title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative" displayorder="18">
+<title xref="Appendix C"><strong>Appendix C</strong> — <strong>Revision History</strong></title>
+<table id="_3e96c264-486f-a7ff-d32f-7938ceba1936"><name>Table C-1</name><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_7c8f748e-2950-eda9-12f8-df99ddb3bc3f">2016-06-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_39a56cc4-4f76-8209-6d9c-f58fbf1bd042" obligation="normative" displayorder="19">
+<title xref="Appendix D"><strong>Appendix D</strong> — <strong>References</strong></title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard"><formattedref>S. Bradner (March 1997) <em>Key words for use in RFCs to Indicate Requirement Levels</em> (Internet Engineering Task Force),  BCP 14, March 1997. RFC 2119. RFC RFC2119. DOI 10.17487/RFC2119. https://www.rfc-editor.org/info/rfc2119.</formattedref><docidentifier type="RFC" primary="true">RFC 2119</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC2119</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC2119</docidentifier></bibitem>
+ <bibitem id="RFC7991" type="standard"><formattedref>P. Hoffman (December 2016) <em>The “xml2rfc” Version 3 Vocabulary</em> (Internet Engineering Task Force),  RFC 7991, December 2016. RFC 7991. RFC RFC7991. DOI 10.17487/RFC7991. https://www.rfc-editor.org/info/rfc7991.</formattedref><docidentifier type="RFC" primary="true">RFC 7991</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC7991</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC7991</docidentifier></bibitem>
+ <bibitem id="RFC8174" type="standard"><formattedref>B. Leiba (May 2017) <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em> (Internet Engineering Task Force),  BCP 14, May 2017. RFC 8174. RFC RFC8174. DOI 10.17487/RFC8174. https://www.rfc-editor.org/info/rfc8174.</formattedref><docidentifier type="RFC" primary="true">RFC 8174</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC8174</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC8174</docidentifier></bibitem>
+ <bibitem id="FIPS186-4" type="standard"><formattedref>National Institute of Standards and Technology (July 2013) <em>Digital Signature Standard (DSS)</em> (Gaithersburg, MD), July 2013. FIPS 186-4. https://doi.org/10.6028/NIST.FIPS.186-4.</formattedref><docidentifier type="NIST" primary="true">FIPS 186-4</docidentifier></bibitem>
+ <bibitem id="FIPS186-5" type="standard"><formattedref>National Institute of Standards and Technology (October 2019) <em>Digital Signature Standard (DSS)</em> (Gaithersburg, MD), October 2019. FIPS 186-5 (Draft). https://doi.org/10.6028/NIST.FIPS.186-5-draft.</formattedref><docidentifier type="NIST" primary="true">FIPS 186-5 (Draft)</docidentifier></bibitem>
+ <bibitem id="SP800-89" type="standard"><formattedref>Elaine B. Barker (November 2006) <em>Recommendation for Obtaining Assurances for Digital Signature Applications</em> (Gaithersburg, MD), November 2006. SP 800-89. https://doi.org/10.6028/NIST.SP.800-89.</formattedref><docidentifier type="NIST" primary="true">SP 800-89</docidentifier></bibitem>
+ <bibitem id="SP800-106" type="standard"><formattedref>Quynh H. Dang (February 2009) <em>Randomized Hashing for Digital Signatures</em> (Gaithersburg, MD), February 2009. SP 800-106. https://doi.org/10.6028/NIST.SP.800-106.</formattedref><docidentifier type="NIST" primary="true">SP 800-106</docidentifier></bibitem>
+
+<bibitem id="ACVP"><formattedref>Fussell B, Vassilev A, Booth H, Celi C, Hammett R (July 01, 2019) <em>Automatic Cryptographic Validation Protocol</em> (National Institute of Standards and Technology, Gaithersburg, MD), July 01, 2019.</formattedref><docidentifier>ACVP</docidentifier></bibitem>
+</references>
+</annex>
+</nist-standard>

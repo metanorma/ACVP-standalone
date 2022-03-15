@@ -1,0 +1,1781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP KDA TwoStep Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP KDA TwoStep Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-KDF-TwoStep</uri><docidentifier type="NIST">ACVP KAS-KDF-TwoStep Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-KDF-TwoStep Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-KDF-TwoStep.r-1.eng</docidentifier><docnumber>KAS-KDF-TwoStep</docnumber><date type="issued"><on>2020-12-11</on></date><contributor><role type="author"/><person>
+<name><completename>Russell Hammett</completename></name>
+<affiliation><organization>
+<name>HII Technical Solutions Division</name>
+<address><formattedAddress>302 Sentinel Drive, Suite #300, Annapolis Junction, MD 20701</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing KDA-TwoStep SP800-56C implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2020</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_2ed6edfa-b7a6-27f5-a68d-ea31096872be">This document defines the JSON schema for testing KDA-TwoStep SP800-56C implementations with the ACVP specification.</p>
+</abstract></preface><sections>
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_0ef1415c-336e-f61e-22f5-a0c63e387337">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing KDA-TwoStep SP800-56C implementations using ACVP.</p>
+</clause>
+
+<clause id="supported_algs" obligation="normative">
+<title>Supported KDA TwoStep</title>
+<p id="_320cbda7-ddaf-6cdc-f06a-8aa5cf287b4e">The following key derivation algorithms <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_73203880-7fcc-6dcf-2f46-451e6f430508"><li><p id="_57194302-bf48-7408-0e06-a59e8d0055f5">KDA / TwoStep / SP800-56Cr1</p>
+</li>
+<li><p id="_a415cef3-97ed-afdd-e98a-0abf72804d66">KDA / TwoStep / SP800-56Cr2</p>
+</li>
+</ul>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_93e2e400-90b4-9799-68d0-65f62bc33969">The ACVP server performs a set of tests on the KDAs specific to the KAS protocol in order to assess the correctness and robustness of the implementation. A typical ACVP validation session <strong>SHALL</strong> require multiple tests to be performed for every supported permutation of KDA capabilities. This section describes the design of the tests used to validate implementations of KDA algorithms.</p>
+
+<clause id="_test_types" obligation="normative">
+<title>Test Types</title>
+<p id="_049e4197-8918-0699-3270-64ff125ed69c">There are two test types for KDA testing:</p>
+
+<ul id="_03a60bcd-49c3-6a47-8294-a3e7a8578da5"><li><p id="_5ba9d32e-98fc-adb2-93a2-ca5a039346da">“AFT” — Algorithm Function Test. In the AFT test mode, the IUT <strong>SHALL</strong> act as a party in the Key Agreement with the ACVP server. The server <strong>SHALL</strong> generate and provide all necessary information for the IUT to perform a successful key agreement; both the server and IUT <strong>MAY</strong> act as party U/V.</p>
+</li>
+<li><p id="_d2a0f6ae-b2e9-9202-4cd2-6b58ad3ce5e9">“VAL” — Validation Test. In the VAL test mode, The ACVP server <strong>MUST</strong> generate a complete (from both party U and party V’s perspectives) key agreement, and expects the IUT to be able to determine if that agreement is valid. Various types of errors <strong>MUST</strong> be introduced in varying portions of the key agreement process that the IUT <strong>MUST</strong> be able to detect and report on.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_test_coverage" obligation="normative">
+<title>Test Coverage</title>
+<p id="_4729b17d-ea07-bda9-6afe-65b3d2eca76c">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="SP800-56Cr1" citeas="SP 800-56C Rev. 1"/> and <eref type="inline" bibitemid="SP800-56Cr2" citeas="SP 800-56C Rev. 2"/>.</p>
+
+<clause id="_requirements_covered" obligation="normative">
+<title>Requirements Covered</title>
+<ul id="_3cb3a051-ca48-6656-9f04-082401b23505"><li><p id="_54dfef3f-957c-9967-7d2b-08a091d2b0e2">SP 800-56C — 5 Two-Step Key Derivation.  All functionality described in the specification is covered by ACVP testing.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_requirements_not_covered" obligation="normative">
+<title>Requirements Not Covered</title>
+<ul id="_07ba47b4-1c86-5f90-e734-78f9a6de8f25"><li><p id="_efeab367-288f-3ac5-b590-cce82197a532">SP 800-56Ar3 / SP 800-56Br2 — ASN.1 encoding for the KDA is not currently supported.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_e36e64f3-7c3a-066b-5e4d-f6e1a54df2ed">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of KDA-TwoStep SP800-56C algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="properties" obligation="normative">
+<title>Property Registration</title>
+<p id="_bdbde163-9545-333f-2c20-e9c63b98c876">The KDA-TwoStep SP800-56C mode capabilities are advertised as JSON objects within a root “algorithm” object.</p>
+
+<p id="_eb9c1296-9d81-51b7-a1ad-41e3d4727d39">A registration <strong>SHALL</strong> use these properties:</p>
+
+<table id="_001499e5-e204-a4fa-cf4f-9ebce14b48e4">
+<name>Registration Properties</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm under test</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">KDA</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The mode under test</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">TwoStep</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">“Sp800-56Cr1” or “Sp800-56Cr2”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisite algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs"/></td>
+</tr><tr><td valign="top" align="left">capabilities</td>
+<td valign="top" align="left">The two step configuration objects</td>
+<td valign="top" align="left">array of <xref target="twostepkdf"/></td>
+<td valign="top" align="left">See <xref target="twostepkdf"/></td>
+</tr><tr><td valign="top" align="left">z</td>
+<td valign="top" align="left">The domain of values representing the min/max lengths of Z the implementation can support.</td>
+<td valign="top" align="left">Domain</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">l</td>
+<td valign="top" align="left">The length (in bits) of the largest derived keying material the implementation can produce (up to a max of 2048).</td>
+<td valign="top" align="left">number</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">performMultiExpansionTests</td>
+<td valign="top" align="left">Should multi expansion runs of the KDA be tested (in addition to the single expansion tests)? Only applicable for <eref type="inline" bibitemid="SP800-56Cr2" citeas="SP 800-56C Rev. 2"/></td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">true, false</td>
+</tr></tbody>
+</table>
+
+<clause id="prereq_algs" obligation="normative">
+<title>Prerequisite Algorithms for KDA Validations</title>
+<p id="_26bc2ed1-1ac5-c993-10b0-4a5e43ecefd5">Some algorithm implementations rely on other cryptographic primitives. For example, IKEv2 uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<table id="_a9abbf35-fc3d-1db7-6a28-5ceef6a5722a">
+<name>Prerequisite Algorithms</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">CMAC, DRBG, HMAC, SHA</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">actual number or “same”</td>
+</tr><tr><td valign="top" align="left">prereqAlgVal</td>
+<td valign="top" align="left">prerequisite algorithm validation</td>
+<td valign="top" align="left">object with algorithm and valValue properties</td>
+<td valign="top" align="left">see above</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="twostepkdf" obligation="normative">
+<title>Two Step KDA Capabilities</title>
+<table id="_0250b3e4-d84c-cfd4-bdc6-ddbda2ead1cf">
+<name>TwoStepCapabilities Options</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">macSaltMethod</td>
+<td valign="top" align="left">How the salt is determined (default being all 00s, random being a random salt).</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">default, randombased auxiliary functions.</td>
+</tr><tr><td valign="top" align="left">fixedInfoPattern</td>
+<td valign="top" align="left">The pattern used for fixedInfo construction.</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="fixedinfopatcon"/></td>
+</tr><tr><td valign="top" align="left">encoding</td>
+<td valign="top" align="left">The encoding type to use with fixedInfo construction.  Note concatenation is currently supported.  ASN.1 should be coming.</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">concatenation</td>
+</tr><tr><td valign="top" align="left">kdfMode</td>
+<td valign="top" align="left">The strategy for running the KDA.</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">counter, feedback, double pipeline iteration</td>
+</tr><tr><td valign="top" align="left">macMode</td>
+<td valign="top" align="left">The macMode supported by the KDA.</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">CMAC-AES128, CMAC-AES192, CMAC-AES256, HMAC-SHA-1, HMAC-SHA2-224, HMAC-SHA2-256, HMAC-SHA2-384, HMAC-SHA2-512, HMAC-SHA2-512/224, HMAC-SHA2-512/256, HMAC-SHA3-224, HMAC-SHA3-256, HMAC-SHA3-384, HMAC-SHA3-512</td>
+</tr><tr><td valign="top" align="left">fixedDataOrder</td>
+<td valign="top" align="left">The counter locations supported by the KDA.</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">none, before fixed data, after fixed data, before iterator</td>
+</tr><tr><td valign="top" align="left">counterLength</td>
+<td valign="top" align="left">The counter lengths supported for the KDA.</td>
+<td valign="top" align="left">array of integer</td>
+<td valign="top" align="left">8, 16, 24, 32</td>
+</tr><tr><td valign="top" align="left">supportedLengths</td>
+<td valign="top" align="left">The supported derivation lengths.</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Single range (of literal) expected.  Registered value must support the L value provided.</td>
+</tr><tr><td valign="top" align="left">supportsEmptyIv</td>
+<td valign="top" align="left">The KDA supports an empty IV (feedback mode).</td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">true, false</td>
+</tr><tr><td valign="top" align="left">requiresEmptyIv</td>
+<td valign="top" align="left">The KDA requires an empty IV (feedback mode).</td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">true, false</td>
+</tr></tbody>
+</table>
+
+<p id="_705b99d8-959b-486d-709c-5412fefa5e31">Note this capabilities object is very similar to the capability object from SP800-108.</p>
+</clause>
+
+<clause id="fixedinfopatcon" obligation="normative">
+<title>FixedInfoPatternConstruction</title>
+<p id="_c02ed85b-6232-c615-1df2-7f333d39d7e1">IUTs <strong>MUST</strong> be capable of specifying how the FixedInfo is constructed for the KDA construction. Note that for the purposes of testing against the ACVP system, both uPartyInfo and vPartyInfo are <strong>REQUIRED</strong> to be registered within the fixed info pattern.</p>
+
+<p id="_b73414df-6d60-3065-9c2e-e77117bcda20">Pattern candidates:</p>
+
+<ul id="_311ea8c9-68db-5ca7-553c-1c7903be6bc0"><li><p id="_986f66b4-084f-10d8-a90d-b08be4f74f1a">literal[0123456789ABCDEF]</p>
+<ul id="_16eb3988-58b6-eeb5-0aa9-1f66cee6fd85"><li><p id="_313e7545-5069-5d77-0916-3357cfebf410">uses the specified hex within “[]”. literal[0123456789ABCDEF]
+substitutes “0123456789ABCDEF” in place of the field</p>
+</li>
+</ul>
+</li>
+<li><p id="_1c8291fc-cd11-e0e9-f8a6-005c4e26296d">uPartyInfo</p>
+<ul id="_9672063f-8d03-1ab3-38b9-32f62904fdf1"><li><p id="_372a5e03-385c-2638-c4be-24866fee55b5">uPartyId { || ephemeralKey } { || ephemeralNonce } { || dkmNonce } { || c }</p>
+<ul id="_bdbe9037-c512-b867-a97b-9d50baab4b56"><li><p id="_efe7b8dc-2183-a097-072f-36e2e3d47fe4">“optional” items such as ephemeralKey <strong>MUST</strong> be included when available for ACVP testing.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p id="_0e41792e-0a78-5b83-6dce-96776b234207">vPartyInfo</p>
+<ul id="_289551b6-0d0b-e806-457f-b3f873e75db3"><li><p id="_c7e3c62f-c74f-a557-17ab-4c1b58c72341">vPartyId { || ephemeralKey } { || ephemeralNonce } { || dkmNonce } { || c }</p>
+<ul id="_563794b7-1f45-f685-4a60-60ad1c5495c2"><li><p id="_dd429dcc-f712-b045-368a-358531f7cdce">“optional” items such as ephemeralKey <strong>MUST</strong> be included when available for ACVP testing.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p id="_59994f31-ec7d-8936-824d-3c3abe330398">context</p>
+<ul id="_b4b898d0-a261-12c1-0601-cd0ee697d8b7"><li><p id="_ae4c59db-3ef6-ac6b-47dc-b58e45297fcc">Random value chosen by ACVP server to represent the context.</p>
+</li>
+</ul>
+</li>
+<li><p id="_ec2ab42f-81b2-27b9-43cb-cffd8ebcc0ae">algorithmId</p>
+<ul id="_8f4bd60a-8179-030a-15f9-929c234fe657"><li><p id="_ed035491-346c-a820-7022-bec57c495259">Random value chosen by ACVP server to represent the
+algorithmId.</p>
+</li>
+</ul>
+</li>
+<li><p id="_b4ddd302-71ae-671c-6976-5dfec3c6164b">label</p>
+<ul id="_02e06310-73c0-290d-1dbc-9ec9ad2a677f"><li><p id="_3a40062d-f9bb-3c93-8cf1-d58e98f8df5a">Random value chosen by ACVP server to represent the label.</p>
+</li>
+</ul>
+</li>
+<li><p id="_04e17d5e-32e6-1790-f9a5-dc4215b1ce40">l</p>
+<ul id="_9ef24bd9-0512-135c-4bd6-12741739db8d"><li><p id="_68562a99-0c04-756b-ad7e-7f185a651c18">The length of the derived keying material in bits, <strong>MUST</strong> be represented in 32 bits for ACVP testing.</p>
+</li>
+</ul>
+</li>
+<li><p id="_0f23d992-9aa3-9eac-c28b-1b5aa0b44dac">t</p>
+<ul id="_87767234-8fe1-c513-dd26-6cfbb8ff7bb4"><li><p id="_bb645bcd-a0ad-85a0-e6e4-5ec7566abc80">A random value used to represent a secondary shared secret. Only applicable to <eref type="inline" bibitemid="SP800-56Cr2" citeas="SP 800-56C Rev. 2"/>.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+<p id="_63691108-68c6-4d63-9e27-d427301f2411">Example (Note that party U is the server in this case “434156536964”, party V is the IUT “a1b2c3d4e5”):</p>
+
+<ul id="_431809ca-e87d-d9f6-0e66-879e5f0c9806"><li><p id="_c7332fa0-44af-97e1-214b-6ea96c788bd2">“concatenation” :
+“literal[123456789CAFECAFE]||uPartyInfo||vPartyInfo”</p>
+</li>
+</ul>
+
+<p id="_b1cfc821-57c1-7191-ab39-ff57c89dadef">Evaluated as:</p>
+
+<ul id="_1bca7598-fbd8-b9be-367e-72c2ae165db1"><li><p id="_66d69ff5-46c6-1713-689b-2a0d34015818">“123456789CAFECAFE434156536964a1b2c3d4e5”</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="_registration_example" obligation="normative">
+<title>Registration Example</title>
+<sourcecode id="_5439da80-1cd8-4a32-93df-465a2d35f2d8" lang="json">
+<name>Registration JSON Example SP800-56Cr1</name>
+{
+  "algorithm": "KDA",
+  "mode": "TwoStep",
+  "revision": "Sp800-56Cr1",
+  "prereqVals": [
+    {
+      "algorithm": "DRBG",
+      "valValue": "123456"
+    },
+    {
+      "algorithm": "SHA",
+      "valValue": "123456"
+    },
+    {
+      "algorithm": "HMAC",
+      "valValue": "123456"
+    }
+  ],
+  "capabilities": [
+    {
+      "macSaltMethods": [
+        "random",
+        "default"
+      ],
+      "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+      "encoding": [
+        "concatenation"
+      ],
+      "kdfMode": "feedback",
+      "macMode": [
+        "HMAC-SHA3-224",
+        "HMAC-SHA2-512"
+      ],
+      "supportedLengths": [
+        512
+      ],
+      "fixedDataOrder": [
+        "after fixed data",
+        "before iterator"
+      ],
+      "counterLength": [
+        32
+      ],
+      "requiresEmptyIv": false,
+      "supportsEmptyIv": false
+    }
+  ],
+  "l": 2048,
+  "z": [
+    512
+  ]
+}</sourcecode>
+
+
+<sourcecode id="_180e8645-0bb3-f430-2554-d876afbe1e54" lang="json">
+<name>Registration JSON Example SP800-56Cr2</name>
+{
+  "algorithm": "KDA",
+  "mode": "TwoStep",
+  "revision": "Sp800-56Cr2",
+  "prereqVals": [
+    {
+      "algorithm": "DRBG",
+      "valValue": "123456"
+    },
+    {
+      "algorithm": "SHA",
+      "valValue": "123456"
+    },
+    {
+      "algorithm": "HMAC",
+      "valValue": "123456"
+    }
+  ],
+  "performMultiExpansionTests": true,
+  "capabilities": [
+    {
+      "macSaltMethods": [
+        "random",
+        "default"
+      ],
+      "fixedInfoPattern": "uPartyInfo||vPartyInfo||t||l",
+      "encoding": [
+        "concatenation"
+      ],
+      "kdfMode": "feedback",
+      "macMode": [
+        "HMAC-SHA3-224",
+        "HMAC-SHA2-512"
+      ],
+      "supportedLengths": [
+        512
+      ],
+      "fixedDataOrder": [
+        "after fixed data",
+        "before iterator"
+      ],
+      "counterLength": [
+        32
+      ],
+      "requiresEmptyIv": false,
+      "supportsEmptyIv": false
+    }
+  ],
+  "l": 2048,
+  "z": [
+    512
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_458042f9-a634-84c8-1077-afcb33428035">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with KDA-TwoStep SP800-56C algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title>Test Groups JSON Schema</title>
+<p id="_8e04368e-7053-304c-131f-7f95d056c73b">The testGroups element at the top level in the test vector JSON object is an array of test	groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped	together. The Test Group JSON object contains meta data that applies to all test vectors within	the group. The following table describes the KDA-TwoStep SP800-56C JSON elements of the Test Group JSON object</p>
+
+<table id="_83dfb4c4-2333-afd1-5baa-b193c24cc0c7">
+<name>Test Group Properties</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the tests data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">See <xref target="testCase"/></td>
+</tr><tr><td valign="top" align="left">kdfConfiguration</td>
+<td valign="top" align="left">Describes the KDA configuration values used for the group</td>
+<td valign="top" align="left">See <xref target="kdfconfig"/></td>
+</tr><tr><td valign="top" align="left">kdfConfiguration</td>
+<td valign="top" align="left">Describes the KDA configuration values used for single expansion groups.</td>
+<td valign="top" align="left">See <xref target="kdfconfig"/></td>
+</tr><tr><td valign="top" align="left">kdfMultiExpansionConfiguration</td>
+<td valign="top" align="left">Describes the KDA configuration values used for multi expansion groups.</td>
+<td valign="top" align="left">See <xref target="kdfmulticonfig"/></td>
+</tr></tbody>
+</table>
+
+<p id="_2d806ef2-756e-7fb7-09f3-c49996cb7023">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ the group is addressing.</p>
+
+<clause id="kdfconfig" obligation="normative">
+<title>KDA Configuration JSON Schema</title>
+<p id="_202c675c-eecd-9a71-0139-36e2dd466a88">Describes the KDA configuration for use under the test group.</p>
+
+<table id="_550e4428-edc3-01df-5096-09d04303124f">
+<name>KdfConfiguration JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">kdfType</td>
+<td valign="top" align="left">The type of KDA to use for the group.</td>
+<td valign="top" align="left">value — twostep</td>
+</tr><tr><td valign="top" align="left">satMethod</td>
+<td valign="top" align="left">The strategy used for salting.</td>
+<td valign="top" align="left">value — default (all 00s), random</td>
+</tr><tr><td valign="top" align="left">fixedInfoPattern</td>
+<td valign="top" align="left">The pattern used for constructing the fixedInfo.</td>
+<td valign="top" align="left">value — See <xref target="fixedinfopatcon"/>.</td>
+</tr><tr><td valign="top" align="left">fixedInfoEncoding</td>
+<td valign="top" align="left">The pattern used for constructing the fixedInfo.</td>
+<td valign="top" align="left">value — See <xref target="fixedinfopatcon"/>.</td>
+</tr><tr><td valign="top" align="left">macMode</td>
+<td valign="top" align="left">The MAC function used in the KDA.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">counterLocation</td>
+<td valign="top" align="left">The counter location.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">counterLen</td>
+<td valign="top" align="left">The counter length.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">ivLen</td>
+<td valign="top" align="left">The iv length.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">l</td>
+<td valign="top" align="left">the bit length of keying material to derive from the KDA</td>
+<td valign="top" align="left">value</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="kdfmulticonfig" obligation="normative">
+<title>KDA Multi Expansion Configuration JSON Schema</title>
+<p id="_58e5aee4-76b6-643c-3787-586348000ca8">Describes the KDA Multi Expansion configuration for use under the test group.</p>
+
+<table id="_0b89b684-a28a-5b84-a9b5-64db4da7b9ee">
+<name>KdfConfiguration JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">kdfType</td>
+<td valign="top" align="left">The type of KDA to use for the group.</td>
+<td valign="top" align="left">value — TwoStep</td>
+</tr><tr><td valign="top" align="left">saltMethod</td>
+<td valign="top" align="left">The strategy used for salting.</td>
+<td valign="top" align="left">value — default (all 00s), random</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">The bit length of the salt.</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">hmacAlg</td>
+<td valign="top" align="left">The MAC function used in the KDA.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">l</td>
+<td valign="top" align="left">the bit length of keying material to derive from the KDA</td>
+<td valign="top" align="left">value</td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="testCase" obligation="normative">
+<title>Test Case JSON Schema</title>
+<p id="_c46a2951-756d-f5a9-0bcf-0218e658bf14">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each KAS/KTS ECC test vector.</p>
+
+<table id="_51e42eea-ec13-7bfe-dab6-be25137672fd">
+<name>Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set.</td>
+<td valign="top" align="left">kdfParameter</td>
+</tr><tr><td valign="top" align="left">Object representing inputs into the KDA for single expansion tests.</td>
+<td valign="top" align="left">See <xref target="kdfParameter"/>.</td>
+<td valign="top" align="left">fixedInfoPartyU</td>
+</tr><tr><td valign="top" align="left">Fixed information specific to party U for single expansion tests.</td>
+<td valign="top" align="left">See <xref target="fixedInfo"/>.</td>
+<td valign="top" align="left">fixedInfoPartyV</td>
+</tr><tr><td valign="top" align="left">Fixed information specific to party V for single expansion tests.</td>
+<td valign="top" align="left">See <xref target="fixedInfo"/>.</td>
+<td valign="top" align="left">kdfMultiExpansionParameter</td>
+</tr></tbody>
+</table>
+
+<clause id="kdfParameter" obligation="normative">
+<title>KDA Parameter JSON Schema</title>
+<p id="_5ba489d6-9ee9-e072-e351-b745ef89fd44">KDA specific options used for the test case.</p>
+
+<table id="_13d55d0a-964f-7e1f-5cfe-8cca17b8f862">
+<name>KDF Parameter JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">kdfType</td>
+<td valign="top" align="left">The type of KDA utilized.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">salt</td>
+<td valign="top" align="left">The salt used for the test case.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">iv</td>
+<td valign="top" align="left">The iv used for the test case.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">algorithmId</td>
+<td valign="top" align="left">The random “algorithID” used for the test case when applicable to the fixedInfo pattern.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">context</td>
+<td valign="top" align="left">The random “context” used for the test case when applicable to the fixedInfo pattern.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">label</td>
+<td valign="top" align="left">The random “label” used for the test case when applicable to the fixedInfo pattern.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">z</td>
+<td valign="top" align="left">shared secret z value to be used for the test case.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">l</td>
+<td valign="top" align="left">the bit length of keying material to derive from the KDA</td>
+<td valign="top" align="left">value</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="fixedInfo" obligation="normative">
+<title>FixedInfo PartyU/V JSON Schema</title>
+<p id="_59440a42-56dc-6431-48c5-08cd842dcba3">Fixed information that is included for party U/V for fixed info construction</p>
+
+<table id="_84ec2ce8-b22b-863c-5dac-21942eec1d81">
+<name>Fixed Info JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">partyId</td>
+<td valign="top" align="left">The party identifier</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">ephemeralData</td>
+<td valign="top" align="left">Ephemeral data (randomly) included as a part of the parties fixed info construction</td>
+<td valign="top" align="left">value</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="kdfMultiExpansionParameter" obligation="normative">
+<title>KDA Multi Expansion Parameter JSON Schema</title>
+<p id="_d09461d2-1c90-2189-437a-eb023131ce1c">KDA specific options used for the test case.</p>
+
+<table id="_3e7f1b7f-ef1c-7e46-cc92-4f7c474f8a1d">
+<name>KDF Multi Expansion Parameter JSON Object</name>
+<tbody><tr><td valign="top" align="left">JSON Value</td>
+<td valign="top" align="left">Description</td>
+<td valign="top" align="left">JSON Type</td>
+</tr><tr><td valign="top" align="left">salt</td>
+<td valign="top" align="left">The salt used for the test case.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">z</td>
+<td valign="top" align="left">shared secret z value to be used for the test case.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">iterationParameters</td>
+<td valign="top" align="left">the per iteration parameters for multi expansion</td>
+<td valign="top" align="left">See <xref target="iterationParameters"/>.</td>
+</tr></tbody>
+</table>
+
+<clause id="iterationParameters" obligation="normative">
+<title>KDA Multi Expansion IterationParameters JSON Schema</title>
+<p id="_b1e640c7-18bb-d6e1-2b4b-21b39501f47c">The per multi expansion iteration specific parameters used within a test case.</p>
+
+<table id="_14a93b59-b7f2-a80e-440d-6a8de51032d2">
+<name>KDF Multi Expansion IterationParameters JSON Object</name>
+<tbody><tr><td valign="top" align="left">JSON Value</td>
+<td valign="top" align="left">Description</td>
+<td valign="top" align="left">JSON Type</td>
+</tr><tr><td valign="top" align="left">l</td>
+<td valign="top" align="left">The length of keying material to derive for the current iteration.</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">fixedInfo</td>
+<td valign="top" align="left">The fixed information for the current iteration. Note that <eref type="inline" bibitemid="SP800-56Cr2" citeas="SP 800-56C Rev. 2"/> does not go into detail regarding how this per iteration fixed info should be constructed, but it obviously needs to be different each iteration.</td>
+<td valign="top" align="left">value</td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+</clause>
+
+<clause id="app-vs-ex" obligation="normative">
+<title>Example Test Vectors JSON</title>
+<p id="_6089bec4-a170-02ef-5d8b-9077d923776d">The following is a example JSON object for KAS-FFC test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_af48ca40-a9d4-2f38-bf6c-6a2594d98b63" lang="json">
+<name>Vector Set JSON Example SP800-56Cr1</name>
+{
+  "vsId": 0,
+  "algorithm": "KDA",
+  "mode": "TwoStep",
+  "revision": "Sp800-56Cr1",
+  "isSample": true,
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "tests": [
+        {
+          "tcId": 1,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "0ADFBF33C04265B205163B6CDE97BB1B29FE1821B56E7022A74E4054ADC52AC3F339219C6B4C9B158EE95ED440AB1769FFFC33220B28F62C7B2A805B57F39C63",
+            "z": "576F1B40A4A640C72DD070C5D80380558D1A642DEEAA8F1978428ADE63D7DA4553780E25103F97E493F2626AB9F67CAA626A1F461BD08266942B7F3C8BD3BA90",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "3A29BC54ADE2C0AD617FFD70112445F87E15B21D67156E10CCBC07D0ECF8649163738EFEEFFAC01488875B8AE14F229CFC6C34EF641D04C928AB4F6DF74834BC",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "806604B8DA9F7E391F8307486CD67D0A"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "20FE389DE49E9CA909D48E9F0BA5BAB2",
+            "ephemeralData": "02A918E3A64B8BC17907569DAA75BEC4DA331303460127A86C6CCEF2B62164BAA1459C3AE46A9E6302EE6A4BCA608E2726DAC275F6D1479EE4FC4E45AE8DAFE3"
+          }
+        },
+        {
+          "tcId": 2,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "BE4FEA6C28C7F6D571B0EC89CAB2E586053CDE9208CA409D164F03FD58938CFB47E63C3BE589DD512A6F659ECD60AD9EA784213DD81F7AFB8BCFF506192044D6",
+            "z": "025E3E3EF6B67354DE9778F793214A7A9CC8C0DD87DA70E27F7C47E63F9E33B89AB20AB6339FFBD8F827C19FE7AA144B89537EB0731A030D1571DEF28E6C7CA0",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "375FA1A86CD4CD1A7833F88BE886545D6ED652BC3F6B173B5A768B01BA740BF1B3AA263B078321DC0FBD1B8A565E84A17398669A5D2F4A5E9AA92B8EB0DCD894",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "181AA0E72E042B9803A213DF7CBB8051",
+            "ephemeralData": "C933CCD623CBC35246E713BD690F1C5FEA12722F281EE07BDE3219F2843BC29E58B4F76873CCFB1DA866BC4C045C36D711A440859073EAC09C40A21EE96CB903"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "AA783D9D6B897E04BE1F2004C3F21A35",
+            "ephemeralData": "4B5F015CE5974ED4FB992A634A47BEDA77F470EFEE10E7667FEAE1E7B8F53A204B15A97B893E6551FD3FE64F8014F255ADAE070F4E2F31F4DB8B9A4BE84B13E1"
+          }
+        },
+        {
+          "tcId": 3,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "3040A6C24E8CDA5E53DDF7C42335FA82383FC3B1F2C95E3D335D9720BD3AB251DF07712EF3824ECDB00C7267B30552225FE5B5889765A2A16F9A459D5A8A6BC5",
+            "z": "653DFF10216BDC7C6817F78FAE59FF15400061951EEB9AF309819AE7A2904829C29127688FC1A1A40F62F9CE886A1A3B01D729B59278168DA58ED2C210ECDE61",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "E680F9C99500ED6AB6F40D35783F81DC44AAD381F12EAABB5ABD697C2C57981D97710E0A465EE6D5591BE43C33714A0F0AFE1AA90976D2F48A3F277BD546859A",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "427A430E34956099A11A34996C68B585",
+            "ephemeralData": "CE4FCE03CD168399D90D499BA988D7A16738730F0E713B3783A297D3858F7F28623959E2622F15B7E5E0A793F9DF99855CF3F9602E0A2628313132E2CE697980"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "44D5D13558C15CF6EE886E69E005A8EC"
+          }
+        },
+        {
+          "tcId": 4,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "F9916CA1F2B351D833AD84391A48DC3753D21E156C32F961F26897376A3ED5AB18689B99B3CF1BFE55EDF56AA1ADEFEF5022395346B1D9942B20710DB2A6C629",
+            "z": "BAF85001AAF675464043635BEC546B935A6542DCF401B3744ED1E633F912827A925869FD0DC1DA9392042ACD10D53A9BEBE260BB63F8FC23F55EC38589084A6B",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "10743126EF5675BA21A5D4F025A8D21157703C447D93EFC47F5853827CFC3967F55076E3E6910B2726DE4E53BC7C7C49E03F81C3703FBB875818B8FA7E9B9970",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "50B610281A9C8768B5B7E84E39E866A4"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "BB234C26EFBEB3D13F17366B14917967",
+            "ephemeralData": "42D9BB758F33884617A1554CB1F149FE7CB9164F62E775DDCF5B48F640C0E15E783A41C5F9357CF9D12F38A566D69A35A5BF361728C7D4849FB4AA0B2C5A764F"
+          }
+        },
+        {
+          "tcId": 5,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "956E5333A9A29004CB4C3CAC3750FACCB46106900B7E7CDA166D6DCB7BE8A2679F195203C4DDD8E34EF6E90D52E39465A15E2C42CDC537E87218118186DEFAB4",
+            "z": "6F3EDA174C2DD8C611D126300C6AB0D61D6AEB804D527C87801BDE3AD3F6AD2C8B7E4976633AB154A92AD79105695EBC996514D1A8E40EB8B53D51FD8181F1E9",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "632C996B274A3C313C93645B0B32C5D21960BCC4DF105924E970C19F6BEDE80E86E3C4CA3B771D552AF3E10109F82876DDBDEA6A9077CC27F7D5E244A066251E",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "6929DD85147EE842DE5F921E247B598F"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "3DAC69CEB1620DE4DB065A71DEC68C1C",
+            "ephemeralData": "555F54BEC5FCF9269F53C55E6EC8EEB324581E5D12A75274481D01FA0320A1D6D17E742CFD85394975FF1E90784EFA06C3AEE88CBCA848C98C5144FF456F26BD"
+          }
+        }
+      ],
+      "kdfConfiguration": {
+        "kdfType": "twoStep",
+        "l": 512,
+        "saltLen": 512,
+        "saltMethod": "random",
+        "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+        "fixedInfoEncoding": "concatenation",
+        "kdfMode": "feedback",
+        "macMode": "HMAC-SHA2-512",
+        "counterLocation": "after fixed data",
+        "counterLen": 32,
+        "ivLen": 512
+      }
+    },
+    {
+      "tgId": 33,
+      "testType": "VAL",
+      "tests": [
+        {
+          "tcId": 161,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "A12858E5715B0A82E684B2D4433768BD56FD2FB701AB7367B0095DEBB1511FB467AEDBE9E70DFEBC4E5375574B8597717CB2D8CB6D560A7D1240F36F1758D65C",
+            "z": "366F5863F9B2F6F56FCEDD44D1CF1585C83D7CFBC146C0B8A5835D05F9F4BF1225ECB140BD6BB30CA3DF9B27336CFF4DFB3293B480AB6CE8B016CEACBF9AD50A",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "F611B1D01C10B85CF2FDA62E2E70CE73301D9FCEFFB523D6BDCE5176C8A50A4A0ECA9702E02F6A9B01926AA4812AB7018C9652C9E4E4D58E13910087ACB9EF5C",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "8FA71E55677BC77BEFF5399FF56E8580"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "505F428AAB0F0385F035E11AE22A38A2",
+            "ephemeralData": "649B3A141042D4D2DBBB0A40820688C02B6C8AD363C50209ED792E8131DC45171B85F144E636190539A46553451FC083234ED71966617D55E0204B29470E7641"
+          },
+          "dkm": "ABD671702D3E4F6040DD4EF8CE7F93C048071AA2A4857E9D90DF14EADA758E5CCB702A14039EA0BDE758F688097661FEFC2FB71350CB4205C74F0326807C7E3B"
+        },
+        {
+          "tcId": 162,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "45A57043BECD4048EE868278CF78907DB3C3D6B2740E4C36FFD6CE98775D7966AA80DB17ACFD9DD2D47B85736E43E10F0724A9672BD57321BC1C405C9F14C473",
+            "z": "E8257C5D497449D2BA04D3FB79A0BD15FAA76511DD726E80211A8EC6830EBB64CAAEA785704C3AC68FCE36A1BBF738A06D2530E7B6F5758FABECAA833AD8A1F1",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "F33F177DDBFAE1F942E21D41FAE4D01E4177604A34C43721D068D6108781C9A7C5BC1701572E6FF3E331B163872E49D9FC2106762638440B406FAC4BEDC52AF3",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "2ED2A1A8514BB3302CB0C0501C325C0B"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "BA287A7504EDEAE60FE82BC1A974E793",
+            "ephemeralData": "A68EF3B1402B3A2A8E1C075302196DCB9DC99F240061F2BD5FE8B1AA77C9E2962239BA28C3D66A0D4A3049A9B2D5775C97214C1D6FC42A60B6B687AA38845BD8"
+          },
+          "dkm": "E24017258025637EB0175E0916B5C8152AE22185269096B7AD03A21EFB3DFB8AF863A2D574F5F8C91B5B7E59A51F534AB2F93A8FEF15F37A9CDF1B4BBF6DEBAC"
+        },
+        {
+          "tcId": 163,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "4F08A21287BA7AD996B25B9BEED8D734A09E2A958050B6FCE024C6F302B4652C129834785ADF840B9A6BF83E83C8937AB8342FA059E29E8480FCF10BC515448F",
+            "z": "4FA641D15099935020D57449CF2DFE5D9430BCD85BBB1EF4367F474FA699AD7CC6FAC9DCA26D1F0D46DCF9FC3302392F88FDC42A378E211882E33E6FA6DA2D1A",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "D1A84B095C875B585BF3677DD4A0D875EFEE2AD3B37F2412032563FDC57A00AD5ACD9D0B78281EB3D177AA5CA1253EE6E104EAA78787E76FB4C4317A3A2CCF05",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "516D813DDD3ECBBAE738572A7DBBC827",
+            "ephemeralData": "95E1D0001556173E6F3C505D4DD0658B668B397C01B2A4B44AFCB3C9FCF8604826CFE3F7367D1445C50669B30010346C78B3652FAEBB5578D8077D2A9BDD44D8"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "0C4804B70E4CC537B9AFB66CCE659586",
+            "ephemeralData": "D2F7F4316DFADBD61CCD3761899A4B697B515CFDF8E2AA6DCC03834F25EA8C4ACE39B72D03971517B6D4FABCD4E77B1CC3E34AE65CB1BD8924F8C9821291AA16"
+          },
+          "dkm": "48B0E4139CAF7818490A0FED0AA83509B1E665EA84D6748CC7E03FFB7B4F693D71B9A2B4DAA43F4D9DBA957B437282B9E92325DEBDDD52DEFBD9D2E29594839D"
+        },
+        {
+          "tcId": 164,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "0FA2DB567054A3FD5B4C80F7BC3EB7FDFFEB2DE24A7E15B9825AAC7965CEF61A725D5EA530C7F9239EED953D2086E36FDEE9953A361BB06E470B1D697741EAF1",
+            "z": "AD5B5575642BF653381470A00D261602A5444C19EFFDFB7965AE9A70911C9611C35DE20B8F0C467EBE359E88F9EE0E2E847F886CA39BB89067E482ABA9B488D7",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "9D6A8E1B559B812DB1F0B4A88D625EE75943241AF3347C527937A61139F76E73DE2CEA58D66872A9997BA01FED32C80DF5BBA31727660388C26584C7441BA852",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "31A445A08D8089609314ED6CD691D75B",
+            "ephemeralData": "4BF9B00CA328F2792D937663B051ED5B9916249AAF8854F0B40AF266C70E63F9510D9787F016AC920214396EBB41944F9F24EF496F793EE381A02350BBF48D67"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "6E6764B019CA8D8A5D395DE0E6752830",
+            "ephemeralData": "6357D8183753E697C365BFF5E672BF8AE52394C50FFF15F23AD3045F1A900DBA8B147D79ABD526F3B4FEB930AE727E3D5A40A766C9734DE0D083EE5D469A957C"
+          },
+          "dkm": "647A0008C671EE83B17A32887ABA2DFD190C33AAE20537599A048171A8B6B760F6674E18E5E465F0104CFBB1DBDB1CADCAE9EA57CCF29241D62D558DFDD8F826"
+        },
+        {
+          "tcId": 165,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "DF6847F01DF268B26A95870776389BE7E74F3E0E58E4EBB169CF9C6CF0B3071096CA8722FCD33BF455C4ADAC94A44A1E95ACB7E3851A0B668A44C359E6BD7617",
+            "z": "E16F10272E509C404C4669428313CE083196F8CD49FAB74E64EFDD972D0933DE4DAF2809DD952873A13775816EE2F8A79CE3C3579813E80979EDBC56C43D77C2",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+            "fixedInputEncoding": "concatenation",
+            "iv": "C8D7247CBB6AEBF5EE90E13203303B2145A1D5A5CBFBB6722CE373C98A1604836A79B2AA043E4871898E534E8615ECECB6466CC9C0E23B7A8228BB03DB748441",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "7AD3ED7BC9207D09C904B6B924B9C639",
+            "ephemeralData": "EA712C47B0CA7183EB1F3BCBDD6282E240473D09C9FD3644BA0DCD343AC49CD6C852D17C48C47A4AC95178723F071018473E3DC18CFBECBCED750B2B143AD563"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "0CC0877A3BFB4C024B12037825B6339A",
+            "ephemeralData": "68995A7D9A588A87BC1184EA586876E3D9A5484F4C9FA81B36247B77C6C37DBDB1FB70E3407FDA166FDFC72287D62F12C517735D03C3B7D97D9AFC756FFA6683"
+          },
+          "dkm": "0A3A1C08B55A60DA29E84FB82A54FA386008B07F74F192E179E99ED509E6AEB6580BA7B6E8D3DAC7E0E0A93D1F25F8F9F95297CA65F36D44A38C586EB7CF9F0C"
+        }
+      ],
+      "kdfConfiguration": {
+        "kdfType": "twoStep",
+        "l": 512,
+        "saltLen": 512,
+        "saltMethod": "random",
+        "fixedInfoPattern": "uPartyInfo||vPartyInfo||l",
+        "fixedInfoEncoding": "concatenation",
+        "kdfMode": "feedback",
+        "macMode": "HMAC-SHA2-512",
+        "counterLocation": "after fixed data",
+        "counterLen": 32,
+        "ivLen": 512
+      }
+    }
+  ]
+}</sourcecode>
+
+
+<sourcecode id="_274bc8b7-0926-0c89-7f11-fa94259c1c28" lang="json">
+<name>Vector Set JSON Example SP800-56Cr2</name>
+{
+  "vsId": 0,
+  "algorithm": "KDA",
+  "mode": "TwoStep",
+  "revision": "Sp800-56Cr2",
+  "isSample": true,
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "tests": [
+        {
+          "tcId": 1,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "73669F6D823C5AAB0C3E2B8CF7E8BDD71D4E659BCD6CFF92CD6C9708D2232470100A0E7513A1D932FDEAC0DE2F8B32B045467013B894CF81DBB20F5C6E5895CD",
+            "t": "86B6B4E25737D8B42CAE4B135A46AA5E",
+            "z": "B5730243292A071FFF6CD3448D4644C01BD59435BBAE5B1BE7E7D2D9B2D8824C4CCEF5778C33CAC0AD7A5D19E3705510F21799561A1558ABEA8E77F3EBB4995D",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l||t",
+            "fixedInputEncoding": "concatenation",
+            "iv": "DBBE8E4B36080300B04DAE64E8F66FF88EB85F8ECE30CE8063CF5F1D1609F999F25FEA5BAD2716E544831326B83B848BCC611D54DF9DBEC6193C734DEE4884C4",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "2C78BEAFBDC7896D3E1865C0D4CEC989"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "E719A3BEA7D292D815790740AF32CB18"
+          }
+        },
+        {
+          "tcId": 2,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "29DEC0ED49BD992D49D2760D463234815F663D0CE5A2957B5B733DC573714F882437057801D5185F19160955A8C680CB2B7263984D39CA2F56C1C2611DB34453",
+            "t": "69C874B72E75FC0895A815DFEE0870FC",
+            "z": "F8F7368992EF282A515FEFCE6397E1346346E11B30CCECF605502A9A718363EA89EA2925446E00F3771DF409D9A5549693C8A44FC6F9AF211C7AF793E39F4845",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l||t",
+            "fixedInputEncoding": "concatenation",
+            "iv": "E40E3ABAC9CDB2FEA2579A4176969C8CFCE2124AA238A4CE826D1C79F75178B7BB6D297F2B45287C1216F0D2437F76B2210D3166BF2C6A0D8E66FFF149C41493",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "115BED271DE2A0036BF85621EBDC6FC4"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "F5C07CBE3A72463203FBBB879144100A"
+          }
+        },
+      ],
+      "kdfConfiguration": {
+        "kdfType": "twoStep",
+        "l": 512,
+        "saltLen": 512,
+        "saltMethod": "random",
+        "fixedInfoPattern": "uPartyInfo||vPartyInfo||l||t",
+        "fixedInfoEncoding": "concatenation",
+        "kdfMode": "feedback",
+        "macMode": "HMAC-SHA2-512",
+        "counterLocation": "after fixed data",
+        "counterLen": 32,
+        "ivLen": 512
+      }
+    },
+    {
+      "tgId": 2,
+      "testType": "AFT",
+      "tests": [
+        {
+          "tcId": 6,
+          "kdfMultiExpansionParameter": {
+            "kdfType": "twoStep",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32,
+            "salt": "A0DCAD75DAF16543013DF2D838B0F043C70E66795DF15C725F2F8E73939C3744DBDC09EC9D28E5BB892BCC7CB1D80B1B74310745E0065AAAC84A9EBFACEE6FCD",
+            "iv": "86F0F24DCF144927D946E05313039C5575261EB45E5C22EFA55C00CA4EDF5080C5E9549C0E4F9BF95203A459FB5961D7550FCEDA1F3E79DB8D009D6A0D9B2A7D",
+            "z": "F9CBD2C724EF2353D85C62D671040E5C77EA0899E87FFE07B935F039735938AA829110D49F0E2D1194869C7F3BCED631FD578DEC81270509A071D55100B8DA75",
+            "iterationParameters": [
+              {
+                "l": 512,
+                "fixedInfo": "5C95F8AEF753345A12863D223BA83F8A"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "E367A16FD5FA56D7337136C8927B7F19"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "EF3A620269F1E88C20D55011F7380209"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "B9A3B043CB6474CE53467FB89B24BDFD"
+              }
+            ]
+          }
+        },
+        {
+          "tcId": 7,
+          "kdfMultiExpansionParameter": {
+            "kdfType": "twoStep",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32,
+            "salt": "829BB5915FA3FB20972CA6C22F1AED6BC40119EA50487BCA520CD60729964EFE218F40AEC3B2D78EF853EE068F30E1E628B5BCDB2EC1D0C34A78443632F47486",
+            "iv": "27DC1483266BD740E05CDA5DA3882EED1CF0A1E1E55A0BCCDE9F73E94B0FC5DF14C1AD320C08FF21585F5F26C158EDD6740E03A68BC4DDD50F208C258D2F9F40",
+            "z": "281ED3C7FE60F4C2FE8B45B0D2EB3D1DD45A78B7C577A7F8FE03D8F59817EA5FC6DB41E5E45526A32A280FF531C9322EB75B7908120B2E6904B71D24041EEB0E",
+            "iterationParameters": [
+              {
+                "l": 512,
+                "fixedInfo": "4208FB9D1C803414A141C4E333B3D6A5"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "3235F21101152080DC48AC200BC54297"
+              }
+            ]
+          }
+        }
+      ],
+      "kdfMultiExpansionConfiguration": {
+        "kdfType": "twoStep",
+        "l": 512,
+        "saltLen": 512,
+        "saltMethod": "random",
+        "kdfMode": "feedback",
+        "macMode": "HMAC-SHA2-512",
+        "counterLocation": "after fixed data",
+        "counterLen": 32,
+        "ivLen": 512
+      },
+      "multiExpansion": true
+    },
+    {
+      "tgId": 65,
+      "testType": "VAL",
+      "tests": [
+        {
+          "tcId": 321,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "06614CC285E42B00C7625244594D27B5BB932A7C5E85EA02B116D191A7682F01DFCC4F207E912127AA11DA2D468A0414984D43327632AE5581CA53A70BD611A2",
+            "t": "ACA02E08F6D7BAF6FC470435D5B88EE9",
+            "z": "6B91690E9D667043924421ABFA4056AA51A15793255B975BE5C44E37A40B892588640E90C8F5FBA0F8179C677F830DB68110A55BEF71107A2132039806685A2E",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l||t",
+            "fixedInputEncoding": "concatenation",
+            "iv": "5D54A0FE3A35C6B76D056883EBF7E7FD4C71200E6C6B0A210EDF91B5297D7F89B5EF90ED66A7A0CCAE9B7301F9C9D68DFC2EB3554244D8ED4206A6DB027452E1",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "4865F140D0239D4967496C99D2C9E8AB"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "05F2D726E8C660784404DD69CD391EA3"
+          },
+          "dkm": "0BD0E7F866581520EC749F2EAAE31C46184EAA3B1CA3E3DB706A94CCFF6093B1E4483BF80BF83068816F8CEE3A25A6013BA0096FCF283113E0ECF85756F2A75A"
+        },
+        {
+          "tcId": 322,
+          "kdfParameter": {
+            "kdfType": "twoStep",
+            "salt": "05566C08DD5415A956FC2BA699547882DD22BA74CD02F4C69EAFD7EF9AD8D7AFF7218C337A88477ABD554CC20758621F2355E6DC954533918AE79025CFD2FEA2",
+            "t": "AB9864A12B7531DD07EB22CC4D2FE623",
+            "z": "8CDBA4BA67446579B5AB939A9BE589349B1479FA9A1E2E00E9C8D74AFA177FCA99E9A126427FB1A9A956BFFF04C90546ECFD41F27228312E01E63A18ED0ECF74",
+            "l": 512,
+            "fixedInfoPattern": "uPartyInfo||vPartyInfo||l||t",
+            "fixedInputEncoding": "concatenation",
+            "iv": "E1C558C98C2A62FD8ACD9C735CB894CC220C2FEBECE60C45C7CE1DD426BBFC9D5A96D182DAF181DA83508737BAF8AB24C049874ACD40B9B24833BB0E05E54E12",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32
+          },
+          "fixedInfoPartyU": {
+            "partyId": "30AEBBA0D104E03D6EA2022A73A78F47",
+            "ephemeralData": "4CF8A744EF46B6DC72FC5E43670E7EA8B2DBDBBC81C8A07090FAD03D96D6C913B6BD15DA8EBA5E76E73171A0D16B5392535B2E6193E58162D336FE4DBC9D0DE4"
+          },
+          "fixedInfoPartyV": {
+            "partyId": "9A2AB0A90060DB58C115C557977F2EC3"
+          },
+          "dkm": "07423F264BB882C8CF3D2D08DDA2E0742AEAFBDF819EED35F8B5FFB4960AB5CCEDE479E2746390D539F65FCEB58C08B706B36CC859FBD873FF180C7E5612F04B"
+        }
+      ],
+      "kdfConfiguration": {
+        "kdfType": "twoStep",
+        "l": 512,
+        "saltLen": 512,
+        "saltMethod": "random",
+        "fixedInfoPattern": "uPartyInfo||vPartyInfo||l||t",
+        "fixedInfoEncoding": "concatenation",
+        "kdfMode": "feedback",
+        "macMode": "HMAC-SHA2-512",
+        "counterLocation": "after fixed data",
+        "counterLen": 32,
+        "ivLen": 512
+      }
+    },
+    {
+      "tgId": 66,
+      "testType": "VAL",
+      "tests": [
+        {
+          "tcId": 326,
+          "kdfMultiExpansionParameter": {
+            "kdfType": "twoStep",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32,
+            "salt": "C814F6C4E49E535DFB59CE72EFEA3F8BD770043CA2E1AF6C9D459CD07D38EC129DB838C2AB6C184BC43C065459E221EB7B0200593D1F3B01D7A231FCE9189A02",
+            "iv": "7A512E648ADAE756B97A90D62E3B56CBC3D5B4E12E139B94060F03D9BB1F189A75D961FE7C203D93432AC84E831F95A847889A25A5ED44DC4FAA84C76D2A8182",
+            "z": "D568E0018EBEB1139E35F8391C698977017B7B68147000D9C055A97D0823FB855904C7A1BDA996E8FE49C8A969C3984966A18429F264669D099EAA25A7B05C67",
+            "iterationParameters": [
+              {
+                "l": 512,
+                "fixedInfo": "1AE9DA67B06472641A3BF37811051055"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "4286E9173B9A3AF2CA0E7D3944E38D1F"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "AD285511D6BA8ED8CA415BDDE2860ECE"
+              }
+            ]
+          },
+          "dkms": [
+            "F87E73FA73B856684BAC4F84E0811413EDBDAA126AB9157265BF46EA7EF75D41B9393546F96D44D67E2F6E62B9107281383909A7292186936121427B41CCCE72",
+            "35F6C469BAB2A9CF929B72EBB8F985EA82863EBFA14CFEAEA7E669D3BC084897984A51EDFC406A1144807DF846F835331ACA96DA1AADE029130FF4DF88E09846",
+            "7B8494EC4A8BAA3518EFB0CBF0CD587EFDC56B87A2B23155031D2C579ED42F0C7743D2FC8CB67969FB85C31274C9BE10F17438D4EC780C6CBC91D45F87D7006C"
+          ]
+        },
+        {
+          "tcId": 327,
+          "kdfMultiExpansionParameter": {
+            "kdfType": "twoStep",
+            "kdfMode": "feedback",
+            "macMode": "HMAC-SHA2-512",
+            "counterLocation": "after fixed data",
+            "counterLen": 32,
+            "salt": "7B02B397B12B1BC773B3487D73D8F4281A5A3795AC11A3229F668C78D2737494BB706BE69A3F6E65C64E6684E509C98B8138D570951322E7E94DD72090E116DA",
+            "iv": "AC9EAC5B613BB418B5E81141729CFDEA261ED2851211D9EBC2B95D363EFA95A06E07B5605C0AFFC04C3EFC92F17124142D30A155E1C36A62FF096561FC0057B2",
+            "z": "6F2244DBD5E43AC838CD40529AE2CD4F46337E8A99B67EC35A3EC0E293E6942D8B4060DDC01300F0587042B04348F2508F2B1D4DDF0AE2D00004EED5D493397B",
+            "iterationParameters": [
+              {
+                "l": 512,
+                "fixedInfo": "47065AC25033394A84068D0B518013E8"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "1D5F11557F50A7DB20231D5855D0B645"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "871C59E84EADC342ADCF5CFA2F39316F"
+              },
+              {
+                "l": 512,
+                "fixedInfo": "382E863C637660EFCACCA9CFF88C7076"
+              }
+            ]
+          },
+          "dkms": [
+            "4332AE745C762A6C4A2BF5A52D6FEE7B85123BFD447C40F6888E26C7EE4A480040ACA97BA55C856C1261DB90918D4B3B5196ADE6372A25CC2E8DD423559C2F73",
+            "967CCA41FDDF0E51F68B9B1B43614EE302B2B1CD5ACEAE3A531F9A16C62F02ECBCAA83BA76FE86886010797E37A7B4792E9A5E2C56D71A75E900E751E6092999",
+            "1FC05E9FECBF82DE01C7A81F1DA360054C987A9EFF0C522F67D9B3609C0823A65DFF0E2812BBDF3868C45F4F3ABB69434B976FDF25627300F08A2A230931B489",
+            "8EFB4A8EBFABB877D2CD76723599FF6DB4334A166E676E678AAC161FC548142DBE7D804ADB94824B1AAADDBE281FC6C0F65F482582AF965B7F5C9087456A5945"
+          ]
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative">
+<title>Test Vector Responses</title>
+<p id="_e8765303-875a-1dd0-eb26-124d0f36c926">After the ACVP client downloads and processes a vector set, it <strong>MUST</strong> send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="_e77c5e78-8394-f3db-9552-7ea4e39bd2b4">
+<name>Vector Set Response Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_f4cfc48f-1b32-a66b-f82e-b34f051c5bde">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that.</p>
+
+<table id="_fcc7fe6b-29eb-fab9-dd55-8a6d3cda5ed1">
+<name>Test Group Response Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_5b1fe5ed-2fac-528a-4742-edc893ca76d2">The testCase section is used to organize the ACVP client response in a similar manner to how it receives vectors.  Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response.  This structure helps accommodate that.</p>
+
+<p id="_b8ff00ed-394e-1fe3-f029-c5a5e71d013e">The following table describes the JSON object that represents a test case response for a KDA-TwoStep SP800-56C.</p>
+
+<table id="_7444733f-1c23-d293-3b40-6661faca5e4a">
+<name>Test Case Response Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">Was the provided <tt>dkm</tt> valid? Only valid for the “VAL” test type.</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">dkm</td>
+<td valign="top" align="left">The derived keying material. Provided by the IUT for “AFT” test type test cases.</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_032c7e65-3d8c-57fc-bd79-3c50e70896f1">Here is an abbreviated example of the response</p>
+
+<clause id="_example_test_vectors_response_json" obligation="normative">
+<title>Example Test Vectors Response JSON</title>
+<sourcecode id="_4c915316-5a87-f89e-f677-e62e8ea5d171" lang="json">
+<name>Example Response JSON</name>
+{
+  "vsId": 0,
+  "algorithm": "KDA",
+  "mode": "TwoStep",
+  "revision": "Sp800-56Cr1",
+  "isSample": true,
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "dkm": "F30FA60BE892E9506BB1D7F0F69130A1F9142083E7EA64076D1ECDF5103571858FB742F94D96015EE0C747F3AB719A4EE00582064D58C111737BE2E7EEB53CC0"
+        },
+        {
+          "tcId": 2,
+          "dkm": "F6BF05D035D95C05B694DADE4DA41D05DC83E6CA100BFB1F13E24639C7DE5AE6B1ED0FECC1860F2246FF62624B805BFE3F15C3BD0639E13FBD69215FC75D066F"
+        },
+        {
+          "tcId": 3,
+          "dkm": "D7DC1B2E454D66529F82999006D67B2595D3862C81DB318B75DC005C888F294A652FBC35336CC5BD4510CE9CD38B7216596BAA65D6652D70A127D85767DB3818"
+        },
+        {
+          "tcId": 4,
+          "dkm": "677D6B89F0E747EBA608180A711D5964EAAC73690F72365E871D98AD0440DC6645312773651981B0A9C483D01A8783F52A443650ADE9E7924AAA57D8B9AB9111"
+        },
+        {
+          "tcId": 5,
+          "dkm": "875FADC0885DB1B0F0D2C38A27CC1169C4F5F4474F539A302169A99EA00689C587CE6B9873CFE681DAC6B02B91D6E47A8B1C53C3A45DAC54B06CC242FCCD5351"
+        }
+      ]
+    },
+    {
+      "tgId": 33,
+      "tests": [
+        {
+          "tcId": 161,
+          "testPassed": true
+        },
+        {
+          "tcId": 162,
+          "testPassed": false
+        },
+        {
+          "tcId": 163,
+          "testPassed": true
+        },
+        {
+          "tcId": 164,
+          "testPassed": true
+        },
+        {
+          "tcId": 165,
+          "testPassed": true
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_e00ec061-56a6-9331-9b16-9e2a17a53e3f">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_f9046313-2731-515a-2d83-47d3f36124d2"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_cd6d2c2b-4d38-e042-40df-0305d0bc723b">2020-12-11</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_6b9e282a-eae3-7ca6-3e75-80e962bf2388" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_8bf4f1ec-81cc-bf05-fdc8-97a1a79d601e">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f2760c4d-df02-193b-b0c9-1bb493e0eb6d">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+ <bibitem id="SP800-108" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for Key Derivation Using Pseudorandom Functions (Revised)</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-108/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-108</uri>  <docidentifier type="NIST" primary="true">SP 800-108</docidentifier>  <date type="published">    <on>2009-10</on>  </date>  <date type="issued">    <on>2009-10</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Lily Chen</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2009</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-108</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-108/archive/2008-11-06</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>key derivation</keyword>  <keyword>pseudorandom function.</keyword></bibitem>
+ <bibitem id="SP800-56Ar3" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm Cryptography</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-56Ar3</uri>  <docidentifier type="NIST" primary="true">SP 800-56A Rev. 3</docidentifier>  <date type="published">    <on>2018-04</on>  </date>  <date type="issued">    <on>2018-04</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Elaine B. Barker</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Lily Chen</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Allen Roginsky</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Apostol Vassilev</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Richard Davis</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2018</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56A Rev. 2</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56a/rev-2/archive/2013-06-05</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>Diffie-Hellman</keyword>  <keyword>elliptic curve cryptography</keyword>  <keyword>finite field cryptography</keyword>  <keyword>key agreement</keyword>  <keyword>key confirmation</keyword>  <keyword>key derivation</keyword>  <keyword>key establishment</keyword>  <keyword>MQV</keyword></bibitem>
+ <bibitem id="SP800-56Br2" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for Pair-Wise Key-Establishment Using Integer Factorization Cryptography</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56b/rev-2/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-56Br2</uri>  <docidentifier type="NIST" primary="true">SP 800-56B Rev. 2</docidentifier>  <date type="published">    <on>2019-03</on>  </date>  <date type="issued">    <on>2019-03</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Elaine B. Barker</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Lily Chen</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Allen Roginsky</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Apostol Vassilev</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Richard Davis</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Scott Simon</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2019</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56B Rev. 1</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56b/rev-1/archive/2014-10-01</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>assurances</keyword>  <keyword>integer factorization cryptography</keyword>  <keyword>key agreement</keyword>  <keyword>key confirmation</keyword>  <keyword>key derivation</keyword>  <keyword>key establishment</keyword>  <keyword>key management</keyword>  <keyword>key recovery</keyword>  <keyword>key transport</keyword></bibitem>
+ <bibitem id="SP800-56Cr1" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for Key-Derivation Methods in Key-Establishment Schemes</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56c/rev-1/archive/2018-04-16</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-56Cr1</uri>  <docidentifier type="NIST" primary="true">SP 800-56C Rev. 1</docidentifier>  <date type="published">    <on>2018-04</on>  </date>  <date type="obsoleted">    <on>2020-08</on>  </date>  <date type="issued">    <on>2018-04</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Elaine B. Barker</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Lily Chen</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Richard Davis</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>withdrawn</substage>  </status>  <copyright>    <from>2018</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56C</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56c/archive/2011-11-28</uri>    </bibitem>
+  </relation>  <relation type="updates">    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56C Rev. 2</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56c/rev-2/final</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>expansion</keyword>  <keyword>extraction</keyword>  <keyword>extraction-then-expansion</keyword>  <keyword>key establishment</keyword>  <keyword>message authentication code</keyword>  <keyword>hash function</keyword>  <keyword>key derivation</keyword></bibitem>
+ <bibitem id="SP800-56Cr2" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for Key-Derivation Methods in Key-Establishment Schemes</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56c/rev-2/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-56Cr2</uri>  <docidentifier type="NIST" primary="true">SP 800-56C Rev. 2</docidentifier>  <date type="published">    <on>2020-08</on>  </date>  <date type="issued">    <on>2020-08</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Elaine B. Barker</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Lily Chen</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Richard Davis</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2020</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56C Rev. 1</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56c/rev-1/archive/2018-04-16</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>expansion</keyword>  <keyword>extraction</keyword>  <keyword>extraction-then-expansion</keyword>  <keyword>hash function</keyword>  <keyword>key derivation</keyword>  <keyword>key establishment</keyword>  <keyword>message authentication code</keyword></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="presentation" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP ANS x9.42 Key Derivation Function JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP ANS x9.42 Key Derivation Function JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-ANSI-X942</uri><docidentifier type="NIST">ACVP KDF-ANSI-X942 Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-ANSI-X942 Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-ANSI-X942.r-1.eng</docidentifier><docnumber>KDF-ANSI-X942</docnumber><date type="issued"><on>2021-01-04</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language current="true">en</language><script current="true">Latn</script><abstract><p>This document defines the JSON schema for testing ANS x9.42 KDF implementations with the ACVP specification.</p>
+</abstract><status><stage language="">final</stage><substage language="">active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype language="">standard</doctype></ext></bibdata><localized-strings><localized-string key="scope" language="en">Scope</localized-string><localized-string key="symbolsabbrev" language="en">Symbols and abbreviated terms</localized-string><localized-string key="abbrev" language="en">Abbreviated terms</localized-string><localized-string key="symbols" language="en">Symbols</localized-string><localized-string key="table_of_contents" language="en">Table of contents</localized-string><localized-string key="introduction" language="en">Introduction</localized-string><localized-string key="foreword" language="en">Foreword</localized-string><localized-string key="abstract" language="en">Abstract</localized-string><localized-string key="acknowledgements" language="en">Acknowledgements</localized-string><localized-string key="termsdef" language="en">Terms and definitions</localized-string><localized-string key="termsdefsymbolsabbrev" language="en">Terms, definitions, symbols and abbreviated terms</localized-string><localized-string key="termsdefsymbols" language="en">Terms, definitions and symbols</localized-string><localized-string key="termsdefabbrev" language="en">Terms, definitions and abbreviated terms</localized-string><localized-string key="normref" language="en">References</localized-string><localized-string key="bibliography" language="en">Bibliography</localized-string><localized-string key="preface" language="en">Preface</localized-string><localized-string key="clause" language="en">Section</localized-string><localized-string key="annex" language="en">Appendix</localized-string><localized-string key="appendix" language="en">Appendix</localized-string><localized-string key="no_terms_boilerplate" language="en"><p>No terms and definitions are listed in this document.</p>
+</localized-string><localized-string key="internal_terms_boilerplate" language="en"><p>For the purposes of this document, 
+    the following terms and definitions apply.</p>
+</localized-string><localized-string key="norm_with_refs_pref" language="en">The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</localized-string><localized-string key="norm_empty_pref" language="en">There are no normative references in this document.</localized-string><localized-string key="external_terms_boilerplate" language="en"><p>For the purposes of this document, 
+  the terms and definitions given in % apply.</p>
+</localized-string><localized-string key="internal_external_terms_boilerplate" language="en"><p>For the purposes of this document, the terms and definitions 
+  given in % and the following apply.</p>
+</localized-string><localized-string key="term_defined_in" language="en">[term defined in %]</localized-string><localized-string key="binary_and" language="en">%1 and %2</localized-string><localized-string key="multiple_and" language="en">%1, and %2</localized-string><localized-string key="binary_or" language="en">%1 or %2</localized-string><localized-string key="multiple_or" language="en">%1, or %2</localized-string><localized-string key="chain_and" language="en">%1 and %2</localized-string><localized-string key="chain_or" language="en">%1 or %2</localized-string><localized-string key="chain_from" language="en">%1 from %2</localized-string><localized-string key="chain_to" language="en">%1 to %2</localized-string><localized-string key="note" language="en">NOTE</localized-string><localized-string key="note_xref" language="en">Note</localized-string><localized-string key="termnote" language="en">Note % to entry</localized-string><localized-string key="list" language="en">List</localized-string><localized-string key="deflist" language="en">Definition List</localized-string><localized-string key="figure" language="en">Figure</localized-string><localized-string key="formula" language="en">Formula</localized-string><localized-string key="inequality" language="en">Formula</localized-string><localized-string key="table" language="en">Table</localized-string><localized-string key="requirement" language="en">Requirement</localized-string><localized-string key="recommendation" language="en">Recommendation</localized-string><localized-string key="permission" language="en">Permission</localized-string><localized-string key="key" language="en">Key</localized-string><localized-string key="example" language="en">EXAMPLE</localized-string><localized-string key="example_xref" language="en">Example</localized-string><localized-string key="where" language="en">where</localized-string><localized-string key="wholeoftext" language="en">Whole of text</localized-string><localized-string key="draft_label" language="en">draft</localized-string><localized-string key="inform_annex" language="en">informative</localized-string><localized-string key="norm_annex" language="en">normative</localized-string><localized-string key="modified" language="en">modified</localized-string><localized-string key="deprecated" language="en">DEPRECATED</localized-string><localized-string key="source" language="en">SOURCE</localized-string><localized-string key="and" language="en">and</localized-string><localized-string key="all_parts" language="en">All Parts</localized-string><localized-string key="toc_figures" language="en">List of figures</localized-string><localized-string key="toc_tables" language="en">List of tables</localized-string><localized-string key="toc_recommendations" language="en">List of recommendations</localized-string><localized-string key="month_january" language="en">January</localized-string><localized-string key="month_february" language="en">February</localized-string><localized-string key="month_march" language="en">March</localized-string><localized-string key="month_april" language="en">April</localized-string><localized-string key="month_may" language="en">May</localized-string><localized-string key="month_june" language="en">June</localized-string><localized-string key="month_july" language="en">July</localized-string><localized-string key="month_august" language="en">August</localized-string><localized-string key="month_september" language="en">September</localized-string><localized-string key="month_october" language="en">October</localized-string><localized-string key="month_november" language="en">November</localized-string><localized-string key="month_december" language="en">December</localized-string><localized-string key="obligation" language="en">Obligation</localized-string><localized-string key="subject" language="en">Subject</localized-string><localized-string key="inherits" language="en">Inherits</localized-string><localized-string key="admonition.danger" language="en">Danger</localized-string><localized-string key="admonition.warning" language="en">Warning</localized-string><localized-string key="admonition.caution" language="en">Caution</localized-string><localized-string key="admonition.important" language="en">Important</localized-string><localized-string key="admonition.safety_precautions" language="en">Safety Precautions</localized-string><localized-string key="locality.section" language="en">Section</localized-string><localized-string key="locality.clause" language="en">Clause</localized-string><localized-string key="locality.part" language="en">Part</localized-string><localized-string key="locality.paragraph" language="en">Paragraph</localized-string><localized-string key="locality.chapter" language="en">Chapter</localized-string><localized-string key="locality.page" language="en">Page</localized-string><localized-string key="locality.table" language="en">Table</localized-string><localized-string key="locality.annex" language="en">Annex</localized-string><localized-string key="locality.figure" language="en">Figure</localized-string><localized-string key="locality.example" language="en">Example</localized-string><localized-string key="locality.note" language="en">Note</localized-string><localized-string key="locality.formula" language="en">Formula</localized-string><localized-string key="grammar_abbrevs.masculine" language="en">m</localized-string><localized-string key="grammar_abbrevs.feminine" language="en">f</localized-string><localized-string key="grammar_abbrevs.neuter" language="en">n</localized-string><localized-string key="grammar_abbrevs.common" language="en">common</localized-string><localized-string key="grammar_abbrevs.singular" language="en">sg</localized-string><localized-string key="grammar_abbrevs.dual" language="en">dual</localized-string><localized-string key="grammar_abbrevs.pl" language="en">pl</localized-string><localized-string key="grammar_abbrevs.isPreposition" language="en">prep</localized-string><localized-string key="grammar_abbrevs.isParticiple" language="en">part</localized-string><localized-string key="grammar_abbrevs.isAdjective" language="en">adj</localized-string><localized-string key="grammar_abbrevs.isAdverb" language="en">adv</localized-string><localized-string key="grammar_abbrevs.isNoun" language="en">noun</localized-string><localized-string key="grammar_abbrevs.isVerb" language="en">verb</localized-string><localized-string key="relatedterms.deprecates" language="en">deprecates</localized-string><localized-string key="relatedterms.supersedes" language="en">supersedes</localized-string><localized-string key="relatedterms.narrower" language="en">narrower</localized-string><localized-string key="relatedterms.broader" language="en">broader</localized-string><localized-string key="relatedterms.equivalent" language="en">equivalent</localized-string><localized-string key="relatedterms.compare" language="en">compare</localized-string><localized-string key="relatedterms.contrast" language="en">contrast</localized-string><localized-string key="relatedterms.see" language="en">see</localized-string><localized-string key="Clause.sg" language="en">Clause</localized-string><localized-string key="Clause.pl" language="en">Clauses</localized-string><localized-string key="Annex.sg" language="en">Annex</localized-string><localized-string key="Annex.pl" language="en">Annexes</localized-string><localized-string key="Appendix.sg" language="en">Appendix</localized-string><localized-string key="Appendix.pl" language="en">Appendixes</localized-string><localized-string key="Note.sg" language="en">Note</localized-string><localized-string key="Note.pl" language="en">Notes</localized-string><localized-string key="Note_%_to_entry.sg" language="en">Note % to entry</localized-string><localized-string key="Note_%_to_entry.pl" language="en">Notes % to entry</localized-string><localized-string key="List.sg" language="en">List</localized-string><localized-string key="List.pl" language="en">Lists</localized-string><localized-string key="Figure.sg" language="en">Figure</localized-string><localized-string key="Figure.pl" language="en">Figures</localized-string><localized-string key="Formula.sg" language="en">Formula</localized-string><localized-string key="Formula.pl" language="en">Formulas</localized-string><localized-string key="Table.sg" language="en">Table</localized-string><localized-string key="Table.pl" language="en">Tables</localized-string><localized-string key="Requirement.sg" language="en">Requirement</localized-string><localized-string key="Requirement.pl" language="en">Requirements</localized-string><localized-string key="Recommendation.sg" language="en">Recommendation</localized-string><localized-string key="Recommendation.pl" language="en">Recommendations</localized-string><localized-string key="Permission.sg" language="en">Permission</localized-string><localized-string key="Permission.pl" language="en">Permissions</localized-string><localized-string key="Example.sg" language="en">Example</localized-string><localized-string key="Example.pl" language="en">Examples</localized-string><localized-string key="Part.sg" language="en">Part</localized-string><localized-string key="Part.pl" language="en">Parts</localized-string><localized-string key="Section.sg" language="en">Section</localized-string><localized-string key="Section.pl" language="en">Sections</localized-string><localized-string key="Paragraph.sg" language="en">Paragraph</localized-string><localized-string key="Paragraph.pl" language="en">Paragraphs</localized-string><localized-string key="Chapter.sg" language="en">Chapter</localized-string><localized-string key="Chapter.pl" language="en">Chapters</localized-string><localized-string key="Page.sg" language="en">Page</localized-string><localized-string key="Page.pl" language="en">Pages</localized-string><localized-string key="draft-internal-boilerplate" language="en">This document is currently under development and is <br/><b>NOT INTENDED FOR PUBLIC RELEASE.</b></localized-string><localized-string key="draft-wip-boilerplate" language="en">This document is currently under development. The draft is not yet complete, and organizations should not attempt to implement it. The content is in an early stage of development, rough, incomplete and experimental; it has not been extensively edited or vetted. This provides an insider view of the iterative process to develop the content and it gives NIST an opportunity to share early thoughts, ideas, and approaches with the community. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period.</localized-string><localized-string key="draft-prelim-boilerplate" language="en">This document incorporates comments from the work-in-progress draft. It is a relatively cohesive document and is considered stable, although there are gaps in the content and the overall document is incomplete. Some changes are expected. Organizations may consider experimenting with guidelines, with the understanding that they will identify gaps and challenges. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period; a full public draft is expected to follow.</localized-string><localized-string key="draft-public-boilerplate" language="en">This draft represents a complete document that is released for public comment as part of NIST’s official review process, in support of an open and transparent process for developing guidelines and standards. The language is normalized and is consistent throughout the document. Comments received during previous review cycles (if any) have been adjudicated and are addressed in this release. Early adopters may attempt to implement the guidelines in a test or development environment; however, comments received on this draft may cause NIST to determine that a subsequent public draft and comment period are necessary. The content of this document will not be considered “final” until it is formally published and announced by NIST.</localized-string><localized-string key="withdrawal-pending-boilerplate" language="en">This document has been superseded by the document identified below. It will remain active until the withdrawal date, when it will be officially withdrawn.</localized-string><localized-string key="draft-retired-boilerplate" language="en">The attached draft document has been RETIRED. NIST has discontinued additional development of this document, which is provided here in its entirety for historical purposes.</localized-string><localized-string key="draft-withdrawn-boilerplate" language="en">The attached draft document has been withdrawn, and is provided solely for historical purposes. It has been superseded by the document identified below.</localized-string><localized-string key="publication-withdrawn-boilerplate" language="en">The attached publication has been withdrawn (archived), and is provided solely for historical purposes. It may have been superseded by another publication (indicated below).</localized-string><localized-string key="keywords" language="en">Keywords</localized-string><localized-string key="keywords_intro" language="en"><p>The following are keywords to be used by search engines and document catalogues.</p></localized-string><localized-string key="language" language="en">en</localized-string><localized-string key="script" language="en">Latn</localized-string></localized-strings>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title depth="2">Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title depth="2">Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract" displayorder="1"><title>Abstract</title><p id="_40558dc1-678d-2db8-8a81-6ebf95632414">This document defines the JSON schema for testing ANS x9.42 KDF implementations with the ACVP specification.</p>
+</abstract><clause id="_c5c47691-938c-4bb9-97ac-13386bf82223" type="keyword" displayorder="2">
+<title depth="1">Keywords</title>
+<p>The following are keywords to be used by search engines and document catalogues.</p>
+<p>ACVP; cryptography</p></clause>
+<foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative" displayorder="3">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative" displayorder="4">
+<title depth="1">Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative" displayorder="5">
+<title depth="1">Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119">[RFC 2119]</eref> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174">[RFC 8174]</eref> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative" displayorder="6"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative" displayorder="7">
+<title>Executive Summary</title>
+<p id="_69bd5b5b-a6cc-3ab3-4d98-243fea6b803d">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing ANS x9.42 KDF implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative" displayorder="8">
+<title depth="1">1.<tab/>Introduction</title>
+<p id="_73bae580-32fa-270c-7531-1f239cec7e7f">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing ANS x9.42 KDF implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative" displayorder="9">
+<title depth="1">2.<tab/>Supported KDFs</title>
+<p id="_c1c22e5d-d403-aeba-a2e1-2341b8a93d2d">The following key derivation functions <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_822ddc9e-697c-e0f1-cc4e-705d6aca6fe8"><li><p id="_bf9b2209-624a-bf25-0610-12f74777cce9">kdf-components / ansix9.42 / 1.0</p>
+</li>
+</ul>
+</clause>
+
+<clause id="testtypes" obligation="normative" displayorder="10">
+<title depth="1">3.<tab/>Test Types and Test Coverage</title>
+<p id="_b0b0f0be-0ef8-d92a-9bb8-974b86b0da0c">This section describes the design of the tests used to validate ANS x9.42 KDF implementations. There is only one test type: functional tests. Each has a specific value to be used in the testType field. The testType field definitions are:</p>
+
+<p id="_1f94f2cd-1232-77ec-e997-43ed59e86399">“AFT” — Algorithm Functional Test. These tests can be processed by the client using a normal ‘derive_key’ operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the key deriviation process are operating correctly.</p>
+
+<clause id="_test_coverage" obligation="normative">
+<title depth="2">3.1.<tab/>Test Coverage</title>
+<p id="_4eb1c936-0a8f-0e01-8b62-2b5a804a4f58">The tests described in this document have the intention of ensuring an implementation is conformant to {ANSx942} and {SP800-135}.</p>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative" displayorder="11">
+<title depth="1">4.<tab/>Capabilities Registration</title>
+<p id="_cd263bc6-c445-4854-7718-e963ea129ab3">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of ANS9.42 algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP">[ACVP]</eref> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title depth="2">4.1.<tab/>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Table 1 — Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json"><name>Figure 1</name>"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="properties" obligation="normative">
+<title depth="2">4.2.<tab/>Property Registration</title>
+<p id="_a44df580-0d2e-3ba6-73b9-0625f38a9980">The ANS x9.42 KDF mode capabilities are advertised as JSON objects within the ‘capabilities_exchange’ property.</p>
+</clause>
+
+<clause id="_registration_example" obligation="normative">
+<title depth="2">4.3.<tab/>Registration Example</title>
+<p id="_bb189b9e-66ff-dac0-5db9-e42b5e5b2703">A registration <strong>SHALL</strong> use these properties</p>
+
+<table id="_a1759759-8ef0-bd90-a4f7-bc9f62727925">
+<name>Table 2 — ANS x9.42 Registration JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Name of algo to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“kdf-components”</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode of the algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“ansix9.42”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">ACVP Test version</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prereqs of the algo</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See Prerequisites</td>
+</tr><tr><td valign="top" align="left">kdfType</td>
+<td valign="top" align="left">The type of KDF</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">“DER” and/or “concatenation”</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">Length of output key — bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min:1, Max:4096, Increment: 8</td>
+</tr><tr><td valign="top" align="left">otherInfoLen</td>
+<td valign="top" align="left">Length in bits of other info for “concatentation” kdfTYpe</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min:0, Max:4096, Increment: 8</td>
+</tr><tr><td valign="top" align="left">suppInfoLen</td>
+<td valign="top" align="left">Length in bits of supplemental public and private info for “DER” kdfType</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min:0, Max:4096, Increment: 8</td>
+</tr><tr><td valign="top" align="left">zzLen</td>
+<td valign="top" align="left">The length of ZZ in bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 1, Max: 4096, Increment: 8</td>
+</tr><tr><td valign="top" align="left">oid</td>
+<td valign="top" align="left">The OID labels to use, required for “DER” kdfType</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="valid-oid">Section 4.3.1</xref></td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The supported hash algorithms</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="valid-sha">Section 4.3.2</xref></td>
+</tr></tbody>
+</table>
+
+<p id="_2ea08e62-efd0-d45b-0c7d-ed3fcaeb4823">An example registration within an algorithm capability exchange looks like this</p>
+
+<sourcecode id="_0f74bd57-095e-1ec6-6766-3d4832d0476a" lang="json"><name>Figure 2</name>{
+	"algorithm": "kdf-components",
+	"mode": "ansix9.42",
+	"revision": "1.0",
+	"prereqVals": [
+		{
+			"algorithm": "SHA",
+			"valValue": "same"
+		}
+	],
+	"kdfType": [
+		"DER",
+		"concatenation"
+	],
+	"keyLen": [
+		256,
+		1024
+	],
+	"otherInfoLen": [
+		0,
+		1024
+	],
+	"suppInfoLen": [
+		0,
+		256
+	],
+	"zzLen": [
+		8,
+		1024
+	],
+	"hashAlg": [
+		"sha-1",
+		"sha2-224",
+		"sha2-256",
+		"sha2-384",
+		"sha2-512",
+		"sha2-512/224",
+		"sha2-512/256",
+		"sha3-224",
+		"sha3-256",
+		"sha3-384",
+		"sha3-512"
+	]
+}</sourcecode>
+
+
+<clause id="valid-oid" obligation="normative">
+<title depth="3">4.3.1.<tab/>Valid OIDs</title>
+<p id="_3f8f9664-69c7-8f19-1af1-2ba878b61fc3">The following OIDs <strong>MAY</strong> be advertised by an ACVP compliant client under the ‘oid’ property</p>
+
+<ul id="_8e9481fa-4d87-1aa4-5560-39c4ed6a115f"><li><p id="_6be19e43-625c-d70a-4444-440a89f571ab">TDES</p>
+</li>
+<li><p id="_774b0f24-8a73-34d6-98c3-37f2ef4f8944">Represents a bit string of “060B2A864886F70D0109100306”</p>
+</li>
+<li><p id="_d59c90cc-95e0-554b-9542-1584aacfd7c9">AES-128-KW</p>
+</li>
+<li><p id="_c22640f1-e4ba-a893-5ee4-3372e5fd920b">Represents a bit string of “0609608648016503040105”</p>
+</li>
+<li><p id="_a30a4c6b-30da-99e8-2828-5b699c898d72">AES-192-KW</p>
+</li>
+<li><p id="_08ded109-9d4f-f806-b192-69b17f3022ae">Represents a bit string of “0609608648016503040119”</p>
+</li>
+<li><p id="_eede7a4e-b6bf-050c-009f-7115ce671a77">AES-256-KW</p>
+</li>
+<li><p id="_711abd4b-1002-0b8b-3be4-cf5e27f4097f">Represents a bit string of “060960864801650304012D”</p>
+</li>
+</ul>
+</clause>
+
+<clause id="valid-sha" obligation="normative">
+<title depth="3">4.3.2.<tab/>Valid Hash Functions</title>
+<p id="_bf1924ee-f1a8-42af-f3cb-ebd756af4f51">The following hash functions <strong>MAY</strong> be advertised by an ACVP compliant client under the ‘hashAlg’ property</p>
+
+<ul id="_d50d170e-3d65-e89d-196d-cfe2f77a5baf"><li><p id="_1a24f46b-5b7f-64cd-74b8-3f3693467a9e">SHA-1</p>
+</li>
+<li><p id="_0c484c0c-933f-8541-162d-94c5b9258cd8">SHA2-224</p>
+</li>
+<li><p id="_13944e19-271f-997c-87be-8102d2705edf">SHA2-256</p>
+</li>
+<li><p id="_590c59ce-231d-4f20-74e9-41beca62450e">SHA2-384</p>
+</li>
+<li><p id="_c47840db-a4df-9e4b-ca50-3f9e8fccb517">SHA2-512</p>
+</li>
+<li><p id="_5c3d6049-e253-c100-f69e-079475cd24ad">SHA2-512/224</p>
+</li>
+<li><p id="_adab3b22-e797-8f99-56bf-504fae5fcb0d">SHA2-512/256</p>
+</li>
+<li><p id="_9a51dfe4-d2ba-6b9f-6e23-d1abf82c2be8">SHA3-224</p>
+</li>
+<li><p id="_7b14f822-9ba9-4457-fcd0-4704ce58265f">SHA3-256</p>
+</li>
+<li><p id="_04fd3e91-d2fb-f41d-f434-df15d6ba684f">SHA3-384</p>
+</li>
+<li><p id="_7025c5e6-e1fb-942e-41e2-64762c340bf5">SHA3-512</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative" displayorder="12">
+<title depth="1">5.<tab/>Test Vectors</title>
+<p id="_75c6e467-5792-ef40-5cd0-351b07013bfc">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with ANS x9.42 KDF algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Table 3 — Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs">Section 5.1</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json"><name>Figure 3</name>{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title depth="2">5.1.<tab/>Test Groups</title>
+<p id="_9090d5d7-ce77-e2dd-ce3e-3683ca161ea5">The testGroups element at the top level in the test vector JSON object is an array of test	groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped	together. The Test Group JSON object contains meta data that applies to all test vectors within	the group. The following table describes the ANS x9.42 KDF JSON elements of the Test Group JSON object</p>
+
+<table id="_1c745164-2b64-027e-4a89-eedc2488464f">
+<name>Table 4 — Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">kdfType</td>
+<td valign="top" align="left">The type of ANS x9.42 KDF</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash algorithm used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">oid</td>
+<td valign="top" align="left">The OID used within the other info in the “DER” KDF</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Operation client should perform on the test data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_f6ad9232-292b-8f26-72cc-a69a652ea555">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes">Section 3</xref>) the group is addressing.</p>
+</clause>
+
+<clause id="_test_cases" obligation="normative">
+<title depth="2">5.2.<tab/>Test Cases</title>
+<p id="_eb612fa9-9e54-bf5c-59f3-011d24c90458">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ANS x9.42 KDF test vector.</p>
+
+<table id="_3c2cc385-6c88-543c-e014-ad9d4dc7de32">
+<name>Table 5 — Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case idenfitier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The expected length in bits of the resulting derived key</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">zz</td>
+<td valign="top" align="left">Zz value</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">partyUInfo</td>
+<td valign="top" align="left">Supplemental party U information for “DER” KDF</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">partyVInfo</td>
+<td valign="top" align="left">Supplemental party V information for “DER” KDF</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">suppPubInfo</td>
+<td valign="top" align="left">Supplemental public information for “DER” KDF</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">suppPrivInfo</td>
+<td valign="top" align="left">Supplemental private information for “DER” KDF</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">otherInfo</td>
+<td valign="top" align="left">Other information for “concatentation” KDF</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_33876949-c49d-6688-24d9-71d6cdd40414">Here is an abbreviated yet fully constructed example of the prompt</p>
+
+<sourcecode id="_1b6ca399-b241-cd95-5181-68962cba0435" lang="json"><name>Figure 4</name>{
+  "vsId": 0,
+  "algorithm": "kdf-components",
+  "mode": "ansix9.42",
+  "revision": "1.0",
+  "isSample": false,
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "hashAlg": "SHA-1",
+      "kdfType": "DER",
+      "oid": "060B2A864886F70D0109100306",
+      "tests": [
+        {
+          "tcId": 1,
+          "zz": "17A29984964A768CBFCFDBF88D83063D...",
+          "partyUInfo": "",
+          "partyVInfo": "",
+          "suppPubInfo": "",
+          "suppPrivInfo": ""
+        },
+        {
+          "tcId": 2,
+          "zz": "782A64268C960FB4236D5075AA3BC7A0...",
+          "partyUInfo": "A0B65EC9ACD5488E90633C51...",
+          "partyVInfo": "04F21C3CB720FE76A32681AD...",
+          "suppPubInfo": "E25196CB15D545D6B2F2205...",
+          "suppPrivInfo": "ADD68D627F9C1FE03EA409..."
+        }
+      ]
+    },
+    {
+      "tgId": 12,
+      "testType": "AFT",
+      "hashAlg": "SHA-1",
+      "kdfType": "concatenation",
+      "tests": [
+        {
+          "tcId": 551,
+          "zz": "B9DBEC70446BB90A5FDB0B5CDC283927...",
+          "otherInfo": "8F228F82F740C6C027071A9E3..."
+        },
+        {
+          "tcId": 552,
+          "zz": "BC",
+          "otherInfo": "7119740C20D9EF03888A6253C..."
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="_responses" obligation="normative" displayorder="13">
+<title depth="1">6.<tab/>Responses</title>
+<p id="_95e26399-cf6a-e160-2f71-58f636a96e1b">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="_a460042b-04df-9eef-9647-d5499abc8408">
+<name>Table 6 — Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_8d940860-5be5-5322-d1cd-802096fbc183">An example of this is the following</p>
+
+<sourcecode id="_9c6a92e7-abe4-f49a-336f-57e4e20c1d06" lang="json"><name>Figure 5</name>{
+	"acvVersion": "version",
+	"vsId": 1,
+	"testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_c559c8d6-f165-27f7-7003-eb0d0f52da36">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that.</p>
+
+<table id="_86c2307a-fe22-ac24-e27b-66e5ce986557">
+<name>Table 7 — Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_04cadd0e-15a7-eabd-e218-2c25ec5dd0ca">An example of this is the following</p>
+
+<sourcecode id="_2353adb8-baf1-2a31-f0c1-bbd364f2a601" lang="json"><name>Figure 6</name>{
+	"tgId": 1,
+	"tests": [ ... ]
+}</sourcecode>
+
+
+<p id="_4fed6b73-937a-4ebe-b33b-e2af64ce0f4c">The following table describes the JSON object that represents a test case response for a ANS x9.42 KDF.</p>
+
+<table id="_78c73188-4587-0e55-5d74-25672f84d2b3">
+<name>Table 8 — Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">derivedKey</td>
+<td valign="top" align="left">The outputted key</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_7b4d3c64-728b-1fc5-ae40-036182831868">Here is an abbreviated example of the response</p>
+
+<sourcecode id="_d940472b-7036-6cb6-ad1c-ce5bebfe28e4" lang="json"><name>Figure 7</name>{
+  "vsId": 1,
+  "algorithm": "kdf-components",
+  "mode": "ansix9.42",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "derivedKey": "986B212420E3B977068244E6BD..."
+        },
+        {
+          "tcId": 2,
+          "derivedKey": "B8F3EEC6B5FA270FB05644DE40..."
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="security" obligation="normative" displayorder="14">
+<title depth="1">7.<tab/>Security Considerations</title>
+<p id="_e00ec061-56a6-9331-9b16-9e2a17a53e3f">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative" displayorder="15">
+<title xref="Appendix A"><strong>Appendix A</strong> — <strong>Terminology</strong></title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><title>A.1.</title><term id="term-prompt"><name>A.1.1.</name><preferred><strong>Prompt</strong></preferred>
+<definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></definition>
+ </term>
+
+<term id="term-registration"><name>A.1.2.</name><preferred><strong>Registration</strong></preferred>
+<definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></definition>
+ </term>
+
+<term id="term-response"><name>A.1.3.</name><preferred><strong>Response</strong></preferred>
+<definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></definition>
+ </term>
+
+<term id="term-test-case"><name>A.1.4.</name><preferred><strong>Test Case</strong></preferred>
+<definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-group"><name>A.1.5.</name><preferred><strong>Test Group</strong></preferred>
+<definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-vector-set"><name>A.1.6.</name><preferred><strong>Test Vector Set</strong></preferred>
+<definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></definition>
+ </term>
+
+<term id="term-validation"><name>A.1.7.</name><preferred><strong>Validation</strong></preferred>
+<definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative" displayorder="16">
+<title xref="Appendix B"><strong>Appendix B</strong> — <strong>Abbreviations and Acronyms</strong></title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative" displayorder="17">
+<title xref="Appendix C"><strong>Appendix C</strong> — <strong>Revision History</strong></title>
+<table id="_8dab7849-4746-06e6-fae2-b4da57618345"><name>Table C-1</name><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_7a4390b9-6c1e-7d28-1f49-ffff2b2813f3">2021-01-04</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_5abb8ab1-1cc2-8ec8-1c8e-6ba4f28de026" obligation="normative" displayorder="18">
+<title xref="Appendix D"><strong>Appendix D</strong> — <strong>References</strong></title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard"><formattedref>S. Bradner (March 1997) <em>Key words for use in RFCs to Indicate Requirement Levels</em> (Internet Engineering Task Force),  BCP 14, March 1997. RFC 2119. RFC RFC2119. DOI 10.17487/RFC2119. https://www.rfc-editor.org/info/rfc2119.</formattedref><docidentifier type="RFC" primary="true">RFC 2119</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC2119</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC2119</docidentifier></bibitem>
+ <bibitem id="RFC7991" type="standard"><formattedref>P. Hoffman (December 2016) <em>The “xml2rfc” Version 3 Vocabulary</em> (Internet Engineering Task Force),  RFC 7991, December 2016. RFC 7991. RFC RFC7991. DOI 10.17487/RFC7991. https://www.rfc-editor.org/info/rfc7991.</formattedref><docidentifier type="RFC" primary="true">RFC 7991</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC7991</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC7991</docidentifier></bibitem>
+ <bibitem id="RFC8174" type="standard"><formattedref>B. Leiba (May 2017) <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em> (Internet Engineering Task Force),  BCP 14, May 2017. RFC 8174. RFC RFC8174. DOI 10.17487/RFC8174. https://www.rfc-editor.org/info/rfc8174.</formattedref><docidentifier type="RFC" primary="true">RFC 8174</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC8174</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC8174</docidentifier></bibitem>
+
+<bibitem id="ACVP"><formattedref>Fussell B, Vassilev A, Booth H, Celi C, Hammett R (July 01, 2019) <em>Automatic Cryptographic Validation Protocol</em> (National Institute of Standards and Technology, Gaithersburg, MD), July 01, 2019.</formattedref><docidentifier>ACVP</docidentifier></bibitem>
+
+<bibitem id="ANSx942"><formattedref> (2003) <em>ANS x9.42</em>, 2003. ANSx942.</formattedref><docidentifier>ANSx942</docidentifier></bibitem>
+
+<bibitem id="SP800-135"><formattedref>Dang Q (December 2011) <em>SP800-135r1 Recommendation for Existing Application-Specific Key Derivation Functions Revision 1</em>, December 2011. SP800-135.</formattedref><docidentifier>SP800-135</docidentifier></bibitem>
+</references>
+</annex>
+</nist-standard>

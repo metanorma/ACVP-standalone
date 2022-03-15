@@ -1,0 +1,1718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="presentation" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP Deterministic Random Bit Generator (DRBG) Algorithm JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP Deterministic Random Bit Generator (DRBG) Algorithm JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.DRBG</uri><docidentifier type="NIST">ACVP DRBG Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol DRBG Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.DRBG.r-1.eng</docidentifier><docnumber>DRBG</docnumber><date type="issued"><on>2019-06-05</on></date><contributor><role type="author"/><person>
+<name><completename>Apostol Vassilev</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language current="true">en</language><script current="true">Latn</script><abstract><p>This document defines the JSON schema for testing SP800-90A DRBG implementations with the ACVP specification.</p>
+</abstract><status><stage language="">final</stage><substage language="">active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype language="">standard</doctype></ext></bibdata><localized-strings><localized-string key="scope" language="en">Scope</localized-string><localized-string key="symbolsabbrev" language="en">Symbols and abbreviated terms</localized-string><localized-string key="abbrev" language="en">Abbreviated terms</localized-string><localized-string key="symbols" language="en">Symbols</localized-string><localized-string key="table_of_contents" language="en">Table of contents</localized-string><localized-string key="introduction" language="en">Introduction</localized-string><localized-string key="foreword" language="en">Foreword</localized-string><localized-string key="abstract" language="en">Abstract</localized-string><localized-string key="acknowledgements" language="en">Acknowledgements</localized-string><localized-string key="termsdef" language="en">Terms and definitions</localized-string><localized-string key="termsdefsymbolsabbrev" language="en">Terms, definitions, symbols and abbreviated terms</localized-string><localized-string key="termsdefsymbols" language="en">Terms, definitions and symbols</localized-string><localized-string key="termsdefabbrev" language="en">Terms, definitions and abbreviated terms</localized-string><localized-string key="normref" language="en">References</localized-string><localized-string key="bibliography" language="en">Bibliography</localized-string><localized-string key="preface" language="en">Preface</localized-string><localized-string key="clause" language="en">Section</localized-string><localized-string key="annex" language="en">Appendix</localized-string><localized-string key="appendix" language="en">Appendix</localized-string><localized-string key="no_terms_boilerplate" language="en"><p>No terms and definitions are listed in this document.</p>
+</localized-string><localized-string key="internal_terms_boilerplate" language="en"><p>For the purposes of this document, 
+    the following terms and definitions apply.</p>
+</localized-string><localized-string key="norm_with_refs_pref" language="en">The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</localized-string><localized-string key="norm_empty_pref" language="en">There are no normative references in this document.</localized-string><localized-string key="external_terms_boilerplate" language="en"><p>For the purposes of this document, 
+  the terms and definitions given in % apply.</p>
+</localized-string><localized-string key="internal_external_terms_boilerplate" language="en"><p>For the purposes of this document, the terms and definitions 
+  given in % and the following apply.</p>
+</localized-string><localized-string key="term_defined_in" language="en">[term defined in %]</localized-string><localized-string key="binary_and" language="en">%1 and %2</localized-string><localized-string key="multiple_and" language="en">%1, and %2</localized-string><localized-string key="binary_or" language="en">%1 or %2</localized-string><localized-string key="multiple_or" language="en">%1, or %2</localized-string><localized-string key="chain_and" language="en">%1 and %2</localized-string><localized-string key="chain_or" language="en">%1 or %2</localized-string><localized-string key="chain_from" language="en">%1 from %2</localized-string><localized-string key="chain_to" language="en">%1 to %2</localized-string><localized-string key="note" language="en">NOTE</localized-string><localized-string key="note_xref" language="en">Note</localized-string><localized-string key="termnote" language="en">Note % to entry</localized-string><localized-string key="list" language="en">List</localized-string><localized-string key="deflist" language="en">Definition List</localized-string><localized-string key="figure" language="en">Figure</localized-string><localized-string key="formula" language="en">Formula</localized-string><localized-string key="inequality" language="en">Formula</localized-string><localized-string key="table" language="en">Table</localized-string><localized-string key="requirement" language="en">Requirement</localized-string><localized-string key="recommendation" language="en">Recommendation</localized-string><localized-string key="permission" language="en">Permission</localized-string><localized-string key="key" language="en">Key</localized-string><localized-string key="example" language="en">EXAMPLE</localized-string><localized-string key="example_xref" language="en">Example</localized-string><localized-string key="where" language="en">where</localized-string><localized-string key="wholeoftext" language="en">Whole of text</localized-string><localized-string key="draft_label" language="en">draft</localized-string><localized-string key="inform_annex" language="en">informative</localized-string><localized-string key="norm_annex" language="en">normative</localized-string><localized-string key="modified" language="en">modified</localized-string><localized-string key="deprecated" language="en">DEPRECATED</localized-string><localized-string key="source" language="en">SOURCE</localized-string><localized-string key="and" language="en">and</localized-string><localized-string key="all_parts" language="en">All Parts</localized-string><localized-string key="toc_figures" language="en">List of figures</localized-string><localized-string key="toc_tables" language="en">List of tables</localized-string><localized-string key="toc_recommendations" language="en">List of recommendations</localized-string><localized-string key="month_january" language="en">January</localized-string><localized-string key="month_february" language="en">February</localized-string><localized-string key="month_march" language="en">March</localized-string><localized-string key="month_april" language="en">April</localized-string><localized-string key="month_may" language="en">May</localized-string><localized-string key="month_june" language="en">June</localized-string><localized-string key="month_july" language="en">July</localized-string><localized-string key="month_august" language="en">August</localized-string><localized-string key="month_september" language="en">September</localized-string><localized-string key="month_october" language="en">October</localized-string><localized-string key="month_november" language="en">November</localized-string><localized-string key="month_december" language="en">December</localized-string><localized-string key="obligation" language="en">Obligation</localized-string><localized-string key="subject" language="en">Subject</localized-string><localized-string key="inherits" language="en">Inherits</localized-string><localized-string key="admonition.danger" language="en">Danger</localized-string><localized-string key="admonition.warning" language="en">Warning</localized-string><localized-string key="admonition.caution" language="en">Caution</localized-string><localized-string key="admonition.important" language="en">Important</localized-string><localized-string key="admonition.safety_precautions" language="en">Safety Precautions</localized-string><localized-string key="locality.section" language="en">Section</localized-string><localized-string key="locality.clause" language="en">Clause</localized-string><localized-string key="locality.part" language="en">Part</localized-string><localized-string key="locality.paragraph" language="en">Paragraph</localized-string><localized-string key="locality.chapter" language="en">Chapter</localized-string><localized-string key="locality.page" language="en">Page</localized-string><localized-string key="locality.table" language="en">Table</localized-string><localized-string key="locality.annex" language="en">Annex</localized-string><localized-string key="locality.figure" language="en">Figure</localized-string><localized-string key="locality.example" language="en">Example</localized-string><localized-string key="locality.note" language="en">Note</localized-string><localized-string key="locality.formula" language="en">Formula</localized-string><localized-string key="grammar_abbrevs.masculine" language="en">m</localized-string><localized-string key="grammar_abbrevs.feminine" language="en">f</localized-string><localized-string key="grammar_abbrevs.neuter" language="en">n</localized-string><localized-string key="grammar_abbrevs.common" language="en">common</localized-string><localized-string key="grammar_abbrevs.singular" language="en">sg</localized-string><localized-string key="grammar_abbrevs.dual" language="en">dual</localized-string><localized-string key="grammar_abbrevs.pl" language="en">pl</localized-string><localized-string key="grammar_abbrevs.isPreposition" language="en">prep</localized-string><localized-string key="grammar_abbrevs.isParticiple" language="en">part</localized-string><localized-string key="grammar_abbrevs.isAdjective" language="en">adj</localized-string><localized-string key="grammar_abbrevs.isAdverb" language="en">adv</localized-string><localized-string key="grammar_abbrevs.isNoun" language="en">noun</localized-string><localized-string key="grammar_abbrevs.isVerb" language="en">verb</localized-string><localized-string key="relatedterms.deprecates" language="en">deprecates</localized-string><localized-string key="relatedterms.supersedes" language="en">supersedes</localized-string><localized-string key="relatedterms.narrower" language="en">narrower</localized-string><localized-string key="relatedterms.broader" language="en">broader</localized-string><localized-string key="relatedterms.equivalent" language="en">equivalent</localized-string><localized-string key="relatedterms.compare" language="en">compare</localized-string><localized-string key="relatedterms.contrast" language="en">contrast</localized-string><localized-string key="relatedterms.see" language="en">see</localized-string><localized-string key="Clause.sg" language="en">Clause</localized-string><localized-string key="Clause.pl" language="en">Clauses</localized-string><localized-string key="Annex.sg" language="en">Annex</localized-string><localized-string key="Annex.pl" language="en">Annexes</localized-string><localized-string key="Appendix.sg" language="en">Appendix</localized-string><localized-string key="Appendix.pl" language="en">Appendixes</localized-string><localized-string key="Note.sg" language="en">Note</localized-string><localized-string key="Note.pl" language="en">Notes</localized-string><localized-string key="Note_%_to_entry.sg" language="en">Note % to entry</localized-string><localized-string key="Note_%_to_entry.pl" language="en">Notes % to entry</localized-string><localized-string key="List.sg" language="en">List</localized-string><localized-string key="List.pl" language="en">Lists</localized-string><localized-string key="Figure.sg" language="en">Figure</localized-string><localized-string key="Figure.pl" language="en">Figures</localized-string><localized-string key="Formula.sg" language="en">Formula</localized-string><localized-string key="Formula.pl" language="en">Formulas</localized-string><localized-string key="Table.sg" language="en">Table</localized-string><localized-string key="Table.pl" language="en">Tables</localized-string><localized-string key="Requirement.sg" language="en">Requirement</localized-string><localized-string key="Requirement.pl" language="en">Requirements</localized-string><localized-string key="Recommendation.sg" language="en">Recommendation</localized-string><localized-string key="Recommendation.pl" language="en">Recommendations</localized-string><localized-string key="Permission.sg" language="en">Permission</localized-string><localized-string key="Permission.pl" language="en">Permissions</localized-string><localized-string key="Example.sg" language="en">Example</localized-string><localized-string key="Example.pl" language="en">Examples</localized-string><localized-string key="Part.sg" language="en">Part</localized-string><localized-string key="Part.pl" language="en">Parts</localized-string><localized-string key="Section.sg" language="en">Section</localized-string><localized-string key="Section.pl" language="en">Sections</localized-string><localized-string key="Paragraph.sg" language="en">Paragraph</localized-string><localized-string key="Paragraph.pl" language="en">Paragraphs</localized-string><localized-string key="Chapter.sg" language="en">Chapter</localized-string><localized-string key="Chapter.pl" language="en">Chapters</localized-string><localized-string key="Page.sg" language="en">Page</localized-string><localized-string key="Page.pl" language="en">Pages</localized-string><localized-string key="draft-internal-boilerplate" language="en">This document is currently under development and is <br/><b>NOT INTENDED FOR PUBLIC RELEASE.</b></localized-string><localized-string key="draft-wip-boilerplate" language="en">This document is currently under development. The draft is not yet complete, and organizations should not attempt to implement it. The content is in an early stage of development, rough, incomplete and experimental; it has not been extensively edited or vetted. This provides an insider view of the iterative process to develop the content and it gives NIST an opportunity to share early thoughts, ideas, and approaches with the community. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period.</localized-string><localized-string key="draft-prelim-boilerplate" language="en">This document incorporates comments from the work-in-progress draft. It is a relatively cohesive document and is considered stable, although there are gaps in the content and the overall document is incomplete. Some changes are expected. Organizations may consider experimenting with guidelines, with the understanding that they will identify gaps and challenges. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period; a full public draft is expected to follow.</localized-string><localized-string key="draft-public-boilerplate" language="en">This draft represents a complete document that is released for public comment as part of NIST’s official review process, in support of an open and transparent process for developing guidelines and standards. The language is normalized and is consistent throughout the document. Comments received during previous review cycles (if any) have been adjudicated and are addressed in this release. Early adopters may attempt to implement the guidelines in a test or development environment; however, comments received on this draft may cause NIST to determine that a subsequent public draft and comment period are necessary. The content of this document will not be considered “final” until it is formally published and announced by NIST.</localized-string><localized-string key="withdrawal-pending-boilerplate" language="en">This document has been superseded by the document identified below. It will remain active until the withdrawal date, when it will be officially withdrawn.</localized-string><localized-string key="draft-retired-boilerplate" language="en">The attached draft document has been RETIRED. NIST has discontinued additional development of this document, which is provided here in its entirety for historical purposes.</localized-string><localized-string key="draft-withdrawn-boilerplate" language="en">The attached draft document has been withdrawn, and is provided solely for historical purposes. It has been superseded by the document identified below.</localized-string><localized-string key="publication-withdrawn-boilerplate" language="en">The attached publication has been withdrawn (archived), and is provided solely for historical purposes. It may have been superseded by another publication (indicated below).</localized-string><localized-string key="keywords" language="en">Keywords</localized-string><localized-string key="keywords_intro" language="en"><p>The following are keywords to be used by search engines and document catalogues.</p></localized-string><localized-string key="language" language="en">en</localized-string><localized-string key="script" language="en">Latn</localized-string></localized-strings>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title depth="2">Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title depth="2">Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract" displayorder="1"><title>Abstract</title><p id="_707cd26e-0a51-b504-d3eb-91cbfed1ea60">This document defines the JSON schema for testing SP800-90A DRBG implementations with the ACVP specification.</p>
+</abstract><clause id="_e8489818-e8e8-4999-b76e-c55a69c7b9cf" type="keyword" displayorder="2">
+<title depth="1">Keywords</title>
+<p>The following are keywords to be used by search engines and document catalogues.</p>
+<p>ACVP; cryptography</p></clause>
+<foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative" displayorder="3">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative" displayorder="4">
+<title depth="1">Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative" displayorder="5">
+<title depth="1">Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119">[RFC 2119]</eref> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174">[RFC 8174]</eref> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative" displayorder="6"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative" displayorder="7">
+<title>Executive Summary</title>
+<p id="_88486911-b5ea-c4c7-3f01-b18ae879ccd8">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-90A DRBG implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative" displayorder="8">
+<title depth="1">1.<tab/>Introduction</title>
+<p id="_4f200626-1b43-00e8-6b7f-cc449f77a356">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-90A DRBG implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative" displayorder="9">
+<title depth="1">2.<tab/>Supported DRBGs</title>
+<p id="_87fa4f3f-99e6-3af9-19b3-c1a4a5fbdd6d">The following deterministic random bit generators <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_9c97c024-d9de-7c4e-424b-b1492f48809b"><li><p id="_e5553e9b-1757-b79c-7ba7-0db82eec461d">hashDRBG-SHA-1</p>
+</li>
+<li><p id="_8cbc8bf8-3f85-458b-ca83-18212c4f00b8">hashDRBG-SHA2-224</p>
+</li>
+<li><p id="_e2d8e2a3-01fc-89d2-a9d0-2b951d0af489">hashDRBG-SHA2-256</p>
+</li>
+<li><p id="_77d2efe8-05a1-2439-702f-e612da72384f">hashDRBG-SHA2-384</p>
+</li>
+<li><p id="_957e058c-9cdf-8034-61e7-70f2a7ae2607">hashDRBG-SHA2-512</p>
+</li>
+<li><p id="_c6758bf1-180d-8d02-b665-c4103aac5410">hashDRBG-SHA2-512/224</p>
+</li>
+<li><p id="_b8de8355-cf96-0d7b-8d37-1ffa02acd60e">hashDRBG-SHA2-512/256</p>
+</li>
+<li><p id="_387a1415-2e39-7a92-f58f-548c0263ba33">hmacDRBG-SHA-1</p>
+</li>
+<li><p id="_b9cdee30-5ef9-03a0-bd92-e6b8bff1ac5d">hmacDRBG-SHA2-224</p>
+</li>
+<li><p id="_3b57f3e8-961f-e5b4-ed42-4b4b35e4fb6f">hmacDRBG-SHA2-256</p>
+</li>
+<li><p id="_8e26d037-d6c7-3d1b-a696-d81502db2a09">hmacDRBG-SHA2-384</p>
+</li>
+<li><p id="_0f44c6e0-2d73-fabd-9687-d5c6e25396d5">hmacDRBG-SHA2-512</p>
+</li>
+<li><p id="_8edb3bf6-e1c7-7b2e-5031-8f22a260d182">hmacDRBG-SHA2-512/224</p>
+</li>
+<li><p id="_718aa7e7-5120-1438-1392-2419b1c422a9">hmacDRBG-SHA2-512/256</p>
+</li>
+<li><p id="_6a0ced91-939f-7eeb-26a8-40d0453979d3">ctrDRBG-AES-128</p>
+</li>
+<li><p id="_f6bac432-8277-a49e-3137-be7a55c760d0">ctrDRBG-AES-192</p>
+</li>
+<li><p id="_eaaa14f1-733b-c458-0318-48a88c8032c2">ctrDRBG-AES-256</p>
+</li>
+<li><p id="_c5a0dc92-854d-b42e-8f02-386072f6ef82">ctrDRBG-TDES</p>
+</li>
+</ul>
+
+<clause id="_counter_drbg_triple_des" obligation="normative">
+<title depth="2">2.1.<tab/>Counter DRBG Triple-DES</title>
+<p id="_0198fc26-2b17-5b0b-d6c5-db10cb0fb381">The “ctrDRBG-TDES” mode shall only be used with the three-key option of the Triple-DES algorithm.</p>
+</clause>
+
+<clause id="value_req_per_option" obligation="normative">
+<title depth="2">2.2.<tab/>Supported values per DRBG option</title>
+<p id="_9312bbe7-2528-76e4-b65a-40798ca2380b">DRBG minimum/maximum values for several options such as minimum entropy and nonce, vary depending on the DRBG capabilities registered. The following table depicts those values</p>
+
+<table id="supported_values">
+<name>Table 1 — Supported DRBG Values</name>
+<thead><tr><th valign="top" align="left">DRBG Algorithm</th>
+<th valign="top" align="left">Mode</th>
+<th valign="top" align="left">Derivation Function</th>
+<th valign="top" align="left">Security Strength</th>
+<th valign="top" align="left">Min Entropy</th>
+<th valign="top" align="left">Max Entropy</th>
+<th valign="top" align="left">Max PersoString</th>
+<th valign="top" align="left">Max Addl String</th>
+<th valign="top" align="left">Min Nonce</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">AES128</td>
+<td valign="top" align="left">TRUE</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">64</td>
+</tr><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">AES192</td>
+<td valign="top" align="left">TRUE</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">96</td>
+</tr><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">AES256</td>
+<td valign="top" align="left">TRUE</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">128</td>
+</tr><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">TDES</td>
+<td valign="top" align="left">TRUE</td>
+<td valign="top" align="left">112</td>
+<td valign="top" align="left">112</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">56</td>
+</tr><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">AES128</td>
+<td valign="top" align="left">FALSE</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">0</td>
+</tr><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">AES192</td>
+<td valign="top" align="left">FALSE</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">320</td>
+<td valign="top" align="left">320</td>
+<td valign="top" align="left">320</td>
+<td valign="top" align="left">320</td>
+<td valign="top" align="left">0</td>
+</tr><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">AES256</td>
+<td valign="top" align="left">FALSE</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">384</td>
+<td valign="top" align="left">384</td>
+<td valign="top" align="left">384</td>
+<td valign="top" align="left">384</td>
+<td valign="top" align="left">0</td>
+</tr><tr><td valign="top" align="left">Counter</td>
+<td valign="top" align="left">TDES</td>
+<td valign="top" align="left">FALSE</td>
+<td valign="top" align="left">112</td>
+<td valign="top" align="left">232</td>
+<td valign="top" align="left">232</td>
+<td valign="top" align="left">232</td>
+<td valign="top" align="left">232</td>
+<td valign="top" align="left">0</td>
+</tr><tr><td valign="top" align="left">Hash</td>
+<td valign="top" align="left">SHA1</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">80</td>
+<td valign="top" align="left">80</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">40</td>
+</tr><tr><td valign="top" align="left">Hash</td>
+<td valign="top" align="left">SHA2-224</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">112</td>
+<td valign="top" align="left">112</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">56</td>
+</tr><tr><td valign="top" align="left">Hash</td>
+<td valign="top" align="left">SHA2-256</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">64</td>
+</tr><tr><td valign="top" align="left">Hash</td>
+<td valign="top" align="left">SHA2-384</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">96</td>
+</tr><tr><td valign="top" align="left">Hash</td>
+<td valign="top" align="left">SHA2-512</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">128</td>
+</tr><tr><td valign="top" align="left">Hash</td>
+<td valign="top" align="left">SHA2-512/224</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">112</td>
+<td valign="top" align="left">112</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">56</td>
+</tr><tr><td valign="top" align="left">Hash</td>
+<td valign="top" align="left">SHA2-512/256</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">64</td>
+</tr><tr><td valign="top" align="left">Hmac</td>
+<td valign="top" align="left">SHA1</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">128</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">64</td>
+</tr><tr><td valign="top" align="left">Hmac</td>
+<td valign="top" align="left">SHA2-224</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">96</td>
+</tr><tr><td valign="top" align="left">Hmac</td>
+<td valign="top" align="left">SHA2-256</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">128</td>
+</tr><tr><td valign="top" align="left">Hmac</td>
+<td valign="top" align="left">SHA2-384</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">128</td>
+</tr><tr><td valign="top" align="left">Hmac</td>
+<td valign="top" align="left">SHA2-512</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">128</td>
+</tr><tr><td valign="top" align="left">Hmac</td>
+<td valign="top" align="left">SHA2-512/224</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">192</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">96</td>
+</tr><tr><td valign="top" align="left">Hmac</td>
+<td valign="top" align="left">SHA2-512/256</td>
+<td valign="top" align="left">N/A</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">256</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">65536</td>
+<td valign="top" align="left">128</td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="testtypes" obligation="normative" displayorder="10">
+<title depth="1">3.<tab/>Test Types and Test Coverage</title>
+<p id="_58c6ff0c-e004-6179-c68e-285accbcee36">The ACVP server performs a set of tests on the IUT’s DRBG in order to assess the correctness and robustness of the implementation. A typical ACVP validation session would require multiple tests to be performed for every supported permutation of DRBG capabilities. This section describes the design of the tests used to validate implementations of the DRBG algorithms. There is a single test type for DRBG testing:</p>
+
+<ul id="_ce215a95-1fcc-f1e4-6646-805196501180"><li><p id="_87ceeccd-bada-5480-bcb2-575830a1f4f3">“AFT” — Algorithm Function Test. In the AFT test mode, the IUT <strong>MUST</strong> be capable of injecting the values provided by the ACVP server, into their IUT’s implementation. The IUT is <strong>REQUIRED</strong> to run the DRBG function calls, depending on registration options, as defined in <xref target="tests_table">Table 7</xref></p>
+</li>
+</ul>
+
+<clause id="test_coverage" obligation="normative">
+<title depth="2">3.1.<tab/>Test Coverage</title>
+<p id="_91fdd94c-5c9c-c7ff-3ceb-425cef6b96da">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="SP800-90A" citeas="SP 800-90A">[SP 800-90A]</eref>.</p>
+
+<clause id="requirements_covered" obligation="normative">
+<title depth="3">3.1.1.<tab/>Requirements Covered</title>
+<ul id="_e349f866-747f-ae0a-d9bf-bb67a65626ee"><li><p id="_5c6b0a2e-a994-8e59-58f0-1135af594066">SP 800-90A — 7.1 Entropy Input. The IUT is <strong>REQUIRED</strong> to inject the ACVP server’s provided entropy for testing.</p>
+</li>
+<li><p id="_00e9e229-fda2-1660-b869-d37b02a306d0">SP 800-90A — 7.2 Other Inputs. The IUT is <strong>REQUIRED</strong> to inject the ACVP server’s provided other input information for testing.</p>
+</li>
+<li><p id="_2d3c7486-7faf-39f3-8a0f-223e3b7c6b64">SP 800-90A — 7.3 Internal State. Indirect testing of the IUT’s DRBG internal state <strong>SHALL</strong> be inferred through multiple calls to the DRBG “generate” function.  Multiple calls <strong>SHALL</strong> ensure the internal state is successfully mutated for each “generate” invocation.</p>
+</li>
+<li><p id="_5889e981-e92e-eaa4-f52e-6a5ee8a0fdfc">SP 800-90A — 7.4 The DRBG Mechanism Functions. “Instantiate”, “Generate”, and “Reseed” DRBG functions <strong>SHALL</strong> be tested within the ACVP server’s provided tests.</p>
+</li>
+<li><p id="_32ba90d6-a5c7-41c8-1b8e-ebc735b9a30d">SP 800-90A — 8 DRBG Mechanism Concepts and General Requirements. The ACVP server <strong>SHALL</strong> validate “Instantiate”, “Generate”, and “Reseed” are properly implemented. Reseeding is partially tested through ACVP test vectors through an explicit reseed operation.</p>
+</li>
+<li><p id="_82f5045c-8bc5-d7fe-2acb-4be5b4cfa424">SP 800-90A — 9 DRBG Mechanism Functions. “Instantiate”, “Generate”, and “Reseed” <strong>SHALL</strong> be evaluated as a part of ACVP generated tests.</p>
+</li>
+<li><p id="_1ca07089-f5bd-8078-2a12-b5bf84324fe1">SP 800-90A — 10 DRBG Algorithm Specifications. “Instantiate”, “Generate”, and “Reseed” DRBG functions in scope <strong>SHALL</strong> be tested as per the specifications in this section.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_not_covered" obligation="normative">
+<title depth="3">3.1.2.<tab/>Requirements Not Covered</title>
+<ul id="_8b992cda-1bb3-09a2-46ad-0b0acb75a9d7"><li><p id="_8eebc43f-ca10-47f7-fed4-c19f0267e0ba">SP 800-90A — 7.1 Entropy Input. The ACVP Server <strong>SHALL</strong> provide all instances of randomness to utilize from the IUT’s perspective.  Implementation of the IUT’s RBG <strong>SHALL NOT</strong> be in scope of testing.</p>
+</li>
+<li><p id="_5f581e68-8d56-adf8-761c-20a0694d1b54">SP 800-90A — 7.2 Other Inputs. The ACVP server <strong>SHALL</strong> provide all instances of randomness throughout the IUT’s testing of the DRBG.</p>
+</li>
+<li><p id="_8dd99c44-fc24-2ab7-bbdf-209957bb05e2">SP 800-90A — 7.3 Internal State. Though direct testing of the IUT’s internal state <strong>SHALL NOT</strong> be not performed, the act of testing multiple “generate” outputs from the IUT DRBG helps to ensure a successful IUT implementation.</p>
+</li>
+<li><p id="_b513f201-05ca-0f9e-1b52-4a433806c2b5">SP 800-90A — 7.4 The DRBG Mechanism Functions. “Uninstantiate”, “Health Test” <strong>SHALL NOT</strong> be in scope of testing.</p>
+</li>
+<li><p id="_30f642d2-1043-8e79-ff69-83b3f43e3a6d">SP 800-90A — 8 DRBG Mechanism Concepts and General Requirements. The ACVP server <strong>SHALL NOT</strong> directly validate internal DRBG state. Additionally, DRBG boundaries are out of scope of ACVP testing. Seed construction is performed by the ACVP server, the IUT is <strong>REQUIRED</strong> to utilize the ACVP provided seed (via entropy, inputs, etc) to perform validation testing. Reseeds operations that are performed automatically due to a large number of generate operations, <strong>SHALL NOT</strong> be in scope of ACVP testing.</p>
+</li>
+<li><p id="_1f7306c8-0c26-6db4-470e-0787d8bfe6e8">SP 800-90A — 9 DRBG Mechanism Functions. Error conditions (CATASTROPHIC_ERROR_FLAG or otherwise), reseeding due to end of seed life, uninstantiation, and health checks are out of scope of ACVP tests.</p>
+</li>
+<li><p id="_4bd35950-9ac9-57b2-718e-87c371828dcc">SP 800-90A — 10 DRBG Algorithm Specifications. All previously mentioned DRBG functions that are not in scope — Uninstantiate, Health check, automatic reseed, error conditions — <strong>SHALL NOT</strong> be tested as part of testing.</p>
+</li>
+<li><p id="_b6322c6a-1ac4-fc65-5ad1-d8ff86baa4b0">SP 800-90A — 11 Assurances. Health check and error handling testing <strong>SHALL NOT</strong> be performed within the scope of ACVP testing.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative" displayorder="11">
+<title depth="1">4.<tab/>Capabilities Registration</title>
+<p id="_2beaa0cf-949c-e14c-cc9a-5bf74e88ac3a">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of DRBG algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP">[ACVP]</eref> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title depth="2">4.1.<tab/>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Table 2 — Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json"><name>Figure 1</name>"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="properties" obligation="normative">
+<title depth="2">4.2.<tab/>Property Registration</title>
+<p id="_d4ab7b4f-1e70-7ed3-2d38-bc0d22443637">The SP800-90A DRBG mode capabilities are advertised as JSON objects within the ‘capabilities_exchange’ property.</p>
+</clause>
+
+<clause id="_default_values" obligation="normative">
+<title depth="2">4.3.<tab/>Default values</title>
+<p id="_3a792abc-63f5-3d8f-601a-34cb3faf52ab">ACVP has default values for many of the input parameters for testing the DRBG algorithms.For example, the Entropy Input, Nonce, Personalization String, and Addtional Input parameters have default values. The specific details and restrictions on each of these input lengths is specified in <xref target="value_req_per_option">Section 2.2</xref>, <xref target="capabilities-table">Table 3</xref> and the notes following it. To indicate a preference for using a default value for any of these parameters, the value zero (0) should be set. If the implementation does not support one of these defaults, the corresponding supported bit length values shall be set explicitly.</p>
+</clause>
+
+<clause id="_registration_example" obligation="normative">
+<title depth="2">4.4.<tab/>Registration Example</title>
+<p id="_2351724e-e059-de3f-6d1b-f9a8cc8f06c4">A registration <strong>SHALL</strong> use these properties within each object within the ‘capabilities’ array</p>
+
+<table id="capabilities-table">
+<name>Table 3 — Registration Capability Properties</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The algorithm mode to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">derFuncEnabled</td>
+<td valign="top" align="left">Derivation function option. See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">true/false</td>
+</tr><tr><td valign="top" align="left">entropyInputLen</td>
+<td valign="top" align="left">See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: maximum security strength, Max: XXX</td>
+</tr><tr><td valign="top" align="left">nonceLen</td>
+<td valign="top" align="left">See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: half the maximum security strength, Max: XXX. Set to 0 if not supported</td>
+</tr><tr><td valign="top" align="left">persoStringLen</td>
+<td valign="top" align="left">Personalization string length. See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: maximum security strength, Max: XXX. Set to 0 if not supported</td>
+</tr><tr><td valign="top" align="left">additionalInputLen</td>
+<td valign="top" align="left">See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: maximum security strength, Max: XXX. Set to 0 if not supported</td>
+</tr><tr><td valign="top" align="left">returnedBitsLen</td>
+<td valign="top" align="left">See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left"/></tr></tbody>
+</table>
+
+<p id="_d199bcc2-b067-cd82-afc6-0497a7fdb368">Each DRBG algorithm capability advertised is a self-contained JSON object. The following JSON values are used for DRBG algorithm capabilities:</p>
+
+<table id="caps-table">
+<name>Table 4 — DRBG Algorithm Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Name of the algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">ACVP Test version</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisites of the algorithm</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="prerequisites">Section 4.1</xref></td>
+</tr><tr><td valign="top" align="left">predResistanceEnabled</td>
+<td valign="top" align="left">An implementation that can be used with prediction resistance. See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">array of boolean containing one or two distinct values</td>
+<td valign="top" align="left">[true], [true, false], or [false]</td>
+</tr><tr><td valign="top" align="left">reseedImplemented</td>
+<td valign="top" align="left">Reseeding of the DRBG shall be performed in accordance with the specification for the given DRBG mechanism. See <xref target="capabilities-table">Table 3</xref> notes below</td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">true or false</td>
+</tr></tbody>
+<note id="_eb8a72cb-7696-f8af-7dc3-6ad9996f3ffb"><name>NOTE  1</name><p id="_f6ff5afc-8c9c-e1f5-5f89-39eb0f1160b3">2 If an implementation utilizes a nonce in the construction of a seed during instantiation, the length of the nonce shall be at least half the maximum security strength supported. See Tables 2 and 3 in <eref type="inline" bibitemid="SP800-90A" citeas="SP 800-90A">[SP 800-90A]</eref> for help on choosing appropriate parameter values for the tested DRBG implementation.</p>
+</note><note id="_03399dda-154e-9a8e-e12b-c86491581d0b"><name>NOTE  2</name><p id="_b82a5dd7-7bb3-e3ea-cd7a-f7616c1e3167">3 If an implementation can only be used without prediction resistance, the array ‘predResistanceEnabled’ shall only contain a single ‘false’ element. Implementations that either have prediction resistance always ON or always OFF, the array ‘predResistanceEnabled’ shall contain two distinct elements, ‘true’ and ‘false’. Implementations containing multiple equal array elements for ‘predResistanceEnabled’ will be rejected.</p>
+</note><note id="_9c9f8d79-161d-b85c-fb54-cb3d4a1b7ca9"><name>NOTE  3</name><p id="_a08ae034-3929-fb03-ba83-7c7d17929650">4 For ‘ctrDRBG’ implementations, the ‘derFuncEnabled’ property must be included.</p>
+</note><note id="_5cc715e2-b0e5-7a65-17a3-096ba9e8c022"><name>NOTE  4</name><p id="_687ff6a8-f885-12fd-b869-0de84ed4dc36">5 All DRBGs are tested at their maximum supported security strength so this is the minimum bit length of the entropy input that ACVP will accept. The maximum supported security strength is also the default value for this input. Longer entropy inputs are permitted, with the following exception: for ‘ctrDRBG’ with ‘derFuncEnabled’ set to ‘false’, the ‘entropyInputLen’ must equal the seed length. See Tables 2 and 3 in <eref type="inline" bibitemid="SP800-90A" citeas="SP 800-90A">[SP 800-90A]</eref> for help on choosing appropriate parameter values for the DRBG being tested.</p>
+</note><note id="_9f5630ab-cfbe-662a-d937-68449081acb4"><name>NOTE  5</name><p id="_4660ad8b-9604-3f12-55dc-251a2b674ad1">6 ‘ctrDRBG’ with ‘derFuncEnabled’ set to ‘false’ does not use a nonce; the nonce values, if supplied, will be ignored for this case. The default nonce bit length is one-half the maximum security strength supported by the mechanism/option. See Tables 2 and 3 in <eref type="inline" bibitemid="SP800-90A" citeas="SP 800-90A">[SP 800-90A]</eref> for help on choosing appropriate parameter values for the tested DRBG implementation.</p>
+</note><note id="_c8b93b19-ebc1-6e59-1f8f-d25ad242f512"><name>NOTE  6</name><p id="_21c7ab08-b992-6ab9-978b-2327914fccd9">7 ACVP allows bit length values for ‘persoString’ ranging from the maximum supported security strength except in the case of ‘derFuncEnabled’ set to ‘false’, where the second personalization string length must be less than or equal to the seed length. If the implementation only supports one personalization string length, then set only that value as the range min and max and set the step to 0. If the implementation does not use a ‘persoString’, set all range parameters (min, max, step) to 0. If the implementation can work with and without ‘persoString’, set the min to 0, set the max to at least the maximum supported strength and set the step equal to at least the maximum supported strength to avoid testing lengths less than that. See Tables 2 and 3 in <eref type="inline" bibitemid="SP800-90A" citeas="SP 800-90A">[SP 800-90A]</eref> for help on choosing appropriate parameter values for the tested DRBG implementation.</p>
+</note><note id="_45a97638-bbfc-ba37-cfee-50e23edb16c8"><name>NOTE  7</name><p id="_15db091f-0cf4-7352-6847-08d7cf509d5a">8 The ‘addtionalInput’ configuration and restrictions are the same as those for the ‘persoString’.</p>
+</note></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p id="_43e26e0a-68ed-2f66-9563-11cebd11c519">An example registration within an algorithm capability exchange looks like this</p>
+
+<sourcecode id="_433b3c3a-9691-a59f-4040-96628371310f" lang="json"><name>Figure 2</name>{
+  "algorithm": "ctrDRBG",
+  "revision": "1.0",
+  "predResistanceEnabled": [
+    true,
+    false
+  ],
+  "reseedImplemented": true,
+  "capabilities": [
+    {
+      "mode": "TDES",
+      "derFuncEnabled": true,
+      "entropyInputLen": [
+        232
+      ],
+      "nonceLen": [
+        232
+      ],
+      "persoStringLen": [
+        232
+      ],
+      "additionalInputLen": [
+        232
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "AES-128",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        256
+      ],
+      "nonceLen": [
+        256
+      ],
+      "persoStringLen": [
+        256
+      ],
+      "additionalInputLen": [
+        256
+      ],
+      "returnedBitsLen": 512
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative" displayorder="12">
+<title depth="1">5.<tab/>Test Vectors</title>
+<p id="_0f815abf-15ca-7ae3-30a5-35e6f76ecf71">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SP800-90A DRBG algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Table 5 — Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs">Section 5.1</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json"><name>Figure 3</name>{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title depth="2">5.1.<tab/>Test Groups</title>
+<p id="_c58d990f-9132-4aab-9a3a-307e3d1b406b">The testGroups element at the top level in the test vector JSON object is an array of test	groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped	together. The Test Group JSON object contains meta data that applies to all test vectors within	the group. The following table describes the SP800-90A DRBG JSON elements of the Test Group JSON object</p>
+
+<table id="prompt_group_table">
+<name>Table 6 — Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The mode of the DRBG, see <xref target="supported">Section 2</xref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">derFunc</td>
+<td valign="top" align="left">Use derivation function or not</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">predResistance</td>
+<td valign="top" align="left">Use prediction resistance</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">reSeed</td>
+<td valign="top" align="left">Use reseeding</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">entropyInputLen</td>
+<td valign="top" align="left">Entropy length</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">nonceLen</td>
+<td valign="top" align="left">Nonce length; set to 0 if not used/supported. See also notes after <xref target="capabilities-table">Table 3</xref> above</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">persoStringLen</td>
+<td valign="top" align="left">Personalization string length; set to 0 if not used/supported. See also notes after <xref target="capabilities-table">Table 3</xref> above</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">additonalInputLen</td>
+<td valign="top" align="left">Additional input length; set to 0 if not used/supported. See also notes after <xref target="capabilities-table">Table 3</xref> above</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">returnedBitsLen</td>
+<td valign="top" align="left">returned bits length</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_f65b3b6e-e445-0cd3-5177-8712768b65c2">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes">Section 3</xref>) the group is addressing.<note id="_ba36d39d-a8d6-4c61-6617-324ae708cc5b"><name>NOTE</name><p id="_063d83ce-156c-bd6d-9b23-28716ec5a17b">11 According to SP 800-90A <eref type="inline" bibitemid="SP800-90A" citeas="SP 800-90A">[SP 800-90A]</eref>, a DRBG implementation has two separate controls for determining the correct test procedure for handling addtional entropy and other data in providing prediction resistance assurances. Depending on the capabilities advertised by the predResistanceEnabled and reseedImplemented flags ACVP generates test data according to the following test scenarios:</p>
+</note></p>
+
+
+
+<table id="tests_table">
+<name>Table 7 — Generated Test Data per Scenario</name>
+<thead><tr><th valign="top" align="left">Prediction Resistance Assurance Options</th>
+<th valign="top" align="left">Test Procedure</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">“predResistanceEnabled” : true; “reseedImplemented”: true</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left"/><td valign="top" align="left">Instantiate DRBG</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Generate but don’t output</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Generate output</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Uninstantiate</td>
+</tr><tr><td valign="top" align="left">“predResistanceEnabled” : false; “reseedImplemented” : true</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left"/><td valign="top" align="left">Instantiate DRBG</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Reseed</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Generate but don’t output</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Generate output</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Uninstantiate</td>
+</tr><tr><td valign="top" align="left">“predResistanceEnabled” : true/false; “reseedImplemented”: false</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left"/><td valign="top" align="left">Instantiate DRBG</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Generate but don’t output</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Generate output</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Uninstantiate</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="_test_cases" obligation="normative">
+<title depth="2">5.2.<tab/>Test Cases</title>
+<p id="_d51a2b7a-4a82-a97a-eef1-64fee4b0ec61">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each SP800-90A DRBG test vector.</p>
+
+<table id="cases_table">
+<name>Table 8 — Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case idenfitier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">entropyInput</td>
+<td valign="top" align="left">Entropy value</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">nonce</td>
+<td valign="top" align="left">Value of the nonce</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">persoString</td>
+<td valign="top" align="left">value of the personlization string</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">otherInput</td>
+<td valign="top" align="left">array of additonal input/entropy input value pairs for testing. See <xref target="other_input_table">Table 9</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_b3fd27f5-99f8-cf5a-cfc0-5938805794fa">Each test group contains an array of one or more tests. Each test object contains an otherInput object, which is an array of objects, each with the intendedUse property indicating if the particular test data is to be used for reSeed or generate — see <xref target="tests_table">Table 7</xref>. Each test vector is a JSON object that represents a single test case to be processed by the ACVP client.  The following table describes the JSON elements for each DRBG predcition resistance test vector.</p>
+
+<table id="other_input_table">
+<name>Table 9 — DRBG Predictive Resistance JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">additionalInput</td>
+<td valign="top" align="left">value of the additional input string to use in predition resistance tests</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">entropyInput</td>
+<td valign="top" align="left">value of the entropy input to use in prediction resistance tests</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">intendedUse</td>
+<td valign="top" align="left">“reSeed”, “generate”</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_a799f64a-4101-03eb-8843-426abaf049d8">Here is an abbreviated yet fully constructed example of the prompt</p>
+
+<sourcecode id="_180e2fb0-f81c-9adc-1850-f77634920b7f" lang="json"><name>Figure 4</name>{
+  "vsId": 1,
+  "algorithm": "ctrDRBG",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "derFunc": true,
+      "reSeed": true,
+      "predResistance": true,
+      "entropyInputLen": 256,
+      "nonceLen": 256,
+      "persoStringLen": 256,
+      "additionalInputLen": 256,
+      "returnedBitsLen": 512,
+      "mode": "AES-128",
+      "tests": [
+        {
+          "tcId": 1,
+          "entropyInput": "E9EDA8BF1E6155BDF11AD74E2702004C20B39...",
+          "nonce": "D77D611F0665CBFD7E00D5E5118629F5F40996B764F0...",
+          "persoString": "E9ADEA726418EF002C03DC2196296D4B273AB6...",
+          "otherInput": [
+            {
+              "intendedUse": "generate",
+              "additionalInput": "52F47C6A1B12C202D309D062C3EE09...",
+              "entropyInput": "C30F4C916B90A79B5764DC6FA950B3F34..."
+            },
+            {
+              "intendedUse": "generate",
+              "additionalInput": "4FFDE712D249A99006F46D7070D5CA...",
+              "entropyInput": "8A4724F1514C480DE1604C5D870CFA464..."
+            }
+          ]
+        },
+        {
+          "tcId": 2,
+          "entropyInput": "DC1B4E9B1782A9E701CB2A74EDBDF483462E9...",
+          "nonce": "A5B7D117BDE77D46A65DBD0EBA085C4376C7B72F164E...",
+          "persoString": "D7FC54DD4E759C8D3FCE61463ED40BE130D2B4...",
+          "otherInput": [
+            {
+              "intendedUse": "generate",
+              "additionalInput": "28EFD5114D06D1A065863C50BDD2DE...",
+              "entropyInput": "F5C9DF132A4C066C5D0AFEE79FBC7EB07..."
+            },
+            {
+              "intendedUse": "generate",
+              "additionalInput": "D1AACBAE8BA37208161CBA9042BB92...",
+              "entropyInput": "5C6D2F80696D1691FCA40B0C3444CE927..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative" displayorder="13">
+<title depth="1">6.<tab/>Responses</title>
+<p id="_95e26399-cf6a-e160-2f71-58f636a96e1b">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="response_vector_set_table">
+<name>Table 10 — Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_8d940860-5be5-5322-d1cd-802096fbc183">An example of this is the following</p>
+
+<sourcecode id="_9c6a92e7-abe4-f49a-336f-57e4e20c1d06" lang="json"><name>Figure 5</name>{
+	"acvVersion": "version",
+	"vsId": 1,
+	"testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_c559c8d6-f165-27f7-7003-eb0d0f52da36">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that.</p>
+
+<table id="response_group_table">
+<name>Table 11 — Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_04cadd0e-15a7-eabd-e218-2c25ec5dd0ca">An example of this is the following</p>
+
+<sourcecode id="_2353adb8-baf1-2a31-f0c1-bbd364f2a601" lang="json"><name>Figure 6</name>{
+	"tgId": 1,
+	"tests": [ ... ]
+}</sourcecode>
+
+
+<p id="_650ffbe2-37f1-5792-b175-049a4b229596">The following table describes the JSON object that represents a test case response for a SP800-90A DRBG.</p>
+
+<table id="response_case_table">
+<name>Table 12 — Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">returnedBits</td>
+<td valign="top" align="left">The outputted bits from the DRBG</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_7b4d3c64-728b-1fc5-ae40-036182831868">Here is an abbreviated example of the response</p>
+
+<sourcecode id="_0c939e9b-0cce-0692-aa3f-98e474f46342" lang="json"><name>Figure 7</name>{
+  "vsId": 1,
+  "algorithm": "ctrDRBG",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "returnedBits": "99F0D5740DCAA1ECC4E5329B38B..."
+        },
+        {
+          "tcId": 2,
+          "returnedBits": "62A458CA72C19316A1ECBC3211B..."
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="security" obligation="normative" displayorder="14">
+<title depth="1">7.<tab/>Security Considerations</title>
+<p id="_e00ec061-56a6-9331-9b16-9e2a17a53e3f">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+
+<clause id="app-reg-ex" obligation="normative" displayorder="15">
+<title depth="1">8.<tab/>Example DRBG Capabilities JSON Object</title>
+<p id="_c3fc7990-4fc3-d72f-8cac-9e8e65a66f8b">The following is a example JSON object advertising support for ctrDRBG with TDES and all key sizes of AES.</p>
+
+<figure id="_17ca7957-6845-de7a-8e77-e5caccdc3eb9"><name>Figure 8</name><pre id="_cd174a33-a656-990a-53a5-94a9c0a2c287">{
+  "algorithm": "ctrDRBG",
+  "revision": "1.0",
+  "prereqVals":
+  [
+    {
+      "algorithm": "AES",
+      "valValue": "1234"
+    },
+    {
+      "algorithm": "TDES",
+      "valValue": "5678"
+    }
+  ],
+  "predResistanceEnabled": [
+    true,
+    false
+  ],
+  "reseedImplemented": true,
+  "capabilities": [
+    {
+      "mode": "AES-128",
+      "derFuncEnabled": true,
+      "entropyInputLen": [
+        256
+      ],
+      "nonceLen": [
+        256
+      ],
+      "persoStringLen": [
+        256
+      ],
+      "additionalInputLen": [
+        256
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "AES-192",
+      "derFuncEnabled": true,
+      "entropyInputLen": [
+        320
+      ],
+      "nonceLen": [
+        320
+      ],
+      "persoStringLen": [
+        320
+      ],
+      "additionalInputLen": [
+        320
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "AES-256",
+      "derFuncEnabled": true,
+      "entropyInputLen": [
+        384
+      ],
+      "nonceLen": [
+        384
+      ],
+      "persoStringLen": [
+        384
+      ],
+      "additionalInputLen": [
+        384
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "TDES",
+      "derFuncEnabled": true,
+      "entropyInputLen": [
+        232
+      ],
+      "nonceLen": [
+        232
+      ],
+      "persoStringLen": [
+        232
+      ],
+      "additionalInputLen": [
+        232
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "AES-128",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        256
+      ],
+      "nonceLen": [
+        256
+      ],
+      "persoStringLen": [
+        256
+      ],
+      "additionalInputLen": [
+        256
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "AES-192",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        320
+      ],
+      "nonceLen": [
+        320
+      ],
+      "persoStringLen": [
+        320
+      ],
+      "additionalInputLen": [
+        320
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "AES-256",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        384
+      ],
+      "nonceLen": [
+        384
+      ],
+      "persoStringLen": [
+        384
+      ],
+      "additionalInputLen": [
+        384
+      ],
+      "returnedBitsLen": 512
+    },
+    {
+      "mode": "TDES",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        232
+      ],
+      "nonceLen": [
+        232
+      ],
+      "persoStringLen": [
+        232
+      ],
+      "additionalInputLen": [
+        232
+      ],
+      "returnedBitsLen": 512
+    }
+  ]
+}</pre></figure>
+
+<p id="_e790dfb3-6e5b-cbc2-62a0-a00d3cd3c25a">The following is a example JSON object advertising support for hashDRBG with various SHA sizes. Note that in this example the implementation works with or without additional input and personalization data.</p>
+
+<figure id="_173cb017-3976-2fc2-30f8-cb7f325a9145"><name>Figure 9</name><pre id="_b57f7f55-a5d8-d000-7e4d-aa1b335cbbdc">{
+  "algorithm": "hashDRBG",
+  "revision": "1.0",
+  "prereqVals":
+  [
+    {
+      "algorithm": "AES",
+      "valValue": "1234"
+    },
+    {
+      "algorithm": "SHA",
+      "valValue": "5678"
+    }
+  ],
+  "predResistanceEnabled": [
+    true,
+    false
+  ],
+  "reseedImplemented": true,
+  "capabilities": [
+    {
+      "mode": "SHA-1",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        160
+      ],
+      "nonceLen": [
+        160
+      ],
+      "persoStringLen": [
+        160
+      ],
+      "additionalInputLen": [
+        160
+      ],
+      "returnedBitsLen": 640
+    },
+    {
+      "mode": "SHA2-224",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        224
+      ],
+      "nonceLen": [
+        224
+      ],
+      "persoStringLen": [
+        224
+      ],
+      "additionalInputLen": [
+        224
+      ],
+      "returnedBitsLen": 896
+    },
+    {
+      "mode": "SHA2-256",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        256
+      ],
+      "nonceLen": [
+        256
+      ],
+      "persoStringLen": [
+        256
+      ],
+      "additionalInputLen": [
+        256
+      ],
+      "returnedBitsLen": 1024
+    },
+    {
+      "mode": "SHA2-384",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        384
+      ],
+      "nonceLen": [
+        384
+      ],
+      "persoStringLen": [
+        384
+      ],
+      "additionalInputLen": [
+        384
+      ],
+      "returnedBitsLen": 1536
+    },
+    {
+      "mode": "SHA2-512",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        512
+      ],
+      "nonceLen": [
+        512
+      ],
+      "persoStringLen": [
+        512
+      ],
+      "additionalInputLen": [
+        512
+      ],
+      "returnedBitsLen": 2048
+    },
+    {
+      "mode": "SHA2-512/224",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        224
+      ],
+      "nonceLen": [
+        224
+      ],
+      "persoStringLen": [
+        224
+      ],
+      "additionalInputLen": [
+        224
+      ],
+      "returnedBitsLen": 896
+    },
+    {
+      "mode": "SHA2-512/256",
+      "derFuncEnabled": false,
+      "entropyInputLen": [
+        256
+      ],
+      "nonceLen": [
+        256
+      ],
+      "persoStringLen": [
+        256
+      ],
+      "additionalInputLen": [
+        256
+      ],
+      "returnedBitsLen": 1024
+    }
+  ]
+}</pre></figure>
+</clause>
+
+<clause id="app-vs-ex" obligation="normative" displayorder="16">
+<title depth="1">9.<tab/>Example Test Vectors JSON Object</title>
+<p id="_97d2dfb9-66c1-691e-fd8b-537719badfba">The following is a example JSON object for ctrDRBG test vectors sent from the ACVP server to the crypto module.</p>
+
+<figure id="_79488c87-7372-c643-c452-55ee53760ff7"><name>Figure 10</name><pre id="_4d2a4c60-8494-3755-5077-444c0bb1d533">[
+  { "acvVersion": &#x3c;acvp-version&#x3e; },
+  { "vectorSetId": 1133,
+    "algorithm": "ctrDRBG",
+    "mode": "TDES",
+    "revision": "1.0",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "derFunc": true,
+        "predResistance": true,
+        "reSeed": true,
+        "entropyInputLen": 112,
+        "nonceLen": 56,
+        "persoStringLen": 112,
+        "additionalInputLen": 112,
+        "returnedBitsLen": 256,
+        "tests": [
+          {
+            "tcId": 1815,
+            "entropyInput":"78aac2cb444594e2...",
+            "nonce":"41ef9c67ffe438",
+            "persoString":"b8e84de200a9239a0...",
+            "otherInput" : [
+               { "intendedUse" : "generate",
+                 "additionalInput":"f1e8edf0...",
+                 "entropyInput": "6cd4096638..."},
+              { "intendedUse" : "generate",
+                "additionalInput" : "f535773...",
+                "entropyInput" : "a0cdf5c1c6..."}
+              ]
+            },
+          {
+            "tcId": 1816,
+            "entropyInput" : "b8ab88b9c5fda8...",
+            "nonce": "f1bcc6ff60dd37",
+            "persoString" : "018c1f9d22f3c7f...",
+            "otherInput" : [
+               {"intendedUse" : "generate",
+                "additionalInput" : "356a6e9...",
+                "entropyInput" : "bed693401b..."},
+               {"intendedUse" : "generate",
+                "additionalInput" : "4321b3a...",
+                "entropyInput" : "a632ef16f2..."}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]</pre></figure>
+
+<p id="_30293846-3413-f077-a121-52b8225e9c52">The following is a example JSON object for hmacDRBG test vectors sent from the ACVP server to the crypto module.</p>
+
+<figure id="_a46a1892-9b83-ade7-1ea7-c5b8a96a84f7"><name>Figure 11</name><pre id="_cd7ae6b6-283e-2ab5-8159-b8df043e0287" alt="">[
+  { "acvVersion": &#x3c;acvp-version&#x3e; },
+  { "vectorSetId": 1146,
+    "algorithm": "hmacDRBG",
+    "mode": "AES-256",
+    "revision": "1.0",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "predResistance": true,
+        "reSeed": false,
+        "entropyInputLen": 256,
+        "nonceLen": 128,
+        "persoStringLen": 256,
+        "additionalInputLen": 256,
+        "returnedBitsLen": 1024,
+        "tests": [
+          {
+            "tcId": 2111,
+            "entropyInput": "ee3392c5f3de6f3...",
+            "nonce": "b991a820fac75fd02642ad...",
+            "persoString": "30f3a50b0e2309da...",
+            "otherInput" : [
+               {"intendedUse" : "generate",
+                 "additionalInput":"4ea46abe...",
+                 "entropyInput": "e4413a2e40..."},
+               {"intendedUse" : "generate",
+                "additionalInput" : "61b7204...",
+                "entropyInput" : "968ea185d1..."}
+              ]
+            },
+          {
+            "tcId": 2112,
+            "entropyInput" : "a0ace75784b972...",
+            "nonce": "b671308068fc7909a360c7...",
+            "persoString" : "338d5f2bd93262d...",
+            "otherInput" : [
+               {"intendedUse" : "generate",
+                "additionalInput" : "7acd8bf...",
+                "entropyInput" : "47b26bbe93..."},
+               {"intendedUse" : "generate",
+                "additionalInput" : "d4b24c7...",
+                "entropyInput" : "acb63f3b59..."}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]</pre></figure>
+
+<p id="_6ee61429-9f33-c361-20ef-b6de2fb08072">The following is a example JSON object for hashDRBG test vectors sent from the ACVP server to the crypto module. In this example the implementation is tested without additional input and personalization data.</p>
+
+<figure id="_025443ff-495c-2d97-cb71-8c0479b75c60"><name>Figure 12</name><pre id="_1d6c4353-3441-ff7a-2720-74380deb7588">[
+  { "acvVersion": &#x3c;acvp-version&#x3e; },
+  { "vectorSetId": 1156,
+    "algorithm": "hashDRBG",
+    "mode": "SHA2-256",
+    "revision": "1.0",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "predResistance": true,
+        "reSeed": false,
+        "entropyInputLen": 256,
+        "nonceLen": 128,
+        "persoStringLen": 0,
+        "additionalInputLen": 0,
+        "returnedBitsLen": 1024,
+        "tests": [
+          {
+            "tcId": 2151,
+            "entropyInput": "ae0a3acd541d0d5...",
+            "nonce": "786f03ad697332d74fad7a...",
+            "persoString": "",
+            "otherInput" : [
+                 {"intendedUse" : "generate",
+                  "additionalInput": "",
+                  "entropyInput": "4852aed7c..."},
+                 {"intendedUse" : "generate",
+                  "additionalInput" : "",
+                  "entropyInput" : "8b8a35a1..."}
+              ]
+            },
+          {
+            "tcId": 2152,
+            "entropyInput" : "26d8c9a9b982cd...",
+            "nonce": "36dff124f908a95a022edf...",
+            "persoString" : "",
+            "otherInput" : [
+               {"intendedUse" : "generate",
+                "additionalInput" : "",
+                "entropyInput" : "648bbdc4d4..."},
+               {"intendedUse" : "generate",
+                "additionalInput" : "",
+                "entropyInput" : "fff51d05b1..."}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]</pre></figure>
+
+<p id="_1f394cd5-7d44-4bdb-de8a-10ed3e3903e5">The following is a example JSON object for hashDRBG test vectors sent from the ACVP server to the crypto module. In this example the implementation is tested with “predResistance”: false, “reSeed”: true options.</p>
+
+<figure id="_a48e7dc5-24f7-924b-dcf0-6148d20d61a2"><name>Figure 13</name><pre id="_0b0c0f85-9f4f-40f8-5aba-c6b0ab353a2a">[
+  { "acvVersion": &#x3c;acvp-version&#x3e; },
+  { "vectorSetId": 1157,
+    "algorithm": "hashDRBG",
+    "mode": "SHA2-256",
+    "revision": "1.0",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "predResistance": false,
+        "reSeed": true,
+        "entropyInputLen": 256,
+        "nonceLen": 128,
+        "persoStringLen": 256,
+        "additionalInputLen": 256,
+        "returnedBitsLen": 1024,
+        "tests": [
+          {
+            "tcId": 3151,
+            "entropyInput": "860d051cedbb935...",
+            "nonce": "5813070f9774d21e644d64...",
+            "persoString": "545ba29faf1bb1bf...",
+            "otherInput" : [
+                 {"intendedUse" : "reSeed",
+                   "additionalInput": "95b08...",
+                  "entropyInput": "2e92955b1..."},
+                 {"intendedUse" : "generate",
+                   "additionalInput" : "ddfa...",
+                  "entropyInput" : ""},
+                 {"intendedUse" : "generate",
+                  "additionalInput" : "edb88...",
+                  "entropyInput" : ""}
+              ]
+            },
+          {
+            "tcId": 3152,
+            "entropyInput" : "371d2944c9ace6...",
+            "nonce": "4bb34ab1e882d97687c3f8...",
+            "persoString" : "c5b03354a9fad34...",
+            "otherInput" : [
+               {"intendedUse" : "reSeed",
+                "additionalInput" : "6e3fa8e...",
+                "entropyInput" : "afd7e6b0b4..."},
+               {"intendedUse" : "generate",
+                "additionalInput" : "deb8ed5...",
+                "entropyInput" : ""},
+               {"intendedUse" : "generate",
+                "additionalInput" : "a554bb9...",
+                "entropyInput" : ""}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]</pre></figure>
+
+<p id="_608486db-1262-9e18-8462-cf04af8dc765">The following is a example JSON object for hashDRBG test vectors sent from the ACVP server to the crypto module. In this example the implementation is tested with “predResistance”: false, “reSeed”: false options.</p>
+
+<figure id="_729af582-7d52-cb38-b91a-eecff0c2e0be"><name>Figure 14</name><pre id="_165bf782-0c5a-0ae8-4db7-176e944afd0e">[
+  { "acvVersion": &#x3c;acvp-version&#x3e; },
+  { "vectorSetId": 1167,
+    "algorithm": "hashDRBG",
+    "mode": "SHA2-256",
+    "revision": "1.0",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "predResistance": false,
+        "reSeed": false,
+        "entropyInputLen": 256,
+        "nonceLen": 128,
+        "persoStringLen": 256,
+        "additionalInputLen": 256,
+        "returnedBitsLen": 1024,
+        "tests": [
+          {
+            "tcId": 4151,
+            "entropyInput": "090db63c22de171...",
+            "nonce": "6f7c6bec9825079cabd947...",
+            "persoString": "c2f1a59806197792...",
+            "otherInput" : [
+                 {"intendedUse" : "generate",
+                  "additionalInput": "3fc72d...",
+                  "entropyInput": ""},
+                 {"intendedUse" : "generate",
+                  "additionalInput" : "968a3...",
+                  "entropyInput" : ""}
+              ]
+            },
+          {
+            "tcId": 4152,
+            "entropyInput" : "bd0e2dbba872bb...",
+            "nonce": "a97dfbaea505a3e36210a8...",
+            "persoString" : "7d0de87d097551f...",
+            "otherInput" : [
+               {"intendedUse" : "generate",
+                "additionalInput" : "fe1adf1...",
+                "entropyInput" : ""},
+               {"intendedUse" : "generate",
+                "additionalInput" : "1df719a...",
+                "entropyInput" : ""}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]</pre></figure>
+</clause>
+
+<clause id="app-results-ex" obligation="normative" displayorder="17">
+<title depth="1">10.<tab/>Example Test Results JSON Object</title>
+<p id="_07f3aead-f8f1-13f6-61a3-409a0d08fcd3">The following is a example JSON object for ctrDRBG with TDES test results sent from the crypto module to the ACVP server.</p>
+
+<figure id="_a9609a47-fc61-c426-8664-f280a63e05ee"><name>Figure 15</name><pre id="_7e61849f-0d8d-0ace-1aac-a039ecd7c03f">[{
+    "acvVersion": &#x3c;acvp-version&#x3e;
+  },
+  {
+    "vectorSetId": 1133,
+    "testGroups": [{
+        "tgId": 1,
+        "tests": [{
+            "tcId": 1815,
+            "returnedBits ": "4565e85447af71..."
+          },
+          {
+            "tcId": 1816,
+            "returnedBits": "b67acc3b2231ec5..."
+          }
+        ]
+      }
+    ]
+  }
+]</pre></figure>
+
+<p id="_91cffffd-4c75-4af9-277d-29634b7ec248">The following is a example JSON object for HMAC_DRBG test results sent from the crypto module to the ACVP server.</p>
+
+<figure id="_db42f62a-8fa2-58d5-0368-8d8ba6134272"><name>Figure 16</name><pre id="_453919f9-4134-25b4-b412-30445d9293f3">[{
+    "acvVersion": &#x3c;acvp-version&#x3e;
+  },
+  {
+    "vectorSetId": 1146,
+    "testGroups": [{
+      "tgId": 1,
+      "tests": [{
+          "tcId": 2111,
+          "returnedBits": "e42130fd1d920a2bc..."
+        },
+        {
+          "tcId": 2112,
+          "returnedBits": "495b2a0de6b5fc454..."
+        }
+      ]
+    }]
+  }
+]</pre></figure>
+
+<p id="_7974c5df-b82d-e19f-3bb3-14f8d88d6c5e">The following is a example JSON object for hashDRBG test results sent from the crypto module to the ACVP server.</p>
+
+<figure id="_6f7736d1-e04f-1a7c-0d6b-8abd0d48ebe1"><name>Figure 17</name><pre id="_4636349f-e6c5-4e37-c8e3-99d21957adb0">[{
+    "acvVersion": &#x3c;acvp-version&#x3e;
+  },
+  {
+    "vectorSetId": 1156,
+    "testGroups": [{
+      "tgId": 1,
+      "tests": [{
+          "tcId": 2151,
+          "returnedBits ": "1af967534c670271..."
+        },
+        {
+          "tcId": 2152,
+          "returnedBits": "8a74a8c31ea4e6e62..."
+        }
+      ]
+    }]
+  }
+]</pre></figure>
+
+<p id="_74b287af-6213-1fb7-d612-15b09fa58ae3">The following is a example JSON object for hashDRBG test results sent from the crypto module to the ACVP server.</p>
+
+<figure id="_a783251f-6681-febb-3065-5f0a58fa4dbf"><name>Figure 18</name><pre id="_fe5aab24-d250-2a2c-f0a3-7fb583132a16">[{
+    "acvVersion": &#x3c;acvp-version&#x3e;
+  },
+  {
+    "vectorSetId": 1157,
+    "testGroups": [{
+      "tgId": 1,
+      "tests": [{
+          "tcId": 3151,
+          "returnedBits ": "0eadc82746890ee0..."
+        },
+        {
+          "tcId": 3152,
+          "returnedBits": "6452be2ee730d7245..."
+        }
+      ]
+    }]
+  }
+]</pre></figure>
+
+<p id="_cdf7b3f8-a8a7-c48f-d933-a8cb44bc1186">The following is a example JSON object for hashDRBG test results sent from the crypto module to the ACVP server.</p>
+
+<figure id="_ce4afe72-688b-880a-f033-2358f0b03109"><name>Figure 19</name><pre id="_da7ccd1a-97cf-9492-7738-933113e998b2">[{
+    "acvVersion": &#x3c;acvp-version&#x3e;
+  },
+  {
+    "vectorSetId": 1167,
+    "testGroups": [{
+      "tgId": 1,
+      "tests": [{
+          "tcId": 4151,
+          "returnedBits ": "5dbfd26651bc7159..."
+        },
+        {
+          "tcId": 4152,
+          "returnedBits": "ff3cce0b5585172b1..."
+        }
+      ]
+    }]
+  }
+]</pre></figure>
+</clause>
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative" displayorder="18">
+<title xref="Appendix A"><strong>Appendix A</strong> — <strong>Terminology</strong></title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><title>A.1.</title><term id="term-prompt"><name>A.1.1.</name><preferred><strong>Prompt</strong></preferred>
+<definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></definition>
+ </term>
+
+<term id="term-registration"><name>A.1.2.</name><preferred><strong>Registration</strong></preferred>
+<definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></definition>
+ </term>
+
+<term id="term-response"><name>A.1.3.</name><preferred><strong>Response</strong></preferred>
+<definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></definition>
+ </term>
+
+<term id="term-test-case"><name>A.1.4.</name><preferred><strong>Test Case</strong></preferred>
+<definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-group"><name>A.1.5.</name><preferred><strong>Test Group</strong></preferred>
+<definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-vector-set"><name>A.1.6.</name><preferred><strong>Test Vector Set</strong></preferred>
+<definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></definition>
+ </term>
+
+<term id="term-validation"><name>A.1.7.</name><preferred><strong>Validation</strong></preferred>
+<definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative" displayorder="19">
+<title xref="Appendix B"><strong>Appendix B</strong> — <strong>Abbreviations and Acronyms</strong></title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative" displayorder="20">
+<title xref="Appendix C"><strong>Appendix C</strong> — <strong>Revision History</strong></title>
+<table id="_479c87ad-1122-2fff-56e3-1ae94f21d1bc"><name>Table C-1</name><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_34eda5c8-1e1a-ca3d-fcf3-1e36f1a455ab">2019-06-05</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_88aca039-f93c-8be1-f1fc-1e19a206535b" obligation="normative" displayorder="21">
+<title xref="Appendix D"><strong>Appendix D</strong> — <strong>References</strong></title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard"><formattedref>S. Bradner (March 1997) <em>Key words for use in RFCs to Indicate Requirement Levels</em> (Internet Engineering Task Force),  BCP 14, March 1997. RFC 2119. RFC RFC2119. DOI 10.17487/RFC2119. https://www.rfc-editor.org/info/rfc2119.</formattedref><docidentifier type="RFC" primary="true">RFC 2119</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC2119</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC2119</docidentifier></bibitem>
+ <bibitem id="RFC7991" type="standard"><formattedref>P. Hoffman (December 2016) <em>The “xml2rfc” Version 3 Vocabulary</em> (Internet Engineering Task Force),  RFC 7991, December 2016. RFC 7991. RFC RFC7991. DOI 10.17487/RFC7991. https://www.rfc-editor.org/info/rfc7991.</formattedref><docidentifier type="RFC" primary="true">RFC 7991</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC7991</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC7991</docidentifier></bibitem>
+ <bibitem id="RFC8174" type="standard"><formattedref>B. Leiba (May 2017) <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em> (Internet Engineering Task Force),  BCP 14, May 2017. RFC 8174. RFC RFC8174. DOI 10.17487/RFC8174. https://www.rfc-editor.org/info/rfc8174.</formattedref><docidentifier type="RFC" primary="true">RFC 8174</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC8174</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC8174</docidentifier></bibitem>
+ <bibitem id="SP800-90A" type="standard"><formattedref>Elaine B. Barker, John M. Kelsey (January 2012) <em>Recommendation for Random Number Generation Using Deterministic Random Bit Generators</em> (Gaithersburg, MD), January 2012. SP 800-90A. https://doi.org/10.6028/NIST.SP.800-90A.</formattedref><docidentifier type="NIST" primary="true">SP 800-90A</docidentifier></bibitem>
+
+<bibitem id="ACVP"><formattedref>Fussell B, Vassilev A, Booth H, Celi C, Hammett R (July 01, 2019) <em>Automatic Cryptographic Validation Protocol</em> (National Institute of Standards and Technology, Gaithersburg, MD), July 01, 2019.</formattedref><docidentifier>ACVP</docidentifier></bibitem>
+</references>
+</annex>
+</nist-standard>

@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP TLS Key Derivation Function JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP TLS Key Derivation Function JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KDF-TLS-V1.3</uri><docidentifier type="NIST">ACVP KDF-TLS-V1.3 Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KDF-TLS-V1.3 Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KDF-TLS-V1.3.r-1.eng</docidentifier><docnumber>KDF-TLS-V1.3</docnumber><date type="issued"><on>2019-06-05</on></date><contributor><role type="author"/><person>
+<name><completename>Russell Hammett</completename></name>
+<affiliation><organization>
+<name>HII Technical Solutions Division</name>
+<address><formattedAddress>302 Sentinel Drive, Suite #300, Annapolis Junction, MD 20701</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing RFC8446 TLS v1.3 KDF implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_abd2d0af-1e08-aa30-b3b5-c1ac5415c335">This document defines the JSON schema for testing RFC8446 TLS v1.3 KDF implementations with the ACVP specification.</p>
+</abstract><foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative">
+<title>Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative">
+<title>Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174"/> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative">
+<title>Executive Summary</title>
+<p id="_00211c2e-df33-a8ac-1232-895f730efd98">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing RFC8446 TLS v1.3 KDF implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_43222b77-aaab-595d-24db-478f1ecea77f">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing RFC8446 TLS v1.3 KDF implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative">
+<title>Supported KDFs</title>
+<p id="_c1c22e5d-d403-aeba-a2e1-2341b8a93d2d">The following key derivation functions <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_ec292203-9348-0cfa-0e0e-4a48b8353488"><li><p id="_a5ffdf8b-c376-fb20-1030-facc3681c422">TLS-v1.3 / KDF / RFC8446</p>
+</li>
+</ul>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_bfff5a0f-a130-304f-61ea-28524c887cb3">This section describes the design of the tests used to validate RFC8446 TLS v1.3 KDF implementations.</p>
+
+<clause id="_test_types" obligation="normative">
+<title>Test Types</title>
+<p id="_5a25a245-8d2f-3a35-8965-d7b7ec444096">There is only one test type: functional tests. Each has a specific value to be used in the testType field. The testType field definition is:</p>
+
+<ul id="_c65d6def-c4e0-bb0e-671f-3078b40bc3ff"><li><p id="_2b863b84-f187-a522-8552-3598a279568d">“AFT” — Algorithm Functional Test. These tests can be processed by the client using a normal ‘derive_key’ operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the key deriviation process are operating correctly.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_test_coverage" obligation="normative">
+<title>Test Coverage</title>
+<p id="_4e103605-93a8-9c52-0928-fada46603fc6">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="RFC8446" citeas="RFC 8446"/>.</p>
+
+<clause id="coverage" obligation="normative">
+<title>Requirements Covered</title>
+<ul id="_3c138871-aea5-d59b-87ce-d31fa5cc78ee"><li><p id="_76ffc406-01f6-4c36-bce6-3fd44d313c73">RFC8446 — 7.1 Key Schedule.  This section of the document encapsulates the bulk of ACVP testing; any functions involved in the computation of the TLS v1.3 KDF <strong>SHALL BE</strong> tested as a part of the vector set.  Note that message construction that is defined by the protocol for messages such as ClientHello, ServerHello, etc <strong>SHALL NOT</strong> be within the scope of ACVP testing.</p>
+</li>
+<li><p id="_e92b87a4-a820-e28b-069e-c16b612103e4">RFC8446 — 4.4.1 The Transcript Hash.  The transcript hash is used within section 7.1 for deriving keying material and as such <strong>SHALL BE</strong> tested as a part of ACVP testing.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="not-coverage" obligation="normative">
+<title>Requirements Not Covered</title>
+<ul id="_55ef4470-547f-f6df-16f9-9e4ec547e6fd"><li><p id="_be235756-f65a-fa73-7008-3ecba39983ff">RFC8446 — ACVP testing for the TLS v1.3 KDF is done to ensure proper implementation of the KDF portion of the RFC; as such TLS protocol specific pieces are not tested.  Protocol specific construction of messages such as the ClientHello, ServerHello, etc <strong>SHALL NOT</strong> be within the scope of ACVP testing.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_db47524b-a54f-5d13-6fa1-483060e13334">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of TLS v1.3 KDF algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="properties" obligation="normative">
+<title>Property Registration</title>
+</clause>
+
+<clause id="registration" obligation="normative">
+<title>Registration Example</title>
+<p id="_60a0b67a-3ede-30ac-f9ae-fc3f0c7b6039">A registration <strong>SHALL</strong> use these properties</p>
+
+<table id="_e1cd8a0e-f719-1836-1140-ac8990e1bb05">
+<name>TLS Registration JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Name of the algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“TLS-v1.3”</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode of the algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“KDF”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">ACVP Test version</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“RFC8446”</td>
+</tr><tr><td valign="top" align="left">hmacAlg</td>
+<td valign="top" align="left">HMAC functions supported</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="valid-hmac"/></td>
+</tr><tr><td valign="top" align="left">runningMode</td>
+<td valign="top" align="left">The supported key exchange modes for the KDF <link target="https://tools.ietf.org/html/rfc8446#section-2"/></td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="valid-runningMode"/></td>
+</tr></tbody>
+</table>
+
+<clause id="valid-hmac" obligation="normative">
+<title>Valid HMAC Functions</title>
+<p id="_72bc9fcc-0385-f38e-70f0-6f0f2f0d1d1f">The following hash functions <strong>MAY</strong> be advertised by an ACVP compliant client under the ‘hmacAlg’ property</p>
+
+<ul id="_a28d311c-7c1f-8a28-0580-1cabfaa1c08e"><li><p id="_6ed83971-46de-5ee8-720c-d8fb0149ebbf">SHA2-256</p>
+</li>
+<li><p id="_33a106df-989f-120d-a1ad-44e324a1b125">SHA2-384</p>
+</li>
+</ul>
+</clause>
+
+<clause id="valid-runningMode" obligation="normative">
+<title>Valid Running Modes</title>
+<p id="_d915d9ae-a3ef-f610-819b-9f4661761561">The KDF modes <strong>MAY</strong> be advertised by an ACVP compliant client under the ‘runningMode’ property</p>
+
+<ul id="_9c3f04a5-bc07-ad51-3f57-73e40aaecc57"><li><p id="_a84e9cb0-fb92-7e0c-c5d0-32a501cfc16e">PSK</p>
+</li>
+<li><p id="_57288d8b-2f32-62e5-8280-345dcf398a76">DHE</p>
+</li>
+<li><p id="_b3595983-c943-d81f-3128-a9d4d47555a2">PSK-DHE</p>
+</li>
+</ul>
+
+<p id="_a8247682-b5b2-2b9c-9c27-1e03dc29ad30">An example registration within an algorithm capability exchange looks like this</p>
+
+<sourcecode id="_28f932ff-25c3-83e9-9f89-9c905c027691" lang="json">{
+  "algorithm": "TLS-v1.3",
+  "mode": "KDF",
+  "revision": "RFC8446",
+  "hmacAlg": [
+    "SHA2-256",
+    "SHA2-384",
+    ],
+  "runningMode": [
+    "PSK-DHE"
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_43ba6f31-7ec8-1a15-92bf-cfd4b6ad9153">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with RFC8446 TLS v1.3 KDF algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title>Test Groups</title>
+<p id="_4164bfd8-bc8c-034b-84f5-f35da88ffff8">The testGroups element at the top level in the test vector JSON object is an array of test  groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the RFC8446 TLS v1.3 KDF JSON elements of the Test Group JSON object</p>
+
+<table id="_02aa3a1b-5f91-4c76-64c3-07a8c189e071">
+<name>Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test operations to be performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hmacAlg</td>
+<td valign="top" align="left">SHA version used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">runningMode</td>
+<td valign="top" align="left">The key exchange mode used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_f6ad9232-292b-8f26-72cc-a69a652ea555">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes"/>) the group is addressing.</p>
+</clause>
+
+<clause id="_test_cases" obligation="normative">
+<title>Test Cases</title>
+<p id="_f5637552-3130-2463-9da0-8b9a15ff6b43">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RFC8446 TLS v1.3 KDF test vector.</p>
+
+<table id="_2ae58d23-7af1-09e3-2485-c42674d61b36">
+<name>Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">psk</td>
+<td valign="top" align="left">Random pre-shared key, included for PSK and PSK-DHE running modes.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">dhe</td>
+<td valign="top" align="left">Random Diffie-Hellman shared secret, included for DHE and PSK-DHE running modes.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">helloClientRandom</td>
+<td valign="top" align="left">Randomly generated Client Hello message</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">helloServerRandom</td>
+<td valign="top" align="left">Randomly generated Server Hello message</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">finishedClientRandom</td>
+<td valign="top" align="left">Randomly generated Client Finished message</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">finishedServerRandom</td>
+<td valign="top" align="left">Randomly generated Server Finished message</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_37ec8a44-f0b5-03e5-6fb0-f3f38bb0422e">Note that when the PSK or DHE are not included in the test case, it is assumed they are the digest size of the group’s hash set to zero.  As an example, for a test group using SHA2-256, with a running mode of “DHE”, the “PSK” would be represented by a BitString of 256 bits or 32 bytes, all being “0”.</p>
+
+<p id="_04635531-02fd-8133-c5b0-bb25084a58bb">Here is an abbreviated yet fully constructed example of the prompt.</p>
+
+<sourcecode id="_04ef2460-2a06-9ba6-3f25-5f92d5b766a3" lang="json">{
+    "vsId": 1,
+    "algorithm": "TLS-v1.3",
+    "mode": "KDF",
+    "revision": "RFC8446",
+    "testGroups": [
+        {
+            "tgId": 1,
+            "testType": "AFT",
+            "hmacAlg": "SHA2-256",
+            "runningMode": "PSK-DHE",
+            "tests": [{
+                "tcId": 1,
+                "psk": "C2A39E5D172C7D147B5FD3752E4C0840EDDF7C5684B00E7B1AA20B7F56CF64F1EE05",
+                "dhe": "EE6ADDBC8BDF014254051D78D7A0ECE35AAB230024647E871B375C257E23FC814235",
+                "helloClientRandom": "7613AA5EAC7D233CCFF764C95D22B6BB026C087DF017E04C5AF6F0E2C1C9E3FA134F",
+                "helloServerRandom": "A1CDA1FC4A72BF85FAEC964AF1CBB421BA1FD683513C24D11EE0B0092190C729ECD4",
+                "finishedClientRandom": "F77C6488E63463FEDACA4CEF38F66E1957BDCB1F9A6719029F75590687487AF7F235",
+                "finishedServerRandom": "9B562F22963D4A9C96DA93A1E3AA5F88A48CA7A0EA92D293AA7C72AD9A71A4DF911B"
+            }]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative">
+<title>Responses</title>
+<p id="_95e26399-cf6a-e160-2f71-58f636a96e1b">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="_a460042b-04df-9eef-9647-d5499abc8408">
+<name>Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_8d940860-5be5-5322-d1cd-802096fbc183">An example of this is the following</p>
+
+<sourcecode id="_51f993f6-452f-22d4-475a-a2a74dd64189" lang="json">{
+    "acvVersion": "version",
+    "vsId": 1,
+    "testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_c559c8d6-f165-27f7-7003-eb0d0f52da36">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that.</p>
+
+<table id="_86c2307a-fe22-ac24-e27b-66e5ce986557">
+<name>Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_04cadd0e-15a7-eabd-e218-2c25ec5dd0ca">An example of this is the following</p>
+
+<sourcecode id="_88758155-8302-6439-bd0c-6be6ee4131b3" lang="json">{
+    "tgId": 1,
+    "tests": [ ... ]
+}</sourcecode>
+
+
+<p id="_434719d3-6143-0e3c-ad1a-7dec15a3d408">The following table describes the JSON object that represents a test case response for a RFC8446 TLS v1.3 KDF.</p>
+
+<table id="_58b2a625-97ff-b64b-880b-409a472d6533">
+<name>Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">clientEarlyTrafficSecret</td>
+<td valign="top" align="left">The client early traffic secret. <tt>Derive-Secret(., "c e traffic", ClientHello)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">earlyExporterMasterSecret</td>
+<td valign="top" align="left">The early exporter master secret. <tt>Derive-Secret(., "e exp master", ClientHello)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">clientHandshakeTrafficSecret</td>
+<td valign="top" align="left">The client handshake traffic secret. <tt>Derive-Secret(., "c hs traffic", ClientHello…​ServerHello)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">serverHandshakeTrafficSecret</td>
+<td valign="top" align="left">The server handshake traffic secret. <tt>Derive-Secret(., "s hs traffic", ClientHello…​ServerHello)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">clientApplicationTrafficSecret</td>
+<td valign="top" align="left">The client application traffic secret. <tt>Derive-Secret(., "c ap traffic", ClientHello…​server Finished)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">serverApplicationTrafficSecret</td>
+<td valign="top" align="left">The server application traffic secret. <tt>Derive-Secret(., "s ap traffic", ClientHello…​server Finished)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">exporterMasterSecret</td>
+<td valign="top" align="left">The exporter master secret. <tt>Derive-Secret(., "exp master", ClientHello…​server Finished)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">resumptionMasterSecret</td>
+<td valign="top" align="left">The resumption master secret. <tt>Derive-Secret(., "res master", ClientHello…​client Finished)</tt></td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_7b4d3c64-728b-1fc5-ae40-036182831868">Here is an abbreviated example of the response</p>
+
+<sourcecode id="_e1d675a1-6d5e-fd00-1e3f-1eaf66f778c8" lang="json">{
+  "vsId": 1,
+  "testGroups": [{
+    "tgId": 1,
+    "tests": [{
+      "tcId": 1,
+      "clientEarlyTrafficSecret": "6C4A2365493D1AF0F654D59A181EDD2510205F6AE3F22B6EE765B8208C99C66C",
+      "earlyExporterMasterSecret": "3C7204D21F2C10CD744915221CD46B8CF914E5E3124C87A822959C4EB58F13B9",
+      "clientHandshakeTrafficSecret": "C017D71DB97422E10BF950C1B530AB754A11D4FCF562DDBB47EE6DBAAD72CBA3",
+      "serverHandshakeTrafficSecret": "42D17CF61E98CA182AF677E13D40EA513627D950156BC8D80E749AB789930DE7",
+      "clientApplicationTrafficSecret": "52E4E879CA4AA2314AE5F2CCF3870BA879AE2644DB96BEC71493ADEAEE8EA121",
+      "serverApplicationTrafficSecret": "D4D3C87A5B5F165E90807BA7954734BA733668E9858CCE3F34B1A3E4965681F8",
+      "exporterMasterSecret": "7880C0A3BC51A1B2FE4013DB481B17B3D0A1DC6C3688EB178BF6FCD3D306AE9A",
+      "resumptionMasterSecret": "753DB3A1743DAA17AE52E2B6AA6E00AA07DA46111A43653325C98D69079E7BF4"
+    }]
+  }]
+}</sourcecode>
+
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_e00ec061-56a6-9331-9b16-9e2a17a53e3f">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_479c87ad-1122-2fff-56e3-1ae94f21d1bc"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_34eda5c8-1e1a-ca3d-fcf3-1e36f1a455ab">2019-06-05</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_c4e84c81-fe69-da06-08bc-286d710c45fd" obligation="normative">
+<title>References</title>
+<references id="_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_2bab08b0-cffa-4fba-6e5f-d8efafb006ab">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+ <bibitem id="RFC8446" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The Transport Layer Security (TLS) Protocol Version 1.3</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8446.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8446</uri>  <docidentifier type="RFC" primary="true">RFC 8446</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8446</docidentifier>  <docidentifier type="DOI">10.17487/RFC8446</docidentifier>  <docnumber>RFC8446</docnumber>  <date type="published">    <on>2018-08</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">E. Rescorla</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_7c2e3c28-f8ef-a5af-daea-c9bd8f98f5d1">This document specifies version 1.3 of the Transport Layer Security (TLS) protocol. TLS allows client/server applications to communicate over the Internet in a way that is designed to prevent eavesdropping, tampering, and message forgery.</p>
+    <p id="_f398ff33-e4f1-61bf-5077-6fbd10c00672">This document updates RFCs 5705 and 6066, and obsoletes RFCs 5077, 5246, and 6961. This document also specifies new requirements for TLS 1.2 implementations.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8446</number>  </series></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

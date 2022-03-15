@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP IANA Registry</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP IANA Registry</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.IANA</uri><docidentifier type="NIST">ACVP IANA Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol IANA Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.IANA.r-1.eng</docidentifier><docnumber>IANA</docnumber><date type="issued"><on>2019-06-05</on></date><contributor><role type="author"/><person>
+<name><completename>Apostol Vassilev</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines a set of IANA registries for supported cryptographic algorithm test specifications in the Automated Cryptographic Validation Protocol (ACVP) <eref type="inline" bibitemid="ACVP" citeas="ACVP"/>. This document also shows how to extend the capabilities of ACVP with testing for new cryptographic algorithms.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_a331ef5d-9bd0-c3e8-073e-8907f3216dcc">This document defines a set of IANA registries for supported cryptographic algorithm test specifications in the Automated Cryptographic Validation Protocol (ACVP) <eref type="inline" bibitemid="ACVP" citeas="ACVP"/>. This document also shows how to extend the capabilities of ACVP with testing for new cryptographic algorithms.</p>
+</abstract><acknowledgements id="Acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_02338b06-6366-97ef-dd0e-c0a6c5aa0ec3">Many thanks to David Waltermire for his helpful comments to get us started on the right path.</p>
+</acknowledgements></preface><sections>
+<clause id="_introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_61f3c1ff-f1b0-16d5-2c87-5a6817bddfdb">The Automated Cryptographic Validation Protocol (ACVP) <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> defines a mechanism to automatically validate the cryptographic algorithm implementations of software or hardware cryptographic modules. The ACVP specification defines how a cryptographic module communicates with a validation authority server, including cryptographic capabilities negotiation, session management, authentication, test vector processing and more.  The ACVP specification does not define algorithm-specific JSON constructs for performing the cryptographic validation.  A series of ACVP-related sub-specifications define the constructs for testing individual cryptographic algorithms, see for example <eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/>. Each such sub-specification addresses a specific algorithm or a class of cryptographic algorithms. This document defines the IANA registry for the supported algorithm test specifications that work with ACVP. The registry defined here provides the binding between the protocol and the supported algorithm test extensions.</p>
+</clause>
+
+<clause id="namespaces" obligation="normative">
+<title>IANA namespaces</title>
+<p id="_25cd20c6-a701-2443-af2f-a2671e52ac74">There are three namespaces envisioned for extensions to the ACVP:</p>
+
+<ul id="_5dfb3726-b8a5-c9fe-d763-175834c50834"><li><p id="_4464aa42-1bb6-a0d9-28f9-7349403baae1">ACVP — the approved algorithms for testing with one or more validation authorities</p>
+</li>
+<li><p id="_ec89ab02-e663-1cf8-82d4-fa14a8218c3a">EXPERIMENTAL — candidate algorithms for approval.</p>
+</li>
+<li><p id="_4520b9ce-47dd-8571-a5a9-a24824712097">LOCAL — locally supported algorithms, not guaranteed for interoperability. Algorithms in this namespace cannot be registered with IANA.</p>
+</li>
+</ul>
+
+<p id="_774e17ec-f40a-4bfa-651f-7243f42fad1c">TBD</p>
+</clause>
+
+<clause id="algoTaxonomy" obligation="normative">
+<title>Algorithm Registry</title>
+<p id="_d6d4d143-da2d-ea88-2712-872c101b3b95">Each entry in the algorithm registry must record the following fields:</p>
+
+<ul id="_72f0b73e-4026-a95c-a8c9-95bedee6c9fb"><li><p id="_2ebdeda5-3fda-c832-b905-5a0338ebc64b">Name: a URN segment that conforms to the pattern {namespace}-{algorithm}. The keywords are defined as follows:</p>
+<ul id="_222f6e8a-cfb5-2add-7537-c9e40d188390"><li><p id="_3ad66242-4a37-4eb7-9747-b9645c3c7fe1">{namespace}: one of the options from <xref target="namespaces"/>.</p>
+</li>
+<li><p id="_33c14e0f-1d5a-69ba-55aa-0b7c70a70a5e">{algorithm}: a required US-ASCII string that conforms to the URN syntax requirements (see <eref type="inline" bibitemid="RFC8141" citeas="RFC 8141"/>). This string must be unique within the corresponding namespace.</p>
+</li>
+</ul>
+</li>
+<li><p id="_c2109e16-081a-21ee-0073-0fa7ed3cdf2f">Revision: the revision identifier for the test specification of a particular algorithm. A required US-ASCII string that conforms to the URN syntax requirements (see <eref type="inline" bibitemid="RFC8141" citeas="RFC 8141"/>).</p>
+</li>
+<li><p id="_e3c3dd68-2038-c17b-9cbe-471d3b84fbd5">Reference: A static link to the specification and section where the definition of the parameter can be found.</p>
+</li>
+</ul>
+
+<clause id="table_algorithms" obligation="normative">
+<title>Initial Algorithm Registry Names</title>
+<table id="_1cb038b3-4a3d-39e6-691d-126e6a5c9d6b"><thead><tr><th valign="top" align="left">Name</th>
+<th valign="top" align="center">Revision</th>
+<th valign="top" align="center">Reference</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">“ACVP-AES-ECB”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-CBC”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-OFB”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-CFB1”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-CFB8”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-CFB128”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-CTR”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-GCM”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-CCM”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-XPN”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-CMAC”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-GMAC”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-KW”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-KWP”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-AES-XTS”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-ECB”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-CBC”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-OFB”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-CFB1”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-CFB8”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-CFB64”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-CTR”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr><tr><td valign="top" align="left">“ACVP-TDES-KW”</td>
+<td valign="top" align="center">“1.0”</td>
+<td valign="top" align="center"><eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/></td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="_requirements_language" obligation="normative">
+<title>Requirements Language</title>
+<p id="_be0e217f-97fe-d567-ee8b-73eb9f0aa71d">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted in <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/>.</p>
+</clause>
+
+
+<clause id="IANA" obligation="normative">
+<title>IANA Considerations</title>
+<p id="_e75e2c8e-904a-3c78-70cb-13153539c672">This memo includes several requests to IANA.</p>
+
+<clause id="IANA2" obligation="normative">
+<title>ACVP URN Sub-namespace</title>
+<p id="_921226a0-8b31-3685-9130-98cd8d296a9a">IANA should add an entry to the “IETF URN Sub-namespace for Registered Protocol Parameter Identifiers” registry located at <link target="https://www.iana.org/assignments/params/"/> as per <eref type="inline" bibitemid="RFC3553" citeas="RFC 3553"/>.</p>
+
+<p id="_b124b913-7b7f-cd50-b2e1-68d87a6c4ef5">The entry should be as follows:</p>
+
+<ul id="_9cca2f7b-3bae-3fca-6dad-98b41d18649a"><li><p id="_be473de1-4893-197f-3c25-5541e4519dfd">Registered Parameter Identifier: ACVP</p>
+</li>
+<li><p id="_89da581e-e6ce-9f7e-4542-98aeb7743311">Specification: this document</p>
+</li>
+<li><p id="_8c5b064b-07cc-86a8-5095-83c3a3265aad">Repository: ACVP URN Parameters (see <xref target="ACVPParams"/>)</p>
+</li>
+</ul>
+</clause>
+
+<clause id="ACVPParams" obligation="normative">
+<title>ACVP URN Parameters</title>
+<p id="_21a884de-7ecd-99aa-79df-8415c2725a70">A new top-level registry should be created, titled “Automated Cryptographic Validation Protocol (ACVP) URN Parameters”. Registration in the “ACVP URN Parameters” registry is via the Specification Required policy <eref type="inline" bibitemid="RFC8126" citeas="RFC 8126"/>.  Registration requests must be sent to both the ACVP Working Group mailing list (<link target="mailto:acvp@ietf.org"/>) and IANA.  IANA will forward registration requests to the Designated Expert.</p>
+
+<p id="_7ec26951-27a8-988b-e15a-a87e5c074d63">Each entry in this subregistry must record the following fields:</p>
+
+<ul id="_1b22f7d7-44ec-d2e4-8c1d-24f817c6073b"><li><p id="_8fae168f-207b-d445-6760-9ca992311206">Name: A required US-ASCII string that conforms to the URN syntax requirements (see <eref type="inline" bibitemid="RFC8141" citeas="RFC 8141"/>). This string MUST be constructed according to the specification in <xref target="algoTaxonomy"/>. Note: entries from the namespace “LOCAL” SHALL be forbidden from this table.</p>
+</li>
+<li><p id="_8e764658-56a3-0cd0-27d2-1f5c5923fc7d">Revision: A required US-ASCII string that conforms to the URN syntax requirements (see <eref type="inline" bibitemid="RFC8141" citeas="RFC 8141"/>). The combination {Name}-1 for each entry MUST be unique for the entire subregistry.</p>
+</li>
+<li><p id="_f39d85fe-84bb-a0fa-e4e3-74a1796c111e">Reference: A static link to the specification and section where the definition of the parameter can be found.</p>
+</li>
+</ul>
+
+<p id="_0f631224-2a3a-5030-ec49-b84432f74bc3">This repository SHALL have as initial values the entries in <xref target="table_algorithms"/>.</p>
+</clause>
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_ab11c217-6fd1-e390-e3e9-d6c836793a3a">Security considerations are addressed by the ACVP specification.</p>
+</clause>
+
+
+</sections><annex id="_ff515bfb-396b-1249-dc24-25d6b6d8fd48" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_603f4302-3ed3-eb82-0400-5a63f88d2c36">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC3553" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">An IETF URN Sub-namespace for Registered Protocol Parameters</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.3553.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc3553</uri>  <docidentifier type="RFC" primary="true">RFC 3553</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC3553</docidentifier>  <docidentifier type="DOI">10.17487/RFC3553</docidentifier>  <docnumber>RFC3553</docnumber>  <date type="published">    <on>2003-06</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">M. Mealling</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">L. Masinter</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">T. Hardie</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">G. Klyne</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_7a2a379d-27a9-40a2-efeb-211220711397">This document describes a new sub-delegation for the ‘ietf’ URN namespace for registered protocol items. The ‘ietf’ URN namespace is defined in RFC 2648 as a root for persistent URIs that refer to IETF- defined resources. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>73</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>3553</number>  </series></bibitem>
+ <bibitem id="RFC8126" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Guidelines for Writing an IANA Considerations Section in RFCs</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8126.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8126</uri>  <docidentifier type="RFC" primary="true">RFC 8126</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8126</docidentifier>  <docidentifier type="DOI">10.17487/RFC8126</docidentifier>  <docnumber>RFC8126</docnumber>  <date type="published">    <on>2017-06</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">M. Cotton</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">T. Narten</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_173befd7-9118-a1c9-0bd5-9cd24dc18599">Many protocols make use of points of extensibility that use constants to identify various protocol parameters. To ensure that the values in these fields do not have conflicting uses and to promote interoperability, their allocations are often coordinated by a central record keeper. For IETF protocols, that role is filled by the Internet Assigned Numbers Authority (IANA).</p>
+    <p id="_be001e28-1b5a-0f0f-b1bc-de9abac91d4c">To make assignments in a given registry prudently, guidance describing the conditions under which new values should be assigned, as well as when and how modifications to existing values can be made, is needed. This document defines a framework for the documentation of these guidelines by specification authors, in order to assure that the provided guidance for the IANA Considerations is clear and addresses the various issues that are likely in the operation of a registry.</p>
+    <p id="_839c23e0-4838-1492-fab2-ed21777ce44d">This is the third edition of this document; it obsoletes RFC 5226.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>26</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8126</number>  </series></bibitem>
+ <bibitem id="RFC8141" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Uniform Resource Names (URNs)</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8141.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8141</uri>  <docidentifier type="RFC" primary="true">RFC 8141</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8141</docidentifier>  <docidentifier type="DOI">10.17487/RFC8141</docidentifier>  <docnumber>RFC8141</docnumber>  <date type="published">    <on>2017-04</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Saint-Andre</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">J. Klensin</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_bc01cee3-f5c8-e88c-7fa6-0139c302a9da">A Uniform Resource Name (URN) is a Uniform Resource Identifier (URI) that is assigned under the “urn” URI scheme and a particular URN namespace, with the intent that the URN will be a persistent, location-independent resource identifier. With regard to URN syntax, this document defines the canonical syntax for URNs (in a way that is consistent with URI syntax), specifies methods for determining URN-equivalence, and discusses URI conformance. With regard to URN namespaces, this document specifies a method for defining a URN namespace and associating it with a namespace identifier, and it describes procedures for registering namespace identifiers with the Internet Assigned Numbers Authority (IANA). This document obsoletes both RFCs 2141 and 3406.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8141</number>  </series></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+
+<bibitem id="sub-symmetric">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">ACVP Symmetric Algorithm JSON Specification</title>
+  <title type="main" format="text/plain">ACVP Symmetric Algorithm JSON Specification</title>
+  <docidentifier>ACVP-Symmetric</docidentifier>
+  <date type="published">
+    <on>2020-12-10</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

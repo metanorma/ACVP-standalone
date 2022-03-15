@@ -1,0 +1,1702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="presentation" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP Message Authentication Algorithm JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP Message Authentication Algorithm JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.MAC</uri><docidentifier type="NIST">ACVP MAC Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol MAC Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.MAC.r-1.eng</docidentifier><docnumber>MAC</docnumber><date type="issued"><on>2018-08-01</on></date><contributor><role type="author"/><person>
+<name><completename>Barry Fussell</completename></name>
+<affiliation><organization>
+<name>Cisco Systems, Inc.</name>
+<address><formattedAddress>170 West Tasman Drive, San Jose, California</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="author"/><person>
+<name><completename>Russell Hammett</completename></name>
+<affiliation><organization>
+<name>G2, Inc.</name>
+<address><formattedAddress>302 Sentinel Drive, Suite #300, Annapolis Junction, MD 20701</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language current="true">en</language><script current="true">Latn</script><abstract><p>This document defines the JSON schema for testing HMAC, CMAC, and GMAC implementations with the ACVP specification.</p>
+</abstract><status><stage language="">final</stage><substage language="">active</substage></status><copyright><from>2018</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype language="">standard</doctype></ext></bibdata><localized-strings><localized-string key="scope" language="en">Scope</localized-string><localized-string key="symbolsabbrev" language="en">Symbols and abbreviated terms</localized-string><localized-string key="abbrev" language="en">Abbreviated terms</localized-string><localized-string key="symbols" language="en">Symbols</localized-string><localized-string key="table_of_contents" language="en">Table of contents</localized-string><localized-string key="introduction" language="en">Introduction</localized-string><localized-string key="foreword" language="en">Foreword</localized-string><localized-string key="abstract" language="en">Abstract</localized-string><localized-string key="acknowledgements" language="en">Acknowledgements</localized-string><localized-string key="termsdef" language="en">Terms and definitions</localized-string><localized-string key="termsdefsymbolsabbrev" language="en">Terms, definitions, symbols and abbreviated terms</localized-string><localized-string key="termsdefsymbols" language="en">Terms, definitions and symbols</localized-string><localized-string key="termsdefabbrev" language="en">Terms, definitions and abbreviated terms</localized-string><localized-string key="normref" language="en">References</localized-string><localized-string key="bibliography" language="en">Bibliography</localized-string><localized-string key="preface" language="en">Preface</localized-string><localized-string key="clause" language="en">Section</localized-string><localized-string key="annex" language="en">Appendix</localized-string><localized-string key="appendix" language="en">Appendix</localized-string><localized-string key="no_terms_boilerplate" language="en"><p>No terms and definitions are listed in this document.</p>
+</localized-string><localized-string key="internal_terms_boilerplate" language="en"><p>For the purposes of this document, 
+    the following terms and definitions apply.</p>
+</localized-string><localized-string key="norm_with_refs_pref" language="en">The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</localized-string><localized-string key="norm_empty_pref" language="en">There are no normative references in this document.</localized-string><localized-string key="external_terms_boilerplate" language="en"><p>For the purposes of this document, 
+  the terms and definitions given in % apply.</p>
+</localized-string><localized-string key="internal_external_terms_boilerplate" language="en"><p>For the purposes of this document, the terms and definitions 
+  given in % and the following apply.</p>
+</localized-string><localized-string key="term_defined_in" language="en">[term defined in %]</localized-string><localized-string key="binary_and" language="en">%1 and %2</localized-string><localized-string key="multiple_and" language="en">%1, and %2</localized-string><localized-string key="binary_or" language="en">%1 or %2</localized-string><localized-string key="multiple_or" language="en">%1, or %2</localized-string><localized-string key="chain_and" language="en">%1 and %2</localized-string><localized-string key="chain_or" language="en">%1 or %2</localized-string><localized-string key="chain_from" language="en">%1 from %2</localized-string><localized-string key="chain_to" language="en">%1 to %2</localized-string><localized-string key="note" language="en">NOTE</localized-string><localized-string key="note_xref" language="en">Note</localized-string><localized-string key="termnote" language="en">Note % to entry</localized-string><localized-string key="list" language="en">List</localized-string><localized-string key="deflist" language="en">Definition List</localized-string><localized-string key="figure" language="en">Figure</localized-string><localized-string key="formula" language="en">Formula</localized-string><localized-string key="inequality" language="en">Formula</localized-string><localized-string key="table" language="en">Table</localized-string><localized-string key="requirement" language="en">Requirement</localized-string><localized-string key="recommendation" language="en">Recommendation</localized-string><localized-string key="permission" language="en">Permission</localized-string><localized-string key="key" language="en">Key</localized-string><localized-string key="example" language="en">EXAMPLE</localized-string><localized-string key="example_xref" language="en">Example</localized-string><localized-string key="where" language="en">where</localized-string><localized-string key="wholeoftext" language="en">Whole of text</localized-string><localized-string key="draft_label" language="en">draft</localized-string><localized-string key="inform_annex" language="en">informative</localized-string><localized-string key="norm_annex" language="en">normative</localized-string><localized-string key="modified" language="en">modified</localized-string><localized-string key="deprecated" language="en">DEPRECATED</localized-string><localized-string key="source" language="en">SOURCE</localized-string><localized-string key="and" language="en">and</localized-string><localized-string key="all_parts" language="en">All Parts</localized-string><localized-string key="toc_figures" language="en">List of figures</localized-string><localized-string key="toc_tables" language="en">List of tables</localized-string><localized-string key="toc_recommendations" language="en">List of recommendations</localized-string><localized-string key="month_january" language="en">January</localized-string><localized-string key="month_february" language="en">February</localized-string><localized-string key="month_march" language="en">March</localized-string><localized-string key="month_april" language="en">April</localized-string><localized-string key="month_may" language="en">May</localized-string><localized-string key="month_june" language="en">June</localized-string><localized-string key="month_july" language="en">July</localized-string><localized-string key="month_august" language="en">August</localized-string><localized-string key="month_september" language="en">September</localized-string><localized-string key="month_october" language="en">October</localized-string><localized-string key="month_november" language="en">November</localized-string><localized-string key="month_december" language="en">December</localized-string><localized-string key="obligation" language="en">Obligation</localized-string><localized-string key="subject" language="en">Subject</localized-string><localized-string key="inherits" language="en">Inherits</localized-string><localized-string key="admonition.danger" language="en">Danger</localized-string><localized-string key="admonition.warning" language="en">Warning</localized-string><localized-string key="admonition.caution" language="en">Caution</localized-string><localized-string key="admonition.important" language="en">Important</localized-string><localized-string key="admonition.safety_precautions" language="en">Safety Precautions</localized-string><localized-string key="locality.section" language="en">Section</localized-string><localized-string key="locality.clause" language="en">Clause</localized-string><localized-string key="locality.part" language="en">Part</localized-string><localized-string key="locality.paragraph" language="en">Paragraph</localized-string><localized-string key="locality.chapter" language="en">Chapter</localized-string><localized-string key="locality.page" language="en">Page</localized-string><localized-string key="locality.table" language="en">Table</localized-string><localized-string key="locality.annex" language="en">Annex</localized-string><localized-string key="locality.figure" language="en">Figure</localized-string><localized-string key="locality.example" language="en">Example</localized-string><localized-string key="locality.note" language="en">Note</localized-string><localized-string key="locality.formula" language="en">Formula</localized-string><localized-string key="grammar_abbrevs.masculine" language="en">m</localized-string><localized-string key="grammar_abbrevs.feminine" language="en">f</localized-string><localized-string key="grammar_abbrevs.neuter" language="en">n</localized-string><localized-string key="grammar_abbrevs.common" language="en">common</localized-string><localized-string key="grammar_abbrevs.singular" language="en">sg</localized-string><localized-string key="grammar_abbrevs.dual" language="en">dual</localized-string><localized-string key="grammar_abbrevs.pl" language="en">pl</localized-string><localized-string key="grammar_abbrevs.isPreposition" language="en">prep</localized-string><localized-string key="grammar_abbrevs.isParticiple" language="en">part</localized-string><localized-string key="grammar_abbrevs.isAdjective" language="en">adj</localized-string><localized-string key="grammar_abbrevs.isAdverb" language="en">adv</localized-string><localized-string key="grammar_abbrevs.isNoun" language="en">noun</localized-string><localized-string key="grammar_abbrevs.isVerb" language="en">verb</localized-string><localized-string key="relatedterms.deprecates" language="en">deprecates</localized-string><localized-string key="relatedterms.supersedes" language="en">supersedes</localized-string><localized-string key="relatedterms.narrower" language="en">narrower</localized-string><localized-string key="relatedterms.broader" language="en">broader</localized-string><localized-string key="relatedterms.equivalent" language="en">equivalent</localized-string><localized-string key="relatedterms.compare" language="en">compare</localized-string><localized-string key="relatedterms.contrast" language="en">contrast</localized-string><localized-string key="relatedterms.see" language="en">see</localized-string><localized-string key="Clause.sg" language="en">Clause</localized-string><localized-string key="Clause.pl" language="en">Clauses</localized-string><localized-string key="Annex.sg" language="en">Annex</localized-string><localized-string key="Annex.pl" language="en">Annexes</localized-string><localized-string key="Appendix.sg" language="en">Appendix</localized-string><localized-string key="Appendix.pl" language="en">Appendixes</localized-string><localized-string key="Note.sg" language="en">Note</localized-string><localized-string key="Note.pl" language="en">Notes</localized-string><localized-string key="Note_%_to_entry.sg" language="en">Note % to entry</localized-string><localized-string key="Note_%_to_entry.pl" language="en">Notes % to entry</localized-string><localized-string key="List.sg" language="en">List</localized-string><localized-string key="List.pl" language="en">Lists</localized-string><localized-string key="Figure.sg" language="en">Figure</localized-string><localized-string key="Figure.pl" language="en">Figures</localized-string><localized-string key="Formula.sg" language="en">Formula</localized-string><localized-string key="Formula.pl" language="en">Formulas</localized-string><localized-string key="Table.sg" language="en">Table</localized-string><localized-string key="Table.pl" language="en">Tables</localized-string><localized-string key="Requirement.sg" language="en">Requirement</localized-string><localized-string key="Requirement.pl" language="en">Requirements</localized-string><localized-string key="Recommendation.sg" language="en">Recommendation</localized-string><localized-string key="Recommendation.pl" language="en">Recommendations</localized-string><localized-string key="Permission.sg" language="en">Permission</localized-string><localized-string key="Permission.pl" language="en">Permissions</localized-string><localized-string key="Example.sg" language="en">Example</localized-string><localized-string key="Example.pl" language="en">Examples</localized-string><localized-string key="Part.sg" language="en">Part</localized-string><localized-string key="Part.pl" language="en">Parts</localized-string><localized-string key="Section.sg" language="en">Section</localized-string><localized-string key="Section.pl" language="en">Sections</localized-string><localized-string key="Paragraph.sg" language="en">Paragraph</localized-string><localized-string key="Paragraph.pl" language="en">Paragraphs</localized-string><localized-string key="Chapter.sg" language="en">Chapter</localized-string><localized-string key="Chapter.pl" language="en">Chapters</localized-string><localized-string key="Page.sg" language="en">Page</localized-string><localized-string key="Page.pl" language="en">Pages</localized-string><localized-string key="draft-internal-boilerplate" language="en">This document is currently under development and is <br/><b>NOT INTENDED FOR PUBLIC RELEASE.</b></localized-string><localized-string key="draft-wip-boilerplate" language="en">This document is currently under development. The draft is not yet complete, and organizations should not attempt to implement it. The content is in an early stage of development, rough, incomplete and experimental; it has not been extensively edited or vetted. This provides an insider view of the iterative process to develop the content and it gives NIST an opportunity to share early thoughts, ideas, and approaches with the community. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period.</localized-string><localized-string key="draft-prelim-boilerplate" language="en">This document incorporates comments from the work-in-progress draft. It is a relatively cohesive document and is considered stable, although there are gaps in the content and the overall document is incomplete. Some changes are expected. Organizations may consider experimenting with guidelines, with the understanding that they will identify gaps and challenges. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period; a full public draft is expected to follow.</localized-string><localized-string key="draft-public-boilerplate" language="en">This draft represents a complete document that is released for public comment as part of NIST’s official review process, in support of an open and transparent process for developing guidelines and standards. The language is normalized and is consistent throughout the document. Comments received during previous review cycles (if any) have been adjudicated and are addressed in this release. Early adopters may attempt to implement the guidelines in a test or development environment; however, comments received on this draft may cause NIST to determine that a subsequent public draft and comment period are necessary. The content of this document will not be considered “final” until it is formally published and announced by NIST.</localized-string><localized-string key="withdrawal-pending-boilerplate" language="en">This document has been superseded by the document identified below. It will remain active until the withdrawal date, when it will be officially withdrawn.</localized-string><localized-string key="draft-retired-boilerplate" language="en">The attached draft document has been RETIRED. NIST has discontinued additional development of this document, which is provided here in its entirety for historical purposes.</localized-string><localized-string key="draft-withdrawn-boilerplate" language="en">The attached draft document has been withdrawn, and is provided solely for historical purposes. It has been superseded by the document identified below.</localized-string><localized-string key="publication-withdrawn-boilerplate" language="en">The attached publication has been withdrawn (archived), and is provided solely for historical purposes. It may have been superseded by another publication (indicated below).</localized-string><localized-string key="keywords" language="en">Keywords</localized-string><localized-string key="keywords_intro" language="en"><p>The following are keywords to be used by search engines and document catalogues.</p></localized-string><localized-string key="language" language="en">en</localized-string><localized-string key="script" language="en">Latn</localized-string></localized-strings>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title depth="2">Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title depth="2">Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract" displayorder="1"><title>Abstract</title><p id="_9dc565ec-c950-4c67-ff82-a2f229fa0f81">This document defines the JSON schema for testing HMAC, CMAC, and GMAC implementations with the ACVP specification.</p>
+</abstract><clause id="_26965aff-5d36-4679-830f-c1e663cdb449" type="keyword" displayorder="2">
+<title depth="1">Keywords</title>
+<p>The following are keywords to be used by search engines and document catalogues.</p>
+<p>ACVP; cryptography</p></clause>
+<foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative" displayorder="3">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative" displayorder="4">
+<title depth="1">Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative" displayorder="5">
+<title depth="1">Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119">[RFC 2119]</eref> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174">[RFC 8174]</eref> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative" displayorder="6"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative" displayorder="7">
+<title>Executive Summary</title>
+<p id="_8015e69b-df81-c659-2e51-772809c35f25">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing HMAC, CMAC, and GMAC implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative" displayorder="8">
+<title depth="1">1.<tab/>Introduction</title>
+<p id="_daf4bfd2-1d37-c10f-cc12-2c67569198e5">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing HMAC, CMAC, and GMAC implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative" displayorder="9">
+<title depth="1">2.<tab/>Supported HMAC, CMAC, and GMAC Algorithms</title>
+<p id="_98683faf-7dde-45fb-fcd7-a19966045fac">The following Message Authentication Code Algorithms <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_8ad41182-3b67-8812-6053-27385f951ebe"><li><p id="_a492da85-d469-d45d-3ff4-bd33411356e0">HMAC-SHA-1</p>
+</li>
+<li><p id="_729eeb8f-360c-6903-ec9b-a5391c53dd5f">HMAC-SHA2-224</p>
+</li>
+<li><p id="_246744ff-81df-b82e-5ff3-89d0745cf880">HMAC-SHA2-256</p>
+</li>
+<li><p id="_3087a270-0fd4-f15b-ad0f-ccf21e6fd9f6">HMAC-SHA2-384</p>
+</li>
+<li><p id="_08eeb062-b11e-09ca-aef6-4624ce47f018">HMAC-SHA2-512</p>
+</li>
+<li><p id="_c864fbea-3afc-c2f5-1853-8a312d667f3e">HMAC-SHA2-512/224</p>
+</li>
+<li><p id="_53898e1e-6e12-fe6b-a51e-9eb7f2115500">HMAC-SHA2-512/256</p>
+</li>
+<li><p id="_1bf1d6eb-c5a2-f1dd-cbf8-2c33cf93f035">HMAC-SHA3-224</p>
+</li>
+<li><p id="_9d158d2f-eb05-4112-1c96-7e1aa368a10d">HMAC-SHA3-256</p>
+</li>
+<li><p id="_4ed2dd18-bc68-eb25-f1ff-3f30c06a7c18">HMAC-SHA3-384</p>
+</li>
+<li><p id="_f7ac1862-6496-a3f3-2636-fae9d675e1d8">HMAC-SHA3-512</p>
+</li>
+<li><p id="_3fdd7f2c-220c-8f0d-7d7f-285cf1a20221">CMAC-AES</p>
+</li>
+<li><p id="_6c8a6bb1-9c86-9495-c656-6c85e62de890">CMAC-TDES</p>
+</li>
+<li><p id="_d5f6c6c1-8713-5051-1e11-a2db8ad75183">ACVP-AES-GMAC</p>
+</li>
+</ul>
+</clause>
+
+<clause id="test_types_coverage" obligation="normative" displayorder="10">
+<title depth="1">3.<tab/>Test Types and Test Coverage</title>
+<p id="_a1e12f85-a745-8409-521f-d00105746567">The ACVP server performs a set of tests on the MAC algorithms in order to assess the correctness and robustness of the implementation. A typical ACVP validation session would require multiple tests to be performed for every supported cryptographic algorithm, such as CMAC-AES, CMAC-TDES, HMAC-SHA-1, HMAC-SHA2-256, etc. This section describes the design of the tests used to validate implementations of MAC algorithms.</p>
+
+<clause id="test_types" obligation="normative">
+<title depth="2">3.1.<tab/>Test Types</title>
+<p id="_b1d2ace4-313b-9e5c-5e3e-20cfcf2883b8">There is a single test type for MACs (broken into subsections for CMACs). the single test type, algorithm functional test (AFT) can be described as follows:</p>
+
+<ul id="_3e05e847-52fd-8420-f2c1-5179718a3802"><li><p id="_bf5f5fa3-5587-e056-4258-e9034e445839">“AFT” — Algorithm Function Test. The IUT processes all of HMAC, GMAC and the “gen” direction of CMAC by running the randomly chosen key and message data (with constraints as per the IUT’s capabilities registration) through the MAC algorithm. CMAC has an additional “ver” direction present in its testing to ensure the IUT can successfully determine when a MAC does not match its originating message/key combination.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="test_coverage" obligation="normative">
+<title depth="2">3.2.<tab/>Test Coverage</title>
+<p id="_4729b17d-ea07-bda9-6afe-65b3d2eca76c">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="SP800-38B" citeas="SP 800-38B">[SP 800-38B]</eref> and <eref type="inline" bibitemid="FIPS-198-1" citeas="FIPS 198-1">[FIPS 198-1]</eref>.</p>
+
+<clause id="requirements_covered_cmac" obligation="normative">
+<title depth="3">3.2.1.<tab/>CMAC Requirements Covered</title>
+<ul id="_d0ff9fb2-c081-4168-e685-bf91c43b12fe"><li><p id="_ef58e90e-d107-929c-fc0c-ca8f562d61e6">SP 800-38B Section 6.2 Mac Generation. ACVP server creates random sets of keys and messages for the IUT to process, then compares the IUT’s result to the ACVP result.</p>
+</li>
+<li><p id="_0a7fb01e-9401-d626-91bf-0188a417e29f">SP 800-38B Section 6.3 Mac Verification. ACVP server creates random sets of keys, messages, and macs. These test vectors are then randomly altered to ensure the MAC will not match the given key and message. Using the provided test case, the IUT is expected to validate the mac against the provided key and message.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_not_covered_cmac" obligation="normative">
+<title depth="3">3.2.2.<tab/>CMAC Requirements Not Covered</title>
+<ul id="_b253cc92-cfba-02bc-6796-a7f235dae30c"><li><p id="_b67202c1-adcf-4d0d-e2da-7b6ed496dce0">SP 800-38B Section 5.4 Sub-keys. While sub-keys are computed, as they are intermediate values, are not validated via current testing.</p>
+</li>
+<li><p id="_e3dbcc78-8623-8ede-7f6a-ebe6414a3b91">SP 800-38B Section 5.5 Input and Output Data. The ‘mlen’ is provided and not inferred.</p>
+</li>
+<li><p id="_f0f71b78-007d-3e9c-daae-bb25d32e9b47">SP 800-38B Appendix A. Length of MAC. The ACVP server will generate vectors as per the IUT’s specified criteria. The IUT <strong>SHOULD</strong> register its entire range of supported MAC lengths, regardless of security strength. The ACVP server will test a random sampling of valid MAC lengths as per the IUT registration — this generally includes the minimum and maximum MAC length.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_covered_gmac" obligation="normative">
+<title depth="3">3.2.3.<tab/>GMAC Requirements Covered</title>
+<ul id="_4140b732-7d8b-34c1-b306-a29b83697472"><li><p id="_1958618c-ce35-148c-c6e2-aae15fa49582">SP 800-38D Section 5.1 Block Cipher. ACVP testing <strong>SHALL</strong> make use of the AES block cipher when testing GMAC.</p>
+</li>
+<li><p id="_b80949ea-176e-8c72-1adf-b113340cbb02">SP 800-38D Section 5.2 Two Gcm Functions. ACVP testing <strong>MAY</strong> test both the generate and verify functions of GCM (without making use of a payload) to help ensure a proper implementation. The ACVP and IUT <strong>MAY</strong> test the encrypt (generate) and decrypt (verify) utilizing a key, IV/nonce, and AAD as described in this document section.</p>
+</li>
+<li><p id="_5ffa7bf6-b7e0-5ef6-6399-4c96debea48b">SP 800-38D Section 6 Mathematical Components of GCM. GHASH and GCTR produce intermediate values and <strong>SHALL</strong> be (indirectly) evaluated for correctness via the ACVP generated GMAC test vectors.</p>
+</li>
+<li><p id="_67daf469-8780-61bd-42e2-86309a66ad12">SP 800-38D Section 7 GCM Specification.  When the IUT registers a direction capability of “encrypt”, the ACVP server <strong>MUST</strong> generate vectors for the GCM-AE function.  When the IUT registers a capability of “decrypt”, the ACVP server <strong>MUST</strong> generate test vectors for the GCM-AD function.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_not_covered_gmac" obligation="normative">
+<title depth="3">3.2.4.<tab/>GMAC Requirements Not Covered</title>
+<ul id="_becf314d-56f5-076e-173b-ea8c3e1b5857"><li><p id="_2dab6d62-ec09-8545-2d60-271bd18fe87a">SP 800-38D Section 5.2.1.1 Input Data. GMAC <strong>MUST NOT</strong> make use of a plaintext.</p>
+</li>
+<li><p id="_9f8b1d3f-aa22-7cfe-656a-b001ae47f6e3">SP 800-38D Section 5.2.1.2 Output Data. GMAC <strong>MUST NOT</strong> make use of a ciphertext.</p>
+</li>
+<li><p id="_e52a0ced-22a4-3075-b1b7-f1bb0c209685">SP 800-38D Section 7 GCM Specification. The ACVP server <strong>MUST NOT</strong> make use of a plaintext or ciphertext for the generation of test vectors for use in GMAC testing.</p>
+</li>
+<li><p id="_eb035e91-fdba-839d-06a9-8b84dd56eaf0">SP 800-38D Section 8 Uniqueness Requirement on IVs and Keys. Key establishment, IV construction, or number of invocations for a specific key/IV <strong>SHALL NOT</strong> be tested under the scope of the ACVP testing.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_covered_hmac" obligation="normative">
+<title depth="3">3.2.5.<tab/>HMAC Requirements Covered</title>
+<ul id="_1ef068e5-1e89-46d1-2d7b-f56a4ca87866"><li><p id="_922e3b59-4193-83c6-c015-18c1d25ebc70">FIPS 198-1 Section 3 Cryptographic Keys. The ACVP server will test, depending on the nature of the IUT capabilities registration, keys that are below, at, or above the hashing algorithm block size.</p>
+</li>
+<li><p id="_e5cff7a0-2db8-7a8b-320d-cfe34fd26fd4">FIPS 198-1 Section 4 HMAC Specification. Mac Generation. ACVP server creates random sets of keys and messages for the IUT to process, then compares the IUT’s result to the ACVP result.</p>
+</li>
+<li><p id="_8eaedce4-eae9-c18c-d1d7-297708955fbc">FIPS 198-1 Section 5 Truncation. The ACVP server is capable of generating MACs as per the capability registration of the IUT. Groups will be created containing a random sampling of valid MAC lengths from the IUT registration.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_not_covered_hmac" obligation="normative">
+<title depth="3">3.2.6.<tab/>HMAC Requirements Not Covered</title>
+<p id="_a3a4cba0-cda4-eaee-2e61-efd5d3b1eda8">N/A</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative" displayorder="11">
+<title depth="1">4.<tab/>Capabilities Registration</title>
+<p id="_c21235f7-4566-1c34-d70f-0a5d1cbb49bf">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of MAC algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP">[ACVP]</eref> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title depth="2">4.1.<tab/>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Table 1 — Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json"><name>Figure 1</name>"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="prereq_algs" obligation="normative">
+<title depth="2">4.2.<tab/>Required Prerequisite Algorithms for MAC Validations</title>
+<p id="_f490ab90-c35d-260c-5bfa-9dbbabb31de4">Each MAC implementation relies on other cryptographic primitives. For example, HMAC uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<table id="rereqs_table">
+<name>Table 2 — Required MAC Prerequisite Algorithms JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">AES, SHA, TDES with associated mode such as ECB, GCM or digest size</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">Actual number or “same”</td>
+</tr><tr><td valign="top" align="left">prereqAlgVal</td>
+<td valign="top" align="left">prerequisite algorithm validation</td>
+<td valign="top" align="left">object with algorithm and valValue properties</td>
+<td valign="top" align="left">See above</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="_mac_algorithm_registration_properties" obligation="normative">
+<title depth="2">4.3.<tab/>MAC Algorithm Registration Properties</title>
+<p id="_c85f19fd-4f5d-baae-855c-61edb951369e">Each MAC algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="mac_caps_table">
+<name>Table 3 — MAC Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The MAC algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisite algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs">Section 4.2</xref></td>
+</tr><tr><td valign="top" align="left">capabilities</td>
+<td valign="top" align="left">The individual MAC capabilities</td>
+<td valign="top" align="left">array of capability objects</td>
+<td valign="top" align="left">See <xref target="cmac_aes_capabilities">Section 5.1.1</xref>, <xref target="cmac_tdes_capabilities">Section 6.1.1</xref>, <xref target="gmac_caps_reg">Section 7.1</xref>, or <xref target="hmac_caps_reg">Section 8.1</xref></td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="cmac_aes_root" obligation="normative" displayorder="12">
+<title depth="1">5.<tab/>CMAC-AES</title>
+<clause id="cmac_aes_caps_reg" obligation="normative">
+<title depth="2">5.1.<tab/>CMAC-AES Algorithm Capabilities Registration</title>
+<p id="_4a3e59ed-a46a-59b3-2c34-00719c5edf0d">Each CMAC-AES algorithm capability advertised is a self-contained JSON object using <xref target="mac_caps_table">Table 3</xref>. Each capability object describes a separate permutation of direction and key length.</p>
+
+<clause id="cmac_aes_capabilities" obligation="normative">
+<title depth="3">5.1.1.<tab/>CMAC-AES Capability Details</title>
+<table id="cmac_aes_caps_table">
+<name>Table 4 — CMAC-AES Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">direction</td>
+<td valign="top" align="left">The MAC direction(s) to test</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">“gen” and/or “ver”</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The keyLen supported</td>
+<td valign="top" align="left">array of integer</td>
+<td valign="top" align="left">[128, 192, 256]</td>
+</tr><tr><td valign="top" align="left">msgLen</td>
+<td valign="top" align="left">The CMAC message lengths supported in bits, values <strong>MUST</strong> be mod 8</td>
+<td valign="top" align="left">Domain</td>
+<td valign="top" align="left">Min: 0, Max: 524288, Inc: 8</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">The supported mac sizes</td>
+<td valign="top" align="left">Domain</td>
+<td valign="top" align="left">Min: 1, Max: 128</td>
+</tr></tbody>
+</table>
+
+<p id="_ddf8b74b-36ab-526e-66ce-528c71cc482e">‘macLen’ for CMAC is a Domain of values, the server <strong>MAY</strong> choose values defined by these rules:</p>
+
+<ul id="_b60c7d88-26b2-f91a-ca8a-ac104bcced2e"><li><p id="_199ec84c-1a97-08cb-2ee8-4b3edae4a770">The smallest CMAC length supported</p>
+</li>
+<li><p id="_956359b0-da89-4658-7255-2154d3e7f2d5">A second CMAC length supported</p>
+</li>
+<li><p id="_ba65ebcb-7427-2782-e579-3b77a6184edf">The largest CMAC length supported</p>
+</li>
+</ul>
+
+<p id="_5eebae69-67ce-2c3b-8755-74171066cef0">‘msgLen’ for CMAC is a Domain of values, the server <strong>MAY</strong> choose values defined by these rules:</p>
+
+<ul id="_f28f8df5-06ef-60f2-56a6-b8755d8b827b"><li><p id="_f0520fc9-8691-436d-9ab4-ba4beafd1914">The smallest message length supported</p>
+</li>
+<li><p id="_907f7d74-9743-73e7-17e6-e16a1ab7841f">Two message lengths divisible by block size</p>
+</li>
+<li><p id="_1126c50c-9c7d-0629-97df-0301bb5161e5">Two message lengths NOT divisible by block size</p>
+</li>
+<li><p id="_8dfee716-e1c6-0bb5-0952-8f9e6d561c71">The largest message length supported</p>
+</li>
+</ul>
+</clause>
+
+<clause id="cmac_aes_app-reg-ex" obligation="normative">
+<title depth="3">5.1.2.<tab/>Example CMAC-AES Capabilities JSON Object</title>
+<p id="_1fd2f334-c902-0bac-b823-3ce3f87f203d">The following is an example JSON object advertising support for CMAC-AES.</p>
+
+<sourcecode id="_f0c9eb64-6823-5586-0579-6adc7b8238c0" lang="json"><name>Figure 2</name>{
+  "algorithm": "CMAC-AES",
+  "revision": "1.0",
+  "capabilities": [
+    {
+      "direction": ["gen", "ver"],
+      "keyLen": [128],
+      "msgLen": [
+        {
+          "min": 0,
+          "max": 65536,
+          "increment": 8
+        }
+      ],
+      "macLen": [
+        {
+          "min": 64,
+          "max": 128,
+          "increment": 8
+        }
+      ]
+    },
+    {
+      "direction": ["gen", "ver"],
+      "keyLen": [192],
+      "msgLen": [
+        {
+          "min": 0,
+          "max": 65536,
+          "increment": 8
+        }
+      ],
+      "macLen": [
+        {
+          "min": 64,
+          "max": 128,
+          "increment": 8
+        }
+      ]
+    },
+    {
+      "direction": ["gen", "ver"],
+      "keyLen": [256],
+      "msgLen": [
+        {
+          "min": 0,
+          "max": 65536,
+          "increment": 8
+        }
+      ],
+      "macLen": [
+        {
+          "min": 64,
+          "max": 128,
+          "increment": 8
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="cmac_tdes_root" obligation="normative" displayorder="13">
+<title depth="1">6.<tab/>CMAC-TDES</title>
+<clause id="cmac_tdes_caps_reg" obligation="normative">
+<title depth="2">6.1.<tab/>CMAC-TDES Algorithm Capabilities Registration</title>
+<p id="_afb2356e-c071-3ad2-de8f-a1c43471a56e">Each CMAC-TDES algorithm capability advertised is a self-contained JSON object using <xref target="mac_caps_table">Table 3</xref>. Each capability object describes a separate permutation of direction and key length.</p>
+
+<clause id="cmac_tdes_capabilities" obligation="normative">
+<title depth="3">6.1.1.<tab/>CMAC-TDES Capability Details</title>
+<table id="cmac_tdes_caps_table">
+<name>Table 5 — CMAC-TDES Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">direction</td>
+<td valign="top" align="left">The MAC direction(s) to test</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">“gen”, “ver”</td>
+</tr><tr><td valign="top" align="left">keyingOption</td>
+<td valign="top" align="left">The Keying Option used in TDES. Keying option 1 (1) is 3 distinct keys (K1, K2, K3). Keying Option 2 (2) is 2 distinct only suitable for decrypt (K1, K2, K1). Keying option 3 (No longer valid for testing, save TDES KATs) is a single key, now deprecated (K1, K1, K1).</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">1, 2</td>
+</tr><tr><td valign="top" align="left">msgLen</td>
+<td valign="top" align="left">The CMAC message lengths supported in bits, values <strong>MUST</strong> be mod 8</td>
+<td valign="top" align="left">Domain</td>
+<td valign="top" align="left">Min: 0, Max: 524288, Inc: 8</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">The supported mac sizes</td>
+<td valign="top" align="left">Domain</td>
+<td valign="top" align="left">Min: 32, Max: 64</td>
+</tr></tbody>
+</table>
+
+<p id="_4dcb3d0a-54dc-189b-f96a-7592243f40ca">‘macLen’ for CMAC contains a Domain of values, the server may choose values defined by these rules:</p>
+
+<ul id="_c5138b6d-26cd-bd4b-2cc0-1f10067e43ac"><li><p id="_4fbfa2f2-51ad-cc27-befa-ac55397b6572">The smallest CMAC length supported</p>
+</li>
+<li><p id="_9c65e97a-b151-adb3-b2bc-a222996e4257">A second CMAC length supported</p>
+</li>
+<li><p id="_cf021fd4-ade4-6455-1f79-f687774387b4">The largest CMAC length supported</p>
+</li>
+</ul>
+
+<p id="_edd112fb-27b6-3d48-61ec-8b64e812bf8c">‘msgLen’ for CMAC contains a Domain of values, the server may choose values defined by these rules:</p>
+
+<ul id="_43b0bb71-bfe8-fb5e-930e-88fa551436e1"><li><p id="_6cfa2c26-0ea2-61c1-5f91-adcdee5c5fb6">The smallest message length supported</p>
+</li>
+<li><p id="_8cc6625c-8483-783a-b1c2-95d1d42919ee">Two message lengths divisible by block size</p>
+</li>
+<li><p id="_336b1290-1308-f1a3-de46-f3f0a1b39faa">Two message lengths NOT divisible by block size</p>
+</li>
+<li><p id="_e406435c-4e80-91f0-599c-1ddb058019e9">The largest message length supported</p>
+</li>
+</ul>
+</clause>
+
+<clause id="cmac_tdes_app-reg-ex" obligation="normative">
+<title depth="3">6.1.2.<tab/>Example CMAC-TDES Capabilities JSON Object</title>
+<p id="_7ee27782-5215-b0f9-bb56-1080e8fc1049">The following is an example JSON object advertising support for CMAC-TDES.</p>
+
+<sourcecode id="_d45dce15-bd6c-209a-b19b-51e12d4851fd" lang="json"><name>Figure 3</name>{
+  "algorithm": "CMAC-TDES",
+  "revision": "1.0",
+  "capabilities": [
+    {
+      "direction": ["gen", "ver"],
+      "keyingOption": [1],
+      "msgLen": [
+        {
+          "min": 0,
+          "max": 65536,
+          "increment": 8
+        }
+      ],
+      "macLen": [
+        {
+          "min": 32,
+          "max": 64,
+          "increment": 8
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="gmac_root" obligation="normative" displayorder="14">
+<title depth="1">7.<tab/>GMAC</title>
+<clause id="gmac_caps_reg" obligation="normative">
+<title depth="2">7.1.<tab/>AES-GMAC Algorithm Capabilities Registration</title>
+<p id="_334a9b46-b6c0-1299-ab6b-0c9853bfc33e">Each algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="gmac_caps_table">
+<name>Table 6 — AES-GMAC Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The MAC algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“ACVP-AES-GMAC”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequistie algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs">Section 4.2</xref></td>
+</tr><tr><td valign="top" align="left">direction</td>
+<td valign="top" align="left">The GMAC direction(s) to test</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">“encrypt”, “decrypt”</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The keyLen supported</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">128, 192, 256</td>
+</tr><tr><td valign="top" align="left">ivLen</td>
+<td valign="top" align="left">The IV lengths supported in bits, values <strong>MUST</strong> be mod 8</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 8, Max: 1024, Inc: 8</td>
+</tr><tr><td valign="top" align="left">ivGen</td>
+<td valign="top" align="left">The IV generation method (from the perspective of the IUT)</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“internal”, “external”</td>
+</tr><tr><td valign="top" align="left">ivGenMode</td>
+<td valign="top" align="left">The IV generation mode for use when the IUT is internally generating IVs</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“8.2.1”, “8.2.2”</td>
+</tr><tr><td valign="top" align="left">aadLen</td>
+<td valign="top" align="left">The additional authenticated data length in bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 0, Max: 65536, Inc: 8</td>
+</tr><tr><td valign="top" align="left">tagLen</td>
+<td valign="top" align="left">The supported mac/tag lengths</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">32, 64, 96, 104, 112, 120, 128</td>
+</tr></tbody>
+</table>
+
+<clause id="gmac_app_reg_ex" obligation="normative">
+<title depth="3">7.1.1.<tab/>Example AES-GMAC Capabilities JSON Object</title>
+<p id="_95581ef2-6fcf-ff29-c940-2f75432811a9">The following is an example JSON object advertising support for AES-GMAC.</p>
+
+<sourcecode id="_edc5101d-c737-642c-2dc3-8242dedab3ec" lang="json"><name>Figure 4</name>  {
+     "algorithm": "ACVP-AES-GMAC",
+     "revision": "1.0",
+     "direction": [
+       "encrypt",
+       "decrypt"
+     ],
+     "keyLen": [
+       128
+     ],
+     "ivLen": [
+       96,
+       120
+     ],
+     "ivGen": "external",
+     "aadLen": [
+       8,
+       120
+     ],
+     "tagLen": [
+       32,
+       128
+     ]
+  }</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="hmac_root" obligation="normative" displayorder="15">
+<title depth="1">8.<tab/>HMAC</title>
+<clause id="hmac_caps_reg" obligation="normative">
+<title depth="2">8.1.<tab/>HMAC Algorithm Capabilities Registration</title>
+<p id="_78fe2b51-f752-95d9-99f3-4aed5cd81638">Each algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="hmac_caps_table2">
+<name>Table 7 — HMAC Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The MAC algorithm and mode to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="hmac_supported_algs">Section 8.2</xref></td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">prerequistie algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs">Section 4.2</xref></td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The keyLen Domain supported by the IUT in bits</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 0, Max: 524288</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">The supported mac sizes, maximum is dependent on algorithm, see <xref target="hmac_supported_algs">Section 8.2</xref></td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">Min: 32</td>
+</tr></tbody>
+</table>
+
+<p id="_4cc753aa-b923-aa75-aeee-dc34927eb41b">‘keyLen’ for HMAC contains a Domain of values, the server <strong>MAY</strong> choose values defined by these rules:</p>
+
+<ul id="_13ed3c98-4a7f-3ece-8c46-31fa0b41b1c2"><li><p id="_0efc9c56-1ff3-4398-7f64-6c06c5d2eb09">2 values below the Hash’s block length. See <xref target="hmac_supported_algs">Section 8.2</xref></p>
+</li>
+<li><p id="_bb3f1476-0ad8-c6c0-67ff-360408959df2">The Hash’s block length.</p>
+</li>
+<li><p id="_b3ca8e36-92d5-6183-44b6-1ccb3ddf983f">2 values above the Hash’s block length.</p>
+</li>
+</ul>
+
+<p id="_faf053c5-a78a-1182-0d52-72df4eae3530">‘macLen’ for HMAC contains a Domain of values, the server <strong>MAY</strong> choose values defined by these rules:</p>
+
+<ul id="_0fa68ae1-1382-ca32-146e-ab5d0586c09b"><li><p id="_541c0316-e477-9a3e-3980-b3bf73baa0f7">The smallest HMAC length supported</p>
+</li>
+<li><p id="_3098280a-f625-7056-e78f-e2607728b49e">A second HMAC length supported</p>
+</li>
+<li><p id="_4f002600-4ae8-e29d-3daf-1d0535786523">The largest HMAC length supported</p>
+</li>
+</ul>
+</clause>
+
+<clause id="hmac_supported_algs" obligation="normative">
+<title depth="2">8.2.<tab/>Supported HMAC Algorithms</title>
+<p id="_99d3c003-86db-1876-ecff-56d3b9242e82">The following HMAC algorithms contain specific individual properties:</p>
+
+<table id="hmac_table_algInfo">
+<name>Table 8 — Algorithms w/ block size and max MAC length.</name>
+<thead><tr><th valign="top" align="left">Algorithm Value</th>
+<th valign="top" align="left">Block Length</th>
+<th valign="top" align="left">Max MAC Length</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">HMAC-SHA-1</td>
+<td valign="top" align="left">512</td>
+<td valign="top" align="left">160</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA2-224</td>
+<td valign="top" align="left">512</td>
+<td valign="top" align="left">224</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA2-256</td>
+<td valign="top" align="left">512</td>
+<td valign="top" align="left">256</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA2-384</td>
+<td valign="top" align="left">1024</td>
+<td valign="top" align="left">384</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA2-512</td>
+<td valign="top" align="left">1024</td>
+<td valign="top" align="left">512</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA2-512/224</td>
+<td valign="top" align="left">1024</td>
+<td valign="top" align="left">224</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA2-512/256</td>
+<td valign="top" align="left">1024</td>
+<td valign="top" align="left">256</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA3-224</td>
+<td valign="top" align="left">1152</td>
+<td valign="top" align="left">224</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA3-256</td>
+<td valign="top" align="left">1088</td>
+<td valign="top" align="left">256</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA3-384</td>
+<td valign="top" align="left">832</td>
+<td valign="top" align="left">384</td>
+</tr><tr><td valign="top" align="left">HMAC-SHA3-512</td>
+<td valign="top" align="left">576</td>
+<td valign="top" align="left">512</td>
+</tr></tbody>
+</table>
+
+<clause id="hmac_app-reg-ex" obligation="normative">
+<title depth="3">8.2.1.<tab/>Example HMAC Capabilities JSON Object</title>
+<p id="_3b846a10-bef1-356c-4929-8bbb90b3c4a2">The following is an example JSON object advertising support for HMAC.</p>
+
+<sourcecode id="_295d7691-6d64-1297-6bcc-1ec29efac064" lang="json"><name>Figure 5</name>{
+  "algorithm": "HMAC-SHA-1",
+  "revision": "1.0",
+  "keyLen": [
+    {
+      "min": 8,
+      "max": 2048,
+      "increment": 8
+    }
+  ],
+  "macLen": [
+    {
+      "min": 80,
+      "max": 160,
+      "increment": 8
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative" displayorder="16">
+<title depth="1">9.<tab/>Test Vectors</title>
+<p id="_916a61e6-d7d6-79c5-dba5-c300db967a3c">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with HMAC, CMAC, and GMAC algorithms.</p>
+
+<p id="_909507d5-e387-7432-a351-d7704cd43c89">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_010a5249-90db-cd0e-f38d-ffd4248c6678">
+<name>Table 9 — Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs">Section 10</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_d89bfff7-b63d-72cb-3818-47f346d45fd4">An example of this would look like this</p>
+
+<sourcecode id="_190fdabb-9794-7a47-9511-f5610505f6e9" lang="json"><name>Figure 6</name>{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+</clause>
+
+<clause id="tgjs" obligation="normative" displayorder="17">
+<title depth="1">10.<tab/>Test Vectors</title>
+<p id="_9b931fea-0ed5-9be8-9a58-e2f2278a2f03">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual crypto algorithm, such as HMAC-SHA-1, HMAC-SHA2-224, CMAC-AES, etc. This section describes the JSON schema for a test vector set used with MAC crypto algorithms.</p>
+
+<p id="_b4df1cc7-13a7-cd58-4f38-e5f9143c5108">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="mac_vs_top_table">
+<name>Table 10 — MAC Vector Set JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test group JSON objects, which are defined in <xref target="cmac_aes_tgjs">Section 10.1.1</xref>, <xref target="cmac_tdes_tgjs">Section 10.2.1</xref>, <xref target="gmac_tgjs">Section 10.3.1</xref>, or <xref target="hmac_tgjs">Section 10.4.1</xref> depending on the algorithm</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<clause id="cmac_aes_test_vectors" obligation="normative">
+<title depth="2">10.1.<tab/>CMAC-AES Test Vectors</title>
+<clause id="cmac_aes_tgjs" obligation="normative">
+<title depth="3">10.1.1.<tab/>CMAC-AES Test Groups JSON Schema</title>
+<p id="_41acefaf-c98f-944d-f064-6f9324afb5b9">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure CMAC-AES JSON elements of the Test Group JSON object.</p>
+
+<table id="cmac_aes_vs_tg_table">
+<name>Table 11 — CMAC-AES Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test category type</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">direction</td>
+<td valign="top" align="left">The direction of the tests — gen or ver</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">Length of key in bits to use</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">msgLen</td>
+<td valign="top" align="left">Length of message in bits</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">Length of MAC in bits to generate/verify</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="cmac_aes_tvjs">Section 10.1.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="cmac_aes_tvjs" obligation="normative">
+<title depth="3">10.1.2.<tab/>CMAC-AES Test Case JSON Schema</title>
+<p id="_d57bde8e-8b38-e6ef-0a15-8f70eaf14bca">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each secure MAC test vector.</p>
+
+<table id="cmac_aes_vs_tc_table2">
+<name>Table 12 — CMAC-AES Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">key</td>
+<td valign="top" align="left">Encryption key to use</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">msg</td>
+<td valign="top" align="left">Value of the message</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">mac</td>
+<td valign="top" align="left">MAC value, for CMAC verify</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="cmac_aes_test_vector_json" obligation="normative">
+<title depth="3">10.1.3.<tab/>Example CMAC-AES Test Vector JSON Object</title>
+<p id="_78a17364-3e9d-6ace-582d-b2bc8115101b">The following is an example JSON test vector object for CMAC-AES, truncated for brevity.</p>
+
+<sourcecode id="_0c555d1e-09ab-ba52-0596-0a4b3fca4978" lang="json"><name>Figure 7</name>{
+    "vsId": 1,
+    "algorithm": "CMAC-AES",
+    "revision": "1.0",
+    "testGroups": [{
+            "tgId": 4,
+            "testType": "AFT",
+            "direction": "gen",
+            "keyLen": 128,
+            "msgLen": 2752,
+            "macLen": 64,
+            "tests": [{
+                    "tcId": 25,
+                    "key": "E2547E38B28B2C24892C133FF4770688",
+                    "message": "89DE09D747FB4B2669B59759..."
+                },
+                {
+                    "tcId": 26,
+                    "key": "D1D99979CD96C3401291905F53B2ECA4",
+                    "message": "6D054A7D1CD161B21F80E658..."
+                },
+                {
+                    "tcId": 27,
+                    "key": "672556E105B83BF39FC9E45268BD35D1",
+                    "message": "39A3DD0652483A26FB9D71F3..."
+                }
+            ]
+        },
+        {
+            "tgId": 10,
+            "testType": "AFT",
+            "direction": "ver",
+            "keyLen": 128,
+            "msgLen": 0,
+            "macLen": 64,
+            "tests": [{
+                    "tcId": 73,
+                    "key": "D5E09A89B2A4627BF987517B66A51564",
+                    "message": "",
+                    "mac": "CBBC968859633C24"
+                },
+                {
+                    "tcId": 74,
+                    "key": "646A150116ABAA37662FE9D8BB278693",
+                    "message": "",
+                    "mac": "21D069331196E579"
+                },
+                {
+                    "tcId": 75,
+                    "key": "5C185C01FBC57A40FC373F199374D1CC",
+                    "message": "",
+                    "mac": "9507F00153543DE6"
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="cmac_tdes_test_vectors" obligation="normative">
+<title depth="2">10.2.<tab/>CMAC-TDES Test Vectors</title>
+<clause id="cmac_tdes_tgjs" obligation="normative">
+<title depth="3">10.2.1.<tab/>CMAC-TDES Test Groups JSON Schema</title>
+<p id="_8bbaaf0b-5f16-97ca-df2b-2b2c86126795">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure CMAC-TDES JSON elements of the Test Group JSON object.</p>
+
+<table id="cmac_tdes_vs_tg_table">
+<name>Table 13 — CMAC-TDES Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test category type</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">direction</td>
+<td valign="top" align="left">The direction of the tests — gen or ver</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">Length of key in bits to use</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">msgLen</td>
+<td valign="top" align="left">Length of message in bits</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">Length of MAC in bits to generate/verify</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="cmac_tdes_tvjs">Section 10.2.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="cmac_tdes_tvjs" obligation="normative">
+<title depth="3">10.2.2.<tab/>CMAC-TDES Test Case JSON Schema</title>
+<p id="_485bff8c-37fa-44bf-0d51-c02fb6fda315">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each secure MAC test vector.</p>
+
+<table id="cmac_tdes_vs_tc_table2">
+<name>Table 14 — CMAC-TDES Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">key1, key2, key3</td>
+<td valign="top" align="left">Encryption keys to use for TDES</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">msg</td>
+<td valign="top" align="left">Value of the message</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">mac</td>
+<td valign="top" align="left">MAC value, for CMAC verify</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="cmac_tdes_test_vector_json" obligation="normative">
+<title depth="3">10.2.3.<tab/>Example CMAC-TDES Test Vector JSON Object</title>
+<p id="_97f352c9-b472-48b5-f409-861c3ce31d23">The following is an example JSON test vector object for CMAC-TDES, truncated for brevity.</p>
+
+<sourcecode id="_2ab13fa8-fc28-bf9e-8425-5b8f169995df" lang="json"><name>Figure 8</name>{
+    "vsId": 1,
+    "algorithm": "CMAC-TDES",
+    "revision": "1.0",
+    "testGroups": [{
+            "tgId": 4,
+            "testType": "AFT",
+            "direction": "gen",
+            "keyLen": 192,
+            "msgLen": 752,
+            "macLen": 32,
+            "keyingOption": 1,
+            "tests": [{
+                    "tcId": 25,
+                    "message": "4D2D07AE0224289BE111...",
+                    "key1": "7FFDB31A3A06BF0D",
+                    "key2": "5201FFE83CC5253E",
+                    "key3": "BBECA60F1D631BB8"
+                },
+                {
+                    "tcId": 26,
+                    "message": "7A70F3CE17598AC3553F...",
+                    "key1": "82E572E29C84009E",
+                    "key2": "28390918155E4891",
+                    "key3": "A0D24C94C306FE56"
+                },
+                {
+                    "tcId": 27,
+                    "message": "2DAF1E213A6AE9E88FEB...",
+                    "key1": "662A89E47D86F6A0",
+                    "key2": "CB9D612E199B4AD2",
+                    "key3": "AE3AEBA19FAB4340"
+                }
+            ]
+        },
+        {
+            "tgId": 10,
+            "testType": "AFT",
+            "direction": "ver",
+            "keyLen": 192,
+            "msgLen": 0,
+            "macLen": 32,
+            "keyingOption": 1,
+            "tests": [{
+                    "tcId": 73,
+                    "message": "",
+                    "mac": "D78010B3",
+                    "key1": "D127F902CFF69A82",
+                    "key2": "785D99EF117E5B56",
+                    "key3": "36D4CB2C34A3AF30"
+                },
+                {
+                    "tcId": 74,
+                    "message": "",
+                    "mac": "5313D9E8",
+                    "key1": "9D5DAC4D75E0A349",
+                    "key2": "6A55855C62D8C767",
+                    "key3": "CBD9FC7CCBDA8BE9"
+                },
+                {
+                    "tcId": 75,
+                    "message": "",
+                    "mac": "07B1926F",
+                    "key1": "B711BA268A1F3663",
+                    "key2": "AA83B2195E85BFC6",
+                    "key3": "AA1CFBC128AAE0FD"
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="gmac_test_vectors" obligation="normative">
+<title depth="2">10.3.<tab/>AES-GMAC Test Vectors</title>
+<clause id="gmac_tgjs" obligation="normative">
+<title depth="3">10.3.1.<tab/>AES-GMAC Test Groups JSON Schema</title>
+<p id="_7b88612b-ed4f-05db-4c7c-e81dd8d90495">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure GMAC JSON elements of the Test Group JSON object.</p>
+
+<table id="gmac_vs_tg_table">
+<name>Table 15 — AES-GMAC Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test category type</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">direction</td>
+<td valign="top" align="left">The direction of the tests — encrypt or decrypt</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">Length of key in bits to use</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">ivLen</td>
+<td valign="top" align="left">Length of IV in bits</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">ivGen</td>
+<td valign="top" align="left">IV Generation (internal or external)</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">ivGenMode</td>
+<td valign="top" align="left">The mode an internal IV has been generated using</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">aadLen</td>
+<td valign="top" align="left">Length of AAD in bits</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tagLen</td>
+<td valign="top" align="left">Length of tag/MAC in bits to generate/verify</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="gmac_tcjs">Section 10.3.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="gmac_tcjs" obligation="normative">
+<title depth="3">10.3.2.<tab/>AES-GMAC Test Case JSON Schema</title>
+<p id="_a3c0d769-db6b-70b4-a95b-e10e499c4dc7">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each secure MAC test vector.</p>
+
+<table id="gmac_vs_tc_table">
+<name>Table 16 — AES-GMAC Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">key</td>
+<td valign="top" align="left">Encryption key to use</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">iv</td>
+<td valign="top" align="left">Value of the IV</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">aad</td>
+<td valign="top" align="left">Value of the AAD</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">tag</td>
+<td valign="top" align="left">MAC/tag value, for validating on a decrypt operation</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="gmac_test_vec_ex" obligation="normative">
+<title depth="3">10.3.3.<tab/>Example AES-GMAC Test Vector JSON Object</title>
+<p id="_ba85ad76-1d3d-1ba1-a586-14fba835f32f">The following is an example JSON test vector object for AES-GMAC, truncated for brevity</p>
+
+<sourcecode id="_dcf08970-7746-98bf-217d-783c5fe73c88" lang="json"><name>Figure 9</name>   {
+     "vsId": 0,
+     "algorithm": "ACVP-AES-GMAC",
+     "revision": "1.0",
+     "testGroups": [{
+         "tgId": 1,
+         "testType": "AFT",
+         "direction": "encrypt",
+         "keyLen": 128,
+         "ivLen": 96,
+         "ivGen": "external",
+         "aadLen": 0,
+         "tagLen": 32,
+         "tests": [{
+           "tcId": 1,
+           "key": "B1E9747F9E016F0376B1F379CD345B8A",
+           "aad": "",
+           "iv": "6294CEEDFCC3037A023100E8"
+         }]
+       },
+       {
+         "tgId": 2,
+         "testType": "AFT",
+         "direction": "decrypt",
+         "keyLen": 128,
+         "ivLen": 96,
+         "ivGen": "external",
+         "aadLen": 0,
+         "tagLen": 32,
+         "tests": [{
+           "tcId": 2,
+           "key": "CD345B8AE016F03765E9747F9B1F379A",
+           "aad": "",
+           "iv": "6207CEEDFA094CC3032310E8",
+           "tag": "AB1254CE"
+         }]
+       }
+     ]
+   }</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="hmac_test_vectors" obligation="normative">
+<title depth="2">10.4.<tab/>HMAC Test Vectors</title>
+<clause id="hmac_tgjs" obligation="normative">
+<title depth="3">10.4.1.<tab/>HMAC Test Groups JSON Schema</title>
+<p id="_74a15065-fe75-1218-b5d2-48ac55796db8">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure HMAC JSON elements of the Test Group JSON object.</p>
+
+<table id="hmac_vs_tg_table">
+<name>Table 17 — HMAC Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test category type</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">Length of key in bits to use</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">msgLen</td>
+<td valign="top" align="left">Length of message in bits</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">Length of MAC in bits to generate</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="hmac_tvjs">Section 10.4.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="hmac_tvjs" obligation="normative">
+<title depth="3">10.4.2.<tab/>HMAC Test Case JSON Schema</title>
+<p id="_ff89205f-e48b-bdac-e942-7b19eceea8a4">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each secure MAC test vector.</p>
+
+<table id="hmac_vs_tc_table2">
+<name>Table 18 — HMAC Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">key</td>
+<td valign="top" align="left">The value of the key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">msg</td>
+<td valign="top" align="left">Value of the message</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="hmac_test_vector_json" obligation="normative">
+<title depth="3">10.4.3.<tab/>Example HMAC Test Vector JSON Object</title>
+<p id="_1e9b1d6b-a78f-0f77-0dba-5040ab5fea2b">The following is an example JSON test vector object for HMAC, truncated for brevity.</p>
+
+<sourcecode id="_2a06de5f-141f-f189-605c-09cd8e7c170b" lang="json"><name>Figure 10</name>{
+    "vsId": 1,
+    "algorithm": "HMAC-SHA-1",
+    "revision": "1.0",
+    "testGroups": [{
+        "tgId": 1,
+        "testType": "AFT",
+        "keyLen": 56,
+        "msgLen": 128,
+        "macLen": 80,
+        "tests": [{
+                "tcId": 1,
+                "key": "0CBB3AA866E4D1",
+                "msg": "28CD4091D45F28CD5709CC9B6F1E9D0D"
+            },
+            {
+                "tcId": 2,
+                "key": "7FB3F60ACB9FB7",
+                "msg": "9F224BF653F9BE143FFA0518D12761F7"
+            },
+            {
+                "tcId": 3,
+                "key": "3834463234DA39",
+                "msg": "F0FA740D261D5916B06F09AFBB04C94E"
+            }
+        ]
+    }]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative" displayorder="18">
+<title depth="1">11.<tab/>Responses</title>
+<p id="_794cb3fd-73a0-3249-5905-3cef4059b647">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="response_table">
+<name>Table 19 — Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The ACVP version used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group objects in the response, see <xref target="response_group_table">Table 20</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_cd96b98f-488f-ae4f-a4de-1b1da901699c">An example of this is the following</p>
+
+<sourcecode id="_6bfef8b3-954f-1793-0928-22dccdb5922d" lang="json"><name>Figure 11</name>{
+	"acvVersion": "version",
+	"vsId": 1,
+	"testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_1f381021-b894-1f3e-ad07-eff640df1cb4">The ‘testGroups’ section is used to organize the ACVP client response in a similar manner to how it distributes vectors.</p>
+
+<table id="response_group_table">
+<name>Table 20 — Response Group Objects</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case objects in the response, depending on the algorithm see <xref target="cmac_aes_vs_tr_table">Table 21</xref>, <xref target="cmac_tdes_vs_tr_table">Table 22</xref>, <xref target="gmac_vs_tr_table">Table 23</xref> or <xref target="hmac_vs_tr_table">Table 24</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_9d87bf73-a16d-e038-70cd-7954da13893d">An example of this is the following</p>
+
+<sourcecode id="_1df84e83-7c53-3d0a-54c9-b3a8f34add7c"><name>Figure 12</name>{
+	"tgId": 1,
+	"tests": [ ... ]
+}</sourcecode>
+
+
+<clause id="cmac_aes_vector_responses" obligation="normative">
+<title depth="2">11.1.<tab/>CMAC-AES Test Vector Responses</title>
+<clause id="cmac_aes_vr_group_table" obligation="normative">
+<title depth="3">11.1.1.<tab/>CMAC-AES Vector Set Group Responses</title>
+<p id="_915836ed-f2c0-6bb8-9410-5120566656f9">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each CMAC-AES test vector.</p>
+
+<table id="cmac_aes_vs_tr_table">
+<name>Table 21 — CMAC-AES Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">mac</td>
+<td valign="top" align="left">The value of the computed MAC output for ‘gen’ test type groups</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">The result of CMAC verify for ‘ver’ test type groups</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="cmac_aes_test_vector_response_json" obligation="normative">
+<title depth="3">11.1.2.<tab/>Example CMAC-AES Test Vector Response JSON Object</title>
+<p id="_bedd8362-f2f6-6b12-41a9-c0b6c3fc7492">The following is an example JSON test vector response object for CMAC-AES.</p>
+
+<sourcecode id="_3eeae10c-41b1-25c6-9c02-ad2b24fe3de9" lang="json"><name>Figure 13</name>{
+    "vsId": 1,
+    "testGroups": [{
+            "tgId": 4,
+            "tests": [{
+                    "tcId": 25,
+                    "mac": "7AA2D56A0AE76620"
+                },
+                {
+                    "tcId": 26,
+                    "mac": "9E23524D3CD18C93"
+                },
+                {
+                    "tcId": 27,
+                    "mac": "4D51872CBFAA102A"
+                }
+            ]
+        },
+        {
+            "tgId": 10,
+            "tests": [{
+                    "tcId": 73,
+                    "testPassed": true
+                },
+                {
+                    "tcId": 74,
+                    "testPassed": true
+                },
+                {
+                    "tcId": 75,
+                    "testPassed": true
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="cmac_tdes_vector_responses" obligation="normative">
+<title depth="2">11.2.<tab/>CMAC-TDES Test Vector Responses</title>
+<clause id="cmac_tdes_vr_group_table" obligation="normative">
+<title depth="3">11.2.1.<tab/>CMAC-TDES Vector Set Group Responses</title>
+<p id="_6bd236e9-f445-9906-f54a-bcbd89619e56">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each CMAC-TDES test vector.</p>
+
+<table id="cmac_tdes_vs_tr_table">
+<name>Table 22 — CMAC-TDES Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">mac</td>
+<td valign="top" align="left">The value of the computed MAC output for ‘gen’ test type groups</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">The result of CMAC verify for ‘ver’ test type groups</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="cmac_tdes_test_vector_response_json" obligation="normative">
+<title depth="3">11.2.2.<tab/>Example CMAC-TDES Test Vector Response JSON Object</title>
+<p id="_fa593e89-042b-a3ab-9fb3-c756cd23b22a">The following is an example JSON test vector response object for CMAC-TDES.</p>
+
+<sourcecode id="_db9181e3-953a-32a0-deea-c8deef1b98e9" lang="json"><name>Figure 14</name>{
+    "vsId": 1,
+    "algorithm": "CMAC-TDES",
+    "revision": "1.0",
+    "testGroups": [{
+            "tgId": 4,
+            "tests": [{
+                    "tcId": 25,
+                    "mac": "6FA27FDC"
+                },
+                {
+                    "tcId": 26,
+                    "mac": "89CE2842"
+                },
+                {
+                    "tcId": 27,
+                    "mac": "5E03D980"
+                }
+            ]
+        },
+        {
+            "tgId": 10,
+            "tests": [{
+                    "tcId": 73,
+                    "testPassed": true
+                },
+                {
+                    "tcId": 74,
+                    "testPassed": true
+                },
+                {
+                    "tcId": 75,
+                    "testPassed": true
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="gmac_vector_responses" obligation="normative">
+<title depth="2">11.3.<tab/>AES-GMAC Test Vector Responses</title>
+<clause id="_aes_gmac_vector_set_group_responses" obligation="normative">
+<title depth="3">11.3.1.<tab/>AES-GMAC Vector Set Group Responses</title>
+<p id="_728de144-585f-081d-e2aa-303ec215d15f">Each test group contains an array of one or more test cases.  Each test case is a JSON object that represents a single test vector to be processed by the ACVP client.  The following table describes the JSON elements for each GMAC test vector.</p>
+
+<table id="gmac_vs_tr_table">
+<name>Table 23 — AES-GMAC Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tag</td>
+<td valign="top" align="left">Value of the computed tag/MAC output, for ‘encrypt’ direction groups</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">The result of decrypt verify, for ‘decrypt’ direction groups</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="gmac_test_vector_response_json" obligation="normative">
+<title depth="3">11.3.2.<tab/>Example AES-GMAC Test Vector Response JSON Object</title>
+<p id="_d1f50d0f-4096-ac2c-f086-c406b2702a4e">The following is an example JSON test vector response object for AES-GMAC.</p>
+
+<sourcecode id="_8c13c41c-eaf1-fac1-07f6-553f90718e31" lang="json"><name>Figure 15</name>{
+ "vsId": 1,
+ "algorithm": "ACVP-AES-GMAC",
+ "revision": "1.0",
+ "testGroups": [{
+     "tgId": 1,
+     "tests": [{
+       "tcId": 1,
+       "tag": "6FA27FDC"
+     }]
+   },
+   {
+     "tgId": 2,
+     "tests": [{
+       "tcId": 2,
+       "testPassed": true
+     }]
+   }
+ ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="hmac_vector_responses" obligation="normative">
+<title depth="2">11.4.<tab/>HMAC Test Vector Responses</title>
+<clause id="hmac_vr_group_table" obligation="normative">
+<title depth="3">11.4.1.<tab/>HMAC Vector Set Group Responses</title>
+<p id="_a7e19925-a296-6564-31d7-091cd7a67a9f">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each HMAC test vector.</p>
+
+<table id="hmac_vs_tr_table">
+<name>Table 24 — HMAC Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">mac</td>
+<td valign="top" align="left">Value of the computed MAC output</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="hmac_test_vector_response_json" obligation="normative">
+<title depth="3">11.4.2.<tab/>Example HMAC Test Vector Response JSON Object</title>
+<p id="_51e6e016-4419-0ab8-ab29-7004d8d476b9">The following is an example JSON test vector response object for HMAC.</p>
+
+<sourcecode id="_8bac9448-9c15-ecae-bbc5-99597e4b5489" lang="json"><name>Figure 16</name>{
+    "vsId": 1,
+    "algorithm": "HMAC-SHA-1",
+    "revision": "1.0",
+    "testGroups": [{
+        "tgId": 1,
+        "tests": [{
+                "tcId": 1,
+                "mac": "0970D053D6829C251070"
+            },
+            {
+                "tcId": 2,
+                "mac": "3A476E0407D7ADF14792"
+            },
+            {
+                "tcId": 3,
+                "mac": "5B219B4C4862242DB175"
+            }
+        ]
+    }]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="security" obligation="normative" displayorder="19">
+<title depth="1">12.<tab/>Security Considerations</title>
+<p id="_8e3b8121-f25b-8c29-ad99-9c8b0ecb26e1">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative" displayorder="20">
+<title xref="Appendix A"><strong>Appendix A</strong> — <strong>Terminology</strong></title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><title>A.1.</title><term id="term-prompt"><name>A.1.1.</name><preferred><strong>Prompt</strong></preferred>
+<definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></definition>
+ </term>
+
+<term id="term-registration"><name>A.1.2.</name><preferred><strong>Registration</strong></preferred>
+<definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></definition>
+ </term>
+
+<term id="term-response"><name>A.1.3.</name><preferred><strong>Response</strong></preferred>
+<definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></definition>
+ </term>
+
+<term id="term-test-case"><name>A.1.4.</name><preferred><strong>Test Case</strong></preferred>
+<definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-group"><name>A.1.5.</name><preferred><strong>Test Group</strong></preferred>
+<definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-vector-set"><name>A.1.6.</name><preferred><strong>Test Vector Set</strong></preferred>
+<definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></definition>
+ </term>
+
+<term id="term-validation"><name>A.1.7.</name><preferred><strong>Validation</strong></preferred>
+<definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative" displayorder="21">
+<title xref="Appendix B"><strong>Appendix B</strong> — <strong>Abbreviations and Acronyms</strong></title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative" displayorder="22">
+<title xref="Appendix C"><strong>Appendix C</strong> — <strong>Revision History</strong></title>
+<table id="_7d4aaec0-285e-5cb0-6caa-b6608f9498b0"><name>Table C-1</name><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_191eb73a-06be-d5a7-59f8-c50ef7080852">2018-08-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_f9379355-a00c-de1e-d341-1b1baf29e028" obligation="normative" displayorder="23">
+<title xref="Appendix D"><strong>Appendix D</strong> — <strong>References</strong></title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard"><formattedref>S. Bradner (March 1997) <em>Key words for use in RFCs to Indicate Requirement Levels</em> (Internet Engineering Task Force),  BCP 14, March 1997. RFC 2119. RFC RFC2119. DOI 10.17487/RFC2119. https://www.rfc-editor.org/info/rfc2119.</formattedref><docidentifier type="RFC" primary="true">RFC 2119</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC2119</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC2119</docidentifier></bibitem>
+ <bibitem id="RFC7991" type="standard"><formattedref>P. Hoffman (December 2016) <em>The “xml2rfc” Version 3 Vocabulary</em> (Internet Engineering Task Force),  RFC 7991, December 2016. RFC 7991. RFC RFC7991. DOI 10.17487/RFC7991. https://www.rfc-editor.org/info/rfc7991.</formattedref><docidentifier type="RFC" primary="true">RFC 7991</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC7991</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC7991</docidentifier></bibitem>
+ <bibitem id="RFC8174" type="standard"><formattedref>B. Leiba (May 2017) <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em> (Internet Engineering Task Force),  BCP 14, May 2017. RFC 8174. RFC RFC8174. DOI 10.17487/RFC8174. https://www.rfc-editor.org/info/rfc8174.</formattedref><docidentifier type="RFC" primary="true">RFC 8174</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC8174</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC8174</docidentifier></bibitem>
+ <bibitem id="FIPS-198-1" type="standard"><formattedref>National Institute of Standards and Technology (July 2008) <em>The Keyed-Hash Message Authentication Code (HMAC)</em> (Gaithersburg, MD), July 2008. FIPS 198-1. https://doi.org/10.6028/NIST.FIPS.198-1.</formattedref><docidentifier type="NIST" primary="true">FIPS 198-1</docidentifier></bibitem>
+ <bibitem id="SP800-38B" type="standard"><formattedref>Morris J. Dworkin (May 2005 (updated October 2016)) <em>Recommendation for Block Cipher Modes of Operation — the CMAC Mode for Authentication</em> (Gaithersburg, MD), May 2005 (updated October 2016). SP 800-38B. https://doi.org/10.6028/NIST.SP.800-38B.</formattedref><docidentifier type="NIST" primary="true">SP 800-38B</docidentifier></bibitem>
+ <bibitem id="SP800-38D" type="standard"><formattedref>Morris J. Dworkin (November 2007) <em>Recommendation for Block Cipher Modes of Operation — Galois/Counter Mode (GCM) and GMAC</em> (Gaithersburg, MD), November 2007. SP 800-38D. https://doi.org/10.6028/NIST.SP.800-38D.</formattedref><docidentifier type="NIST" primary="true">SP 800-38D</docidentifier></bibitem>
+
+<bibitem id="ACVP"><formattedref>Fussell B, Vassilev A, Booth H, Celi C, Hammett R (July 01, 2019) <em>Automatic Cryptographic Validation Protocol</em> (National Institute of Standards and Technology, Gaithersburg, MD), July 01, 2019.</formattedref><docidentifier>ACVP</docidentifier></bibitem>
+
+<bibitem id="CMACVS"><formattedref>Keller S (2011) <em>The CMAC Validation System (CMACVS)</em> (National Institute of Standards and Technology, Gaithersburg, MD), 2011.</formattedref><docidentifier type="NIST">NIST CMACVS</docidentifier></bibitem>
+
+<bibitem id="HMACVS"><formattedref>Bassham III L (2016) <em>The Keyed-Hash Message Authentication Code Validation System (HMACVS)</em> (National Institute of Standards and Technology, Gaithersburg, MD), 2016.</formattedref><docidentifier type="NIST">NIST HMACVS</docidentifier></bibitem>
+
+<bibitem id="SHA3VS"><formattedref>Bassham III L (2016) <em>The Secure Hash Algorithm 3 Validation System (SHA3VS)</em> (National Institute of Standards and Technology, Gaithersburg, MD), 2016.</formattedref><docidentifier type="NIST">NIST SHAVS</docidentifier></bibitem>
+
+<bibitem id="SHAVS"><formattedref>Bassham III L (2014) <em>The Secure Hash Algorithm Validation System (SHAVS)</em> (National Institute of Standards and Technology, Gaithersburg, MD), 2014.</formattedref><docidentifier type="NIST">NIST SHAVS</docidentifier></bibitem>
+</references>
+</annex>
+</nist-standard>

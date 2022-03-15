@@ -1,0 +1,2532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="presentation" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP RSA Algorithm JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP RSA Algorithm JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.RSA</uri><docidentifier type="NIST">ACVP RSA Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol RSA Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.RSA.r-1.eng</docidentifier><docnumber>RSA</docnumber><date type="issued"><on>2019-11-01</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language current="true">en</language><script current="true">Latn</script><abstract><p>This document defines the JSON schema for testing RSA implementations with the ACVP specification.</p>
+</abstract><status><stage language="">final</stage><substage language="">active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype language="">standard</doctype></ext></bibdata><localized-strings><localized-string key="scope" language="en">Scope</localized-string><localized-string key="symbolsabbrev" language="en">Symbols and abbreviated terms</localized-string><localized-string key="abbrev" language="en">Abbreviated terms</localized-string><localized-string key="symbols" language="en">Symbols</localized-string><localized-string key="table_of_contents" language="en">Table of contents</localized-string><localized-string key="introduction" language="en">Introduction</localized-string><localized-string key="foreword" language="en">Foreword</localized-string><localized-string key="abstract" language="en">Abstract</localized-string><localized-string key="acknowledgements" language="en">Acknowledgements</localized-string><localized-string key="termsdef" language="en">Terms and definitions</localized-string><localized-string key="termsdefsymbolsabbrev" language="en">Terms, definitions, symbols and abbreviated terms</localized-string><localized-string key="termsdefsymbols" language="en">Terms, definitions and symbols</localized-string><localized-string key="termsdefabbrev" language="en">Terms, definitions and abbreviated terms</localized-string><localized-string key="normref" language="en">References</localized-string><localized-string key="bibliography" language="en">Bibliography</localized-string><localized-string key="preface" language="en">Preface</localized-string><localized-string key="clause" language="en">Section</localized-string><localized-string key="annex" language="en">Appendix</localized-string><localized-string key="appendix" language="en">Appendix</localized-string><localized-string key="no_terms_boilerplate" language="en"><p>No terms and definitions are listed in this document.</p>
+</localized-string><localized-string key="internal_terms_boilerplate" language="en"><p>For the purposes of this document, 
+    the following terms and definitions apply.</p>
+</localized-string><localized-string key="norm_with_refs_pref" language="en">The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</localized-string><localized-string key="norm_empty_pref" language="en">There are no normative references in this document.</localized-string><localized-string key="external_terms_boilerplate" language="en"><p>For the purposes of this document, 
+  the terms and definitions given in % apply.</p>
+</localized-string><localized-string key="internal_external_terms_boilerplate" language="en"><p>For the purposes of this document, the terms and definitions 
+  given in % and the following apply.</p>
+</localized-string><localized-string key="term_defined_in" language="en">[term defined in %]</localized-string><localized-string key="binary_and" language="en">%1 and %2</localized-string><localized-string key="multiple_and" language="en">%1, and %2</localized-string><localized-string key="binary_or" language="en">%1 or %2</localized-string><localized-string key="multiple_or" language="en">%1, or %2</localized-string><localized-string key="chain_and" language="en">%1 and %2</localized-string><localized-string key="chain_or" language="en">%1 or %2</localized-string><localized-string key="chain_from" language="en">%1 from %2</localized-string><localized-string key="chain_to" language="en">%1 to %2</localized-string><localized-string key="note" language="en">NOTE</localized-string><localized-string key="note_xref" language="en">Note</localized-string><localized-string key="termnote" language="en">Note % to entry</localized-string><localized-string key="list" language="en">List</localized-string><localized-string key="deflist" language="en">Definition List</localized-string><localized-string key="figure" language="en">Figure</localized-string><localized-string key="formula" language="en">Formula</localized-string><localized-string key="inequality" language="en">Formula</localized-string><localized-string key="table" language="en">Table</localized-string><localized-string key="requirement" language="en">Requirement</localized-string><localized-string key="recommendation" language="en">Recommendation</localized-string><localized-string key="permission" language="en">Permission</localized-string><localized-string key="key" language="en">Key</localized-string><localized-string key="example" language="en">EXAMPLE</localized-string><localized-string key="example_xref" language="en">Example</localized-string><localized-string key="where" language="en">where</localized-string><localized-string key="wholeoftext" language="en">Whole of text</localized-string><localized-string key="draft_label" language="en">draft</localized-string><localized-string key="inform_annex" language="en">informative</localized-string><localized-string key="norm_annex" language="en">normative</localized-string><localized-string key="modified" language="en">modified</localized-string><localized-string key="deprecated" language="en">DEPRECATED</localized-string><localized-string key="source" language="en">SOURCE</localized-string><localized-string key="and" language="en">and</localized-string><localized-string key="all_parts" language="en">All Parts</localized-string><localized-string key="toc_figures" language="en">List of figures</localized-string><localized-string key="toc_tables" language="en">List of tables</localized-string><localized-string key="toc_recommendations" language="en">List of recommendations</localized-string><localized-string key="month_january" language="en">January</localized-string><localized-string key="month_february" language="en">February</localized-string><localized-string key="month_march" language="en">March</localized-string><localized-string key="month_april" language="en">April</localized-string><localized-string key="month_may" language="en">May</localized-string><localized-string key="month_june" language="en">June</localized-string><localized-string key="month_july" language="en">July</localized-string><localized-string key="month_august" language="en">August</localized-string><localized-string key="month_september" language="en">September</localized-string><localized-string key="month_october" language="en">October</localized-string><localized-string key="month_november" language="en">November</localized-string><localized-string key="month_december" language="en">December</localized-string><localized-string key="obligation" language="en">Obligation</localized-string><localized-string key="subject" language="en">Subject</localized-string><localized-string key="inherits" language="en">Inherits</localized-string><localized-string key="admonition.danger" language="en">Danger</localized-string><localized-string key="admonition.warning" language="en">Warning</localized-string><localized-string key="admonition.caution" language="en">Caution</localized-string><localized-string key="admonition.important" language="en">Important</localized-string><localized-string key="admonition.safety_precautions" language="en">Safety Precautions</localized-string><localized-string key="locality.section" language="en">Section</localized-string><localized-string key="locality.clause" language="en">Clause</localized-string><localized-string key="locality.part" language="en">Part</localized-string><localized-string key="locality.paragraph" language="en">Paragraph</localized-string><localized-string key="locality.chapter" language="en">Chapter</localized-string><localized-string key="locality.page" language="en">Page</localized-string><localized-string key="locality.table" language="en">Table</localized-string><localized-string key="locality.annex" language="en">Annex</localized-string><localized-string key="locality.figure" language="en">Figure</localized-string><localized-string key="locality.example" language="en">Example</localized-string><localized-string key="locality.note" language="en">Note</localized-string><localized-string key="locality.formula" language="en">Formula</localized-string><localized-string key="grammar_abbrevs.masculine" language="en">m</localized-string><localized-string key="grammar_abbrevs.feminine" language="en">f</localized-string><localized-string key="grammar_abbrevs.neuter" language="en">n</localized-string><localized-string key="grammar_abbrevs.common" language="en">common</localized-string><localized-string key="grammar_abbrevs.singular" language="en">sg</localized-string><localized-string key="grammar_abbrevs.dual" language="en">dual</localized-string><localized-string key="grammar_abbrevs.pl" language="en">pl</localized-string><localized-string key="grammar_abbrevs.isPreposition" language="en">prep</localized-string><localized-string key="grammar_abbrevs.isParticiple" language="en">part</localized-string><localized-string key="grammar_abbrevs.isAdjective" language="en">adj</localized-string><localized-string key="grammar_abbrevs.isAdverb" language="en">adv</localized-string><localized-string key="grammar_abbrevs.isNoun" language="en">noun</localized-string><localized-string key="grammar_abbrevs.isVerb" language="en">verb</localized-string><localized-string key="relatedterms.deprecates" language="en">deprecates</localized-string><localized-string key="relatedterms.supersedes" language="en">supersedes</localized-string><localized-string key="relatedterms.narrower" language="en">narrower</localized-string><localized-string key="relatedterms.broader" language="en">broader</localized-string><localized-string key="relatedterms.equivalent" language="en">equivalent</localized-string><localized-string key="relatedterms.compare" language="en">compare</localized-string><localized-string key="relatedterms.contrast" language="en">contrast</localized-string><localized-string key="relatedterms.see" language="en">see</localized-string><localized-string key="Clause.sg" language="en">Clause</localized-string><localized-string key="Clause.pl" language="en">Clauses</localized-string><localized-string key="Annex.sg" language="en">Annex</localized-string><localized-string key="Annex.pl" language="en">Annexes</localized-string><localized-string key="Appendix.sg" language="en">Appendix</localized-string><localized-string key="Appendix.pl" language="en">Appendixes</localized-string><localized-string key="Note.sg" language="en">Note</localized-string><localized-string key="Note.pl" language="en">Notes</localized-string><localized-string key="Note_%_to_entry.sg" language="en">Note % to entry</localized-string><localized-string key="Note_%_to_entry.pl" language="en">Notes % to entry</localized-string><localized-string key="List.sg" language="en">List</localized-string><localized-string key="List.pl" language="en">Lists</localized-string><localized-string key="Figure.sg" language="en">Figure</localized-string><localized-string key="Figure.pl" language="en">Figures</localized-string><localized-string key="Formula.sg" language="en">Formula</localized-string><localized-string key="Formula.pl" language="en">Formulas</localized-string><localized-string key="Table.sg" language="en">Table</localized-string><localized-string key="Table.pl" language="en">Tables</localized-string><localized-string key="Requirement.sg" language="en">Requirement</localized-string><localized-string key="Requirement.pl" language="en">Requirements</localized-string><localized-string key="Recommendation.sg" language="en">Recommendation</localized-string><localized-string key="Recommendation.pl" language="en">Recommendations</localized-string><localized-string key="Permission.sg" language="en">Permission</localized-string><localized-string key="Permission.pl" language="en">Permissions</localized-string><localized-string key="Example.sg" language="en">Example</localized-string><localized-string key="Example.pl" language="en">Examples</localized-string><localized-string key="Part.sg" language="en">Part</localized-string><localized-string key="Part.pl" language="en">Parts</localized-string><localized-string key="Section.sg" language="en">Section</localized-string><localized-string key="Section.pl" language="en">Sections</localized-string><localized-string key="Paragraph.sg" language="en">Paragraph</localized-string><localized-string key="Paragraph.pl" language="en">Paragraphs</localized-string><localized-string key="Chapter.sg" language="en">Chapter</localized-string><localized-string key="Chapter.pl" language="en">Chapters</localized-string><localized-string key="Page.sg" language="en">Page</localized-string><localized-string key="Page.pl" language="en">Pages</localized-string><localized-string key="draft-internal-boilerplate" language="en">This document is currently under development and is <br/><b>NOT INTENDED FOR PUBLIC RELEASE.</b></localized-string><localized-string key="draft-wip-boilerplate" language="en">This document is currently under development. The draft is not yet complete, and organizations should not attempt to implement it. The content is in an early stage of development, rough, incomplete and experimental; it has not been extensively edited or vetted. This provides an insider view of the iterative process to develop the content and it gives NIST an opportunity to share early thoughts, ideas, and approaches with the community. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period.</localized-string><localized-string key="draft-prelim-boilerplate" language="en">This document incorporates comments from the work-in-progress draft. It is a relatively cohesive document and is considered stable, although there are gaps in the content and the overall document is incomplete. Some changes are expected. Organizations may consider experimenting with guidelines, with the understanding that they will identify gaps and challenges. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period; a full public draft is expected to follow.</localized-string><localized-string key="draft-public-boilerplate" language="en">This draft represents a complete document that is released for public comment as part of NIST’s official review process, in support of an open and transparent process for developing guidelines and standards. The language is normalized and is consistent throughout the document. Comments received during previous review cycles (if any) have been adjudicated and are addressed in this release. Early adopters may attempt to implement the guidelines in a test or development environment; however, comments received on this draft may cause NIST to determine that a subsequent public draft and comment period are necessary. The content of this document will not be considered “final” until it is formally published and announced by NIST.</localized-string><localized-string key="withdrawal-pending-boilerplate" language="en">This document has been superseded by the document identified below. It will remain active until the withdrawal date, when it will be officially withdrawn.</localized-string><localized-string key="draft-retired-boilerplate" language="en">The attached draft document has been RETIRED. NIST has discontinued additional development of this document, which is provided here in its entirety for historical purposes.</localized-string><localized-string key="draft-withdrawn-boilerplate" language="en">The attached draft document has been withdrawn, and is provided solely for historical purposes. It has been superseded by the document identified below.</localized-string><localized-string key="publication-withdrawn-boilerplate" language="en">The attached publication has been withdrawn (archived), and is provided solely for historical purposes. It may have been superseded by another publication (indicated below).</localized-string><localized-string key="keywords" language="en">Keywords</localized-string><localized-string key="keywords_intro" language="en"><p>The following are keywords to be used by search engines and document catalogues.</p></localized-string><localized-string key="language" language="en">en</localized-string><localized-string key="script" language="en">Latn</localized-string></localized-strings>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title depth="2">Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title depth="2">Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract" displayorder="1"><title>Abstract</title><p id="_83714b21-ea63-9633-638f-6d1a9e594565">This document defines the JSON schema for testing RSA implementations with the ACVP specification.</p>
+</abstract><clause id="_17c4f328-25cd-49fa-8c88-9bad6c76081f" type="keyword" displayorder="2">
+<title depth="1">Keywords</title>
+<p>The following are keywords to be used by search engines and document catalogues.</p>
+<p>ACVP; cryptography</p></clause>
+<foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative" displayorder="3">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative" displayorder="4">
+<title depth="1">Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative" displayorder="5">
+<title depth="1">Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119">[RFC 2119]</eref> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174">[RFC 8174]</eref> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative" displayorder="6"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative" displayorder="7">
+<title>Executive Summary</title>
+<p id="_c82d851f-a3ce-f8ef-2d05-db722ba623db">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing RSA implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative" displayorder="8">
+<title depth="1">1.<tab/>Introduction</title>
+<p id="_3d5b77bf-c3d2-2701-490a-eddfe78334c8">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing RSA implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative" displayorder="9">
+<title depth="1">2.<tab/>Supported RSA Modes</title>
+<p id="_9a9ed286-431e-56ec-57ae-fc21a2edc1ad">The following algorithms <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<table id="algs_table">
+<name>Table 1 — Supported RSA Algorithm Modes JSON Values</name>
+<thead><tr><th valign="top" align="left">Algorithm</th>
+<th valign="top" align="left">Mode</th>
+<th valign="top" align="left">Revision</th>
+<th valign="top" align="left">Standard</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“keyGen”</td>
+<td valign="top" align="left">“FIPS186-4”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“keyGen”</td>
+<td valign="top" align="left">“FIPS186-5”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“sigGen”</td>
+<td valign="top" align="left">“FIPS186-4”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“sigGen”</td>
+<td valign="top" align="left">“FIPS186-5”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“sigVer”</td>
+<td valign="top" align="left">“FIPS186-5”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“sigVer”</td>
+<td valign="top" align="left">“FIPS186-4”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“sigVer”</td>
+<td valign="top" align="left">“FIPS186-2”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-2" citeas="FIPS 186-2">[FIPS 186-2]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“signaturePrimitive”</td>
+<td valign="top" align="left">“1.0”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref></td>
+</tr><tr><td valign="top" align="left">“RSA”</td>
+<td valign="top" align="left">“decryptionPrimitive”</td>
+<td valign="top" align="left">“1.0”</td>
+<td valign="top" align="left"><eref type="inline" bibitemid="SP800-56B" citeas="SP 800-56B">[SP 800-56B]</eref></td>
+</tr></tbody>
+</table>
+
+<p id="_452e5429-b107-12ca-91dd-3ab184d30b25">These will be refered to as algorithm / mode / revision throughout the document, for example RSA / keyGen / 1.0.</p>
+
+<clause id="supported_conformances" obligation="normative">
+<title depth="2">2.1.<tab/>Supported Conformances for RSA Algorithms</title>
+<p id="_f6725886-57e4-fcd6-b1ae-ad515f927c68">The following RSA algorithms <strong>MAY</strong> claim conformance to <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref>:</p>
+
+<ul id="_fd570c5a-ad24-fe49-c0ae-53a13c0584c3"><li><p id="_ab3419c4-a5ed-ca1e-322b-823281a9a00d">RSA / sigGen / FIPS186-4</p>
+</li>
+<li><p id="_840d8bf3-85dd-f45d-f5fb-642f5e972e90">RSA / sigGen / FIPS186-5</p>
+</li>
+<li><p id="_66e3ef98-5ab8-467a-2d9c-ac07ebc5ebe0">RSA / sigVer / FIPS186-2</p>
+</li>
+<li><p id="_f3e8c701-9703-8dce-6856-d7f0d6b87307">RSA / sigVer / FIPS186-4</p>
+</li>
+<li><p id="_63deb565-ab12-a56b-43ac-dedd8dc6cc90">RSA / sigVer / FIPS186-5</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="testtypes" obligation="normative" displayorder="10">
+<title depth="1">3.<tab/>Test Types and Test Coverage</title>
+<p id="_c190e706-ebc8-d37a-8e40-c516f0db5c2a">This section describes the design of the tests used to validate RSA implementations.</p>
+
+<clause id="_test_types" obligation="normative">
+<title depth="2">3.1.<tab/>Test Types</title>
+<p id="_eb170f23-4fb8-a1fa-367a-eb8f2581afb7">There are multiple test types depending on the algorithm and mode. Each has a specific value to be used in the testType field. The testType field definitions are:</p>
+
+<p id="_6794ffa7-1494-b81a-901e-bbd06ac881a2">“AFT” — Algorithm Functional Test. These tests can be processed by the client using a normal ‘generate_key’, ‘sign’, ‘verify’ or ‘decrypt’ operation depending on the mode. AFTs cause the implementation under test to exercise normal operations. In all cases, random data is used. The functional tests are designed to verify that the logical components of the process are operating correctly.</p>
+
+<p id="_aca79f93-9471-867b-fe79-af1c62ef894f">“GDT” — Generated Data Test. These tests require the client to generate all inputs and outputs in order to demonstrate their full capabilities in cases where input from the server might not be applicable.</p>
+
+<p id="_5181ed61-1a33-ae82-b7a1-6d2ac8076954">“KAT” — Known Answer Test. These tests are staticly defined and are included in every vector set that matches their capabilities.</p>
+</clause>
+
+<clause id="_test_types_per_mode" obligation="normative">
+<title depth="2">3.2.<tab/>Test Types Per Mode</title>
+<p id="_1261919f-e445-0067-11bc-d59090492067">As each mode requires different tests, how each test type is processed may change depending on the mode.</p>
+
+<p id="_1fbe92fb-0fd2-9691-f5d8-d71e8aac84da">ACVP servers that support RSA keyGen <strong>MAY</strong> support AFTs, GDTs, and KATs. The AFTs and GDTs <strong>REQUIRE</strong> the client to generate RSA key pairs based on the test group properties provided. The KATs <strong>REQUIRE</strong> the client to attempt to generate a key with specific starting ‘p’ and ‘q’ values via the Random Probable Prime method defined in <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> and <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>.</p>
+
+<p id="_98c91238-2b03-4aa4-b9ba-b610f54b927b">ACVP servers that support RSA sigGen <strong>MAY</strong> support GDTs. The GDTs <strong>REQUIRE</strong> the client to generate a key pair and sign a message provided by the server based on the test group properties provided. The client provides the signature and public key to the server for verification.</p>
+
+<p id="_59c8e726-5493-d262-30db-20cd35ff82a9">ACVP servers that support RSA sigVer <strong>MAY</strong> support GDTs. The GDTs <strong>REQUIRE</strong> the client to verify provided signatures given a message and public key. The client provides the verification result back to the server.</p>
+
+<p id="_1846380e-901e-b30b-1e22-03f3b9b1635d">ACVP servers that support RSA LegacysigVer <strong>MAY</strong> support GDTs. The GDTs <strong>REQUIRE</strong> the client to verify provided signatures given a message and public key. The client provides the verification result back to the server.</p>
+
+<p id="_4dc68ced-7fd1-7e98-3733-1c9c4b83746c">ACVP servers that support RSA SignaturePrimitive <strong>MAY</strong> support AFTs. The AFTs <strong>REQUIRE</strong> the client to determine whether or not the provided message can be signed with the provided public key. If so, also provide the signature for verification.</p>
+
+<p id="_63f6568b-1f76-7217-d97e-ebe40307285a">ACVP servers that support RSA DecryptionPrimitive <strong>MAY</strong> support AFTs. The AFTs <strong>REQUIRE</strong> the client to determine whether or not the provided ciphertext can be decrypted with the provided public key. If so, also provide the plaintext for verification.</p>
+</clause>
+
+<clause id="_test_coverage" obligation="normative">
+<title depth="2">3.3.<tab/>Test Coverage</title>
+<p id="_5c41feb7-dc3c-7724-d348-81f2f47a78ff">The tests described in this document are intended to ensure an implementation conformant with the requirements listed below.  For clarity, related requirements not covered are also provided.</p>
+
+<clause id="requirements_covered" obligation="normative">
+<title depth="3">3.3.1.<tab/>Requirements Covered</title>
+<ul id="_08fdc9d7-b2a4-8667-1a6f-e385cc570731"><li><p id="_c47ac990-dec1-fe46-d3db-e646b707f8e8">FIPS 186-4 Section 3 General Discussion. Key generation, signature generation, and signature validation are all within scope of ACVP server testing.</p>
+</li>
+<li><p id="_7bac59a5-062f-95a8-343f-cc4c869aa3ba">FIPS 186-4 Section 5 The RSA Digital Signature Algorithm. The ACVP server provides a means of testing the generation of RSA keys. The ACVP server <strong>SHALL</strong> support a variety of RSA capabilities functionS for the creation and delivery of tests to/from the IUT. Key pair generation testing <strong>SHALL</strong> be provided by the ACVP server. Both Signature Generation and Validation testing mechanisms <strong>SHALL</strong> be provided by the ACVP server.</p>
+</li>
+<li><p id="_2bc9555d-c142-7ba7-e3d8-e661d3dcc598">FIPS 186-2. The ACVP server MAY provide a means of testing legacy RSA functions such as RSA sigVer. This testing is provided to ensure an IUT is capable of verifying a signature that is no longer approved for generation, given the same capabilities.</p>
+</li>
+<li><p id="_368decd2-b6ba-3601-cd93-3d0a485cca6d">SP800-106 Section 3 Randomized Hashing and Section 4 Digital Signatures Using Randomized Hashing. The IUT <strong>SHALL</strong> be provided or provide a random value that should be used to “randomize” a message prior to signing and/or verifying an original message.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_not_covered" obligation="normative">
+<title depth="3">3.3.2.<tab/>Requirements Not Covered</title>
+<ul id="_f5708743-9911-4516-8ec5-edf1181039a0"><li><p id="_2c10dbdb-40e7-60f5-a554-1348a3b5e846">FIPS 186-4 Section 3 General Discussion. Assurances of private key secrecy and ownership <strong>SHALL NOT</strong> be within scope of ACVP testing.</p>
+</li>
+<li><p id="_6181eed0-1090-f2bf-3333-5af38212b867">FIPS 186-4 Section 5 The RSA Digital Signature Algorithm. Though the ACVP server <strong>SHALL</strong> support a variety of parameter sizes hash functions, the IUT’s selection of these is out of scope of testing. Key pair management <strong>SHALL NOT</strong> be within scope of ACVP testing.</p>
+</li>
+<li><p id="_13f00d52-99c2-5ad9-be72-ab1b36331ff8">SP800-106 Section 3.3 The Random Value. DSA, ECDSA, and RSA have random values generated as per their signing process, this random value can be used as the input to the message randomization function, doing so however is out of scope of this testing.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative" displayorder="11">
+<title depth="1">4.<tab/>Capabilities Registration</title>
+<p id="_3c8e64ad-875e-e74a-3b2d-47b5ba3a91a8">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of RSA algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP">[ACVP]</eref> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title depth="2">4.1.<tab/>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Table 2 — Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json"><name>Figure 1</name>"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="prereq_algs" obligation="normative">
+<title depth="2">4.2.<tab/>Required Prerequisite Algorithms for RSA Validations</title>
+<p id="_cd4082cd-43a8-a364-c41d-4cd6c8594e47">Each RSA implementation relies on other cryptographic primitives. For example, RSA keyGen often uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<table id="prereqs_table">
+<name>Table 3 — Required RSA Prerequisite Algorithms JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">SHA, DRBG</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">Actual number or “same”</td>
+</tr><tr><td valign="top" align="left">prereqAlgVal</td>
+<td valign="top" align="left">prerequisite algorithm validation</td>
+<td valign="top" align="left">object with algorithm and valValue properties</td>
+<td valign="top" align="left">See above</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="_rsa_algorithm_registration_properties" obligation="normative">
+<title depth="2">4.3.<tab/>RSA Algorithm Registration Properties</title>
+<p id="_49b42f53-2fda-eaa1-6010-47ee7198a77c">Each RSA algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="rsa_caps_table">
+<name>Table 4 — RSA Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The RSA algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The mode to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">See <xref target="supported">Section 2</xref></td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisite algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs">Section 4.2</xref></td>
+</tr><tr><td valign="top" align="left">capabilities</td>
+<td valign="top" align="left">The individual RSA capabilities</td>
+<td valign="top" align="left">array of capability objects</td>
+<td valign="top" align="left">See <xref target="rsa_keyGen_capabilities">Section 4.4</xref>, <xref target="rsa_sigGen_capabilities">Section 4.6</xref>, <xref target="rsa_sigVer_capabilities">Section 4.7</xref>, <xref target="rsa_decprim_capabilities">Section 4.9</xref>, or <xref target="rsa_sigprim_capabilities">Section 4.8</xref></td>
+</tr><tr><td valign="top" align="left">infoGeneratedByServer</td>
+<td valign="top" align="left">This flag indicates that the server is responsible for generating inputs for Key Generation tests</td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">true/false</td>
+</tr><tr><td valign="top" align="left">pubExpMode</td>
+<td valign="top" align="left">Supports fixed or random public key exponent e</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“fixed” or “random”</td>
+</tr><tr><td valign="top" align="left">fixedPubExp</td>
+<td valign="top" align="left">The value of the public key exponent e in hex if pubExpMode is “fixed”</td>
+<td valign="top" align="left">hex</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">keyFormat</td>
+<td valign="top" align="left">The preferred private key format. The “standard” format has “p”, “q”, and “d” as the components of the private key. The “crt” (Chinese Remainder Theorem) format has “p”, “q”, “dmp1” (d modulo p-1), “dmq1” (d modulo q-1), and “iqmp” (inverse q modulo p) as the components</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“standard” or “crt”</td>
+</tr></tbody>
+<note id="_3035c975-b7a9-66b3-06ca-6895b5918811"><name>NOTE  1</name><p id="_cbd060bd-206c-dc03-19c2-934ba036daef">The ‘infoGeneratedByServer’ property is only valid for RSA / keyGen / * registrations.</p>
+</note><note id="_25323ade-8ad5-6bea-0225-8409dd2b8fc9"><name>NOTE  2</name><p id="_35c150cc-42ec-ac03-5d9d-004f516a931a">The ‘pubExpMode’ and if the property is set to “fixed”, the ‘fixedPubExp’, are only valid for RSA / keyGen / * , and RSA / sigVer / * registrations.</p>
+</note><note id="_2159d595-51fd-812a-7f6b-9bac5f9e9f4d"><name>NOTE  3</name><p id="_87e56bea-b0af-2537-7046-f5de5e3a8d7f">The ‘keyFormat’ property is only valid for RSA / keyGen / * registrations.</p>
+</note></table>
+
+
+
+
+
+
+</clause>
+
+<clause id="rsa_keyGen_capabilities" obligation="normative">
+<title depth="2">4.4.<tab/>Property Registration RSA keyGen FIPS186-4</title>
+<p id="_1955eebb-90bc-4ee9-7017-824ed44b53a2">The RSA keyGen FIPS186-4 capabilities are advertised as JSON objects within the ‘capabilities’ property.</p>
+
+<clause id="mode_keyGenFullSet" obligation="normative">
+<title depth="3">4.4.1.<tab/>keyGen Registration Table</title>
+<p id="_c1d0018c-8501-d169-1f34-b4c1d15f7b52">A registration for RSA / keyGen / FIPS186-4 <strong>SHALL</strong> use these properties</p>
+
+<table id="keyGen_table_fips186-4">
+<name>Table 5 — RSA keyGen FIPS186-4 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">randPQ</td>
+<td valign="top" align="left">Key Generation mode to be validated. Random P and Q primes generated as (see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>): provable primes (Appendix B.3.2); probable primes (Appendix B.3.3); provable primes with conditions (Appendix B.3.4); provable/probable primes with conditions (Appendix B.3.5); probable primes with conditions (Appendix B.3.6)</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“B.3.2”, “B.3.3”, “B.3.4”, “B.3.5”, “B.3.6”</td>
+</tr><tr><td valign="top" align="left">properties</td>
+<td valign="top" align="left">An array of objects containing properties for all supported moduli, primality test, and hash algorithms for a single key generation mode</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">supported RSA modulo for the randPQ mode — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">2048, 3072 or 4096</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">Supported hash algorithms for the randPQ mode — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3. Needed for “B.3.2”, “B.3.4” and “B.3.5”</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”SHA-1”, “SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”}</td>
+</tr><tr><td valign="top" align="left">primeTest</td>
+<td valign="top" align="left">Primality test rounds of Miller-Rabin from Table C.2 or Table C.3 in <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix C.3</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”tblC2”, “tblC3”}. Needed for “B.3.3”, “B.3.5” and “B.3.6”</td>
+</tr></tbody>
+</table>
+
+<p id="_10608e1a-f716-5a29-352d-f806034c475d">An example of this is the following</p>
+
+<sourcecode id="_bb2826f9-490f-fac8-bd9c-1be9e72644b3" lang="json"><name>Figure 2</name>{
+    "algorithm": "RSA",
+    "mode": "keyGen",
+    "revision": "FIPS186-4",
+    "prereqVals": [{"algorithm": "DRBG", "valValue": "1234"}, {"algorithm": "SHA", "valValue": "5678"}],
+    "infoGeneratedByServer": false,
+    "pubExpMode": "random",
+    "keyFormat": "crt",
+    "capabilities": [
+        {
+            "randPQ": "B.3.2",
+            "properties": [
+                {
+                    "modulo": 2048,
+                    "hashAlg": [
+                        "SHA2-224"
+                    ]
+                }
+            ]
+        },
+        {
+            "randPQ": "B.3.4",
+            "properties": [
+                {
+                    "modulo": 3072,
+                    "hashAlg": [
+                        "SHA2-224"
+                    ]
+                }
+            ]
+        },
+        {
+            "randPQ": "B.3.3",
+            "properties": [
+                {
+                    "modulo": 2048,
+                    "primeTest": [
+                        "tblC2"
+                    ]
+                }
+            ]
+        },
+        {
+            "randPQ": "B.3.6",
+            "properties": [
+                {
+                    "modulo": 3072,
+                    "primeTest": [
+                        "tblC2",
+                        "tblC3"
+                    ]
+                }
+            ]
+        },
+        {
+            "randPQ" : "B.3.5",
+            "properties" : [
+                {
+                    "modulo" : 4096,
+                    "hashAlg" : [
+                        "SHA2-512"
+                    ],
+                    "primeTest": [
+                        "tblC3"
+                    ]
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="_property_registration_rsa_keygen_fips186_5" obligation="normative">
+<title depth="2">4.5.<tab/>Property Registration RSA keyGen FIPS186-5</title>
+<p id="_9ea68b45-3e23-26ee-dcd6-3286c8674820">The RSA / keyGen / FIPS186-5 capabilities are advertised as JSON objects within the ‘capabilities’ property.</p>
+
+<clause id="_keygen_registration_table" obligation="normative">
+<title depth="3">4.5.1.<tab/>keyGen Registration Table</title>
+<p id="_d4689e61-9e85-121b-6291-5f3dcd7d8257">A registration for RSA / keyGen / FIPS186-5 <strong>SHALL</strong> use these properties</p>
+
+<table id="keyGen_table_fips186-5">
+<name>Table 6 — RSA keyGen FIPS186-5 Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">randPQ</td>
+<td valign="top" align="left">Key Generation mode to be validated. Random P and Q primes generated as (see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>): provable primes; probable primes; provable primes with auxiliary provable primes; probable primes with auxiliary provable primes; probable primes with auxiliary probable primes</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“provable”, “probable”, “provableWithProvableAux”, “probableWithProvableAux”, “probableWithProbableAux”</td>
+</tr><tr><td valign="top" align="left">properties</td>
+<td valign="top" align="left">An array of objects containing properties for all supported moduli, primality test, and hash algorithms for a single key generation mode</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">supported RSA modulo for the randPQ mode — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref></td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">2048, 3072, 4096 or 8192</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">Supported hash algorithms for the randPQ mode — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>. Needed for any ‘randPQ’ with provable primes</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”SHA-1”, “SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”}</td>
+</tr><tr><td valign="top" align="left">primeTest</td>
+<td valign="top" align="left">Primality test rounds of Miller-Rabin from <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>. Needed for any ‘randPQ’ with probable primes</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”2pow100”, “2powSecStr”}</td>
+</tr><tr><td valign="top" align="left">pMod8</td>
+<td valign="top" align="left">The result of the evaluation of the generated p prime, p % 8</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">0, 1, 3, 5, 7</td>
+</tr><tr><td valign="top" align="left">qMod8</td>
+<td valign="top" align="left">The result of the evaluation of the generated q prime, q % 8</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">0, 1, 3, 5, 7</td>
+</tr></tbody>
+<note id="_7479f81e-0296-ada8-c145-589d096eab35"><name>NOTE</name><p id="_bec4787b-2f2f-521c-d53a-535c64530439">The properties ‘pMod8’ and ‘qMod8’ with a value of 0, means that no modulus check will be performed on the generated primes p and q.</p>
+</note></table>
+
+
+
+<p id="_25a72bd1-7831-2d9c-6b07-6f621ef22fbb">The following is an example</p>
+
+<sourcecode id="_34de1fe6-18e4-f233-d574-dce30884097f" lang="json"><name>Figure 3</name>{
+    "algorithm": "RSA",
+    "mode": "keyGen",
+    "revision": "FIPS186-5",
+    "prereqVals": [{"algorithm": "DRBG", "valValue": "1234"}, {"algorithm": "SHA", "valValue": "5678"}],
+    "infoGeneratedByServer": false,
+    "pubExpMode": "random",
+    "keyFormat": "crt"
+    "capabilities": [
+        {
+            "randPQ": "provable",
+            "properties": [
+                {
+                    "modulo": 2048,
+                    "hashAlg": [
+                        "SHA2-224"
+                    ],
+                    "pMod8": 1,
+                    "qMod8": 1
+                }
+            ]
+        },
+        {
+            "randPQ": "probable",
+            "properties": [
+                {
+                    "modulo": 2048,
+                    "primeTest": [
+                        "2pow100"
+                    ],
+                    "pMod8": 0,
+                    "qMod8": 3
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="rsa_sigGen_capabilities" obligation="normative">
+<title depth="2">4.6.<tab/>RSA sigGen Mode Capabilities</title>
+<p id="_b24d9eb5-9a94-d5fd-42be-5a175118cd59">The RSA / sigGen / * mode capabilities are advertised as JSON objects within the ‘capabilities’ array as part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification for details on the registration message.</p>
+
+<p id="_8b5c5515-1e3d-a6e7-7d98-21aecf1d3f53">Each RSA sigGen mode capability is advertised as a self-contained JSON object consisting of the algorithm, mode, and capabilities array. The capabilities array may contain multiple elements, each pertaining to a sigType that is supported by the client for the RSA mode being advertised.</p>
+
+<p id="_1bd6de76-007f-8828-04eb-f359bb0ec312">The following table defines the capabilities that may be advertised by the ACVP compliant crypto modules.</p>
+
+<clause id="mode_sigGenCap_FIPS186-4" obligation="normative">
+<title depth="3">4.6.1.<tab/>RSA sigGen FIPS186-4 Capabilities Table</title>
+<p id="_f489904d-0846-5077-9906-3929fa90a53d">The following RSA / sigGen / FIPS186-4 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="sigGenRSAFIPS186-4">
+<name>Table 7 — Supported RSA sigGen FIPS186-4 JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">sigType</td>
+<td valign="top" align="left">supported RSA signature types  — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">one of {”ansx9.31”, “pkcs1v1.5”, “pss”}</td>
+</tr><tr><td valign="top" align="left">properties</td>
+<td valign="top" align="left">RSA signature generation parameters  — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">modulo, hashAlg, and saltLen (when sigType is “pss”)</td>
+</tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">supported RSA modulo for signature generation — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">any one of the supported modulo sizes {2048, 3072, 4096}</td>
+</tr><tr><td valign="top" align="left">hashPair</td>
+<td valign="top" align="left">supported hash algorithms and optional salt length for signature generation for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">an array of objects containing a hashAlg and an optional saltLen</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">supported hash algorithms for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”}</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">supported salt lengths for PSS signature generation — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5.5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">See the note below</td>
+</tr></tbody>
+<note id="_9cb669ca-1949-1c21-6803-a56332d724f9"><name>NOTE</name><p id="_ce398ff9-7481-6f3a-0338-bf0d45c9fb71">The ‘saltLen’ property for each hash algorithm <strong>SHALL</strong> only be present if the ‘sigType’ is “pss”. The values allowed in PSS signature generation is between 0 and the length of the corresponding hash function output block (in bytes), the end points included.</p>
+</note></table>
+
+
+
+<p id="_cdb02a01-89d2-2504-84e3-28545509859d">The following is an example of a registration for RSA / sigGen / FIPS186-4</p>
+
+<sourcecode id="_720e1826-29d2-c4a9-30cb-ed840d8fadd1" lang="json"><name>Figure 4</name>{
+    "algorithm": "RSA",
+    "mode": "sigGen",
+    "revision": "FIPS186-4",
+    "prereqVals": [{"algorithm": "DRBG", "valValue": "same"}, {"algorithm": "SHA", "valValue": "same"}],
+    "conformances": [
+        "SP800-106"
+    ],
+    "capabilities" :
+    [
+        {
+            "sigType" : "ansx9.31",
+            "properties" :
+            [
+                {
+                    "modulo" : 2048,
+                    "hashPair" : [
+                        {
+                            "hashAlg" : "SHA2-224"
+                        }
+                    ]
+                },
+                {
+                    "modulo" : 3072,
+                    "hashPair" : [
+                        {
+                            "hashAlg" : "SHA2-256"
+                        },
+                        {
+                            "hashAlg" : "SHA2-512"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sigType" : "pkcs1v1.5",
+            "properties" :
+            [
+                {
+                    "modulo" : 4096,
+                    "hashPair" : [
+                        {
+                            "hashAlg" : "SHA2-224"
+                        },
+                        {
+                            "hashAlg" : "SHA2-256"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sigType" : "pss",
+            "properties" :
+            [
+                {
+                    "modulo" : 3072,
+                    "hashPair" : [
+                        {
+                            "hashAlg" : "SHA2-224",
+                            "saltLen" : 28
+                        },
+                        {
+                            "hashAlg" : "SHA2-256",
+                            "saltLen" : 32
+                        },
+                        {
+                            "hashAlg" : "SHA2-512",
+                            "saltLen" : 64
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+
+<clause id="mode_sigGenCap_FIPS186-5" obligation="normative">
+<title depth="3">4.6.2.<tab/>RSA sigGen FIPS186-5 Capabilities Table</title>
+<p id="_671e85e6-0d12-4096-5979-c56465d014c0">The following RSA / sigGen / FIPS186-5 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="sigGenRSAFIPS186-5">
+<name>Table 8 — Supported RSA sigGen FIPS186-5 JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">sigType</td>
+<td valign="top" align="left">supported RSA signature types  — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">one of {”pkcs1v1.5”, “pss”}</td>
+</tr><tr><td valign="top" align="left">properties</td>
+<td valign="top" align="left">RSA signature generation parameters  — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">modulo, hashAlg, and saltLen (when sigType is “pss”)</td>
+</tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">supported RSA modulo for signature generation — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">any one of the supported modulo sizes {2048, 3072, 4096}</td>
+</tr><tr><td valign="top" align="left">maskFunction</td>
+<td valign="top" align="left">the mask function used, only valid for PSS</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”mgf1”, “shake-128”, “shake-256”}</td>
+</tr><tr><td valign="top" align="left">hashPair</td>
+<td valign="top" align="left">supported hash algorithms and optional salt length for signature generation for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">an array of objects containing a hashAlg and an optional saltLen</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">supported hash algorithms for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”}</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">supported salt lengths for PSS signature generation — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5.4</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">See the note below</td>
+</tr></tbody>
+<note id="_e6309099-fb7c-5c69-85d4-2c7256141b30"><name>NOTE</name><p id="_702387e4-1a31-4cf2-7d1e-c9069d95561d">The ‘saltLen’ property for each hash algorithm <strong>SHALL</strong> only be present if the ‘sigType’ is “pss”. The values allowed in PSS signature generation is between 0 and the length of the corresponding hash function output block (in bytes), the end points included.</p>
+</note></table>
+
+
+
+<p id="_7cab7721-48ac-c24a-5d0c-03c9ff2cf9ae">For an example of the RSA / sigGen / FIPS186-5 registration see the following abbreviated example for PSS</p>
+
+<sourcecode id="_f9e33d5d-f961-3b39-15da-cc849a0ade33" lang="json"><name>Figure 5</name>{
+    "algorithm": "RSA",
+    "mode": "sigGen",
+    "revision": "FIPS186-5",
+    "prereqVals": [{"algorithm": "DRBG", "valValue": "same"}, {"algorithm": "SHA", "valValue": "same"}],
+    "conformances": [
+        "SP800-106"
+    ],
+    "capabilities" :
+    [
+        {
+            "sigType" : "pss",
+            "properties" :
+            [
+                {
+                    "modulo" : 3072,
+                    "maskFunction": [
+                        "SHAKE-128", "MGF1"
+                    ]
+                    "hashPair" : [
+                        {
+                            "hashAlg" : "SHA2-224",
+                            "saltLen" : 28
+                        },
+                        {
+                            "hashAlg" : "SHA2-256",
+                            "saltLen" : 32
+                        },
+                        {
+                            "hashAlg" : "SHA2-512",
+                            "saltLen" : 64
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="rsa_sigVer_capabilities" obligation="normative">
+<title depth="2">4.7.<tab/>RSA sigVer Mode Capabilities</title>
+<p id="_85834840-bd25-dd7c-d58e-bc3458ce9d18">The RSA / sigVer / * mode capabilities are advertised as JSON objects within the array of ‘capabilities’ as part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification for details on the registration message.</p>
+
+<p id="_50ff3c37-9527-a116-daa3-7f609f099b37">Each RSA / sigVer / * mode capability is advertised as a self-contained JSON object consisting of the algorithm, mode, and capabilities array. The capabilities array may contain multiple elements, each pertaining to a sigType that is supported by the client for the RSA mode being advertised.</p>
+
+<p id="_09f1af97-8e99-bd9e-2a9d-af7c54f1cbac">The following table defines the capabilities that may be advertised by the ACVP compliant crypto modules.</p>
+
+<clause id="legacysigVerRSAMod" obligation="normative">
+<title depth="3">4.7.1.<tab/>RSA sigVer FIPS186-2 Capabilities Table</title>
+<p id="_a3d25afd-bdfd-d146-d5f8-83f347aeb313">The following RSA / sigVer / FIPS186-2 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="rsa_sigVer_fips186-2_capabilities">
+<name>Table 9 — Supported RSA sigVer FIPS186-2 Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">sigType</td>
+<td valign="top" align="left">supported RSA signature types  — see <eref type="inline" bibitemid="FIPS186-2" citeas="FIPS 186-2">[FIPS 186-2]</eref>, Section 5</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">one of {”ansx9.31”, “pkcs1v1.5”, “pss”}</td>
+</tr><tr><td valign="top" align="left">properties</td>
+<td valign="top" align="left">RSA signature verification parameters  — see <eref type="inline" bibitemid="FIPS186-2" citeas="FIPS 186-2">[FIPS 186-2]</eref>, Section 5</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">modulo, hashAlg, and saltLen (when sigType is “pss”)</td>
+</tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">supported RSA modulo for signature verification</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">any one of the supported modulo sizes {1024, 2048, 3072, 4096}</td>
+</tr><tr><td valign="top" align="left">hashPair</td>
+<td valign="top" align="left">supported hash algorithms and optional salt length for signature verification for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">an array of objects containing a hashAlg and an optional saltLen</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">supported hash algorithms for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”SHA-1”, “SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”}</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">supported salt lengths for PSS signature verification — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5.5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">See the note below</td>
+</tr></tbody>
+<note id="_4ee8ffd3-f28a-531d-b656-9ddeb737b516"><name>NOTE</name><p id="_11f724d7-9f8e-7f63-bd23-1afa222dadc6">The ‘saltLen’ property for each hash algorithm <strong>SHALL</strong> only be present of the ‘sigType’ is “pss”. The values allowed in PSS signature generation is between 0 and the length of the corresponding hash function output block (in bytes), the end points included except for when 1024 is the modulo size. In this case, the maximum ‘saltLen’ for SHA2-512 is 62 bytes.</p>
+</note></table>
+
+
+
+<p id="_4114fc2e-b34a-7c9a-f857-fab7ec2ee960">For an example of the registration for RSA / sigVer / FIPS186-2, see the following example for RSA / sigVer / FIPS186-4. The formats are identical even though the individual allowed values might change.</p>
+</clause>
+
+<clause id="sigVerFIPS186-4RSAMod" obligation="normative">
+<title depth="3">4.7.2.<tab/>RSA sigVer FIPS186-4 Capabilities Table</title>
+<p id="_0a50629b-bd09-bca9-b884-be65ba295c2e">The following RSA / sigVer / FIPS186-4 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="rsa_sigVer_fips186-4_capabilities">
+<name>Table 10 — Supported RSA sigVer FIPS186-4 Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">sigType</td>
+<td valign="top" align="left">supported RSA signature types  — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">one of {”ansx9.31”, “pkcs1v1.5”, “pss”}</td>
+</tr><tr><td valign="top" align="left">properties</td>
+<td valign="top" align="left">RSA signature verification parameters  — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">modulo, hashAlg, and saltLen (when sigType is “pss”)</td>
+</tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">supported RSA modulo for signature verification — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">any one of the supported modulo sizes {1024, 2048, 3072, 4096}</td>
+</tr><tr><td valign="top" align="left">hashPair</td>
+<td valign="top" align="left">supported hash algorithms and optional salt length for signature verification for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">an array of objects containing a hashAlg and an optional saltLen</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">supported hash algorithms for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”SHA-1”, “SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”}</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">supported salt lengths for PSS signature verification — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Section 5.5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">See the note below</td>
+</tr></tbody>
+<note id="_6e60f187-91b7-6cf7-7a88-f3b67291d2ee"><name>NOTE</name><p id="_c6cf2b9f-ba5f-b3c4-d17a-461f5d526877">The ‘saltLen’ property for each hash algorithm <strong>SHALL</strong> only be present of the ‘sigType’ is “pss”. The values allowed in PSS signature generation is between 0 and the length of the corresponding hash function output block (in bytes), the end points included except for when 1024 is the modulo size. In this case, the maximum ‘saltLen’ for SHA2-512 is 62 bytes.</p>
+</note></table>
+
+
+
+<p id="_f2c8bc9c-2d9e-cff0-6c51-1a72689b2ed8">The following is an example of the RSA / sigVer / FIPS186-4 registration</p>
+
+<sourcecode id="_768b1734-5be5-188d-0cac-6bb1dbfbedb3" lang="json"><name>Figure 6</name>{
+  "algorithm": "RSA",
+  "mode": "sigVer",
+  "revision": "FIPS186-4",
+  "prereqVals": [
+    {
+      "algorithm": "DRBG",
+      "valValue": "123456"
+    },
+    {
+      "algorithm": "DRBG",
+      "valValue": "654321"
+    },
+    {
+      "algorithm": "SHA",
+      "valValue": "7890"
+    }
+  ],
+  "pubExpMode": "random",
+  "conformances": [
+    "SP800-106"
+  ],
+  "capabilities": [
+    {
+      "sigType": "ansx9.31",
+      "properties": [
+        {
+          "modulo": 2048,
+          "hashPair": [
+            {
+              "hashAlg": "SHA2-512"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigType": "pkcs1v1.5",
+      "properties": [
+        {
+          "modulo": 4096,
+          "hashPair": [
+            {
+              "hashAlg": "SHA2-224"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sigType": "pss",
+      "properties": [
+        {
+          "modulo": 3072,
+          "hashPair": [
+            {
+              "hashAlg": "SHA2-224",
+              "saltLen": 28
+            }
+            {
+              "hashAlg": "SHA2-512",
+              "saltLen": 64
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="sigVerFIPS186-5RSAMod" obligation="normative">
+<title depth="3">4.7.3.<tab/>RSA sigVer FIPS186-5 Capabilities Table</title>
+<p id="_7586d55a-b480-9ceb-4e92-ab88c404f86f">The following RSA / sigVer / FIPS186-5 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="rsa_sigVer_fips186-5_capabilities">
+<name>Table 11 — Supported RSA sigVer FIPS186-5 Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">sigType</td>
+<td valign="top" align="left">supported RSA signature types  — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">one of {”pkcs1v1.5”, “pss”}</td>
+</tr><tr><td valign="top" align="left">properties</td>
+<td valign="top" align="left">RSA signature verification parameters  — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">modulo, hashAlg, and saltLen (when sigType is “pss”)</td>
+</tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">supported RSA modulo for signature verification — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">any one of the supported modulo sizes {2048, 3072, 4096}</td>
+</tr><tr><td valign="top" align="left">maskFunction</td>
+<td valign="top" align="left">the mask function used, only valid for PSS</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any subset of {”mgf1”, “shake-128”, “shake-256”}</td>
+</tr><tr><td valign="top" align="left">hashPair</td>
+<td valign="top" align="left">supported hash algorithms and optional salt length for signature verification for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">an array of objects containing a hashAlg and an optional saltLen</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">supported hash algorithms for this sigType and modulo — see <eref type="inline" bibitemid="SP800-131A" citeas="SP 800-131A">[SP 800-131A]</eref>, Section 9</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">any non-empty subset of {”SHA-1”, “SHA2-224”, “SHA2-256”, “SHA2-384”, “SHA2-512”, “SHA2-512/224”, “SHA2-512/256”}</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">supported salt lengths for PSS signature verification — see <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref>, Section 5.5</td>
+<td valign="top" align="left">integer</td>
+<td valign="top" align="left">See the note below</td>
+</tr></tbody>
+<note id="_511da546-6324-528e-46ff-49500d49e86e"><name>NOTE</name><p id="_56c9d717-b1fd-6b72-f351-4a92a72b8a11">The ‘saltLen’ property for each hash algorithm <strong>SHALL</strong> only be present of the ‘sigType’ is “pss”. The values allowed in PSS signature generation is between 0 and the length of the corresponding hash function output block (in bytes), the end points included.</p>
+</note></table>
+
+
+
+<p id="_f7cb8047-6abb-e13d-c043-9fd525d32fc8">See the following abbreviated example for a PSS registration for RSA / sigVer / FIPS186-5.</p>
+
+<sourcecode id="_e78d108a-9bcc-e8e1-6752-f36d52ae89c9" lang="json"><name>Figure 7</name>{
+  "algorithm": "RSA",
+  "mode": "sigVer",
+  "revision": "FIPS186-5",
+  "prereqVals": [
+    {
+      "algorithm": "DRBG",
+      "valValue": "123456"
+    },
+    {
+      "algorithm": "DRBG",
+      "valValue": "654321"
+    },
+    {
+      "algorithm": "SHA",
+      "valValue": "7890"
+    }
+  ],
+  "pubExpMode": "random",
+  "conformances": [
+    "SP800-106"
+  ],
+  "capabilities": [
+    {
+      "sigType": "pss",
+      "properties": [
+        {
+          "modulo": 3072,
+          "maskFunction": [
+            "SHAKE-128", "MGF1"
+          ]
+          "hashPair": [
+            {
+              "hashAlg": "SHA2-224",
+              "saltLen": 28
+            }
+            {
+              "hashAlg": "SHA2-512",
+              "saltLen": 64
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="rsa_sigprim_capabilities" obligation="normative">
+<title depth="2">4.8.<tab/>RSA SignaturePrimitive Mode Capabilities</title>
+<p id="_309059e3-4344-c055-0caf-afeaa3851db5">The RSA signaturePrimitive mode capabilities (otherwise known as RSASP1 in <eref type="inline" bibitemid="RFC3447" citeas="RFC 3447">[RFC 3447]</eref>) are advertised as JSON objects within the array of ‘capabilities’ as part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification for details on the registration message. In this mode, the only tested capability is the correct exponentiation of ‘s = msg^d mod n’, where ‘msg’ is a message between ‘0’ and ‘n — 1’, ‘d’ is the private exponent and ‘n’ is the modulus, all supplied by the testing ACVP server. In the event that ‘keyFormat’ is defined as ‘crt’, then ‘d’ is replaced with ‘dmp1’, ‘dmq1’, and ‘iqmp’. Only 2048-bit RSA keys are allowed for this capability. See <xref target="rsa_sigprim_tgjs">Section 5.7</xref> for additional details on constraints for ‘msg’ and ‘n’. See the ACVP specification for details on the registration message.</p>
+
+<p id="_f0cd7733-f750-3675-8192-d284d67228ae">The following RSA / SignaturePrimitive / 1.0 capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="SigPrimRSAFIPS186-4">
+<name>Table 12 — Supported RSA SignaturePrimitive 1.0 JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">keyFormat</td>
+<td valign="top" align="left">The format by which the client expects the private key to be communicated. Standard refers to the default p, q, d values. Chinese Remainder Theorem uses decomposed values for optimized decryption p, q, dmp1, dmq1, iqmp</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“standard”, “crt”</td>
+</tr><tr><td valign="top" align="left">pubExpMode</td>
+<td valign="top" align="left">Whether the IUT can handle a random or fixed public exponent</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“random”, “fixed”</td>
+</tr><tr><td valign="top" align="left">fixedPubExp</td>
+<td valign="top" align="left">The fixed public exponent e</td>
+<td valign="top" align="left">hex</td>
+<td valign="top" align="left">Any value supported by <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>: 65537 — 2^256-1, odd</td>
+</tr></tbody>
+</table>
+
+<p id="_a4b7135c-ad83-0eac-deb8-f2b7e21a19e4">The following is an example of the registration</p>
+
+<sourcecode id="_fcfa0f4a-8f1f-f1eb-4465-ba61dd99c777" lang="json"><name>Figure 8</name>{
+    "algorithm": "RSA",
+    "mode": "signaturePrimitive",
+    "revision": "1.0",
+    "keyFormat": "crt",
+    "pubExpMode": "fixed",
+    "fixedPubExp": "010001"
+}</sourcecode>
+
+</clause>
+
+<clause id="rsa_decprim_capabilities" obligation="normative">
+<title depth="2">4.9.<tab/>RSA DecryptionPrimitive Mode Capabilities</title>
+<p id="_ba9fdb78-651b-13b5-025e-0698f7c17ed7">The RSA decryptionPrimitive mode capabilities are advertised as JSON objects within the array of ‘capabilities’ as part of the ‘capability_exchange’ element of the ACVP JSON registration message. A single property is allowed in the registration, ‘modulo’ with the only approved value of 2048. In this mode, the only tested capability is the correct exponentiation ‘s = cipherText\^d mod n’, where ‘cipherText’ is a cipherText to be decrypted, ‘d’ is the private exponent and ‘n’ is the modulus. See <eref type="inline" bibitemid="SP800-56B" citeas="SP 800-56B">[SP 800-56B]</eref>, Section 7.1.2 for details.</p>
+
+<p id="_1c700d90-f665-c1fe-a094-f50fa2195499">In testing, only ‘cipherText’ is supplied by the ACVP server. The client is responsible for generating RSA key pairs of modulus ‘n’, private key ‘d’, and calculates ‘s’. If a client does not support decryption with a standard RSA private exponent ‘d’, the equivalent Chinese Remainder Theorem (CRT) private key values are allowed to be used. Only 2048-bit RSA keys are allowed for this capability.</p>
+
+<p id="_bff27d7a-236c-a81c-0533-2fb2b3d89766">See <xref target="rsa_decprim_tgjs">Section 5.9</xref> for additional details on constraints for ‘cipherText’ and ‘n’. The client provides the public exponent ‘e’, modulus ‘n’ and the computed result ‘s’ in its response to the ACVP — see <xref target="rsa_decprim_responses">Section 6.5</xref>. The client must first check if ‘0 &#x3c; cipherText &#x3c; n-1’ and return an error if this is not the case. The client returns a value ‘s’ only when ‘cipherText’ is in the proper range for the size of the selected modulus ‘n’. See the ACVP specification for details on the registration message.</p>
+
+<p id="_ac259684-9ff8-a460-0ff5-d868c6b92120">An example registration is the following</p>
+
+<sourcecode id="_4e8ea12c-813e-2ef0-517a-7f836b141bfa" lang="json"><name>Figure 9</name>{
+    "algorithm": "RSA",
+    "mode": "decryptionPrimitive",
+    "revision": "1.0",
+    "prereqVals":
+    [
+        {"algorithm": "DRBG", "valValue": "123456"},
+        {"algorithm": "DRBG", "valValue": "654321"},
+        {"algorithm": "SHA", "valValue": "7890"}
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="tgjs" obligation="normative" displayorder="12">
+<title depth="1">5.<tab/>Test Vectors</title>
+<p id="_861a171b-c6fa-b1e2-ce39-dcf4ef5ef4bc">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual crypto algorithm, such as RSA / sigGen / FIPS186-4, RSA / keyVer / FIPS186-5, etc. This section describes the JSON schema for a test vector set used with RSA crypto algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="rsa_vs_top_table">
+<name>Table 13 — RSA Vector Set JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test group JSON objects, which are defined in <xref target="rsa_keyGen_tgjs">Section 5.1</xref>, <xref target="rsa_sigGen_tgjs">Section 5.3</xref>, <xref target="rsa_sigVer_tgjs">Section 5.5</xref>, <xref target="rsa_sigprim_tgjs">Section 5.7</xref> or <xref target="rsa_decprim_tgjs">Section 5.9</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json"><name>Figure 10</name>{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="rsa_keyGen_tgjs" obligation="normative">
+<title depth="2">5.1.<tab/>RSA keyGen Test Groups JSON Schema</title>
+<p id="_84f26140-52ad-a9dd-08e2-6c88423e98aa">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the RSA / keyGen / * JSON elements of the Test Group JSON object.</p>
+
+<table id="rsa_keyGen_vs_tg_table">
+<name>Table 14 — RSA keyGen Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">RSA modulus size</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">the hash algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">primeTest</td>
+<td valign="top" align="left">Miller-Rabin constraint bound</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">randPQ</td>
+<td valign="top" align="left">keyGen mode used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">infoGeneratedByServer</td>
+<td valign="top" align="left">Whether or not the test inputs are generated by the server</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">keyFormat</td>
+<td valign="top" align="left">The RSA private key format used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">pubExp</td>
+<td valign="top" align="left">Fixed or random public exponent e</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the test data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases, see <xref target="rsa_keyGen_tvjs">Section 5.2</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_f6ad9232-292b-8f26-72cc-a69a652ea555">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes">Section 3</xref>) the group is addressing.</p>
+
+<p id="_188e12d7-0249-20f6-8c9e-e119be77761f">The impact of the ‘infoGeneratedByServer’ property depends on the other properties identified in the keyGen registration.  For ‘randPQs’ of B.3.2, B.3.4, B.3.5, and B.3.6 (or the corresponding FIPS186-5 values), ‘infoGeneratedByServer’ set to true will provide the client with ALL the inputs and expect them to arrive at the same output the server has already arrived at.</p>
+
+<p id="_18fee5ad-3895-0bb8-5d54-bdd70ad417ea">In the case of ‘infoGeneratedByServer’ being set to false during the registration, the client will be provided with SOME of the inputs, like an already agreed upon fixed public exponent.  However, in general the server will send mostly empty test cases.  It is the responsibility of the client to generate both the input properties and output properties comprising the test cases and communicate ALL of those back to the server.  The server will try to reach the same output key.</p>
+
+<p id="_539b93b1-3075-1b83-3ed7-2ff33cf1410d">For B.3.3 (or the corresponding FIPS186-5 value of probable), ‘infoGeneratedByServer’ set to true enables the KAT test groups if the client supports a random public exponent.  The GDT are always enabled as a bare minimum test for B.3.3 (or probable), independent of the ‘infoGeneratedByServer’ setting.</p>
+</clause>
+
+<clause id="rsa_keyGen_tvjs" obligation="normative">
+<title depth="2">5.2.<tab/>RSA keyGen Test Case JSON Schema</title>
+<p id="_d61afc69-d8b7-9578-65d3-af87a83ead4b">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / keyGen / * test vector.</p>
+
+<p id="_d293ee55-91fb-38c8-509d-7af7abe8c7c9">The difference between revision “FIPS186-4” and “FIPS186-5” within the prompts lies in the strings used by the server to refer to the various “randPQ”, and “primeTest” modes. Revision “FIPS186-4” utilizes the section number from <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> to refer to the algorithm used while revision “FIPS186-5” utilizes a description of the algorithm.</p>
+
+<table id="_d6050dd9-0cf5-7b1d-df8b-9387997829d3">
+<name>Table 15 — RSA keyGen Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">e</td>
+<td valign="top" align="left">the public exponent</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">seed</td>
+<td valign="top" align="left">the seed used in prime generation</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">bitlens</td>
+<td valign="top" align="left">the length of p1, p2, q1, and q2 for prime generation</td>
+<td valign="top" align="left">array of integers</td>
+</tr><tr><td valign="top" align="left">xP1</td>
+<td valign="top" align="left">xP1 from <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> B.3.6, step 4</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xP2</td>
+<td valign="top" align="left">xP2 from <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> B.3.6, step 4</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xP</td>
+<td valign="top" align="left">the random number used in auxiliary prime generation for p</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xQ1</td>
+<td valign="top" align="left">xQ1 from <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> B.3.6, step 5</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xQ2</td>
+<td valign="top" align="left">xQ2 from <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> B.3.6, step 5</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xQ</td>
+<td valign="top" align="left">the random number used in auxiliary prime generation for q</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">pRand</td>
+<td valign="top" align="left">the random P for testing probable primes according to <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> or <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">qRand</td>
+<td valign="top" align="left">the random Q for testing probable primes according to <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref> or <eref type="inline" bibitemid="FIPS186-5" citeas="FIPS 186-5 (Draft)">[FIPS 186-5 (Draft)]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_6ea4256d-9c64-83ad-1002-6398c5739028">Here is an abbreviated yet fully constructed example of the prompt for RSA / keyGen / FIPS186-5</p>
+
+<sourcecode id="_f6172609-0843-e55f-c3f0-bcdfb9d40f23" lang="json"><name>Figure 11</name>{
+  "vsId": 2,
+  "algorithm": "RSA",
+  "mode": "keyGen",
+  "revision": "FIPS186-5",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "infoGeneratedByServer": true,
+      "modulo": 2048,
+      "testType": "AFT",
+      "keyFormat": "crt",
+      "randPQ": "provable",
+      "pubExp": "random",
+      "hashAlg": "SHA2-224",
+      "tests": [
+        {
+          "tcId": 1,
+          "seed": "5B174CA160...",
+          "e": "07D196B84395"
+        }
+      ]
+    },
+    {
+      "tgId": 3,
+      "infoGeneratedByServer": true,
+      "modulo": 2048,
+      "testType": "AFT",
+      "keyFormat": "crt",
+      "primeTest": "2powSecStr",
+      "randPQ": "probableWithProvableAux",
+      "pubExp": "random",
+      "tests": [
+        {
+          "tcId": 7,
+          "seed": "B392CFFD8E...",
+          "bitlens": [
+            142,
+            419,
+            400,
+            334
+          ],
+          "xp": "F06825A6B...",
+          "xq": "BD106DBE5...",
+          "e": "3691C632C2BBE7"
+        }
+      ]
+    },
+    {
+      "tgId": 5,
+      "infoGeneratedByServer": false,
+      "modulo": 3072,
+      "testType": "GDT",
+      "keyFormat": "crt",
+      "primeTest": "2pow100",
+      "randPQ": "probable",
+      "pubExp": "random",
+      "tests": [
+        {
+          "tcId": 13
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="rsa_sigGen_tgjs" obligation="normative">
+<title depth="2">5.3.<tab/>RSA sigGen Test Groups JSON Schema</title>
+<p id="_573c2b3d-ad62-d2dc-997c-dcc65041260b">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the RSA / sigGen / * JSON elements of the Test Group JSON object</p>
+
+<table id="_032af70c-db91-4c90-0d2b-17dadd81b520">
+<name>Table 16 — RSA sigGen Test Group JSON Objects</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">RSA modulus size</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">sigType</td>
+<td valign="top" align="left">Type of signature used in the group</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">The salt length for the group in bytes</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">conformance</td>
+<td valign="top" align="left">Signifies all test cases within the group should utilize random message hashing as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">maskFunction</td>
+<td valign="top" align="left">The mask function used for PSS signature scheme</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the tests data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases, see <xref target="rsa_sigGen_tvjs">Section 5.4</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_d0885cd5-2c5f-3241-a5ae-053d0e218edd">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes">Section 3</xref>) the group is addressing.</p>
+
+<note id="_fc3701f3-6561-4440-aea2-afdbb20e428d"><name>NOTE</name><p id="_eccd65a0-9ca1-f398-4db3-e715b69c08e1">The ‘maskFunction’ property will only be present for RSA / sigGen / FIPS186-5 inside of test groups for the ‘sigType’ “pss”.</p>
+</note>
+</clause>
+
+<clause id="rsa_sigGen_tvjs" obligation="normative">
+<title depth="2">5.4.<tab/>RSA sigGen Test Cases JSON Schema</title>
+<p id="_0100755a-75ac-f223-63eb-142ce3ef18b7">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / sigGen / * test vector.</p>
+
+<table id="_5b7c5ec6-8d8e-d1c6-5784-bb4ec5430d7a">
+<name>Table 17 — RSA sigGen Test Case JSON Objects</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case idenfitier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">message</td>
+<td valign="top" align="left">The message to be signed</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">The length of the salt in bytes</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+<note id="_499970c0-c5c5-a8ff-9281-4c5c392b84a7"><name>NOTE</name><p id="_932caa45-8ce1-1b0f-d75e-16af185cadda">The ‘saltLen’ property will only be present in test groups for the ‘sigType’ “pss”.</p>
+</note></table>
+
+
+
+<p id="_0424d292-e4dc-7c3b-156b-a31bf1b5891b">Here is an abbreviated yet fully constructed example of the prompt for RSA / sigGen / FIPS186-4. The only difference in the structure between RSA / sigGen / FIPS186-4 and RSA / sigGen / FIPS186-5 is the inclusion of the ‘maskFunction’ property in the ‘testGroup’ for RSA / sigGen / FIPS186-5.</p>
+
+<sourcecode id="_7c7a4947-6137-2be9-4f9a-f2c7f93bd02e" lang="json"><name>Figure 12</name>[
+  {
+    "acvVersion": " {acvp-version}"
+  },
+  {
+    "vsId": 1163,
+    "algorithm": "RSA",
+    "mode": "sigGen",
+    "revision": "FIPS186-4",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "sigType": "ansx9.31",
+        "hashAlg": "SHA2-256",
+        "modulo": 2048,
+        "tests": [
+          {
+            "tcId": 1165,
+            "message": "f648ffc4ed748..."
+          }
+        ]
+      }
+      {
+        "tgId": 3,
+        "sigType": "pkcs1v1.5",
+        "hashAlg": "SHA2-256",
+        "modulo": 2048,
+        "tests": [
+          {
+            "tcId": 1167,
+            "message": "5af283b1b76ab..."
+          }
+        ]
+      }
+      {
+        "tgId": 5,
+        "sigType": "pss",
+        "hashAlg": "SHA2-256",
+        "modulo": 2048,
+        "tests": [
+          {
+            "tcId": 1169,
+            "saltLen": 20,
+            "message": "dfc22604b95d1..."
+          }
+        ]
+      }
+    ]
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="rsa_sigVer_tgjs" obligation="normative">
+<title depth="2">5.5.<tab/>RSA sigVer Test Groups JSON Schema</title>
+<p id="_7bc1c277-65f6-3aac-9b20-0b3882573180">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the RSA / sigVer / * JSON elements of the Test Group JSON object</p>
+
+<table id="_184185f1-3232-b73a-828f-f3aa3b136de5">
+<name>Table 18 — RSA sigVer Test Group JSON Objects</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">modulo</td>
+<td valign="top" align="left">RSA modulus size</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">sigType</td>
+<td valign="top" align="left">Type of signature used in the group</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">saltLen</td>
+<td valign="top" align="left">The salt length for the group in bytes</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">conformance</td>
+<td valign="top" align="left">Signifies all test cases within the group should utilize random message hashing as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">maskFunction</td>
+<td valign="top" align="left">The mask function used for PSS signature scheme</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">n</td>
+<td valign="top" align="left">Public modulus value n for the group</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">e</td>
+<td valign="top" align="left">Public exponent value e for the group</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">maskFunction</td>
+<td valign="top" align="left">The mask function used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the tests data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases, see <xref target="rsa_sigVer_tvjs">Section 6.3</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_79238804-4d2b-9f19-5264-c88fcb38d911">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes">Section 3</xref>) the group is addressing.</p>
+
+<note id="_5014dfd4-10cc-0b09-04a4-30a03587084c"><name>NOTE</name><p id="_d586d1d2-421d-7e87-9f72-c18002a3e024">The ‘maskFunction’ property will only be present for RSA / sigVer / FIPS186-5 inside of test groups for the ‘sigType’ “pss”.</p>
+</note>
+</clause>
+
+<clause id="_test_cases_for_sigver_fips186_5_fips186_4_and_fips186_2" obligation="normative">
+<title depth="2">5.6.<tab/>Test Cases for sigVer FIPS186-5, FIPS186-4, and FIPS186-2</title>
+<p id="_375c7d8b-7693-eb76-4744-c15a1853d49a">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA test vector.</p>
+
+<table id="_89ab4e87-df5b-7d83-f91d-d518fd6c5c3a">
+<name>Table 19 — RSA sigVer Test Case JSON Objects</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case idenfitier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">message</td>
+<td valign="top" align="left">The message to be signed</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">signature</td>
+<td valign="top" align="left">The signature of the message</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+</table>
+
+<p id="_ab0cd39c-7e31-a570-de0b-aa5746dcd638">Here is an abbreviated yet fully constructed example of the prompt for RSA / sigVer / FIPS186-4. The only difference in the structure between RSA / sigVer / FIPS186-4 and RSA / sigVer / FIPS186-5 is the inclusion of the ‘maskFunction’ property in the ‘testGroup’ for RSA / sigVer / FIPS186-5.</p>
+
+<sourcecode id="_b10483c1-ba0e-6bfb-930d-188721171991" lang="json"><name>Figure 13</name>[
+  {
+    "acvVersion": "{acvp-version}"
+  },
+  {
+    "vsId": 1173,
+    "algorithm": "RSA",
+    "mode": "sigVer",
+    "revision": "FIPS186-4",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "sigType": "ansx9.31",
+        "hashAlg": "SHA2-256",
+        "testType": "AFT",
+        "modulo": 2048,
+        "e": "166f67",
+        "n": "944ded6daaf602e17...",
+        "tests": [
+          {
+            "tcId": 1174,
+            "message": "ff17e5e...",
+            "signature": "299f1..."
+          }
+        ]
+      },
+      {
+        "tgId": 4,
+        "sigType": "pkcs1v1.5",
+        "modulo": 3072,
+        "hashAlg": "SHA2-256",
+        "testType": "AFT",
+        "e": "ac6db1",
+        "n": "9bbb099e1ec285594...",
+        "tests": [
+          {
+            "tcId": 1177,
+            "message": "921961e...",
+            "signature": "55362..."
+          }
+        ]
+      },
+      {
+        "tgId": 12,
+        "sigType": "pss",
+        "modulo": 3072,
+        "hashAlg": "SHA2-512",
+        "testType": "AFT",
+        "e": "fe3079",
+        "n": "ce4924ff470fb99d...",
+        "conformance": "SP800-106",
+        "tests": [
+          {
+            "tcId": 11179,
+            "message": "e49f585...",
+            "randomValue": "ab6a9b8b6a75ba76ab76a76b...",
+            "randomValueLen": 1024,
+            "signature": "4e85f..."
+          }
+        ]
+      }
+    ]
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="rsa_sigprim_tgjs" obligation="normative">
+<title depth="2">5.7.<tab/>Test Groups for RSA Signature Primitive 1.0</title>
+<p id="_e5fc731a-c6d6-858a-14f8-0fc421a1817f">The testGroups element at the top level in the test vector JSON object is an array of test  groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the RSA / signaturePrimitive / 1.0 JSON elements of the Test Group JSON object</p>
+
+<table id="_b0801447-42be-a6d6-ec4f-a2271780e0aa">
+<name>Table 20 — RSA Signature Primitive 1.0 Test Group Properties</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the tests data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_aa9f8b4e-3f31-7267-eea0-90cb4d971142">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes">Section 3</xref>) the group is addressing.</p>
+</clause>
+
+<clause id="_test_cases_for_rsa_signature_primitive_1_0" obligation="normative">
+<title depth="2">5.8.<tab/>Test Cases for RSA Signature Primitive 1.0</title>
+<p id="_0e47cc66-fa64-a4f0-3245-67179c7c79b1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / signaturePrimitive / 1.0 test vector.</p>
+
+<table id="_f3c5c44c-864f-2c1e-c8c4-b432a85e54c4">
+<name>Table 21 — RSA Signature Primitive 1.0 Test Case Properties</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case idenfitier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">n</td>
+<td valign="top" align="left">Modulus</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">d</td>
+<td valign="top" align="left">Private key exponent, when the keyFormat is “standard”</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">dmp1</td>
+<td valign="top" align="left">d mod p — 1, when the keyFormat is “crt”</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">dmq1</td>
+<td valign="top" align="left">d mod q — 1, when the keyFormat is “crt”</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">iqmp</td>
+<td valign="top" align="left">q\^-1 mod p, when the keyFormat is “crt”</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">p</td>
+<td valign="top" align="left">prime p, when the keyFormat is “crt”</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">q</td>
+<td valign="top" align="left">prime q, when the keyFormat is “crt”</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">message</td>
+<td valign="top" align="left">The message to sign</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+<note id="_a206f2d6-6748-212a-76c4-622ab2d7c4f0"><name>NOTE  1</name><p id="_26240929-ea0a-83a0-9037-ca711bbaf31b">Each test for which ‘message’ is not between ‘0’ and ‘n — 1’ should fail.</p>
+</note><note id="_66a8938a-5839-0b1f-c6a9-e5d1909cd27a"><name>NOTE  2</name><p id="_33ec8278-a1ce-2452-4a5d-63f956b94090">Many private key properties are dependent on the ‘keyFormat’ property from the registration.</p>
+</note></table>
+
+
+
+
+
+<p id="_3e0c36ec-1afb-16f6-dd33-ddba81130e0c">Here is an abbreviated yet fully constructed example of the prompt</p>
+
+<sourcecode id="_3b64d260-3a0d-d928-2e73-7524e48899a1" lang="json"><name>Figure 14</name>[
+    { "acvVersion": "{acvp-version}" },
+    {
+        "vsId": 1193,
+        "algorithm": "RSA",
+        "mode": "signaturePrimitive",
+        "revision": "1.0",
+        "keyFormat": "standard",
+        "testGroups" : [
+            {
+                "tgId": 1,
+                "tests" : [
+                    {
+                        "tcId" : 1194,
+                        "n" : "d0c112f0bee36235d9f...",
+                        "d" : "2cde66ea08797aad3cf...",
+                        "e": "010001",
+                        "message" : "097e82fec7246..."
+                    },
+                    {
+                        "tcId" : 1195,
+                        "n" : "9cd5aa3f0c7c787ee38...",
+                        "d" : "0c520729a48d1728ada...",
+                        "e" : "010001",
+                        "message" : "ffd5aa3f0c7c7..."
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="rsa_decprim_tgjs" obligation="normative">
+<title depth="2">5.9.<tab/>Test Groups for RSA Decryption Primitive 1.0</title>
+<p id="_7463814e-186d-8c0d-1f06-594e48764fb9">The testGroups element at the top level in the test vector JSON object is an array of test  groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the RSA JSON elements of the Test Group JSON object</p>
+
+<table id="_7882e1aa-f27b-5dcb-43d3-08d57faae074">
+<name>Table 22 — RSA Decryption Primitive 1.0 Test Group Properties</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the tests data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">totalTests</td>
+<td valign="top" align="left">The total number of elements in the “resultsArray”</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">totalFailingTests</td>
+<td valign="top" align="left">The number of tests that the client should force to fail in the “resultsArray”</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_3c0889db-86f2-b32f-a857-9caed03dc661">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which ‘testType’ (see <xref target="testtypes">Section 3</xref>) the group is addressing.</p>
+</clause>
+
+<clause id="_test_cases_for_rsa_decryption_primitive_1_0" obligation="normative">
+<title depth="2">5.10.<tab/>Test Cases for RSA Decryption Primitive 1.0</title>
+<p id="_bf3010b5-92f7-dbcb-2b93-3354f58a86ac">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / DecryptionPrimitive / 1.0 test vector.</p>
+
+<table id="_40d1b1ca-7a4a-5bb3-3ed2-c7b7ee4d70f6">
+<name>Table 23 — RSA Decryption Primitive 1.0 Test Case Properties</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">resultsArray</td>
+<td valign="top" align="left">An array of ciphertexts</td>
+<td valign="top" align="left">array</td>
+</tr><tr><td valign="top" align="left">ciphertext</td>
+<td valign="top" align="left">An individual ciphertext</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+<note id="_220f4c16-8d04-ccbb-c037-9abebd705ae1"><name>NOTE</name><p id="_55bb2d11-fb14-d0de-d090-3b7af074f21d">A failing ciphertext is one such that the ciphertext is greater than the n the client provides</p>
+</note></table>
+
+
+
+<p id="_80b9abcf-ca50-e8c3-31fb-9f948ee1a699">Here is an abbreviated yet fully constructed example of the prompt</p>
+
+<sourcecode id="_44adb84d-d431-2336-c94a-ae059acd6253" lang="json"><name>Figure 15</name>[
+    { "acvVersion": "{acvp-version}" },
+    {
+        "vsId": 1194,
+        "algorithm": "RSA",
+        "mode": "decryptionPrimitive",
+        "revision": "1.0",
+        "testGroups" : [
+            {
+                "tgId": 1,
+                "testType": "AFT",
+                "totalTests": 2,
+                "totalFailingTests": 1,
+                "tests" : [
+                    {
+                        "tcId" : 1,
+                        "resultsArray": [
+                            {
+                                "cipherText" : "097e82fec72465e..."
+                            },
+                            {
+                                "cipherText" : "ffd5aa3f0c7c787..."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="vector_responses" obligation="normative" displayorder="13">
+<title depth="1">6.<tab/>Test Vector Responses</title>
+<p id="_95e26399-cf6a-e160-2f71-58f636a96e1b">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="_b7c4efb7-e808-03f7-75de-d630d02b84ae">
+<name>Table 24 — Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data, see <xref target="response_group_table">Table 25</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_8d940860-5be5-5322-d1cd-802096fbc183">An example of this is the following</p>
+
+<sourcecode id="_9c6a92e7-abe4-f49a-336f-57e4e20c1d06" lang="json"><name>Figure 16</name>{
+	"acvVersion": "version",
+	"vsId": 1,
+	"testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_3f9b515a-3dca-e9f4-54de-7075516de34a">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that. The following is a skeleton for the test group structure. Additional properties may be included at this level depending on the algorithm, mode and revision.</p>
+
+<table id="response_group_table">
+<name>Table 25 — Response Test Group JSON Objects</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data, depending on the algorithm see <xref target="rsa_keyGen_vs_tr_table">Table 26</xref>, <xref target="rsa_sigGen_vs_tr_table">Table 28</xref>, <xref target="rsa_sigVer_vs_tr_table">Table 30</xref>, <xref target="rsa_sigprim_vs_tr_table">Table 31</xref> or <xref target="rsa_decprim_vs_tr_table">Table 32</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_04cadd0e-15a7-eabd-e218-2c25ec5dd0ca">An example of this is the following</p>
+
+<sourcecode id="_2353adb8-baf1-2a31-f0c1-bbd364f2a601" lang="json"><name>Figure 17</name>{
+	"tgId": 1,
+	"tests": [ ... ]
+}</sourcecode>
+
+
+<clause id="rsa_keyGen_response" obligation="normative">
+<title depth="2">6.1.<tab/>RSA keyGen Test Group Responses</title>
+<p id="_8c934153-d19f-531e-926c-6bb9f2e610c9">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / keyGen / * test vector.</p>
+
+<p id="_8841ba67-270d-29f4-f3e6-61ef1396cef5">The following table describes the JSON elements for the response to a RSA / keyGen / * test vector.</p>
+
+<table id="rsa_keyGen_vs_tr_table">
+<name>Table 26 — RSA Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">e</td>
+<td valign="top" align="left">the public exponent</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">the verdict on the prime generation testing for the supplied pRand/qRand combination, see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3.3.</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">seed</td>
+<td valign="top" align="left">the seed used in prime generation according to <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3.2, B.3.4, or B.3.5</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">bitlens</td>
+<td valign="top" align="left">the length of p1, p2, q1, and q2 for prime generation according to <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3.2, B.3.4, B.3.5 or the length of xP1, xP2, xQ1, and xQ2 for B.3.6</td>
+<td valign="top" align="left">array of integers</td>
+</tr><tr><td valign="top" align="left">xP1</td>
+<td valign="top" align="left">the prime factor p1 for Primes with Conditions — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3.3, B.3.4, or B.3.5, if applicable</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xP2</td>
+<td valign="top" align="left">the prime factor p2 for Primes with Conditions — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3.3, B.3.4, or B.3.5, if applicable</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xP</td>
+<td valign="top" align="left">the random number used in Step 3 of the algorithm in <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix C.9 to generate the prime P, if applicable</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">p</td>
+<td valign="top" align="left">the private prime factor p</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xQ1</td>
+<td valign="top" align="left">the prime factor q1 for Primes with Conditions — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3.3, B.3.4, or B.3.5, if applicable</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xQ2</td>
+<td valign="top" align="left">the prime factor q2 for Primes with Conditions — see <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix B.3.3, B.3.4, or B.3.5, if applicable</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">xQ</td>
+<td valign="top" align="left">the random number used in Step 3 of the algorithm in <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>, Appendix C.9 to generate the prime Q, if applicable</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">q</td>
+<td valign="top" align="left">the private prime factor q</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">n</td>
+<td valign="top" align="left">the modulus</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">d</td>
+<td valign="top" align="left">the private exponent d</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">dmp1</td>
+<td valign="top" align="left">the private exponent d modulo (p — 1) used in a Chinese Remainder Theorem private key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">dmq1</td>
+<td valign="top" align="left">the private exponent d modulo (q — 1) used in a Chinese Remainder Theorem private key</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">iqmp</td>
+<td valign="top" align="left">the multiplicative inverse of q modulo p used in a Chinese Remainder Theorem private key</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+<note id="_a3560ac4-5829-cfba-0164-007ca2d82aff"><name>NOTE  1</name><p id="_28638c09-4af0-c98c-94fa-a1da1b765ee2">If the ‘keyFormat’ of the test group is ‘standard’, then the client <strong>SHALL</strong> not include the ‘dmp1’, ‘dmq1’ and ‘iqmp’ properties. Those properties <strong>SHALL</strong> only be included if the ‘keyFormat’ is set to ‘crt’ for the Chinese Remainder Theorem.</p>
+</note><note id="_34c08a1f-5b4f-6ab6-b84b-f6ae1b059b1f"><name>NOTE  2</name><p id="_b378d521-20f1-8ec7-9b9b-a6a5d9082935">The ‘testPassed’ property is only valid for ‘KAT’ test type groups.</p>
+</note><note id="_2853d0e8-b5b5-6050-7b34-3f7061dd601e"><name>NOTE  3</name><p id="_80847f18-06a4-2f37-5b0b-d4b39c07ad44">If the ‘infoGeneratedByServer’ test group property is true, then the only response from the client <strong>SHALL</strong> be the values that directly correspond to the key when appropriate, ‘p’, ‘q’, ‘n’, and ‘d’ (or ‘dmp1’, ‘dmq1’, ‘iqmp’).</p>
+</note><note id="_3194efab-ccd6-f930-a554-43111eb34eff"><name>NOTE  4</name><p id="_6bb525ae-2ef4-1857-3613-31481c0b1083">The ‘e’ property <strong>SHALL</strong> only be included when the ‘infoGeneratedByServer’ is false and the ‘pubExpMode’ is “random”.</p>
+</note></table>
+
+
+
+
+
+
+
+
+
+<p id="_52abdd22-d2b2-3ea6-de8d-9b5097f53384">Use the following applicability grid to determine which properties should be present based on the ‘randPQ’ test group property. The ‘randPQ’ property values for RSA / keyGen / FIPS186-4 are based on the section numbers in Appendix B in <eref type="inline" bibitemid="FIPS186-4" citeas="FIPS 186-4">[FIPS 186-4]</eref>. For RSA / keyGen / FIPS186-5, the property values are based on the true names of the generation methods. The RSA / keyGen / FIPS186-5 names will be listed in the grid. This grid only applies to ‘AFT’ test types.</p>
+
+<table id="_e537863d-7500-79cc-a01c-605e83bea54d">
+<name>Table 27 — RSA Test Case Applicability Grid For AFT Responses</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Provable</th>
+<th valign="top" align="left">Probable</th>
+<th valign="top" align="left">Provable Primes With Conditions</th>
+<th valign="top" align="left">Provable Primes With Probable Conditions</th>
+<th valign="top" align="left">Probable Primes With Conditions</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">p</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">q</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">e</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">n</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">d</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">seed</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">no</td>
+</tr><tr><td valign="top" align="left">xP</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">xP1</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">xP2</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">xQ</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">xQ1</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">xQ2</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+</tr><tr><td valign="top" align="left">bitlens</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">no</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+<td valign="top" align="left">yes</td>
+</tr></tbody>
+<note id="_1085e838-52b3-9c6f-a1ee-f4cb497204f0"><name>NOTE</name><p id="_6d71d469-7cbe-ca75-7a24-bfbd03096cda">If the ‘crt’ key format is used for the group, substitute ‘d’ with the appropriate values from <xref target="rsa_keyGen_vs_tr_table">Table 26</xref>.</p>
+</note></table>
+
+
+
+<p id="_a9a33c80-6dad-6cb0-2e94-6d5f922ee00d">The following is an example of an RSA / keyGen / * response. Test group 1 uses the provable prime (B.3.2) generation method. Test group 2 uses the provable prime with conditions (B.3.4) generation method. Test group 3 uses the provable prime with probable conditions (B.3.5) generation method. Test group 4 uses the probable prime with conditions (B.3.6) generation method. Test group 5 is for the ‘KAT’ test type for probable prime (B.3.3) generation method. Test group 6 uses the probable prime (B.3.3) generation method. In this example, ‘infoGeneratedByServer’ is set to true.</p>
+
+<sourcecode id="_77ddc07c-d668-3541-6a77-912bd8443098" lang="json"><name>Figure 18</name>[
+  {
+    "acvVersion": "&#x3c;acvp-version&#x3e;"
+  },
+  {
+    "vsId": 1133,
+    "algorithm": "RSA",
+    "mode": "keyGen",
+    "revision": "FIPS186-4",
+    "testGroups": [
+      {
+        "tgId": 1,
+        "tests": [
+          {
+            "tcId": 1,
+            "seed": "5B174CA16001BE8...",
+            "n": "8099A2B6C63B2CB2A0...",
+            "e": "07D196B84395",
+            "p": "B5A06A623B5C7EC4A0...",
+            "q": "B5428D256885A767B4...",
+            "d": "0A6D3A7F37453EF9EB..."
+          }
+        ]
+      },
+      {
+        "tgId": 2,
+        "tests": [
+          {
+            "tcId": 1111,
+            "e": "10000021",
+            "seed": "af152e46b479af8...",
+            "bitlens": [
+              312,
+              145,
+              144,
+              338
+            ],
+            "p": "e2ab16d3026db341223...",
+            "q": "d13c3209bbc1bfa27c9...",
+            "n": "b942fa09a727ab488f8...",
+            "d": "6b56ee657ebf6a54b35..."
+          }
+        ]
+      },
+      {
+        "tgId": 3,
+        "tests": [
+          {
+            "tcId": 1115,
+            "e": "10000021",
+            "seed": "e664bc8c8e09ca23...",
+            "bitlens": [
+              232,
+              220,
+              336,
+              141
+            ],
+            "xP": "e7b2b10bb6c975ef79...",
+            "p": "e7b2b10bb6c975ef794...",
+            "xQ": "c3ce8bfcb6fb40bdaf...",
+            "q": "c3ce8bfcb6fb40bdafd...",
+            "n": "b1380d59234c9f63e63...",
+            "d": "bec8baec7da0634211e..."
+          }
+        ]
+      },
+      {
+        "tgId": 4,
+        "tests": [
+          {
+            "tcId": 1135,
+            "e": "10000021",
+            "bitlens": [
+              224,
+              195,
+              352,
+              142
+            ],
+            "xP1": "57c9a2986fc7e69e83...",
+            "xP2": "7254d6c998a84230ff...",
+            "xP": "c32cccd930ab2c107b3...",
+            "p": "c32cccd930ab2c107b3f...",
+            "xQ1": "7468d10e69a14b00ec...",
+            "xQ2": "20b8c2bae262b13e91...",
+            "xQ": "fa97b510539a102879a...",
+            "q": "fa97b510539a102879a7...",
+            "n": "bf0d69840d0236aa74ea...",
+            "d": "166bed3734b922f07446..."
+          }
+        ]
+      },
+      {
+        "tgId": 5,
+        "tests": [
+          {
+            "tcId": 1119,
+            "testPassed": true
+          }
+        ]
+      },
+      {
+        "tgId": 6,
+        "tests": [
+          {
+            "tcId": 1129,
+            "e": "df28ab",
+            "p": "e021757c777288dac...",
+            "q": "ed1571a9e0cd4a425...",
+            "n": "cf91c0065d8e5797f...",
+            "d": "1f5201b880a206cb1..."
+          }
+        ]
+      }
+    ]
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="rsa_sigGen_responses" obligation="normative">
+<title depth="2">6.2.<tab/>RSA sigGen Test Group Responses</title>
+<p id="_c7605409-49cf-7ac4-0a66-6c21ad35e60b">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / sigGen / * test vector.</p>
+
+<p id="_32d52b59-ff70-b812-b1a3-09fb9e5d22e6">The following table describes the JSON elements for the test group responses to a RSA / sigGen / * test vector.</p>
+
+<table id="rsa_sigGen_vs_tr_table">
+<name>Table 28 — RSA sigGen Test Group Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">conformance</td>
+<td valign="top" align="left">Signifies all test cases within the group should utilize random message hashing as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">n</td>
+<td valign="top" align="left">The generated modulus for the group</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">e</td>
+<td valign="top" align="left">The generated public exponent for the group</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The individual test cases for the group</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_38e88073-db51-15f5-04ec-b3475f8dbdaf">The following table describes the JSON elements for the test case responses for RSA / sigGen / * .</p>
+
+<table id="_c822e83b-a96a-09b6-7ce8-4f3d05814dd0">
+<name>Table 29 — RSA sigGen Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">randomValue</td>
+<td valign="top" align="left">The random value to be used as an input into the message randomization function as described in <eref type="inline" bibitemid="SP800-106" citeas="SP 800-106">[SP 800-106]</eref></td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">randomValueLen</td>
+<td valign="top" align="left">The random value’s bit length</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">signature</td>
+<td valign="top" align="left">The computed signature</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+<note id="_b31608b4-7915-e1f2-0072-75a74265719c"><name>NOTE</name><p id="_befb35f0-8e8b-467f-7f84-531fc332246d">The ‘randomValue’ and ‘randomValueLen’ properties will only be present in test groups for the SP800-106 conformance.</p>
+</note></table>
+
+
+
+<p id="_3aba603d-03ea-7724-84b3-13409307117f">The following is an example of the response for RSA / sigGen / * .</p>
+
+<sourcecode id="_bdb00716-9816-dc76-7153-36d41915992e" lang="json"><name>Figure 19</name>{
+  "vsId": 0,
+  "algorithm": "RSA",
+  "mode": "sigGen",
+  "revision": "FIPS186-4",
+  "isSample": true,
+  "testGroups": [
+    {
+      "tgId": 1,
+      "n": "A31AFF9A3266E5A215C487...",
+      "e": "CC288CE6A02AFD",
+      "tests": [
+        {
+          "tcId": 1,
+          "signature": "053F1CBA53..."
+        },
+        {
+          "tcId": 2,
+          "signature": "04236E8357..."
+        },
+        {
+          "tcId": 3,
+          "signature": "4A45C5E696..."
+        }
+      ]
+    },
+	{
+      "tgId": 2,
+      "conformance": "SP800-106",
+      "n": "A730E346899141F8B550C...",
+      "e": "302D7F30CFCE55",
+      "tests": [
+        {
+          "tcId": 4,
+          "randomValue": "C44BAE0830813A8E8F989217C967E68A74EDADD9B14128EC877685E6CB631E5F",
+          "randomValueLen": 256,
+          "signature": "1612B11D9C..."
+        },
+        {
+          "tcId": 5,
+          "randomValue": "7FBB4BDA3C7C2F67E04583A631000EF783D67ED1BFE7620E9BE897A0270E411C",
+          "randomValueLen": 256,
+          "signature": "37387D5C64..."
+        },
+        {
+          "tcId": 6,
+          "randomValue": "8EF77DED2EB53357BAD523AD16C171221FCF24C0CE15E2FC7F9FBE589A64BEFC",
+          "randomValueLen": 256,
+          "signature": "4114A93A82..."
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="rsa_sigVer_tvjs" obligation="normative">
+<title depth="2">6.3.<tab/>RSA sigVer Test Group Responses</title>
+<p id="_76867927-b63a-6a46-f649-d5b1df82e8fe">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / sigVer / * test vector.</p>
+
+<p id="_28a3d311-9d84-1acf-c48f-d02d30fe60ea">The following table describes the JSON elements for the test case responses for RSA / sigVer / * .</p>
+
+<table id="rsa_sigVer_vs_tr_table">
+<name>Table 30 — RSA sigVer Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">Whether or not the signature provided was valid</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+
+<p id="_18ee81fe-8513-622f-8e27-adfd1b2e215c">The following is an example of the response for RSA / sigVer / *</p>
+
+<sourcecode id="_58a3a283-540e-b7c4-456d-c1d00821e07a" lang="json"><name>Figure 20</name>{
+  "vsId": 0,
+  "algorithm": "RSA",
+  "mode": "sigVer",
+  "revision": "FIPS186-4",
+  "isSample": true,
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "testPassed": true
+        },
+        {
+          "tcId": 2,
+          "testPassed": false
+        },
+        {
+          "tcId": 3,
+          "testPassed": false
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="rsa_sigprim_responses" obligation="normative">
+<title depth="2">6.4.<tab/>RSA Signature Primitive Test Group Responses</title>
+<p id="_8d1b29c9-63dd-fdf7-26e7-2d52f99554e1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / Signature Primitive / * test vector.</p>
+
+<p id="_59faf4be-f58b-61c5-e3a8-6e2dd8fb01dd">The following table describes the JSON elements for the test case responses for RSA / Signature Primitive / * .</p>
+
+<table id="rsa_sigprim_vs_tr_table">
+<name>Table 31 — RSA Signature Primitive Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">signature</td>
+<td valign="top" align="left">If the message can be signed, the signature. If the encoded value is shorter than the key modulus it should be padded at the front with zero bytes.</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">If the message could not be signed</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+
+<p id="_e8752441-428b-3b49-2f7a-74e6f0f44afc">The following is an example of the response for RSA / Signature Primitive / * .</p>
+
+<sourcecode id="_a3ac3733-fcd3-c78d-014e-d7f318e46ac5" lang="json"><name>Figure 21</name>{
+  "vsId": 0,
+  "algorithm": "RSA",
+  "mode": "signaturePrimitive",
+  "revision": "1.0",
+  "isSample": true,
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+		  "testPassed": true,
+          "signature": "a60b879a8fa382fdf4..."
+        },
+        {
+          "tcId": 2,
+          "testPassed": false
+        },
+        {
+          "tcId": 3,
+          "testPassed": false
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="rsa_decprim_responses" obligation="normative">
+<title depth="2">6.5.<tab/>RSA Decryption Primitive Test Group Responses</title>
+<p id="_e1fe33d4-29cf-8416-6eb6-2a47b1233037">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each RSA / Decryption Primitive / * test vector.</p>
+
+<p id="_46275a70-b177-ef15-dbb3-3078bbaf79e3">The following table describes the JSON elements for the test case responses for RSA / Decryption Primitive / * .</p>
+
+<table id="rsa_decprim_vs_tr_table">
+<name>Table 32 — RSA Decryption Primitive Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">e</td>
+<td valign="top" align="left">The public exponent</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">n</td>
+<td valign="top" align="left">The modulus</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">plainText</td>
+<td valign="top" align="left">If the ciphertext could be decrypted, the result</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">If the ciphertext could not be decrypted</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+
+<p id="_78066d30-79bc-df94-a9af-31eb412706c8">The following is an example of the response for RSA / Decryption Primitive / * .</p>
+
+<sourcecode id="_e93754ba-788e-fdaf-654d-122f87a51326" lang="json"><name>Figure 22</name>{
+  "vsId": 0,
+  "algorithm": "RSA",
+  "mode": "decryptionPrimitive",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "resultsArray": [
+            {
+              "e": "60BDBEF656869D",
+              "n": "8FA73CF9CAD37456B...",
+              "testPassed": false
+            },
+            {
+              "plainText": "009EDAE2D5934F...",
+              "e": "D6AA5EF807",
+              "n": "A86A73D47F605DCF...",
+              "testPassed": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative" displayorder="14">
+<title depth="1">7.<tab/>Security Considerations</title>
+<p id="_e00ec061-56a6-9331-9b16-9e2a17a53e3f">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative" displayorder="15">
+<title xref="Appendix A"><strong>Appendix A</strong> — <strong>Terminology</strong></title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><title>A.1.</title><term id="term-prompt"><name>A.1.1.</name><preferred><strong>Prompt</strong></preferred>
+<definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></definition>
+ </term>
+
+<term id="term-registration"><name>A.1.2.</name><preferred><strong>Registration</strong></preferred>
+<definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></definition>
+ </term>
+
+<term id="term-response"><name>A.1.3.</name><preferred><strong>Response</strong></preferred>
+<definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></definition>
+ </term>
+
+<term id="term-test-case"><name>A.1.4.</name><preferred><strong>Test Case</strong></preferred>
+<definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-group"><name>A.1.5.</name><preferred><strong>Test Group</strong></preferred>
+<definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-vector-set"><name>A.1.6.</name><preferred><strong>Test Vector Set</strong></preferred>
+<definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></definition>
+ </term>
+
+<term id="term-validation"><name>A.1.7.</name><preferred><strong>Validation</strong></preferred>
+<definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative" displayorder="16">
+<title xref="Appendix B"><strong>Appendix B</strong> — <strong>Abbreviations and Acronyms</strong></title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative" displayorder="17">
+<title xref="Appendix C"><strong>Appendix C</strong> — <strong>Revision History</strong></title>
+<table id="_7cd72b13-6f93-d7d3-6087-8c5fea713136"><name>Table C-1</name><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_b06e20df-026a-e2f7-2be4-37248f806cc5">2019-11-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_fb3c10f8-8d0c-cbef-64a8-07b9d65c7793" obligation="normative" displayorder="18">
+<title xref="Appendix D"><strong>Appendix D</strong> — <strong>References</strong></title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard"><formattedref>S. Bradner (March 1997) <em>Key words for use in RFCs to Indicate Requirement Levels</em> (Internet Engineering Task Force),  BCP 14, March 1997. RFC 2119. RFC RFC2119. DOI 10.17487/RFC2119. https://www.rfc-editor.org/info/rfc2119.</formattedref><docidentifier type="RFC" primary="true">RFC 2119</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC2119</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC2119</docidentifier></bibitem>
+ <bibitem id="RFC7991" type="standard"><formattedref>P. Hoffman (December 2016) <em>The “xml2rfc” Version 3 Vocabulary</em> (Internet Engineering Task Force),  RFC 7991, December 2016. RFC 7991. RFC RFC7991. DOI 10.17487/RFC7991. https://www.rfc-editor.org/info/rfc7991.</formattedref><docidentifier type="RFC" primary="true">RFC 7991</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC7991</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC7991</docidentifier></bibitem>
+ <bibitem id="RFC8174" type="standard"><formattedref>B. Leiba (May 2017) <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em> (Internet Engineering Task Force),  BCP 14, May 2017. RFC 8174. RFC RFC8174. DOI 10.17487/RFC8174. https://www.rfc-editor.org/info/rfc8174.</formattedref><docidentifier type="RFC" primary="true">RFC 8174</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC8174</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC8174</docidentifier></bibitem>
+ <bibitem id="RFC3447" type="standard"><formattedref>J. Jonsson, B. Kaliski (February 2003) <em>Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1</em> (Internet Engineering Task Force),  RFC 3447, February 2003. RFC 3447. RFC RFC3447. DOI 10.17487/RFC3447. https://www.rfc-editor.org/info/rfc3447.</formattedref><docidentifier type="RFC" primary="true">RFC 3447</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC3447</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC3447</docidentifier></bibitem>
+ <bibitem id="FIPS186-2" type="standard"><formattedref>National Institute of Standards and Technology (January 2000) <em>Digital Signature Standard (DSS)</em> (Gaithersburg, MD), January 2000. FIPS 186-2. https://csrc.nist.gov/publications/detail/fips/186/2/archive/2001-10-05.</formattedref><docidentifier type="NIST" primary="true">FIPS 186-2</docidentifier></bibitem>
+ <bibitem id="FIPS186-4" type="standard"><formattedref>National Institute of Standards and Technology (July 2013) <em>Digital Signature Standard (DSS)</em> (Gaithersburg, MD), July 2013. FIPS 186-4. https://doi.org/10.6028/NIST.FIPS.186-4.</formattedref><docidentifier type="NIST" primary="true">FIPS 186-4</docidentifier></bibitem>
+ <bibitem id="FIPS186-5" type="standard"><formattedref>National Institute of Standards and Technology (October 2019) <em>Digital Signature Standard (DSS)</em> (Gaithersburg, MD), October 2019. FIPS 186-5 (Draft). https://doi.org/10.6028/NIST.FIPS.186-5-draft.</formattedref><docidentifier type="NIST" primary="true">FIPS 186-5 (Draft)</docidentifier></bibitem>
+ <bibitem id="SP800-106" type="standard"><formattedref>Quynh H. Dang (February 2009) <em>Randomized Hashing for Digital Signatures</em> (Gaithersburg, MD), February 2009. SP 800-106. https://doi.org/10.6028/NIST.SP.800-106.</formattedref><docidentifier type="NIST" primary="true">SP 800-106</docidentifier></bibitem>
+ <bibitem id="SP800-131A" type="standard"><formattedref>Elaine B. Barker, Allen Roginsky (January 2011) <em>Transitions — Recommendation for Transitioning the Use of Cryptographic Algorithms and Key Lengths</em> (Gaithersburg, MD), January 2011. SP 800-131A. https://doi.org/10.6028/NIST.SP.800-131A.</formattedref><docidentifier type="NIST" primary="true">SP 800-131A</docidentifier></bibitem>
+ <bibitem id="SP800-56B" type="standard"><formattedref>Elaine B. Barker, Lily Chen, Andrew R. Regenscheid, Miles E. Smid (August 2009) <em>Recommendation for Pair-Wise Key Establishment Schemes Using Integer Factorization Cryptography</em> (Gaithersburg, MD), August 2009. SP 800-56B. https://doi.org/10.6028/NIST.SP.800-56B.</formattedref><docidentifier type="NIST" primary="true">SP 800-56B</docidentifier></bibitem>
+
+<bibitem id="ACVP"><formattedref>Fussell B, Vassilev A, Booth H, Celi C, Hammett R (July 01, 2019) <em>Automatic Cryptographic Validation Protocol</em> (National Institute of Standards and Technology, Gaithersburg, MD), July 01, 2019.</formattedref><docidentifier>ACVP</docidentifier></bibitem>
+</references>
+</annex>
+</nist-standard>

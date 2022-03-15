@@ -1,0 +1,2749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP KAS ECC JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP KAS ECC JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.KAS-ECC</uri><docidentifier type="NIST">ACVP KAS-ECC Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol KAS-ECC Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.KAS-ECC.r-1.eng</docidentifier><docnumber>KAS-ECC</docnumber><date type="issued"><on>2018-11-01</on></date><contributor><role type="author"/><person>
+<name><completename>Barry Fussell</completename></name>
+<affiliation><organization>
+<name>Cisco Systems, Inc.</name>
+<address><formattedAddress>170 West Tasman Drive, San Jose, California</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="author"/><person>
+<name><completename>Russell Hammett</completename></name>
+<affiliation><organization>
+<name>G2, Inc.</name>
+<address><formattedAddress>302 Sentinel Drive, Suite #300, Annapolis Junction, MD 20701</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing SP800-56a KAS ECC implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2018</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_c51d665f-034a-f5f5-3c38-c9ea21dda165">This document defines the JSON schema for testing SP800-56a KAS ECC implementations with the ACVP specification.</p>
+</abstract><foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative">
+<title>Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative">
+<title>Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174"/> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative">
+<title>Executive Summary</title>
+<p id="_4f83ee96-1ab7-be9f-1cbb-b512221430cf">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-56a KAS ECC implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_ea168f91-8e6c-40c8-d914-035d1a5b3956">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-56a KAS ECC implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative">
+<title>Supported KAS-ECCs</title>
+<p id="_c1c22e5d-d403-aeba-a2e1-2341b8a93d2d">The following key derivation functions <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_29dc5a1a-e6a7-988a-e98c-4b1dbb4d5788"><li><p id="_5871f614-4b1d-1dac-6187-061bd932ca9b">KAS-ECC / null / 1.0</p>
+</li>
+<li><p id="_1a68c57f-0d33-16a9-df2c-bbd4b1293d90">KAS-ECC / Component / 1.0</p>
+</li>
+<li><p id="_4b01d462-5145-54e7-379d-8a0aca00ae55">KAS-ECC / CDH-Component / 1.0</p>
+</li>
+</ul>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_6c2d1b9e-7eb9-1c43-9752-59b2f8676d04">The ACVP server performs a set of tests on the KAS protocol in order to assess the correctness and robustness of the implementation. A typical ACVP validation session <strong>SHALL</strong> require multiple tests to be performed for every supported permutation of KAS capabilities. This section describes the design of the tests used to validate implementations of KAS algorithms.</p>
+
+<clause id="_test_types" obligation="normative">
+<title>Test Types</title>
+<p id="_d1d64d9e-d40c-8f5d-d282-61262687cc38">There are two test types for KAS testing:</p>
+
+<ul id="_b459da39-8e75-23a6-ec2f-2b814231625f"><li><p id="_c5830f73-6ba2-1859-6da5-94b80444d446">“AFT” — Algorithm Function Test. In the AFT test mode, the IUT <strong>SHALL</strong> act as a party in the Key Agreement with the ACVP server. The server <strong>SHALL</strong> generate and provide all necessary information for the IUT to perform a successful key agreement; both the server and IUT MAY act as party U/V, as well as recipient/provider to key confirmation.</p>
+</li>
+<li><p id="_30e09067-dcd7-2e55-a8d0-b009ad462247">“VAL” — Validation Test. In the VAL test mode, The ACVP server MUST generate a complete (from both party U and party V’s perspectives) key agreement, and expects the IUT to be able to determine if that agreement is valid. Various types of errors <strong>MUST</strong> be introduced in varying portions of the key agreement process (changed DKM, changed key, changed hash digest, etc), that the IUT <strong>MUST</strong> be able to detect and report on.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_test_coverage" obligation="normative">
+<title>Test Coverage</title>
+<p id="_4e103605-93a8-9c52-0928-fada46603fc6">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="SP800-56Ar2" citeas="SP 800-56A Rev. 2"/>.</p>
+
+<clause id="requirements_covered_kas_ecc" obligation="normative">
+<title>KAS-ECC Requirements Covered</title>
+<ul id="_0fc5b55a-730d-1006-2970-273e7460e2bc"><li><p id="_cb0bf62d-3749-2d9a-4cf2-80c54e60e625">SP 800-56Ar2 — 4.1 Key Establishment Preparations. The ACVP server is responsible for generating domain parameters as per the IUT’s capability registration.</p>
+</li>
+<li><p id="_555ff3b6-c8eb-aaef-cbb7-bfac84ec4371">SP 800-56Ar2 — 4.2 Key-Agreement Process. Both the ACVP server and IUT participate in the Key Agreement process. The server and IUT can both take the roles of party U/V, and as such the “performer” of steps depicted in “Figure 2: Key Agreement process” can vary.</p>
+</li>
+<li><p id="_9793618d-8b32-1798-ce0b-c25ce1ca9f79">SP 800-56Ar2 — 5.1 Cryptographic Hash Functions. All modes of performing KAS SHALL make use of a hash function. The hash function <strong>MAY</strong> be used for validation of a successfully generated shared secret Z (noKdfNoKc), or as a primitive within the KDF being tested (kdfNoKc and kdfKc).</p>
+</li>
+<li><p id="_c9f96301-48ae-ba0e-4aea-9a5442d0db1c">SP 800-56Ar2 — 5.2 Message Authentication Code (MAC) Algorithm. A MAC is utilized for confirmation of success for kdfNoKc and kdfKc modes of KAS. Note — a MAC prerequisite is <strong>REQUIRED</strong> only for kdfKc, though is utilized for both kdfNoKc and kdfKc.</p>
+</li>
+<li><p id="_68201558-b553-0512-398a-1461a4a13aa7">SP 800-56Ar2 — 5.4 Nonce. Nonces are made use of in various KAS schemes — both the ACVP server and IUT SHALL be expected to generate nonces.</p>
+</li>
+<li><p id="_0e446772-ce58-5506-56ac-aa3a1ab254f7">SP 800-56Ar2 — 5.5 Domain Parameters. Domain Parameter Generation <strong>SHALL</strong> be performed solely from the ACVP server, with constraints from the IUTs capabilities registration. The same set of domain parameters <strong>SHALL</strong> generate all keypairs (party U/V, static/ephemeral) for a single test case.</p>
+</li>
+<li><p id="_c63513d2-1c79-cb12-319c-a54e14017cd0">SP 800-56Ar2 — 5.6 Key-Pair Generation. While Key-Pairs are used in each KAS scheme, the generation of said key-pairs is out of scope for KAS testing. Random tests from the VAL groups, <strong>MAY</strong> inject bad keypairs that the IUT <strong>MUST</strong> be able detect. These random tests are only present in groups given appropriate assurance functions see: <xref target="supported_functions"/></p>
+</li>
+<li><p id="_e6198220-2265-ae27-c05f-252dc046323c">SP 800-56Ar2 — 4.3 DLC-based Key-Transport Process / 5.7 DLC Primitives. Depending on the scheme used, either Diffie Hellman or MQV <strong>SHALL</strong> be used to negotiate a shared secret of z. Testing and validation of such key exchanges is covered under their respective schemes.</p>
+</li>
+<li><p id="_c1a64715-e79d-5c1d-d951-d95cc2eae3c6">SP 800-56Ar2 — 5.8 Key-Derivation Methods for Key-Agreement Schemes. All schemes/modes save noKdfNoKc (component) <strong>MUST</strong> make use of a KDF. KDF construction <strong>SHALL</strong> utilize <xref target="oiPatternConstruction"/> for its pattern.</p>
+</li>
+<li><p id="_3f1ca9b5-f67f-1ebe-3c57-3afef9e2d982">SP 800-56Ar2 — 5.9 Key Confirmation. Most KAS schemes <strong>MAY</strong> allow for a Key Confirmation process, the ACVP server and IUT <strong>MAY</strong> be Providers or Recipients of said confirmation. Additionally, key confirmation <strong>MAY</strong> be performed on one or both parties (depending on scheme).</p>
+</li>
+<li><p id="_a52afb84-ff0f-9359-cedd-8f4a585cff69">SP 800-56Ar2 — 6 Key Agreement Schemes. All schemes specified in referenced document are supported for validation with the ACVP server.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="requirements_not_covered_kas_ecc" obligation="normative">
+<title>KAS-ECC Requirements Not Covered</title>
+<ul id="_2ff53fbb-2ae7-5568-ad09-883821136fa8"><li><p id="_ec17970d-5713-1117-2d37-58eedaba65fd">SP 800-56Ar2 — 4.1 Key Establishment Preparations. The ACVP server <strong>SHALL NOT</strong> make a distinction between IUT generated keys via a trusted third party and the IUT itself.</p>
+</li>
+<li><p id="_1270c9bf-88c3-a94e-a815-39798688d86c">SP 800-56Ar2 — 5.3 Random Number Generation. The IUT <strong>MUST</strong> perform all random number generation with a validated random number generator. A DRBG is <strong>REQUIRED</strong> as a prerequisite to KAS, but <strong>SHALL NOT</strong> be in the scope testing assurances.</p>
+</li>
+<li><p id="_5f64cb88-4ac4-0f99-f24e-4c3265f70b51">SP 800-56Ar2 — 5.4 Nonce. Nonce generation is utilized for several schemes. The various methods of generating a nonce described in section 5.4 <strong>MUST</strong> be used, however their generation <strong>SHALL NOT</strong> be in scope of KAS testing assurances.</p>
+</li>
+<li><p id="_321ac9d9-2cbb-4d09-0ccf-a2907d40eedd">SP 800-56Ar2 — 5.5.2 Assurances of Domain-Parameter Validity. The ACVP server <strong>SHALL</strong> generate all domain parameters, IUT validation of such parameters is <strong>SHALL NOT</strong> be in scope for KAS testing.</p>
+</li>
+<li><p id="_5c4c21b9-3e8c-3f75-e6d7-d646aaacee22">SP 800-56Ar2 — 5.5.3 Domain Parameter Management. Domain Parameter Management <strong>SHALL NOT</strong> be in scope for KAS testing.</p>
+</li>
+<li><p id="_0733802a-9e35-3bd9-3b51-e2303e4e0a8d">SP 800-56Ar2 — 5.6 Key-Pair Generation. While Key-Pairs <strong>MUST</strong> be used in each KAS scheme, the generation, assurances, and management of said key-pairs <strong>SHALL NOT</strong> be in scope of KAS testing.</p>
+</li>
+<li><p id="_1037e6a7-9b04-b560-0dbc-ad57a60ad54c">SP 800-56Ar2 — 5.8 Key-Derivation Methods for Key-Agreement Schemes. Two-step Key-Derivation (Extraction-then-Expansion) <strong>SHALL NOT</strong> be utilized in KAS testing.</p>
+</li>
+<li><p id="_2c9346ab-26ef-ff77-e23d-9d61d99d8cf4">SP 800-56Ar2 — 5.7 Rationale for Selecting a Specific Scheme. It is expected that the IUT registers all schemes it supports in its capabilities registration. Selecting specific schemes from a KAS testing perspective <strong>SHALL NOT</strong> be in scope.</p>
+</li>
+<li><p id="_43a50dd7-c3e0-3e7e-0e2d-27cdbc5f0c1c">SP 800-56Ar2 — 8 Key Recovery. Key Recovery <strong>SHALL NOT</strong> be in scope of KAS testing.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_2348a824-f5e4-d0fd-c0b8-621f1a48324b">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of KAS ECC algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="prereq_algs" obligation="normative">
+<title>Required Prerequisite Algorithms</title>
+<p id="_eba6b18d-ee61-ee5f-9f45-e280368d1738">Some algorithm implementations rely on other cryptographic primitives. For example, IKEv2 uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<table id="rereqs_table">
+<name>Required Prerequisite Algorithms JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">CCM, CMAC, DRBG, ECDSA, HMAC, SHA</td>
+<td valign="top" align="left">valValue</td>
+</tr><tr><td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">actual number or “same”</td>
+<td valign="top" align="left">prereqAlgVal</td>
+<td valign="top" align="left">prerequistie algorithm validation</td>
+</tr></tbody>
+</table>
+
+<p id="_958b4d7b-94bb-c95e-86e7-b4faae21bbae">KAS has conditional prerequisite algorithms, depending on the capabilities registered:</p>
+
+<table id="prereqs_requirements_table">
+<name>Prerequisite requirement conditions</name>
+<thead><tr><th valign="top" align="left">Prerequisite Algorithm</th>
+<th valign="top" align="left">Condition</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">DRBG</td>
+<td valign="top" align="left">Always <strong>REQUIRED</strong></td>
+</tr><tr><td valign="top" align="left">SHA</td>
+<td valign="top" align="left">Always <strong>REQUIRED</strong></td>
+</tr><tr><td valign="top" align="left">ECDSA</td>
+<td valign="top" align="left">ECDSA.PKV validation <strong>REQUIRED</strong> when IUT using assurance functions of “fullVal”, “keyPairGen”, or “keyRegen”. ECDSA.KeyPair validation <strong>REQUIRED</strong> when IUT using assurances functions of “keyPairGen”, or “keyRegen”.</td>
+</tr><tr><td valign="top" align="left">AES-CCM</td>
+<td valign="top" align="left">AES-CCM validation <strong>REQUIRED</strong> when IUT is performing KeyConfirmation (KC) and utilizing AES-CCM.</td>
+</tr><tr><td valign="top" align="left">CMAC</td>
+<td valign="top" align="left">CMAC validation <strong>REQUIRED</strong> when IUT is performing KeyConfirmation (KC) and utilizing CMAC.</td>
+</tr><tr><td valign="top" align="left">HMAC</td>
+<td valign="top" align="left">HMAC validation <strong>REQUIRED</strong> when IUT is performing KeyConfirmation (KC) and utilizing HMAC.</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="cap_ex" obligation="normative">
+<title>KAS ECC Algorithm Capabilities JSON Values</title>
+<p id="_b1f80d0b-d99e-9e09-69e8-115ba5b9fbc5">Each algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="caps_table">
+<name>KAS ECC Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm under test</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“KAS-ECC”</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The algorithm mode.</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">null, “Component”, or “CDH-Component”</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use.</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisite algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">function</td>
+<td valign="top" align="left">Type of function supported</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="supported_functions"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">scheme</td>
+<td valign="top" align="left">Array of supported key agreement schemes each having their own capabilities</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="supported_schemes"/></td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+
+<p id="_0adeed6c-2f00-dff8-8420-f005d19e266e">Note: Some optional values are required depending on the algorithm. Failure to provide these values will result in the ACVP server returning an error to the ACVP client during registration.</p>
+</clause>
+
+<clause id="supported_functions" obligation="normative">
+<title>Supported KAS ECC Functions</title>
+<p id="_14b25be2-7d07-92cf-2fe8-909b21cc152b">The following function types <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<ul id="_312b2b93-78e6-6c50-bd1d-2b49d01ac373"><li><p id="_d90dc94c-e5b8-fa2d-28c6-2a014ad5e8c6">dpGen — IUT can perform domain parameter generation (FFC only)</p>
+</li>
+<li><p id="_b0d23451-8951-0da7-ddb6-9c4154c3adf7">dpVal — IUT can perform domain parameter validation (FFC only)</p>
+</li>
+<li><p id="_64bc607d-0db6-cdbd-c7a5-c3c8ff84542a">keyPairGen — IUT can perform keypair generation.</p>
+</li>
+<li><p id="_f9837b07-8a8c-36c4-56a3-f6dba9acdc26">fullVal — IUT can perform full public key validation ( <eref type="inline" bibitemid="SP800-56Ar2" citeas="SP 800-56A Rev. 2"/> section 5.6.2.3.1 / 5.6.2.3.3)</p>
+</li>
+<li><p id="_61e7c1ab-0a62-6a87-cd88-624f779fec7e">ACVP server <strong>MAY</strong> inject keys into “VAL” type tests that will fail full public key validation.</p>
+</li>
+<li><p id="_45ff74ac-507d-6080-c23a-57207b84f25a">partialVal — IUT can perform partial public key validation ( <eref type="inline" bibitemid="SP800-56Ar2" citeas="SP 800-56A Rev. 2"/> section 5.6.2.3.2 / 5.6.2.3.4)</p>
+</li>
+<li><p id="_68b40e53-f710-b89b-e77e-83770a5b4334">ACVP server <strong>MAY</strong> inject keys into “VAL” type tests that will fail partial public key validation.</p>
+</li>
+<li><p id="_5425fece-17a2-b456-99fe-427a97c31383">keyRegen — IUT can regenerate keys given a specific seed and domain parameter (pqg for FFC, curve for ECC)</p>
+</li>
+</ul>
+</clause>
+
+<clause id="schemes" obligation="normative">
+<title>KAS ECC Schemes</title>
+<clause id="supported_schemes" obligation="normative">
+<title>KAS ECC Scheme Capabilities JSON Values</title>
+<p id="_77b41860-6985-25bb-468b-8ae143077b2b">All other scheme capabilities are advertised as a self-contained JSON object using the following values. Note that at least one of “noKdfNoKc”, “kdfNoKc”, or “kdfKc” <strong>MUST</strong> be supplied with the registration. See <xref target="supported_scheme_values"/> for allowed ECC scheme types.</p>
+
+<table id="scheme_caps_table">
+<name>KAS ECC Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">kasRole</td>
+<td valign="top" align="left">Roles supported for key agreement</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">initiator and/or responder</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">noKdfNoKc</td>
+<td valign="top" align="left">Indicates no KDF, no KC tests are to be generated. Note this is a COMPONENT mode only test. This property <strong>MUST</strong> only be used with “KAS-ECC” / “Component”</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="noKdfNoKc"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">kdfNoKc</td>
+<td valign="top" align="left">Indicates KDF, no KC tests are to be generated. Note this is a KAS-ECC only test. This mode <strong>MAY</strong> only be used for registrations with “KAS-ECC” (no mode)</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="kdfNoKc"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">kdfKc</td>
+<td valign="top" align="left">Indicates KDF, KC tests are to be generated. Note this is a KAS-ECC only test. This mode <strong>MAY</strong> only be used for registrations with “KAS-ECC” (no mode)</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="kdfKc"/></td>
+<td valign="top" align="left">Yes</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="supported_scheme_values" obligation="normative">
+<title>Supported KAS ECC Schemes</title>
+<p id="_0877304f-3bb8-d547-2ab2-652c46e32379">The following schemes <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<ul id="_24438197-8d15-be7d-7d06-4572d5bae9b8"><li><p id="_ecc44dfe-8f2f-6fec-ca03-5d65498e4a11">ephemeralUnified — keyConfirmation not supported</p>
+</li>
+<li><p id="_c3c94df8-1384-094b-8ec3-ac1e4ee21a5d">fullMqv</p>
+</li>
+<li><p id="_b32427c6-8efa-bbd1-000c-ac7557c1ed63">fullUnified</p>
+</li>
+<li><p id="_7e79b33a-b654-d05b-a2df-994a2ce88946">onePassDh — Can only provide unilateral key confirmation party V to party U.</p>
+</li>
+<li><p id="_ac206f55-fb59-656b-3bbf-84380f00822a">onePassMqv</p>
+</li>
+<li><p id="_49cb6264-2ec1-ebfa-5f88-73f633503966">onePassUnified</p>
+</li>
+<li><p id="_730eafe6-7696-0ddb-b1b2-cee27caa0205">staticUnified</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="kasMode" obligation="normative">
+<title>KAS ECC Modes</title>
+<clause id="noKdfNoKc" obligation="normative">
+<title>KAS ECC noKdfNoKc</title>
+<p id="_278c6648-7665-7166-b496-e663aa122ba4">Contains properties <strong>REQUIRED</strong> for “noKdfNoKc” registration.</p>
+
+<table id="noKdfNoKc_table">
+<name>NoKdfNoKc Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">parameterSet</td>
+<td valign="top" align="left">The parameter sets supported</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="parameter_set"/></td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="kdfNoKc" obligation="normative">
+<title>KAS ECC kdfNoKc</title>
+<p id="_8eb3141b-ad6a-d8bb-4b97-99398b0ac661">Contains properties <strong>REQUIRED</strong> for “kdfNoKc” registration.</p>
+
+<table id="kdfNoKc_table">
+<name>kdfNoKc Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">kdfOption</td>
+<td valign="top" align="left">The kdf options supported</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="supported_kdfOption"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">dkmNonceTypes</td>
+<td valign="top" align="left">The dkmNonceTypes supported</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">randomNonce, timestamp, sequence, timestampSequence</td>
+<td valign="top" align="left">Required for staticUnified scheme</td>
+</tr><tr><td valign="top" align="left">parameterSet</td>
+<td valign="top" align="left">The parameter sets supported</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="parameter_set"/></td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="kdfKc" obligation="normative">
+<title>KAS ECC kdfKc</title>
+<p id="_dcc43b0a-8eb6-36c8-b99a-e689d7ac3071">Contains properties <strong>REQUIRED</strong> for “kdfKc” registration.</p>
+
+<table id="kdfKc_table">
+<name>kdfKc Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">kdfOption</td>
+<td valign="top" align="left">The kdf options supported</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="supported_kdfOption"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">dkmNonceTypes</td>
+<td valign="top" align="left">The dkmNonceTypes supported</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">randomNonce, timestamp, sequence, timestampSequence</td>
+<td valign="top" align="left">Required for staticUnified scheme</td>
+</tr><tr><td valign="top" align="left">kcOption</td>
+<td valign="top" align="left">The kc options supported</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="supported_kcOption"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">parameterSet</td>
+<td valign="top" align="left">The parameter sets supported</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left"><xref target="parameter_set"/></td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="parameterSet" obligation="normative">
+<title>Parameter Sets</title>
+<clause id="parameter_set" obligation="normative">
+<title>KAS ECC Parameter Set</title>
+<p id="_2eab53b6-7d75-be92-b0a5-f545158995fc">Each parameter set advertised is a self-contained JSON object using the following values. Note that at least one parameter set (“eb”, “ec”, “ed”, “ee”) is <strong>REQUIRED</strong>.</p>
+
+<table id="parameter_set_table">
+<name>KAS ECC Parameter Set Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">eb</td>
+<td valign="top" align="left">The eb parameter set</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="parameter_set_details"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ec</td>
+<td valign="top" align="left">The ec parameter set</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="parameter_set_details"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ed</td>
+<td valign="top" align="left">The ed parameter set</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="parameter_set_details"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ee</td>
+<td valign="top" align="left">The ee parameter set</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="parameter_set_details"/></td>
+<td valign="top" align="left">Yes</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="parameter_set_details" obligation="normative">
+<title>KAS ECC Parameter Set Details</title>
+<ul id="_99eae16b-1b58-4c80-cbd1-3d4550c65b86"><li><p id="_b101dfa3-927a-ae02-e10c-09f4e50157d6">eb: Len n — 224-255, min Len h — 112, min hash len — 112, min keySize — 112, min macSize — 64</p>
+</li>
+<li><p id="_978d97d9-4358-80e7-cca6-1d592c75b08e">ec: Len n — 256-283, min Len h — 128, min hash len — 128, min keySize — 128, min macSize — 64</p>
+</li>
+<li><p id="_d08c3471-dcca-a7d9-1dd3-76b516999368">ed: Len n — 384-511, min Len h — 192, min hash len — 192, min keySize — 192, min macSize — 64</p>
+</li>
+<li><p id="_29b4ea7c-2126-5477-e8c1-8d98cf6cbaf3">ee: Len n — 512+, min Len h — 256, min hash len — 256, min keySize — 256, min macSize — 64</p>
+</li>
+</ul>
+
+<p id="_91030898-0e89-0058-3665-2bbcf8bbf028">“noKdfNoKc” <strong>REQUIRES</strong> “hashAlg”</p>
+
+<p id="_eb106d88-238a-de29-2cb7-92141befd186">“kdfNoKc” <strong>REQUIRES</strong> “hashAlg” and at least one valid MAC registration</p>
+
+<p id="_10d65c05-f125-6abd-be22-da45de0da3ac">“kdfKc” <strong>REQUIRES</strong> “hashAlg” and at least one valid MAC registration</p>
+
+<table id="parameter_set_details_table">
+<name>KAS ECC Parameter Set Details Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The elliptic curve to use for key generation.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">See <xref target="supported_curves"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash algorithms to use for KDF (and noKdfNoKc)</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="supported_hashAlg"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">macOption</td>
+<td valign="top" align="left">The macOption(s) to use with “kdfNoKc” and/or “kdfKc”</td>
+<td valign="top" align="left">object</td>
+<td valign="top" align="left">See <xref target="supported_macOption"/></td>
+<td valign="top" align="left">Yes</td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="supported_curves" obligation="normative">
+<title>Supported ECC Curves</title>
+<p id="_798800d8-f8e2-53cf-18b4-aecfdee52546">The following ECC Curves <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="curves">
+<name>Supported Curves per parameter set.</name>
+<thead><tr><th valign="top" align="left">Parameter Set</th>
+<th valign="top" align="left">Prime</th>
+<th valign="top" align="left">Koblitz</th>
+<th valign="top" align="left">Binary</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">eb</td>
+<td valign="top" align="left">P-224</td>
+<td valign="top" align="left">K-233</td>
+<td valign="top" align="left">B-233</td>
+</tr><tr><td valign="top" align="left">ec</td>
+<td valign="top" align="left">P-256</td>
+<td valign="top" align="left">K-283</td>
+<td valign="top" align="left">B-283</td>
+</tr><tr><td valign="top" align="left">ed</td>
+<td valign="top" align="left">P-384</td>
+<td valign="top" align="left">K-409</td>
+<td valign="top" align="left">B-409</td>
+</tr><tr><td valign="top" align="left">ee</td>
+<td valign="top" align="left">P-521</td>
+<td valign="top" align="left">K-571</td>
+<td valign="top" align="left">B-571</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="supported_hashAlg" obligation="normative">
+<title>Supported Hash Algorithm Methods</title>
+<p id="_a1905747-73bd-7524-c29c-ff971038befd">The following SHA methods <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<ul id="_edcb37b5-46e2-5e9e-1705-51f6b8c52de0"><li><p id="_2dd030e5-0c78-50d5-ec99-93a534830cab">SHA-1</p>
+</li>
+<li><p id="_e8119ff5-5c31-768e-07fc-c944af0f0b07">SHA2-224</p>
+</li>
+<li><p id="_f27d5815-90f7-ee26-46fe-246d262b1cbd">SHA2-256</p>
+</li>
+<li><p id="_83193762-0e28-9077-e4ad-9156100d40af">SHA2-384</p>
+</li>
+<li><p id="_466818fe-4a6c-a03e-b7f5-c22191b29aa4">SHA2-512</p>
+</li>
+</ul>
+</clause>
+
+<clause id="supported_macOption" obligation="normative">
+<title>Supported KAS ECC MAC Options</title>
+<p id="_40a94533-8b32-5595-843a-70fcdcdbd127">The following MAC options <strong>MAY</strong> be advertised for registration under a “kdfNoKc” and “kdfKc” kasMode:</p>
+
+<ul id="_c432690c-4454-e4d3-aa0e-12da011c8180"><li><p id="_4ac9012c-96da-f2cb-973a-91f468b93184">AES-CCM</p>
+</li>
+<li><p id="_2b805008-cb0c-bcae-1564-4627dbdc4297">CMAC</p>
+</li>
+<li><p id="_9e990c25-31ba-b184-3c7a-bd6fd8883b81">HMAC-SHA-1</p>
+</li>
+<li><p id="_46fcfd6b-ffbb-b964-058c-82f7e8f5cd59">HMAC-SHA2-224</p>
+</li>
+<li><p id="_3b1818c7-ce53-dfee-1fee-6fabc9d98429">HMAC-SHA2-256</p>
+</li>
+<li><p id="_ed636a61-a921-3058-4c0e-627bb35d6ef4">HMAC-SHA2-384</p>
+</li>
+<li><p id="_2c0f468a-c7a2-a104-7a3e-e989f4ad4f27">HMAC-SHA2-512</p>
+</li>
+</ul>
+
+<table id="macOption_details_table">
+<name>KAS ECC Mac Option Details</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The supported keyLens for the selected MAC.</td>
+<td valign="top" align="left">Domain</td>
+<td valign="top" align="left">AES based MACs limited to 128, 192, 256. HashAlg based MACs mod 8. All keySizes minimum <strong>MUST</strong> conform to parameter set requirements See <xref target="parameter_set_details"/> .</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">nonceLen</td>
+<td valign="top" align="left">The nonce len for use with AES-CCM mac</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Input as bits, 56-104, odd byte values only (7-13). Additionally minimum <strong>MUST</strong> conform to parameter set requirements See <xref target="parameter_set_details"/> .</td>
+<td valign="top" align="left">Yes (required for AES-CCM)</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">The mac len for use with mac</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Input as bits, mod 8, minimum <strong>MUST</strong> conform to parameter set requirements See <xref target="parameter_set_details"/> , maximum <strong>SHALL NOT</strong> exceed block size..</td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="supported_kdfOption" obligation="normative">
+<title>Supported KAS ECC KDF Options</title>
+<p id="_85a67b53-b490-9e84-5c33-2c87bc1df260">The following MAC options are available for registration under a “kdfNoKc” and “kdfKc” kasMode:</p>
+
+<ul id="_230ad64a-de66-86a2-6e52-1f6b80c5129e"><li><p id="_afe71ab5-1ff7-301f-234b-f90389a84569">concatenation</p>
+</li>
+</ul>
+
+<table id="kdfOption_details_table">
+<name>KAS ECC KDF Option Details</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">oiPattern</td>
+<td valign="top" align="left">The OI pattern to use for constructing OtherInformation.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">See <xref target="oiPatternConstruction"/> .</td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+
+<clause id="oiPatternConstruction" obligation="normative">
+<title>Other Information Construction</title>
+<p id="_95877066-0f75-83b2-12ea-8059073b4e42">Some IUTs <strong>MAY</strong> require a specific pattern for the OtherInfo portion of the KDFs for KAS. An “oiPattern” is specified in the KDF registration to accommodate such requirements. Regardless of the oiPattern specified, the OI bitlength <strong>MUST</strong> be 240 for FFC, and 376 for ECC. The OI <strong>SHALL</strong> be padded with random bits (or the most significant bits utilized) when the specified OI pattern does not meet the bitlength requirement</p>
+
+<p id="_b6232c24-a793-9108-feb9-39fde104ebf9">Pattern candidates:</p>
+
+<ul id="_ddce3025-a85c-d8f8-114c-e6c361ee3918"><li><p id="_9e7a0e7e-15be-83d1-0a31-0b7287176abd">literal[123456789ABCDEF]</p>
+<ul id="_0c09e525-30a2-d642-5062-8eada253e157"><li><p id="_420447f3-eaee-349a-958b-77ef280e5c8f">uses the specified hex within “[]”. literal[123456789ABCDEF] substitutes “123456789ABCDEF” in place of the field</p>
+</li>
+</ul>
+</li>
+<li><p id="_baddb8f5-d23e-e5c6-2a85-49d632ce3070">uPartyInfo</p>
+<ul id="_bc1dfc84-747e-3df6-ffb1-caec3eae92e9"><li><p id="_7d167fc5-77f4-83c6-9bd4-bcd145a427d1">uPartyId { || ephemeralKey } { || ephemeralNonce } { || dkmNonce }</p>
+<ul id="_4f2bad71-1f85-2cfd-c9d8-5d29b9d7da9b"><li><p id="_6466265c-b6b6-b87d-433e-0a7fa386ed02">dkmNonce is provided by party u for static schemes</p>
+</li>
+<li><p id="_43a85700-7582-e313-bded-40fdcb33bc7d">“optional” items such as ephemeralKey <strong>MUST</strong> be included when available for ACVP testing.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p id="_d65b1b55-b2b1-99dd-c3d4-b668764eda19">vPartyInfo { || ephemeralKey } { || ephemeralNonce }</p>
+<ul id="_5dd51374-eef2-bc6e-a72c-1301b961bea6"><li><p id="_d8692366-f446-82fc-2e2b-865ec83d730a">vPartyId</p>
+<ul id="_0394ade6-08d7-4da3-0d62-a86fed5284c4"><li><p id="_f9513c03-f650-c881-808b-4826abd0a26b">“optional” items such as ephemeralKey <strong>MUST</strong> be included when available for ACVP testing.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p id="_24e7153b-44b6-3c6e-91d6-34f3869f4684">counter</p>
+<ul id="_1a480b54-59fc-7153-139e-3d51182f3a2b"><li><p id="_6bedf331-24a8-1146-6c54-7c34c429c92b">32bit counter starting at “1” (0×00000001)</p>
+</li>
+</ul>
+</li>
+</ul>
+
+<p id="_05b2449f-e9fc-45cd-492b-2c13d2d8aa68">Example (Note that party U is the server in this case “434156536964”, party V is the IUT “a1b2c3d4e5”, using an ECC non-static scheme):</p>
+
+<ul id="_c5c5ff40-c0f5-4a95-285f-e3f256af3d9b"><li><p id="_85d98fa7-3d2f-91c3-a80e-ba8a59b5065e">“concatenation” : “literal[123456789CAFECAFE]||uPartyInfo||vPartyInfo”</p>
+</li>
+</ul>
+
+<p id="_dfa9023d-626a-ffc0-3be5-795bc8629339">Evaluated as:</p>
+
+<ul id="_ec14d4ab-7566-e0eb-6f44-13704ebe680a"><li><p id="_4113fc0d-0ea0-73d1-03cf-a2bcb3308699">“123456789CAFECAFE434156536964a1b2c3d4e5b16c5f78ef56e8c14a561”</p>
+<ul id="_a6ddae5a-d7db-c801-e028-1759c1a80de7"><li><p id="_c216ef38-0342-0242-faf7-4fd2db1c70de">“b16c5f78ef56e8c14a561” are random bits applied to meet length requirements</p>
+</li>
+</ul>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="supported_kcOption" obligation="normative">
+<title>Supported KAS ECC KC Options</title>
+<p id="_b01bdac4-0cb6-f1bb-678c-6a47154d037d">The following KC options are available for registration under a “kdfKc” kasMode:</p>
+
+<table id="kcOption_details_table">
+<name>KAS ECC KC Option Details Capabilities</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">kcRole</td>
+<td valign="top" align="left">The role(s) the IUT is to act as for KeyConfirmation.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">provider/recipient</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">kcType</td>
+<td valign="top" align="left">The type(s) the IUT is to act as for KeyConfirmation.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">unilateral/bilateral</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">nonceType</td>
+<td valign="top" align="left">The nonce type(s) the IUT is to use for KeyConfirmation.</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">randomNonce, timestamp, sequence, timestampSequence</td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="app-reg-ex" obligation="normative">
+<title>Example KAS ECC Capabilities JSON Object</title>
+<p id="_7b5ff4b9-1fe0-803b-8c29-f0d16bf3535a">The following is a example JSON object advertising support for KAS ECC.</p>
+
+<sourcecode id="_7afb6a5d-6687-5b28-9772-5cf8e89f1839" lang="json">{
+	"algorithm": "KAS-ECC",
+	"revision": "1.0",
+	"prereqVals": [{
+			"algorithm": "ECDSA",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "DRBG",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "SHA",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "CCM",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "CMAC",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "HMAC",
+			"valValue": "123456"
+		}
+	],
+	"function": ["keyPairGen", "dpGen"],
+	"scheme": {
+		"ephemeralUnified": {
+			"kasRole": ["initiator", "responder"],
+			"kdfNoKc": {
+				"kdfOption": {
+					"concatenation": "uPartyInfo||vPartyInfo",
+					"ASN1": "uPartyInfo||vPartyInfo"
+				},
+				"parameterSet": {
+					"ec": {
+						"curve": "K-283",
+						"hashAlg": ["SHA2-224", "SHA2-256"],
+						"macOption": {
+							"AES-CCM": {
+								"keyLen": [128],
+								"nonceLen": 56,
+								"macLen": 64
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}</sourcecode>
+
+</clause>
+
+<clause id="app-reg-component-ex" obligation="normative">
+<title>Example KAS ECC Component Capabilities JSON Object</title>
+<p id="_9d0f6eee-e7bb-fc1e-1532-82913af820d3">The following is a example JSON object advertising support for KAS ECC Component.</p>
+
+<sourcecode id="_85ce53ab-dfcd-5852-e85f-0328db6690c2" lang="json">{
+	"algorithm": "KAS-ECC",
+	"mode": "Component",
+	"revision": "1.0",
+	"prereqVals": [{
+			"algorithm": "ECDSA",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "DRBG",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "SHA",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "CCM",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "CMAC",
+			"valValue": "123456"
+		},
+		{
+			"algorithm": "HMAC",
+			"valValue": "123456"
+		}
+	],
+	"function": ["keyPairGen", "dpGen"],
+	"scheme": {
+		"ephemeralUnified": {
+			"kasRole": ["initiator", "responder"],
+			"noKdfNoKc": {
+				"parameterSet": {
+					"eb": {
+						"curve": "P-224",
+						"hashAlg": ["SHA2-224", "SHA2-256"]
+					}
+				}
+			}
+		}
+	}
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="generation_reqs_per_scheme" obligation="normative">
+<title>Generation requirements per party per scheme</title>
+<p id="_b9b38d4c-7af6-6fee-b6b2-9170d4e0b672">The various schemes of KAS all have their own requirements as to keys and nonces per scheme, per party. The below table demonstrates those generation requirements:</p>
+
+<table id="scheme_generation_requirements">
+<name>Required Party Generation Obligations</name>
+<thead><tr><th valign="top" align="left">Scheme</th>
+<th valign="top" align="left">KasMode</th>
+<th valign="top" align="left">KasRole</th>
+<th valign="top" align="left">KeyConfirmationRole</th>
+<th valign="top" align="left">KeyConfirmationDirection</th>
+<th valign="top" align="left">StaticKeyPair</th>
+<th valign="top" align="left">EphemeralKeyPair</th>
+<th valign="top" align="left">EphemeralNonce</th>
+<th valign="top" align="left">DkmNonce</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">fullMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">ephemeralUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">ephemeralUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">ephemeralUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">ephemeralUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassMqv</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassDh</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassDh</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassDh</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassDh</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassDh</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">onePassDh</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">NoKdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfNoKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">None</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">InitiatorPartyU</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Provider</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Unilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr><tr><td valign="top" align="left">staticUnified</td>
+<td valign="top" align="left">KdfKc</td>
+<td valign="top" align="left">ResponderPartyV</td>
+<td valign="top" align="left">Recipient</td>
+<td valign="top" align="left">Bilateral</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+<td valign="top" align="left">True</td>
+<td valign="top" align="left">False</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_213079ee-3561-bc25-05cb-1f0502b340c6">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SP800-56a KAS ECC algorithms.</p>
+
+<p id="_f20358a6-1915-581f-f00b-4b9d90dee7f9">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_1fd83ac4-0cef-724e-db5a-f879db32c22f">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_1815f35f-c46a-081f-8f30-35622ccda965">An example of this would look like this</p>
+
+<sourcecode id="_dc8326ad-07f1-e726-5968-bc5dcf9a3ee5" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title>Test Groups JSON Schema</title>
+<p id="_aae88f93-d541-6407-4030-bd088d04d5e7">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_9e2bc16c-4ca2-83a9-1522-49ce85cb3f16">The test group for KAS ECC is as follows:</p>
+
+<table id="vs_tg_table5">
+<name>Vector Group JSON Object</name>
+<tbody><tr><td valign="top" align="left">JSON Value</td>
+<td valign="top" align="left">Description</td>
+<td valign="top" align="left">JSON type</td>
+<td valign="top" align="left">Optional</td>
+</tr><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">scheme</td>
+<td valign="top" align="left">The scheme for the test vectors. See <xref target="supported_schemes"/> for possible values</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The type of testCases expected within the group. AFT (Functional) tests produce test cases where the prompt file delivers only the needed public server information in which the IUT is expected to perform KAS. VAL (Validity) tests produce inputs/outputs from both server and IUT perspectives of a KAS negotiation. The expectation of the IUT on such tests is to determine if the KAS negotiation was successful or not.</td>
+<td valign="top" align="left">AFT, VAL</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">kasRole</td>
+<td valign="top" align="left">The KAS role</td>
+<td valign="top" align="left">initiator, responder</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">kasMode</td>
+<td valign="top" align="left">The KAS mode</td>
+<td valign="top" align="left">noKdfNoKc, kdfNoKc, kdfKc</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">parmSet</td>
+<td valign="top" align="left">Parameter set value to use</td>
+<td valign="top" align="left">eb, ec, ed, ee</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">hashAlg values being used</td>
+<td valign="top" align="left">See <xref target="supported_hashAlg"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">macType</td>
+<td valign="top" align="left">The MAC being used. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes.</td>
+<td valign="top" align="left">See <xref target="supported_macOption"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The key length of the MAC. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes.</td>
+<td valign="top" align="left">See <xref target="supported_macOption"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceAesCcmLen</td>
+<td valign="top" align="left">The nonce length of the MAC (applies only to AES-CCM). <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes using a AES-CCM MAC.</td>
+<td valign="top" align="left">See  <xref target="supported_macOption"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">The mac length. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes.</td>
+<td valign="top" align="left">See <xref target="supported_macOption"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">kdfType</td>
+<td valign="top" align="left">The KDF being used. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes.</td>
+<td valign="top" align="left">concatenation, asn1</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">idServerLen</td>
+<td valign="top" align="left">The length of the server ID. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">idServer</td>
+<td valign="top" align="left">The server ID. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">idIutLen</td>
+<td valign="top" align="left">The length of the server ID. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes. Provided in response by IUT for AFT tests.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">idIut</td>
+<td valign="top" align="left">The server ID. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes. Provided in response by IUT for AFT tests.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">oiPattern</td>
+<td valign="top" align="left">The oiPattern used in the KDF. <strong>REQUIRED</strong> for “kdfNoKc” and “kdfKc” modes.</td>
+<td valign="top" align="left">See <xref target="oiPatternConstruction"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">kcRole</td>
+<td valign="top" align="left">Key confirmation roles supported. <strong>REQUIRED</strong> for “kdfKc” modes.</td>
+<td valign="top" align="left">provider, recipient</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">kcType</td>
+<td valign="top" align="left">Key confirmation types supported. <strong>REQUIRED</strong> for “kdfKc” modes.</td>
+<td valign="top" align="left">unilateral and/or bilateral</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve useds for keypair generation</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="tvjs"/></td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="tvjs" obligation="normative">
+<title>Test Case JSON Schema</title>
+<p id="_cec8c8fc-63e3-6c80-fdff-a9560e487f47">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each test vector.</p>
+
+<table id="vs_tc_table5">
+<name>Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">staticPublicServerX</td>
+<td valign="top" align="left">The ECDSA static public key X coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">staticPublicServerY</td>
+<td valign="top" align="left">The ECDSA static public key Y coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicServerX</td>
+<td valign="top" align="left">The ECDSA ephemeral public key X coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicServerY</td>
+<td valign="top" align="left">The ECDSA ephemeral public key Y coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceEphemeralServer</td>
+<td valign="top" align="left">nonceEphemeralServer ONLY USED BY C(1,2) and C(0,2) schemes with KC. nonce to be used in the MacData field</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceNoKc</td>
+<td valign="top" align="left">The 16 byte nonce concatenated to the “Standard Test Message”. Used for No Key Confirmation tests only.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceDkm</td>
+<td valign="top" align="left">The nonce supplied by the initiator to be used in the OI field in the PartyUInfo field.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">staticPrivateIut</td>
+<td valign="top" align="left">The IUT ECDSA static private key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">staticPublicIutX</td>
+<td valign="top" align="left">The IUT ECDSA static public key X coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">staticPublicIutY</td>
+<td valign="top" align="left">The IUT ECDSA static public key Y coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ephemeralPrivateIut</td>
+<td valign="top" align="left">The IUT ECDSA ephemeral private key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicIutX</td>
+<td valign="top" align="left">The IUT ECDSA ephemeral public key X coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">ephemeralPublicIutY</td>
+<td valign="top" align="left">The IUT ECDSA ephemeral public key Y coordinate</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">oiLen</td>
+<td valign="top" align="left">Length of the OtherInfo field</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">oi</td>
+<td valign="top" align="left">OtherInfo field</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">dkm</td>
+<td valign="top" align="left">Derived Keying Material.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">tagIut</td>
+<td valign="top" align="left">The tag (or MAC) GENERATED BY THE SERVER/IUT by using the DKM to MAC the Message with the specified method</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceEphemeralIut</td>
+<td valign="top" align="left">nonceEphemeralIut ONLY USED BY C(1,2) and C(0,2) schemes with KC. nonce to be used in the MacData field</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceDkmIut</td>
+<td valign="top" align="left">ONLY USED BY STATIC SCHEME. The nonce supplied by the initiator to be used in the OI field in the PartyUInfo field</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceLenDkm</td>
+<td valign="top" align="left">ONLY USED BY STATIC SCHEME. The length of the nonce supplied by the initiator to be used in the OI field in the PartyUInfo field.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceEphemeralDkm</td>
+<td valign="top" align="left">ONLY USED BY C(1,2) and C(0,2) schemes with KC. nonce to be used in the MacData field</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceEphemralDkmLen</td>
+<td valign="top" align="left">length of nonceEphemeralIut value.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">nonceAesCcm</td>
+<td valign="top" align="left">Nonce used by the CCM function, if CCM is used to generate the Tag.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">macData</td>
+<td valign="top" align="left">The message to be MAced.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">A shared secret that is used to derive secret keying material using a key derivation function.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">hashZServer</td>
+<td valign="top" align="left">The hashed shared secret, only provided in noKdfNoKc modes of operation.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">hashZIut</td>
+<td valign="top" align="left">The hashed shared secret, only provided in noKdfNoKc modes of operation.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">Pass Fail indicating if the IUT agrees with the Tag generated by the server.</td>
+<td valign="top" align="left">boolean</td>
+<td valign="top" align="left">Yes</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="app-vs-ex" obligation="normative">
+<title>Example Test Vectors JSON Object</title>
+<p id="_4a35b02e-463d-f21a-266c-61fd8879ef77">The following is a example JSON object for KAS ECC test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_702b6364-b5b3-1573-8732-0b3f9d42fd39" lang="json">[{
+		"acvVersion": "1.0"
+	},
+	{
+		"vsId": 1564,
+		"algorithm": "KAS-ECC",
+		"revision": "1.0",
+		"testGroups": [
+			{
+                "tgId": 1,
+				"scheme": "ephemeralUnified",
+				"testType": "AFT",
+				"kasRole": "initiator",
+				"kasMode": "kdfNoKc",
+				"parmSet": "ec",
+				"hashAlg": "SHA2-256",
+				"macType": "AES-CCM",
+				"keyLen": 128,
+				"aesCcmNonceLen": 64,
+				"macLen": 128,
+				"kdfType": "asn1",
+				"idServerLen": 48,
+				"idServer": "434156536964",
+				"curve": "P-256",
+				"tests": [{
+					"tcId": 151,
+					"ephemeralPublicServerX": "CBC9AF2F0FCE0F06643D7524DCCA96C78564BA77196C5F5F65DC0A119409A1F3",
+					"ephemeralPublicServerY": "B619EBE85F2EC5E0A9B542CC77539D698C96CA5D0BDFCA224787C30CF971E3F4",
+					"nonceNoKc": "BBDF1A42C9405B58B8329D583C437331",
+					"nonceAesCcm": "FF5B0FD5F295257B"
+				}]
+			},
+			{
+                "tgId": 2,
+				"scheme": "ephemeralUnified",
+				"testType": "AFT",
+				"kasRole": "responder",
+				"kasMode": "kdfNoKc",
+				"parmSet": "eb",
+				"hashAlg": "SHA2-224",
+				"macType": "HMAC-SHA2-224",
+				"keyLen": 128,
+				"macLen": 128,
+				"kdfType": "asn1",
+				"idServerLen": 48,
+				"idServer": "434156536964",
+				"curve": "P-224",
+				"tests": [{
+					"tcId": 161,
+					"ephemeralPublicServerX": "FFAD4CDB4293F61C2A74566FD4323A03C6BB3F9D6526D8E0506B2186",
+					"ephemeralPublicServerY": "0D614DAA05395A5FDF51BC769AEC355C9688ECEFCF2FE10E6DC1030E",
+					"nonceNoKc": "BEAB1A2CB8406A7083105EC234603A80"
+				}]
+			},
+			{
+                "tgId": 3,
+				"scheme": "ephemeralUnified",
+				"testType": "VAL",
+				"kasRole": "initiator",
+				"kasMode": "kdfNoKc",
+				"parmSet": "eb",
+				"hashAlg": "SHA2-224",
+				"macType": "HMAC-SHA2-224",
+				"keyLen": 128,
+				"macLen": 128,
+				"kdfType": "asn1",
+				"idServerLen": 48,
+				"idServer": "434156536964",
+				"idIutLen": 0,
+				"curve": "P-224",
+				"tests": [{
+					"tcId": 181,
+					"ephemeralPublicServerX": "D489605D37C4F555E50D8F010BEE3165B93F7C749263C4BF3E9A4808",
+					"ephemeralPublicServerY": "23C8167ACFB24DC62D6747960330471B28DC646E04E593DBE6F8F1A4",
+					"nonceNoKc": "6BBFEECEBBD5200C5FAE050526A77342",
+					"ephemeralPrivateIut": "343936401C5F88E658E2C9C47C2EB48DDE10506684D8B55027C05A15",
+					"ephemeralPublicIutX": "14AA2C1ECDC258FE8AD035E9A2872CD14466783F82F5F3F8D757133A",
+					"ephemeralPublicIutY": "8DD3D48BF9115EA5AB7A479FB1DAB0A46BCD6B4D1A306D5CAC254EC1",
+					"oiLen": 376,
+					"otherInfo": "A1B2C3D4E5434156536964CAFECAFE2D822B413172BB3012AA986AFFAE95B46360E00AAD0D0548104C1F946389B97D",
+					"tagIut": "5EEE5D912191984D89DF074B9A885411"
+				}]
+			},
+			{
+                "tgId": 4,
+				"scheme": "ephemeralUnified",
+				"testType": "VAL",
+				"kasRole": "responder",
+				"kasMode": "kdfNoKc",
+				"parmSet": "eb",
+				"hashAlg": "SHA2-224",
+				"macType": "AES-CCM",
+				"keyLen": 128,
+				"aesCcmNonceLen": 64,
+				"macLen": 128,
+				"kdfType": "asn1",
+				"idServerLen": 48,
+				"idServer": "434156536964",
+				"idIutLen": 0,
+				"curve": "P-224",
+				"tests": [{
+					"tcId": 231,
+					"ephemeralPublicServerX": "A0457CF2F5D38B72FF1BF3A2CF4C7CE30F215B5E52A53C39193B1639",
+					"ephemeralPublicServerY": "38CA7951888E462D6C5F4E46FA953FF231F43D5A4F3FEBAEEBF3D52B",
+					"nonceNoKc": "A889762176F5F02F8C1E4BBC0C669805",
+					"ephemeralPrivateIut": "5F76009454AE9158797467C297229569C6E2027D6AFC226A63489444",
+					"ephemeralPublicIutX": "1060CEE336B183738952CF13760D542E2F3AA60124D560EFA10F392C",
+					"ephemeralPublicIutY": "216EA3B35E630A1EA4A91C430E5B63306A83624F0FFD8ADFF63A380E",
+					"oiLen": 376,
+					"otherInfo": "454156536964A1B2C3D4E5CAFECAFE9EF1EA2DC20EE820E7562CDD4DBCD5FD8CD57DB1F54961D8B0C83342C09B7D72",
+					"nonceAesCcm": "BD79B8A8D5559128",
+					"tagIut": "5CC10EF2564B0CD23D746A47DB5B98A2"
+				}]
+			}
+		]
+	}
+]</sourcecode>
+
+</clause>
+
+<clause id="app-vs-component-ex" obligation="normative">
+<title>Example Test Vectors Component JSON Object</title>
+<p id="_57aaafc2-8ba0-3e66-2054-672bde8fa197">The following is a example JSON object for KAS ECC Component test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_34efa80c-b25d-8171-4812-b5db4778d6c2" lang="json">[{
+		"acvVersion": "1.0"
+	},
+	{
+		"vsId": 1565,
+		"algorithm": "KAS-ECC",
+		"mode": "Component",
+		"revision": "1.0",
+		"testGroups": [{
+                "tgId": 1,
+				"scheme": "ephemeralUnified",
+				"testType": "AFT",
+				"kasRole": "initiator",
+				"kasMode": "noKdfNoKc",
+				"parmSet": "eb",
+				"hashAlg": "SHA2-224",
+				"curve": "P-224",
+				"tests": [{
+					"tcId": 1,
+					"ephemeralPublicServerX": "DACE4B35FD720DDD6B307777EBAFE53859C5FC2D330755B05B061CEB",
+					"ephemeralPublicServerY": "195344DE0C79898C5C060BFACE1D24FDE1127ECF503EA04B08FFB9F1"
+				}]
+			}, {
+                "tgId": 2,
+				"scheme": "ephemeralUnified",
+				"testType": "AFT",
+				"kasRole": "responder",
+				"kasMode": "noKdfNoKc",
+				"parmSet": "eb",
+				"hashAlg": "SHA2-224",
+				"curve": "P-224",
+				"tests": [{
+					"tcId": 21,
+					"ephemeralPublicServerX": "747EDBB8F62E1F06BD542FC2DD93169CB24DA6EF9E2FED4FE60FCBE6",
+					"ephemeralPublicServerY": "C7FB2C3C9B95E70D908B9992C8018B785F7BCD3E5967E37EFB18A422"
+				}]
+			},
+			{
+                "tgId": 3,
+				"scheme": "ephemeralUnified",
+				"testType": "VAL",
+				"kasRole": "initiator",
+				"kasMode": "noKdfNoKc",
+				"parmSet": "eb",
+				"hashAlg": "SHA2-224",
+				"curve": "P-224",
+				"tests": [{
+					"tcId": 41,
+					"ephemeralPublicServerX": "866BD81E951787AA1130CB67BA48E22F8A9E7EFF0713418B4FB8A31C",
+					"ephemeralPublicServerY": "050C9E3DB4560313979FE465AC8624E93BC0D97E7C68AC589840BCF7",
+					"ephemeralPrivateIut": "0C9AE6286544FED81921E6495B946C6AF39DF90EC68379CEF2F7C69D",
+					"ephemeralPublicIutX": "CA296A5C86EC39C4EA626A8D9AB39DE5D5092FAA3AE2F241D7791497",
+					"ephemeralPublicIutY": "F768358D14A428C61A3229FB4BB752F02ECC1F54763CA98655A8412C",
+					"hashZIut": "FC6268A34B63B5A82AF03A6CABE61C69CC57317E5E8C8F508FCB82D0"
+				}]
+			},
+			{
+                "tgId": 4,
+				"scheme": "ephemeralUnified",
+				"testType": "VAL",
+				"kasRole": "responder",
+				"kasMode": "noKdfNoKc",
+				"parmSet": "eb",
+				"hashAlg": "SHA2-224",
+				"curve": "P-224",
+				"tests": [{
+					"tcId": 91,
+					"ephemeralPublicServerX": "7A2EBA553C4DC0E4D7A19A3648BA9713496EB462B1B7D83D375F7FFD",
+					"ephemeralPublicServerY": "5972BF3B114612AA5BBA14D0BE956DED03359F52ADDF0B9C2D0314E1",
+					"ephemeralPrivateIut": "9AEDA69CE438C6F8592CE3B8E14E92BE9143E82B3EED42CF62E45BF7",
+					"ephemeralPublicIutX": "941DAF3C527D2B76AA907F60C208F8987681972E466529CA8BD962FD",
+					"ephemeralPublicIutY": "F381EC5DBEA7F6EA3A09D2D75372C014C3DE3ECABBBBC00DDFB97359",
+					"hashZIut": "BB61FA1DCA5D93A6FBB43317AABCAE22A3EDF7F72216516115935D4E"
+				}]
+			}
+		]
+	}
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="vector_responses" obligation="normative">
+<title>Test Vector Responses</title>
+<p id="_8bb2f550-5e51-5628-0115-e63b9b4d2235">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<clause id="vr_top_table" obligation="normative">
+<title>Vector Set Response JSON Object</title>
+<table id="_ba0c9422-fc84-dcb4-8e10-5581e97d5d76">
+<name>Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of JSON objects that represent each test vector group. See <xref target="vr_group_table"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_d7e344a9-c329-24ee-64dd-84ae628b0c9f">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the  client to send back group level properties in their response. This structure helps accommodate that.</p>
+</clause>
+
+<clause id="vr_group_table" obligation="normative">
+<title>Vector Set Group Response JSON Object</title>
+<table id="_01ddab0c-8d5a-6127-428c-71a1fe6d545e">
+<name>Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group Id</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The tests associated to the group specified in tgId</td>
+<td valign="top" align="left">value</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="app-results-ex" obligation="normative">
+<title>Example Test Results JSON Object</title>
+<p id="_4e13486c-a7b6-17d7-fd4e-853622e700a0">The following is a example JSON object for KAS ECC test results sent from the crypto module to the ACVP server.</p>
+
+<sourcecode id="_dc77467f-2b62-af75-c402-939c268423e2" lang="json">[{
+		"acvVersion": "1.0"
+	},
+	{
+		"vsId": 1564,
+		"testGroups": [{
+				"tgId": 1,
+				"tests": [{
+					"tcId": 151,
+					"nonceNoKc": "BBDF1A42C9405B58B8329D583C437331",
+					"ephemeralPublicIutX": "F90FE5B7D5DA0F7849B0849D780143F4CC7E9F080465AA05DBD3E610D6B24763",
+					"ephemeralPublicIutY": "1D746A8F960AE8425C63DE17618362F7040365D9168F21A0762526ECCC556084",
+					"idIutLen": 40,
+					"idIut": "A1B2C3D4E5",
+					"oiLen": 376,
+					"oi": "A1B2C3D4E5434156536964CAFECAFEA0988C0EB862E29CBFBD0B087D3223B9052811800B2D1ADF1D42AE73BAAD162A",
+					"nonceAesCcm": "FF5B0FD5F295257B",
+					"tagIut": "FF1ADCA06E582AD9E4A8B7FE3D7D9C28"
+				}]
+			},
+			{
+				"tgId": 2,
+				"tests": [{
+					"tcId": 161,
+					"nonceNoKc": "BEAB1A2CB8406A7083105EC234603A80",
+					"ephemeralPublicIutX": "C5D934686BAB0E156D4F5CF1BDA7B044128C803E4C8AA2D9B0024FC0",
+					"ephemeralPublicIutY": "E2D8973A51A9CE0FA7FAD8A444ECAB518C672C65313BEE4150CFD50E",
+					"idIutLen": 40,
+					"idIut": "A1B2C3D4E5",
+					"oiLen": 376,
+					"oi": "434156536964A1B2C3D4E5CAFECAFE9D9E4AB0A187C117158C9A234F4AEE8328714003BFED6C08A7F191E61DCA2B6A",
+					"tagIut": "77587ED9D13B811F200214FD5E1F864A"
+				}]
+			},
+			{
+				"tgId": 3,
+				"tests": [{
+					"tcId": 181,
+					"testPassed": false
+				}]
+			},
+			{
+				"tgId": 4,
+				"tests": [{
+					"tcId": 231,
+					"testPassed": false
+				}]
+			}
+		]
+	}
+]</sourcecode>
+
+</clause>
+
+<clause id="app-results-component-ex" obligation="normative">
+<title>Example Test Results Component JSON Object</title>
+<p id="_32e6dacc-e1b8-6089-07c5-a5df4f506ee1">The following is a example JSON object for KAS ECC Component test results sent from the crypto module to the ACVP server.</p>
+
+<sourcecode id="_9afa4a71-d18f-fd90-824e-996abae1e338" lang="json">[{
+		"acvVersion": "1.0"
+	},
+	{
+		"vsId": 1564,
+		"testGroups": [{
+				"tgId": 1,
+				"tests": [{
+					"tcId": 1,
+					"ephemeralPublicIutX": "50471CE7F6FE2CAD6C901F85BF258E84571D3C88F59356B91DDBF286",
+					"ephemeralPublicIutY": "5B8A7BC07BE15F28D34AA8324DEE93C715F569D3AF4820209F6452E7",
+					"hashZIut": "96DCAF87127AB615896CCD0479C8BEAFD7EE111F384C962687D28ACC"
+				}]
+			},
+			{
+				"tgId": 2,
+				"tests": [{
+					"tcId": 21,
+					"ephemeralPublicIutX": "3E95CE4241A63C4ECBDC12CF2A3FB9E56222C0D395885CF0B51B04F7",
+					"ephemeralPublicIutY": "F8865F76DE98CFCFBBAD2E99A317636F48AC874847E0A489C96631EC",
+					"hashZIut": "3B7721F7514C09DD38D62E72E20D0375A7B3AC5BD837A7B860BC65FA"
+				}]
+			},
+			{
+				"tgId": 3,
+				"tests": [{
+					"tcId": 41,
+					"testPassed": false
+				}]
+			},
+			{
+				"tgId": 4,
+				"tests": [{
+					"tcId": 91,
+					"testPassed": true
+				}]
+			}
+		]
+	}
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="eccComp" obligation="normative">
+<title>ECC CDH Component Test</title>
+<p id="_7705ea22-fe9a-d762-e3a0-a20a0e394e7b">The ECC CDH Component Test</p>
+
+<clause id="eccCompCap" obligation="normative">
+<title>ECC CDH Component Capabilities JSON Values</title>
+<p id="_6e311c4c-4bb9-8606-72a9-1901dbfab882">Each algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="eccComp_caps_table">
+<name>KAS ECC Component Capabilities JSON Values</name>
+<tbody><tr><td valign="top" align="left">JSON Value</td>
+<td valign="top" align="left">Description</td>
+<td valign="top" align="left">JSON type</td>
+<td valign="top" align="left">Valid Values</td>
+<td valign="top" align="left">Optional</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm under test</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">KAS-ECC</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The algorithm mode</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">CDH-Component</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">“1.0”</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisite algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="prereq_algs"/></td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">function</td>
+<td valign="top" align="left">Type of function supported</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="supported_functions"/></td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">Array of supported curves</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">See <xref target="supported_curves"/></td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+
+<clause id="app-eccComponent-reg-ex" obligation="normative">
+<title>Example KAS ECC CDH-Component Capabilities JSON Object</title>
+<p id="_845e1e13-4337-fc30-0a9c-8264d8de07fb">The following is a example JSON object advertising support for KAS ECC CDH-Component.</p>
+
+<sourcecode id="_1f15a550-7179-7283-7f4f-c0a8f553fc0b" lang="json">{
+	"algorithm": "KAS-ECC",
+	"mode": "CDH-Component",
+	"revision": "1.0",
+	"prereqVals": [{
+		"algorithm": "ECDSA",
+		"valValue": "123456"
+	}],
+	"function": ["keyPairGen"],
+	"curve": ["P-224", "K-233", "B-233"]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="eccCompVectors" obligation="normative">
+<title>ECC CDH Component TestVectors JSON Values</title>
+<table id="eccComp_vector_table">
+<name>KAS ECC CDH Component TestVectors JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm under test</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">KAS-ECC</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The algorithm mode under test</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">CDH-Component</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">“1.0”</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of individual test group JSON objects, which are defined in <xref target="eccCompTestGroup"/></td>
+<td valign="top" align="left">Array</td>
+<td valign="top" align="left">Array of test group information</td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+
+<clause id="eccCompTestGroup" obligation="normative">
+<title>ECC CDH Component TestGroup JSON Values</title>
+<table id="eccComp_testGroup_table">
+<name>KAS ECC CDH Component TestGroup JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test type expected within the group. AFT is the only valid value for ECC Component.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">AFT</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">curve</td>
+<td valign="top" align="left">The curve used in the test group</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">P-224, P-256, P-384, P-521, K-233, K-283, K-409, K-571, B-233, B-283, B-409, B-571</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="eccCompTestCase"/></td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left"/><td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="eccCompTestCase" obligation="normative">
+<title>ECC CDH Component TestCase JSON Values</title>
+<table id="eccComp_testCase_table">
+<name>KAS ECC CDH Component TestCase JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">Valid Values</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">publicServerX</td>
+<td valign="top" align="left">The X coordinate of the server’s public key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">publicServerY</td>
+<td valign="top" align="left">The Y coordinate of the server’s public key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">Yes</td>
+</tr><tr><td valign="top" align="left">publicIutX</td>
+<td valign="top" align="left">The X coordinate of the iut’s public key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">publicIutY</td>
+<td valign="top" align="left">The Y coordinate of the iut’s public key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">The shared secret Z</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="app-eccComponent-vs-ex" obligation="normative">
+<title>Example KAS ECC CDH-Component Test Vectors JSON Object</title>
+<p id="_4a309fd4-64bb-ea7a-e266-5a98ec0d3161">The following is a example JSON object for KAS ECC CDH-Component test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_54c4360e-df0c-2b44-5f9d-6b5de2ad9421" lang="json">[{
+		"acvVersion": "1.0"
+	},
+	{
+		"vsId": 1750,
+		"algorithm": "KAS-ECC",
+		"mode": "CDH-Component",
+		"revision": "1.0",
+		"testGroups": [{
+				"tgId": 1,
+				"testType": "AFT",
+				"curve": "P-192",
+				"tests": [{
+					"tcId": 1,
+					"publicServerX": "CAEF2CBA796BB7FC143D3EAED698C26AAE6F6F79DF3974EE",
+					"publicServerY": "03ED6D7A90637629DBCEBFF4A2D1D771D9D4CF9F0D88CE90"
+				}]
+			},
+			{
+				"tgId": 2,
+				"testType": "AFT",
+				"curve": "K-163",
+				"tests": [{
+					"tcId": 26,
+					"publicServerX": "048C46D674E1218D0BD3C9FCD120ECE8B4DB7310E7",
+					"publicServerY": "ED3EEDB656E035C779081090BE44B743E857E3B4"
+				}]
+			},
+			{
+				"tgId": 3,
+				"testType": "AFT",
+				"curve": "B-163",
+				"tests": [{
+					"tcId": 51,
+					"publicServerX": "8EE7C8F08BF47B21CA2FE911B721651B90E52391",
+					"publicServerY": "0461DF3646E95598EAE4F5C6A634E71006ABC6FE1F"
+				}]
+			}
+		]
+	}
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="cdh_vector_responses" obligation="normative">
+<title>KAS CDH-Component Test Vector Responses</title>
+<p id="_13356f1b-ba44-1059-0bbc-c34c94d750fe">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<clause id="vr_cdh_top_table" obligation="normative">
+<title>CDH Component Vector Set Response JSON Object</title>
+<table id="_6a589208-3dae-42e3-1da8-ea0aa9bab65d">
+<name>CDH Component Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of JSON objects that represent each test vector group. See <xref target="vr_cdh_group_table"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_0d80a97f-3562-cf9f-9cbc-87a7aed1b2d1">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that.</p>
+</clause>
+
+<clause id="vr_cdh_group_table" obligation="normative">
+<title>CDH Component Vector Set Group Response JSON Object</title>
+<table id="_93e29a25-7d86-04c5-1345-d7ced32142de">
+<name>CDH Component Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group Id</td>
+<td valign="top" align="left">value
+ tests</td>
+</tr></tbody>
+</table>
+
+<p id="_5d907534-5d77-d45c-d03e-fbfc8c1f3dc7">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each DRBG test vector.</p>
+</clause>
+
+<clause id="vs_tr_table" obligation="normative">
+<title>CDH Component Test Case Results JSON Object</title>
+<table id="_efef12d5-c54b-be33-d63c-a47a5d1e440e">
+<name>CDH Component Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Optional</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set.</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">publicIutX</td>
+<td valign="top" align="left">x value of the IUT public key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left">publicIutY</td>
+<td valign="top" align="left">x value of the IUT public key</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr><tr><td valign="top" align="left"/><td valign="top" align="left">Computed shared secret Z</td>
+<td valign="top" align="left">value</td>
+<td valign="top" align="left">No</td>
+</tr></tbody>
+</table>
+</clause>
+</clause>
+
+<clause id="app-eccComponent-results-ex" obligation="normative">
+<title>Example KAS ECC CDH Component Test Results JSON Object</title>
+<p id="_36023a75-9abc-aa61-a94e-9dd4add2daba">The following is a example JSON object for KAS ECC CDH Component test results sent from the crypto module to the ACVP server.</p>
+
+<sourcecode id="_027f0604-0802-b7e5-7ce8-4014b239e61e" lang="json">[{
+		"acvVersion": "1.0"
+	},
+	{
+		"vsId": 1750,
+		"testGroups": [{
+				"tgId": 1,
+				"tests": [{
+					"tcId": 1,
+					"publicIutX": "DB9FBC84CBAD3EED42C31CDBF2882041634D040219C3E47A",
+					"publicIutY": "9BD672733BCCEF2BD805E97FF9BBFE0FFC003BEEEF56868B",
+					"z": "8BEAEA60DFAC075F9F25A5CFEA39818D98D3EA4B9D4C34A8"
+				}]
+			},
+			{
+				"tgId": 2,
+				"tests": [{
+					"tcId": 26,
+					"publicIutX": "058C593D1D4E8238102BDE6B497218D92F8EDD2997",
+					"publicIutY": "0437682E4608984EFC7FB619FB260EF27CAF704D7B",
+					"z": "075D9A831E0665521D613AEAA59B8C8CDFBAC8C683"
+				}]
+			},
+			{
+				"tgId": 3,
+				"tests": [{
+					"tcId": 51,
+					"publicIutX": "04128CD094F6988AA26DA2B100A71A31214CC9C50B",
+					"publicIutY": "01A3A88C9F0987E488922573D0A31D300532F0B268",
+					"z": "07EC896621BF1703EB7567196ED1DE5742C4695990"
+				}]
+			}
+		]
+	}
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_e72f7b42-317f-eca2-dca5-61a804236779">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_ec556c50-07ac-2797-f3cf-4fc741286bb7"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_d3e7190d-db43-db30-34d4-32004be5ae79">2018-11-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_fbb52d35-5355-afa1-c4df-6a0361d2065a" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_8bf4f1ec-81cc-bf05-fdc8-97a1a79d601e">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f2760c4d-df02-193b-b0c9-1bb493e0eb6d">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+ <bibitem id="FIPS186-4" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Digital Signature Standard (DSS)</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/fips/186/4/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.FIPS.186-4</uri>  <docidentifier type="NIST" primary="true">FIPS 186-4</docidentifier>  <date type="published">    <on>2013-07</on>  </date>  <date type="issued">    <on>2013-07</on>  </date>  <contributor>    <role type="author"/>    <organization>      
+<name>National Institute of Standards and Technology</name>
+    </organization>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2013</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">FIPS 186-3</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/fips/186/3/archive/2009-06-25</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>computer security</keyword>  <keyword>cryptography</keyword>  <keyword>Digital Signature Algorithm</keyword>  <keyword>digital signatures</keyword>  <keyword>Elliptic Curve Digital Signature Algorithm</keyword>  <keyword>Federal Information Processing Standard</keyword>  <keyword>public key cryptography</keyword></bibitem>
+ <bibitem id="SP800-56Ar2" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56a/rev-2/archive/2013-06-05</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-56Ar2</uri>  <docidentifier type="NIST" primary="true">SP 800-56A Rev. 2</docidentifier>  <date type="published">    <on>2013-06</on>  </date>  <date type="obsoleted">    <on>2018-04</on>  </date>  <date type="issued">    <on>2013-05</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Elaine B. Barker</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Lily Chen</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Allen Roginsky</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Miles E. Smid</completename>      </name>
+      <affiliation>        <organization>          
+<name>Orion Security Solutions</name>
+        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>withdrawn</substage>  </status>  <copyright>    <from>2013</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56A Revised</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56a/revised/archive/2007-03-14</uri>    </bibitem>
+  </relation>  <relation type="updates">    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56A Rev. 3</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>elliptic curve cryptography</keyword>  <keyword>finite field cryptography</keyword>  <keyword>key-agreement</keyword>  <keyword>key-confirmation</keyword>  <keyword>key derivation</keyword>  <keyword>key establishment</keyword>  <keyword>key-transport</keyword>  <keyword>Diffie-Hellman</keyword>  <keyword>MQV</keyword></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

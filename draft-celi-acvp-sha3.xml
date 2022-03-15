@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP SHA3 and SHAKE JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP SHA3 and SHAKE JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SHA3</uri><docidentifier type="NIST">ACVP SHA3 Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol SHA3 Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.SHA3.r-1.eng</docidentifier><docnumber>SHA3</docnumber><date type="issued"><on>2018-11-01</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing SHA3 and SHAKE implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2018</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_c8619a86-be02-9f01-6419-2c9a3691c82f">This document defines the JSON schema for testing SHA3 and SHAKE implementations with the ACVP specification.</p>
+</abstract><foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative">
+<title>Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative">
+<title>Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174"/> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative">
+<title>Executive Summary</title>
+<p id="_f977707d-d880-f7ec-3aa5-9b88bec84fc1">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SHA3 and SHAKE implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_9bde9474-553f-95ea-25ba-7e7b591a8050">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SHA3 and SHAKE implementations using ACVP.</p>
+</clause>
+
+<clause id="supported_algs" obligation="normative">
+<title>Supported Hash Algorithms</title>
+<p id="_cca8157e-05a1-609a-5679-6401a32d4e67">The following SHA3-based hash algorithms <strong>MAY</strong> be advertised by this ACVP compliant crypto module:</p>
+
+<ul id="_04e55e3c-ba45-2395-dbbe-eb1f423fe31e"><li><p id="_57abb48d-ee76-76d9-4efa-a0d3ebd48cc1">SHA3-224 / null / 1.0</p>
+</li>
+<li><p id="_ad755d9a-c122-2c93-0afb-d08236f342c3">SHA3-256 / null / 1.0</p>
+</li>
+<li><p id="_5433099e-1d4b-8851-26f9-0cb3efe3f398">SHA3-384 / null / 1.0</p>
+</li>
+<li><p id="_c8f8b7e3-350d-092a-487b-6b0d542e0823">SHA3-512 / null / 1.0</p>
+</li>
+<li><p id="_5f722fc8-87cd-5cc1-110d-b98c2a9a9f66">SHA3-224 / null / 2.0</p>
+</li>
+<li><p id="_d9a6ab8c-8125-c251-7bd0-74c42caf726e">SHA3-256 / null / 2.0</p>
+</li>
+<li><p id="_dee7d64e-9262-2433-756c-20e1ae13b536">SHA3-384 / null / 2.0</p>
+</li>
+<li><p id="_ce9a341c-4066-0d21-982d-fd5197c73e17">SHA3-512 / null / 2.0</p>
+</li>
+<li><p id="_9d3c4027-00b3-73f2-fd6b-eddc5546b24a">SHAKE-128 / null / 1.0</p>
+</li>
+<li><p id="_53a9afd6-e7aa-d74a-37cb-67756e117fe0">SHAKE-256 / null / 1.0</p>
+</li>
+</ul>
+
+<p id="_2824ac30-7798-a215-ebcb-9b139ea02201">Other hash algorithms <strong>MAY</strong> be advertised by the ACVP module elsewhere.</p>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_81e52675-a2a3-27aa-f995-ab515f5b5962">This section describes the design of the tests used to validate implementations of SHA3 and SHAKE.</p>
+
+<clause id="_test_types" obligation="normative">
+<title>Test Types</title>
+<p id="_32f53215-820e-aaa2-85cb-86acbedf943c">There are four types of tests for these hash functions: functional tests, Monte Carlo tests, Variable Output tests and Large Data tests. Each has a specific value to be used in the testType field. The testType field definitions are:</p>
+
+<ul id="_3052f2e6-19d6-5ff2-57bb-9c71251c8a47"><li><p id="_df4dba26-3850-317e-bf9a-a34b3a490cbc">“AFT” — Algorithm Functional Test. These tests can be processed by the client using a normal ‘hash’ operation.  AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the hash function or extenable output function (block chunking, block padding etc.) are operating correctly.</p>
+</li>
+<li><p id="_53f6d6cf-b5b4-02c9-e074-2b0b2f2b831d">“MCT” — Monte Carlo Test. These tests exercise the implementation under test under stenuous circumstances. The implementation under test must process the test vectors according to the correct algorithm and mode in this document. MCTs can help detect potential memory leaks over time, and problems in allocation of resources, addressing variables, error handling, and generally improper behavior in response to random inputs. Each MCT processes 100 pseudorandom tests. Each algorithm and mode SHOULD have at least one MCT group. See <xref target="MC_test"/> for implementation details.</p>
+</li>
+<li><p id="_e8fba298-f093-5866-e84d-5958b4455328">“VOT” — Variable Output Test. These tests are for SHAKE only, and ensure that an IUT can properly perform the extendable output function to produce digests of specifc lengths. These tests differ from the AFTs for SHAKE in that the AFTs all produce a single digest size, matching the security strength of the extendable output function. The VOTs SHALL produce varying digest sizes based on the capabilities of the IUT.</p>
+</li>
+<li><p id="_a86303ce-b4d3-a742-00c3-c55ab5ce7d8b">“LDT” — Large Data Test. These tests are for SHA3 only. This test performs the hash function on a message that is multiple gigabytes in length. This pushes the bounds of 32-bit data types to ensure an implementation can handle all types of data. See <eref type="inline" bibitemid="LDT" citeas="LDT"/> for more information motivating the LDT. As a multiple gigabyte message cannot be communicated naturally via ACVP, a specific structure is outlined in <xref target="LD_test"/>.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="MC_test" obligation="normative">
+<title>Monte Carlo tests for SHA3 and SHAKE</title>
+<clause id="SHA3-MCT" obligation="normative">
+<title>SHA3 Monte Carlo Test</title>
+<p id="_38595cdb-b26f-e7e1-32f2-90cda0864a83">The MCTs start with an initial condition (SEED which is a single message) and perform a series of chained computations. The algorithm is shown below.</p>
+
+<sourcecode id="_24505e5b-9294-a09b-28fe-27e9c495e166" lang="code">
+<name>SHA-3 Monte Carlo Test</name>
+For j = 0 to 99
+MD[0] = SEED;
+    For i = 1 to 1000
+        MSG[i] = MD[i-1]
+        MD[i] = SHA3(MSG[i])
+    Output MD[1000]
+    SEED = MD[1000]</sourcecode>
+
+</clause>
+
+<clause id="SHAKE-MCT" obligation="normative">
+<title>SHAKE Monte Carlo Test</title>
+<p id="_d3652291-bd05-31db-6409-767409bd23ff">The MCTs start with an initial condition (SEED which is a single message) and perform a series of chained computations. Some values used in the algorithm are based on properties provided during the registration. They are as follows.</p>
+
+<ul id="_4de78d3e-eb83-9c07-7ff2-d3a019a97e9c"><li><p id="_b47820aa-f6ad-4b70-f3d7-361a35c0343b">minOutBytes = smallest number of bytes supported</p>
+</li>
+<li><p id="_79e574b8-0b70-aaa1-8557-5366280d8c38">maxOutBytes = largest number of bytes supported</p>
+</li>
+</ul>
+
+<p id="_ab3dc28b-70f6-8a57-ef09-b128aab67028">The SHAKE function used in the pseudocode takes in a bitstring and a desired output length in bits. The M[i] input to SHAKE MUST always contain at least 128 bits. If this is not the case as the previous digest was too short, append empty bits to the rightmost side of the digest. The MCT algorithm is shown below.</p>
+
+<sourcecode id="_d525e0ac-b46e-2db5-56f6-4c8c35015f5c" lang="code">
+<name>SHAKE Monte Carlo Test</name>
+Range = maxOutBytes - minOutBytes + 1
+OutputLen = maxOutBytes
+For j = 0 to 99
+    MD[0] = SEED
+    For i = 1 to 1000
+        MSG[i] = 128 leftmost bits of MD[i-1]
+        if (MSG[i] &lt; 128 bits)
+            Append 0 bits on rightmost side of MSG[i] til MSG[i] is 128 bits
+        MD[i] = SHAKE(M[i], OutputLen * 8)
+
+        if (i != 1000)
+            RightmostOutputBits = 16 rightmost bits of MD[i] as an integer
+            OutputLen = minOutBytes + (RightmostOutputBits % Range)
+
+    Output MD[1000], OutputLen
+    SEED = MD[1000]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="LD_test" obligation="normative">
+<title>Large Data tests for SHA-3</title>
+<p id="_58a40cdf-7a58-d7b1-1d51-6a37aea3b1b8">The large data tests are intended to test the ability of a module to hash multiple gigabytes of data at once. This much information cannot be communicated via the JSON files as a normal message property. Instead a new type is defined as a large data type. It is an object that contains a small content hex string, a content length in bits, a full length in bits and an expansion technique string. The following is an example of this structure.</p>
+
+<sourcecode id="_265b433e-e0bc-4678-f215-42c4f00abf8a" lang="json">"largeMsg": {
+    "content": "DE26",
+    "contentLength": 16,
+    "fullLength": 42949672960,
+    "expansionTechnique": "repeating"
+}</sourcecode>
+
+
+<p id="_a2756688-c71a-7b8a-4a46-36198b778707">The ‘contentLength’ property describes the number of bits in the ‘content’ property. The ‘content’ property is the hex string that can be expanded to the full large message. The ‘expansionTechnique’ describes the process used to obtain the full large message. The ‘fullLength’ is the final length of the full large message.</p>
+
+<p id="_75d38bc0-12fa-36d5-1e0f-0cb37780984b">There may be multiple ‘expansionTechnique’ types defined. Here are the types defined for SHA-3 testing.</p>
+
+<ul id="_4968234d-b3e2-ba5a-e574-b212ef41de64"><li><p id="_b6b71fa4-4261-7933-2592-1e8f6d68673a">“repeating” — Append the number of content bits specified in ‘contentLength’ to itself as many times as needed until a hex string of exactly ‘fullLength’ bits is acquired. In the example shown, the final large message would have the form “DE26DE26DE26…​DE26”.</p>
+</li>
+</ul>
+
+<p id="_89a535e8-3bfe-5567-c959-87b9705cbfaa">There are multiple ways hash functions can be implemented in an IUT. The most common are via a single Hash() call on the message or via a series of Init(), any number of Update(), Final() calls. As noted in <eref type="inline" bibitemid="LDT" citeas="LDT"/>, the difference between these hashing techniques can have consequences in the cryptographic module. If both interfaces are offered and accessible for testing, the IUT <strong>MUST</strong> only utilize a single Update() call for the large message.</p>
+</clause>
+
+<clause id="test_coverage" obligation="normative">
+<title>Test Coverage</title>
+<p id="_75f5291c-dac5-7383-f000-f22d82f7708f">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="FIPS202" citeas="FIPS 202"/>.</p>
+
+<clause id="sha3-coverage" obligation="normative">
+<title>SHA3 Requirements Covered</title>
+<p id="_c649600b-776d-f040-35ff-90032731fed7">Sections 3 through 6 in <eref type="inline" bibitemid="FIPS202" citeas="FIPS 202"/> outline the Keccak construction and strucures needed to form a valid SHA3 implementation. Normal AFTs test these operations by running the algorithm.</p>
+
+<p id="_6236ce79-66b8-b0ee-621a-23693796a783">Section 7 in <eref type="inline" bibitemid="FIPS202" citeas="FIPS 202"/> states that any input sizes may be used within a SHA3 hash implementation. The input sizes tested in this document range from 0 bits to 65536 bits. In addition a large data test is available by special request which tests messages that are multiple gigabytes in size.</p>
+</clause>
+
+<clause id="sha3-not-coverage" obligation="normative">
+<title>SHA3 Requirements Not Covered</title>
+<p id="_72994831-6636-1e0b-e287-60f0d8d043dd">It is noted that <eref type="inline" bibitemid="FIPS202" citeas="FIPS 202"/> states that “different procedures that produce the correct output for every input are permitted” and thus the internal states discussed in Sections 3 through 6 <strong>SHALL NOT</strong> be tested or tracked.</p>
+</clause>
+
+<clause id="shake-coverage" obligation="normative">
+<title>SHAKE Requirements Covered</title>
+<p id="_60c4e536-65ad-e425-a525-2941814a9fb5">Sections 3 through 6 in <eref type="inline" bibitemid="FIPS202" citeas="FIPS 202"/> outline the Keccak construction and strucures needed to form a valid SHAKE implementation. Normal AFTs test these operations by running the algorithm. VOTs exercise the ability of the implementation to perform the algorithm as well by focusing on the sponge construction.</p>
+
+<p id="_e16ac397-3f9a-ff32-8dd5-ca12f10e09ef">Section 7 in <eref type="inline" bibitemid="FIPS202" citeas="FIPS 202"/> states that any input sizes or output sizes may be used within a SHAKE implementation. The input sizes tested in this document range from 0 bits to 65536 bits. The output sizes tested in this document range from 16 bits to 65536 bits.</p>
+</clause>
+
+<clause id="shake-not-coverage" obligation="normative">
+<title>SHAKE Requirements Not Covered</title>
+<p id="_63813dab-b846-6a60-8e0a-fed47d3d24cc">Again, the internal states discussed in Sections 3 through 6 <strong>SHALL NOT</strong> be tested or tracked.</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_d2aadf4c-73d7-aeb9-8f05-83f539505e67">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of SHA3 and SHAKE algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="hash_caps_reg" obligation="normative">
+<title>SHA3 and SHAKE Algorithm Capabilities Registration</title>
+<p id="_834fde47-07fc-548d-f88a-8df478f6921e">Each SHA3 and SHAKE algorithm capability advertised <strong>SHALL</strong> be a self-contained JSON object. The following JSON values are used for hash algorithm capabilities:</p>
+
+<table id="caps_table">
+<name>SHA3 and SHAKE Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The hash algorithm and mode to be validated.</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use.</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">inBit</td>
+<td valign="top" align="left">Implementation does accept bit-oriented messages</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">inEmpty</td>
+<td valign="top" align="left">Implementation does accept null (zero-length) messages</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">outputLen</td>
+<td valign="top" align="left">Output length for SHAKE. The value for the outputLen property must consist either of a single range object or a single literal value. This restriction is made to simplify the implementation of the Monte Carlo Tests (see <xref target="SHAKE-MCT"/>).</td>
+<td valign="top" align="left">domain</td>
+</tr><tr><td valign="top" align="left">outBit</td>
+<td valign="top" align="left">SHAKE can output bit-oriented messages</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">messageLength</td>
+<td valign="top" align="left">The message lengths in bits supported by the IUT. The current MCT implementation requires that the digest size and 3x the digest size of the registered hash algorithm must be a valid value within the registered domain.</td>
+<td valign="top" align="left">domain</td>
+</tr><tr><td valign="top" align="left">performLargeDataTest</td>
+<td valign="top" align="left">Determines if the server should include the large data test group defined in <xref target="LD_test"/>. This property is <strong>OPTIONAL</strong>, and shall include the lengths in GiB being tested. Valid options are {1, 2, 4, 8}.</td>
+<td valign="top" align="left">integer array</td>
+</tr></tbody>
+<note id="_45e998d6-4a2c-5771-8a8c-2d3506ea73e6"><p id="_0452b6ec-ff3b-9e7a-9c26-78249f0adee0">The lengths provided in the ‘performLargeDataTest’ property are in gibibytes. 1GiB is equivalent to 2^30 bytes.</p>
+</note></table>
+
+
+
+<p id="_ec179f1a-6b9f-c2fd-0bee-65d6f61d06ba">The following grid outlines which properties are <strong>REQUIRED</strong>, as well as all the possible values a server <strong>MAY</strong> support for SHA3 and SHAKE algorithms:</p>
+
+<table id="property_grid">
+<name>SHA3 and SHAKE Capabilities Applicability Grid</name>
+<thead><tr><th valign="top" align="left">algorithm</th>
+<th valign="top" align="left">revision</th>
+<th valign="top" align="left">inBit</th>
+<th valign="top" align="left">inEmpty</th>
+<th valign="top" align="left">outputLen</th>
+<th valign="top" align="left">outBit</th>
+<th valign="top" align="left">messageLength</th>
+<th valign="top" align="left">performLargeDataTest</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">SHA3-224</td>
+<td valign="top" align="left">1.0</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHA3-256</td>
+<td valign="top" align="left">1.0</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHA3-384</td>
+<td valign="top" align="left">1.0</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHA3-512</td>
+<td valign="top" align="left">1.0</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHA3-224</td>
+<td valign="top" align="left">2.0</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{”Min”: 0, “Max”: 65536, “Inc”: any}</td>
+<td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHA3-256</td>
+<td valign="top" align="left">2.0</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{”Min”: 0, “Max”: 65536, “Inc”: any}</td>
+<td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHA3-384</td>
+<td valign="top" align="left">2.0</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{”Min”: 0, “Max”: 65536, “Inc”: any}</td>
+<td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHA3-512</td>
+<td valign="top" align="left">2.0</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{”Min”: 0, “Max”: 65536, “Inc”: any}</td>
+<td valign="top" align="left">[1, 2, 4, 8]</td>
+</tr><tr><td valign="top" align="left">SHAKE-128</td>
+<td valign="top" align="left">1.0</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{”Min”: 16, “Max”: 65536, “Inc”: any}</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">SHAKE-256</td>
+<td valign="top" align="left">1.0</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{”Min”: 16, “Max”: 65536, “Inc”: any}</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr></tbody>
+</table>
+
+<p id="_d8e4871d-5eda-9eee-1073-5b80583b5672">The following is a example JSON object advertising support for SHA3-256 for testing revision 1.0.</p>
+
+<sourcecode id="_8ad76535-9cd0-a50b-8020-fc488c61c675" lang="json">{
+    "algorithm": "SHA3-256",
+    "revision": "1.0",
+    "mode": null,
+    "inBit": true,
+    "inEmpty": true,
+    "performLargeDataTest": [1, 2, 4, 8]
+}</sourcecode>
+
+
+<p id="_0dee500d-dadd-9316-eb8b-2532d8107cde">The following is an example JSON object advertising support for SHAKE-128.</p>
+
+<sourcecode id="_a1adb394-7b99-7e40-c2fb-c9dd2dfc6d29" lang="json">{
+    "algorithm": "SHAKE-128",
+    "revision": "1.0",
+    "mode": null,
+    "inBit": true,
+    "inEmpty": true,
+    "outBit": true,
+    "outputLen": [
+        {
+        "min": 16,
+        "max": 1024
+        }
+    ]
+}</sourcecode>
+
+
+<p id="_9a10cf6d-4220-9c86-e81f-e990b06c323f">The following is a example JSON object advertising support for SHA3-256 for testing revision 2.0.</p>
+
+<sourcecode id="_67197643-102f-c4c6-a5d8-49908c11f143" lang="json">{
+    "algorithm": "SHA3-256",
+    "revision": "2.0",
+    "mode": null,
+    "messageLength": [{"min": 0, "max": 65536, "increment": 1}],
+    "performLargeDataTest": [1, 2, 4, 8]
+}</sourcecode>
+
+
+<note id="_ffe0102b-f40f-ea48-af56-2fc67ce27aa1"><p id="_e40d547c-67e4-ec24-b2f0-f65fb2a0a6d8">Since the increment is 1 in the above, and the minimum value within the message length is zero, this is effectively an “inBit” and “inEmpty” registration from the 1.0 revision testing.  If the implementation supports only byte length messages, you could use an increment of 8.</p>
+</note>
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_d8c7ffbc-55ac-40b2-0138-2af98cd8c42b">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SHA3 and SHAKE algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title>Test Groups</title>
+<p id="_b05ccdb8-ff57-78e2-47b8-0251b5c0182c">Test vector sets <strong>MUST</strong> contain one or many test groups, each sharing similar properties. For instance, all test vectors that use the same key size would be grouped together. The testGroups element at the top level of the test vector JSON object SHALL be the array of test groups. The Test Group JSON object <strong>MUST</strong> contain meta-data that applies to all test cases within the group. The following table describes the JSON elements that <strong>MUST</strong> appear from the server in the Test Group JSON object:</p>
+
+<table id="vs_tg_table">
+<name>Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set.</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test category type. AFT, MCT or VOT as defined in <xref target="testtypes"/></td>
+<td valign="top" align="left">value</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test case JSON objects, which are defined in	<xref target="tcjs"/></td>
+<td valign="top" align="left">array of testCase objects</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="tcjs" obligation="normative">
+<title>Test Case JSON Schema</title>
+<p id="_561f2a29-72ce-c8c3-791b-ec98d9b3b00c">Each test group <strong>SHALL</strong> contain an array of one or more test cases.  Each test case is a JSON object that represents a single case to be processed by the ACVP client.  The following table describes the JSON elements for each test case.</p>
+
+<table id="vs_tc_table">
+<name>Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set.</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">len</td>
+<td valign="top" align="left">Length of the message or seed</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">outLen</td>
+<td valign="top" align="left">Length of the digest</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">msg</td>
+<td valign="top" align="left">Value of the message or seed.  Messages are represented as little-endian hex for all SHA3 variations.</td>
+<td valign="top" align="left">string (hex)</td>
+</tr><tr><td valign="top" align="left">largeMsg</td>
+<td valign="top" align="left">Object describing the message for an LDT group</td>
+<td valign="top" align="left">large data object, see <xref target="LD_test"/> for more information</td>
+</tr></tbody>
+<note id="_647e46e2-3c16-c12d-7fe2-25c9e93d3362"><p id="_bfdca7aa-4c97-8b11-de01-c3c3b1939e3b">All properties listed in the above table are <strong>REQUIRED</strong> except for outLen which is only <strong>REQUIRED</strong> when the algorithm is SHAKE-128 or SHAKE-256.</p>
+</note><note id="_15398506-5c87-e08d-d455-761bd3a75b1b"><p id="_32c2d6d3-b9a5-69f3-c441-e382da0a97a1">The maximum value for SHAKE-128 for ‘len’ is 65,904 bits when the inBit parameter is set to true in the capabilities registration and 66,240 bits when it is set to false. The maximum value for SHAKE-256 for ‘len’ is 66,428 bits when the inBit parameter is set to true in the capabilities registration and 65,752 bits when it is set to false.</p>
+</note></table>
+
+
+
+
+
+<p id="_299b6bff-8c3e-9bfa-7c4b-266d22849f9e">The following are example JSON objects for secure hash test vectors sent from the ACVP server to the crypto module. Notice that the single bit message is represented as “01”. This complies with the little-endian nature of SHA3. All hex displayed is little-endian bit order when associated with SHA3 or any of its variations.</p>
+
+<sourcecode id="_87239fe3-5070-cb7e-7d8a-8edfbc23f260" lang="json">[
+    { "acvVersion": &lt;acvp-version&gt; },
+    {
+        "vsId": 1564,
+        "algorithm": "SHA3-512",
+        "revision": "1.0",
+        "testGroups": [
+        {
+            "tgId": 1,
+            "testType": "AFT",
+            "tests": [
+            {
+                "tcId": 1,
+                "len": 0,
+                "msg": "00"
+            },
+            {
+                "tcId": 2,
+                "len": 1,
+                "msg": "01"
+            }]
+        },
+        {
+            "tgId": 2,
+            "testType": "MCT",
+            "tests": [
+            {
+                "tcId": 3,
+                "len": 512,
+                "msg": "30850bd984b14ff5aff18993329...",
+            }]
+        },
+        {
+            "tgId": 3,
+            "testType": "LDT",
+            "tests": [
+                {
+                    "tcId": 4,
+                    "largeMsg": {
+                        "content": "DE26",
+                        "contentLength": 16,
+                        "fullLength": 42949672960,
+                        "expansionTechnique": "repeating"
+                    }
+                }
+            ]
+        }]
+    }
+]
+
+[
+    { "acvVersion": &lt;acvp-version&gt; },
+    {
+        "vsId": 1565,
+        "algorithm": "SHA3-512",
+        "revision": "2.0",
+        "testGroups": [
+        {
+            "tgId": 1,
+            "testType": "AFT",
+            "tests": [
+            {
+                "tcId": 1,
+                "len": 0,
+                "msg": "00"
+            },
+            {
+                "tcId": 2,
+                "len": 1,
+                "msg": "01"
+            }]
+        },
+        {
+            "tgId": 2,
+            "testType": "MCT",
+            "tests": [
+            {
+                "tcId": 3,
+                "len": 512,
+                "msg": "30850bd984b14ff5aff18993329...",
+            }]
+        },
+        {
+            "tgId": 3,
+            "testType": "LDT",
+            "tests": [
+                {
+                    "tcId": 4,
+                    "largeMsg": {
+                        "content": "DE26",
+                        "contentLength": 16,
+                        "fullLength": 42949672960,
+                        "expansionTechnique": "repeating"
+                    }
+                }
+            ]
+        }]
+    }
+]</sourcecode>
+
+
+<p id="_4e51fed3-a809-a43f-d710-64d5c8cf41b7">The following is an example JSON object for SHAKE.</p>
+
+<sourcecode id="_2395479a-b82b-d44a-adaf-a59a706e3de0" lang="json">[
+    { "acvVersion": &lt;acvp-version&gt; },
+    {
+        "vsId": 1564,
+        "algorithm": "SHAKE-128",
+        "revision": "1.0",
+        "testGroups": [
+        {
+            "tgId": 1,
+            "testType": "AFT",
+            "tests": [
+            {
+                "tcId": 1,
+                "len": 0,
+                "msg": "00"
+            },
+            {
+                "tcId": 2,
+                "len": 1,
+                "msg": "01"
+            }]
+        },
+        {
+            "tgId": 2,
+            "testType": "MCT",
+            "inBit": true,
+            "outBit": true,
+            "inEmpty": false,
+            "maxOutLen": 4096,
+            "minOutLen": 128,
+            "tests": [
+            {
+                "tcId": 3,
+                "len": 512,
+                "msg": "30850bd984b14ff5aff18993329...",
+            }]
+        },
+        {
+            "tgId": 3,
+            "testType": "VOT",
+            "tests": [
+            {
+                "tcId": 4,
+                "len": 128,
+                "msg": "7a4c48eb710299e4ff2be3f446327a6f",
+                "outLen": 16
+            },
+            {
+                "tcId": 5,
+                "len": 128,
+                "msg": "b16f331b3a0cf4507124b4358f9d15f5",
+                "outLen": 144
+            }]
+        }]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="vector_responses" obligation="normative">
+<title>Test Vector Responses</title>
+<p id="_70b442a3-af25-63d2-1573-47aa2fd33d57">After the ACVP client downloads and processes a vector set, it <strong>SHALL</strong> send the response vectors back to the ACVP server within the alloted timeframe. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="vr_top_table">
+<name>Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of JSON objects that represent each test vector result, which uses the same JSON schema as defined in <xref target="tcjs"/></td>
+<td valign="top" align="left">array of testGroup objects</td>
+</tr></tbody>
+</table>
+
+<p id="_a2abe526-040e-4ca0-d4ed-38a0c3f841f1">The testGroup Response section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in its response. This structure helps accommodate that.</p>
+
+<table id="vr_group_table">
+<name>Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The tests associated to the group specified in tgId</td>
+<td valign="top" align="left">array of testCase objects</td>
+</tr></tbody>
+</table>
+
+<p id="_d3142143-499b-e3a8-5033-7ee38d820d97">Each test case is a JSON object that represents a single test object to be processed by the ACVP client. The following table describes the JSON elements for each test case object.</p>
+
+<table id="vs_tr_table">
+<name>Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set.</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">md</td>
+<td valign="top" align="left">The IUT’s digest response to a VOT, AFT or LDT</td>
+<td valign="top" align="left">string (hex)</td>
+</tr><tr><td valign="top" align="left">resultsArray</td>
+<td valign="top" align="left">Array of JSON objects that represent each iteration of a Monte Carlo Test. Each iteration will contain the msg and md (and outLen for SHAKE-128 and SHAKE-256)</td>
+<td valign="top" align="left">array of objects containing the md (and potentially outLen)</td>
+</tr></tbody>
+<note id="_8aadfd76-da9f-80d5-0d7c-bdb24e08c953"><p id="_fdb0fb89-fc09-5787-ef25-0202a66793c3">The ‘tcId’ <strong>MUST</strong> be included in every test case object sent between the client and the server.</p>
+</note></table>
+
+
+
+<p id="_45903c1a-3446-5a2d-7578-7ddee56a223e">The following are examples of JSON objects for secure hash test results sent from the crypto module to the ACVP server. The group identified by tgId 1 is a group of AFTs. The group identified by tgId 2 is a group of MCTs. The group identified by tgId 3 is a group of LDTs.</p>
+
+<sourcecode id="_73a49218-c822-2625-b500-2f74202b941d" lang="json">{
+    "vsId": 0,
+    "algorithm": "SHA3-224",
+    "revision": "1.0",
+    "testGroups": [
+        {
+            "tgId": 1,
+            "tests": [
+                {
+                    "tcId": 1,
+                    "md": "D14A028C2A3A2BC9476102BB288234C415A2B01F828EA62AC5B3E42F"
+                },
+                {
+                    "tcId": 2,
+                    "md": "D14A028C2A3A2BC9476102BB288234C415A2B01F828EA62AC5B3E42F"
+                }
+            ]
+        },
+        {
+            "tgId": 2,
+            "tests": [
+                {
+                    "tcId": 1028,
+                    "resultsArray": [
+                        {
+                            "md": "E82B1FA3D510C2E423D03CEDF01F66C995CDD573EB63D5A33FDAE640"
+                        },
+                        {
+                            "md": "00179AE4CE57DCBD156B981A414370B5089FA8E1098A05443DF3CD62"
+                        },
+                        {
+                            "md": "8F6C7F546940352613E8389D4F4B87473A57CACD7E289A27E4F51965"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tgId": 3,
+            "tests": [
+                {
+                    "tcId": 1029,
+                    "md": "E4F8B44B32F5A25D1F4784601BF095CF5F7C6F4E9EAA1005AD19F09A"
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "vsId": 0,
+    "algorithm": "SHA3-224",
+    "revision": "2.0",
+    "testGroups": [
+        {
+            "tgId": 1,
+            "tests": [
+                {
+                    "tcId": 1,
+                    "md": "D14A028C2A3A2BC9476102BB288234C415A2B01F828EA62AC5B3E42F"
+                },
+                {
+                    "tcId": 2,
+                    "md": "D14A028C2A3A2BC9476102BB288234C415A2B01F828EA62AC5B3E42F"
+                }
+            ]
+        },
+        {
+            "tgId": 2,
+            "tests": [
+                {
+                    "tcId": 1028,
+                    "resultsArray": [
+                        {
+                            "md": "E82B1FA3D510C2E423D03CEDF01F66C995CDD573EB63D5A33FDAE640"
+                        },
+                        {
+                            "md": "00179AE4CE57DCBD156B981A414370B5089FA8E1098A05443DF3CD62"
+                        },
+                        {
+                            "md": "8F6C7F546940352613E8389D4F4B87473A57CACD7E289A27E4F51965"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tgId": 3,
+            "tests": [
+                {
+                    "tcId": 1029,
+                    "md": "E4F8B44B32F5A25D1F4784601BF095CF5F7C6F4E9EAA1005AD19F09A"
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+
+<p id="_757f72ec-8859-6af8-0c94-e4ce55d6b445">The following is an example JSON object response for SHAKE-128. The group identified by tgId 1 is a group of AFTs. The group identified by tgId 2 is a group of MCTs. The group identified by tgId 3 is a group of VOTs.</p>
+
+<sourcecode id="_bd931aa7-4ff9-25fb-82b5-c8dd90c46eb2" lang="json">{
+    "vsId": 0,
+    "algorithm": "SHAKE-128",
+    "revision": "1.0",
+    "testGroups": [
+        {
+            "tgId": 1,
+            "tests": [
+                {
+                    "tcId": 1,
+                    "md": "D14A028C2A3A2BC9476102BB288234C4"
+                },
+                {
+                    "tcId": 2,
+                    "md": "D14A028C2A3A2BC9476102BB288234C4"
+                }
+            ]
+        },
+        {
+            "tgId": 2,
+            "tests": [
+                {
+                    "tcId": 1028,
+                    "resultsArray": [
+                        {
+                            "md": "E82B1FA3D510C2E423D03CEDF01F66C9",
+                            "outputLen": 128
+                        },
+                        {
+                            "md": "00179AE4CE57DCBD156B981A414370B5",
+                            "outputLen": 128
+                        },
+                        {
+                            "md": "8F6C7F546940352613E8389D4F4B8747",
+                            "outputLen": 128
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tgId": 3,
+            "tests": [
+                {
+                    "tcId": 1029,
+                    "md": "E4F8"
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_5142d423-3432-10c4-4053-e9cf06525867">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_ec556c50-07ac-2797-f3cf-4fc741286bb7"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_d3e7190d-db43-db30-34d4-32004be5ae79">2018-11-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_783b8280-3882-a0d4-8e84-a7a3f4874e71" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_8bf4f1ec-81cc-bf05-fdc8-97a1a79d601e">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f2760c4d-df02-193b-b0c9-1bb493e0eb6d">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+ <bibitem id="FIPS202" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">SHA-3 Standard — Permutation-Based Hash and Extendable-Output Functions</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/fips/202/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.FIPS.202</uri>  <docidentifier type="NIST" primary="true">FIPS 202</docidentifier>  <date type="published">    <on>2015-08</on>  </date>  <date type="issued">    <on>2015-08</on>  </date>  <contributor>    <role type="author"/>    <organization>      
+<name>National Institute of Standards and Technology</name>
+    </organization>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2015</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <place>Gaithersburg, MD</place>  <keyword>hash function</keyword>  <keyword>information security</keyword>  <keyword>message digest</keyword>  <keyword>permutation</keyword>  <keyword>SHA-3</keyword>  <keyword>sponge construction</keyword>  <keyword>sponge function</keyword>  <keyword>cryptography</keyword>  <keyword>extendable-output function</keyword>  <keyword>Federal Information Processing Standard</keyword>  <keyword>KECCAK</keyword>  <keyword>XOF</keyword>  <keyword>hash algorithm</keyword>  <keyword>computer security</keyword></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+
+<bibitem id="SHAVS">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">The Secure Hash Algorithm Validation System (SHAVS)</title>
+  <title type="main" format="text/plain">The Secure Hash Algorithm Validation System (SHAVS)</title>
+  <docidentifier type="NIST">NIST SHAVS</docidentifier>
+  <date type="published">
+    <on>2014</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>L. E.</initial>
+        <surname>Bassham III</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+
+<bibitem id="LDT">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Extending NIST’s CAVP Testing of Cryptographic Hash Function Implementations</title>
+  <title type="main" format="text/plain">Extending NIST’s CAVP Testing of Cryptographic Hash Function Implementations</title>
+  <docidentifier>LDT</docidentifier>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

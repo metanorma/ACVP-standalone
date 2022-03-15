@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="presentation" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP Extendable Output Function (XOF) JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP Extendable Output Function (XOF) JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.XOF</uri><docidentifier type="NIST">ACVP XOF Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol XOF Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.XOF.r-1.eng</docidentifier><docnumber>XOF</docnumber><date type="issued"><on>2019-01-01</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language current="true">en</language><script current="true">Latn</script><abstract><p>This document defines the JSON schema for testing Extendable Output Function implementations with the ACVP specification.</p>
+</abstract><status><stage language="">final</stage><substage language="">active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype language="">standard</doctype></ext></bibdata><localized-strings><localized-string key="scope" language="en">Scope</localized-string><localized-string key="symbolsabbrev" language="en">Symbols and abbreviated terms</localized-string><localized-string key="abbrev" language="en">Abbreviated terms</localized-string><localized-string key="symbols" language="en">Symbols</localized-string><localized-string key="table_of_contents" language="en">Table of contents</localized-string><localized-string key="introduction" language="en">Introduction</localized-string><localized-string key="foreword" language="en">Foreword</localized-string><localized-string key="abstract" language="en">Abstract</localized-string><localized-string key="acknowledgements" language="en">Acknowledgements</localized-string><localized-string key="termsdef" language="en">Terms and definitions</localized-string><localized-string key="termsdefsymbolsabbrev" language="en">Terms, definitions, symbols and abbreviated terms</localized-string><localized-string key="termsdefsymbols" language="en">Terms, definitions and symbols</localized-string><localized-string key="termsdefabbrev" language="en">Terms, definitions and abbreviated terms</localized-string><localized-string key="normref" language="en">References</localized-string><localized-string key="bibliography" language="en">Bibliography</localized-string><localized-string key="preface" language="en">Preface</localized-string><localized-string key="clause" language="en">Section</localized-string><localized-string key="annex" language="en">Appendix</localized-string><localized-string key="appendix" language="en">Appendix</localized-string><localized-string key="no_terms_boilerplate" language="en"><p>No terms and definitions are listed in this document.</p>
+</localized-string><localized-string key="internal_terms_boilerplate" language="en"><p>For the purposes of this document, 
+    the following terms and definitions apply.</p>
+</localized-string><localized-string key="norm_with_refs_pref" language="en">The following documents are referred to in the text in such a way that some or all of their content constitutes requirements of this document. For dated references, only the edition cited applies. For undated references, the latest edition of the referenced document (including any amendments) applies.</localized-string><localized-string key="norm_empty_pref" language="en">There are no normative references in this document.</localized-string><localized-string key="external_terms_boilerplate" language="en"><p>For the purposes of this document, 
+  the terms and definitions given in % apply.</p>
+</localized-string><localized-string key="internal_external_terms_boilerplate" language="en"><p>For the purposes of this document, the terms and definitions 
+  given in % and the following apply.</p>
+</localized-string><localized-string key="term_defined_in" language="en">[term defined in %]</localized-string><localized-string key="binary_and" language="en">%1 and %2</localized-string><localized-string key="multiple_and" language="en">%1, and %2</localized-string><localized-string key="binary_or" language="en">%1 or %2</localized-string><localized-string key="multiple_or" language="en">%1, or %2</localized-string><localized-string key="chain_and" language="en">%1 and %2</localized-string><localized-string key="chain_or" language="en">%1 or %2</localized-string><localized-string key="chain_from" language="en">%1 from %2</localized-string><localized-string key="chain_to" language="en">%1 to %2</localized-string><localized-string key="note" language="en">NOTE</localized-string><localized-string key="note_xref" language="en">Note</localized-string><localized-string key="termnote" language="en">Note % to entry</localized-string><localized-string key="list" language="en">List</localized-string><localized-string key="deflist" language="en">Definition List</localized-string><localized-string key="figure" language="en">Figure</localized-string><localized-string key="formula" language="en">Formula</localized-string><localized-string key="inequality" language="en">Formula</localized-string><localized-string key="table" language="en">Table</localized-string><localized-string key="requirement" language="en">Requirement</localized-string><localized-string key="recommendation" language="en">Recommendation</localized-string><localized-string key="permission" language="en">Permission</localized-string><localized-string key="key" language="en">Key</localized-string><localized-string key="example" language="en">EXAMPLE</localized-string><localized-string key="example_xref" language="en">Example</localized-string><localized-string key="where" language="en">where</localized-string><localized-string key="wholeoftext" language="en">Whole of text</localized-string><localized-string key="draft_label" language="en">draft</localized-string><localized-string key="inform_annex" language="en">informative</localized-string><localized-string key="norm_annex" language="en">normative</localized-string><localized-string key="modified" language="en">modified</localized-string><localized-string key="deprecated" language="en">DEPRECATED</localized-string><localized-string key="source" language="en">SOURCE</localized-string><localized-string key="and" language="en">and</localized-string><localized-string key="all_parts" language="en">All Parts</localized-string><localized-string key="toc_figures" language="en">List of figures</localized-string><localized-string key="toc_tables" language="en">List of tables</localized-string><localized-string key="toc_recommendations" language="en">List of recommendations</localized-string><localized-string key="month_january" language="en">January</localized-string><localized-string key="month_february" language="en">February</localized-string><localized-string key="month_march" language="en">March</localized-string><localized-string key="month_april" language="en">April</localized-string><localized-string key="month_may" language="en">May</localized-string><localized-string key="month_june" language="en">June</localized-string><localized-string key="month_july" language="en">July</localized-string><localized-string key="month_august" language="en">August</localized-string><localized-string key="month_september" language="en">September</localized-string><localized-string key="month_october" language="en">October</localized-string><localized-string key="month_november" language="en">November</localized-string><localized-string key="month_december" language="en">December</localized-string><localized-string key="obligation" language="en">Obligation</localized-string><localized-string key="subject" language="en">Subject</localized-string><localized-string key="inherits" language="en">Inherits</localized-string><localized-string key="admonition.danger" language="en">Danger</localized-string><localized-string key="admonition.warning" language="en">Warning</localized-string><localized-string key="admonition.caution" language="en">Caution</localized-string><localized-string key="admonition.important" language="en">Important</localized-string><localized-string key="admonition.safety_precautions" language="en">Safety Precautions</localized-string><localized-string key="locality.section" language="en">Section</localized-string><localized-string key="locality.clause" language="en">Clause</localized-string><localized-string key="locality.part" language="en">Part</localized-string><localized-string key="locality.paragraph" language="en">Paragraph</localized-string><localized-string key="locality.chapter" language="en">Chapter</localized-string><localized-string key="locality.page" language="en">Page</localized-string><localized-string key="locality.table" language="en">Table</localized-string><localized-string key="locality.annex" language="en">Annex</localized-string><localized-string key="locality.figure" language="en">Figure</localized-string><localized-string key="locality.example" language="en">Example</localized-string><localized-string key="locality.note" language="en">Note</localized-string><localized-string key="locality.formula" language="en">Formula</localized-string><localized-string key="grammar_abbrevs.masculine" language="en">m</localized-string><localized-string key="grammar_abbrevs.feminine" language="en">f</localized-string><localized-string key="grammar_abbrevs.neuter" language="en">n</localized-string><localized-string key="grammar_abbrevs.common" language="en">common</localized-string><localized-string key="grammar_abbrevs.singular" language="en">sg</localized-string><localized-string key="grammar_abbrevs.dual" language="en">dual</localized-string><localized-string key="grammar_abbrevs.pl" language="en">pl</localized-string><localized-string key="grammar_abbrevs.isPreposition" language="en">prep</localized-string><localized-string key="grammar_abbrevs.isParticiple" language="en">part</localized-string><localized-string key="grammar_abbrevs.isAdjective" language="en">adj</localized-string><localized-string key="grammar_abbrevs.isAdverb" language="en">adv</localized-string><localized-string key="grammar_abbrevs.isNoun" language="en">noun</localized-string><localized-string key="grammar_abbrevs.isVerb" language="en">verb</localized-string><localized-string key="relatedterms.deprecates" language="en">deprecates</localized-string><localized-string key="relatedterms.supersedes" language="en">supersedes</localized-string><localized-string key="relatedterms.narrower" language="en">narrower</localized-string><localized-string key="relatedterms.broader" language="en">broader</localized-string><localized-string key="relatedterms.equivalent" language="en">equivalent</localized-string><localized-string key="relatedterms.compare" language="en">compare</localized-string><localized-string key="relatedterms.contrast" language="en">contrast</localized-string><localized-string key="relatedterms.see" language="en">see</localized-string><localized-string key="Clause.sg" language="en">Clause</localized-string><localized-string key="Clause.pl" language="en">Clauses</localized-string><localized-string key="Annex.sg" language="en">Annex</localized-string><localized-string key="Annex.pl" language="en">Annexes</localized-string><localized-string key="Appendix.sg" language="en">Appendix</localized-string><localized-string key="Appendix.pl" language="en">Appendixes</localized-string><localized-string key="Note.sg" language="en">Note</localized-string><localized-string key="Note.pl" language="en">Notes</localized-string><localized-string key="Note_%_to_entry.sg" language="en">Note % to entry</localized-string><localized-string key="Note_%_to_entry.pl" language="en">Notes % to entry</localized-string><localized-string key="List.sg" language="en">List</localized-string><localized-string key="List.pl" language="en">Lists</localized-string><localized-string key="Figure.sg" language="en">Figure</localized-string><localized-string key="Figure.pl" language="en">Figures</localized-string><localized-string key="Formula.sg" language="en">Formula</localized-string><localized-string key="Formula.pl" language="en">Formulas</localized-string><localized-string key="Table.sg" language="en">Table</localized-string><localized-string key="Table.pl" language="en">Tables</localized-string><localized-string key="Requirement.sg" language="en">Requirement</localized-string><localized-string key="Requirement.pl" language="en">Requirements</localized-string><localized-string key="Recommendation.sg" language="en">Recommendation</localized-string><localized-string key="Recommendation.pl" language="en">Recommendations</localized-string><localized-string key="Permission.sg" language="en">Permission</localized-string><localized-string key="Permission.pl" language="en">Permissions</localized-string><localized-string key="Example.sg" language="en">Example</localized-string><localized-string key="Example.pl" language="en">Examples</localized-string><localized-string key="Part.sg" language="en">Part</localized-string><localized-string key="Part.pl" language="en">Parts</localized-string><localized-string key="Section.sg" language="en">Section</localized-string><localized-string key="Section.pl" language="en">Sections</localized-string><localized-string key="Paragraph.sg" language="en">Paragraph</localized-string><localized-string key="Paragraph.pl" language="en">Paragraphs</localized-string><localized-string key="Chapter.sg" language="en">Chapter</localized-string><localized-string key="Chapter.pl" language="en">Chapters</localized-string><localized-string key="Page.sg" language="en">Page</localized-string><localized-string key="Page.pl" language="en">Pages</localized-string><localized-string key="draft-internal-boilerplate" language="en">This document is currently under development and is <br/><b>NOT INTENDED FOR PUBLIC RELEASE.</b></localized-string><localized-string key="draft-wip-boilerplate" language="en">This document is currently under development. The draft is not yet complete, and organizations should not attempt to implement it. The content is in an early stage of development, rough, incomplete and experimental; it has not been extensively edited or vetted. This provides an insider view of the iterative process to develop the content and it gives NIST an opportunity to share early thoughts, ideas, and approaches with the community. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period.</localized-string><localized-string key="draft-prelim-boilerplate" language="en">This document incorporates comments from the work-in-progress draft. It is a relatively cohesive document and is considered stable, although there are gaps in the content and the overall document is incomplete. Some changes are expected. Organizations may consider experimenting with guidelines, with the understanding that they will identify gaps and challenges. NIST welcomes early informal feedback and comments, which will be adjudicated after the specified public comment period; a full public draft is expected to follow.</localized-string><localized-string key="draft-public-boilerplate" language="en">This draft represents a complete document that is released for public comment as part of NIST’s official review process, in support of an open and transparent process for developing guidelines and standards. The language is normalized and is consistent throughout the document. Comments received during previous review cycles (if any) have been adjudicated and are addressed in this release. Early adopters may attempt to implement the guidelines in a test or development environment; however, comments received on this draft may cause NIST to determine that a subsequent public draft and comment period are necessary. The content of this document will not be considered “final” until it is formally published and announced by NIST.</localized-string><localized-string key="withdrawal-pending-boilerplate" language="en">This document has been superseded by the document identified below. It will remain active until the withdrawal date, when it will be officially withdrawn.</localized-string><localized-string key="draft-retired-boilerplate" language="en">The attached draft document has been RETIRED. NIST has discontinued additional development of this document, which is provided here in its entirety for historical purposes.</localized-string><localized-string key="draft-withdrawn-boilerplate" language="en">The attached draft document has been withdrawn, and is provided solely for historical purposes. It has been superseded by the document identified below.</localized-string><localized-string key="publication-withdrawn-boilerplate" language="en">The attached publication has been withdrawn (archived), and is provided solely for historical purposes. It may have been superseded by another publication (indicated below).</localized-string><localized-string key="keywords" language="en">Keywords</localized-string><localized-string key="keywords_intro" language="en"><p>The following are keywords to be used by search engines and document catalogues.</p></localized-string><localized-string key="language" language="en">en</localized-string><localized-string key="script" language="en">Latn</localized-string></localized-strings>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title depth="2">Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title depth="2">Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract" displayorder="1"><title>Abstract</title><p id="_5d6b1584-e211-81da-e044-e3c2bbf36b36">This document defines the JSON schema for testing Extendable Output Function implementations with the ACVP specification.</p>
+</abstract><clause id="_2af6e93d-32cc-4df1-8561-8b898d7331a0" type="keyword" displayorder="2">
+<title depth="1">Keywords</title>
+<p>The following are keywords to be used by search engines and document catalogues.</p>
+<p>ACVP; cryptography</p></clause>
+<foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative" displayorder="3">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative" displayorder="4">
+<title depth="1">Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative" displayorder="5">
+<title depth="1">Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119">[RFC 2119]</eref> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174">[RFC 8174]</eref> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative" displayorder="6"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative" displayorder="7">
+<title>Executive Summary</title>
+<p id="_5963b6a0-2617-d194-fd8f-f693c1c691bd">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Extendable Output Function implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative" displayorder="8">
+<title depth="1">1.<tab/>Introduction</title>
+<p id="_fa67f7de-9ff0-ea4a-bbfa-c831802c3b85">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Extendable Output Function implementations using ACVP.</p>
+</clause>
+
+<clause id="supported_algs" obligation="normative" displayorder="9">
+<title depth="1">2.<tab/>Supported Algorithms</title>
+<p id="_8b3cb239-98c6-c56f-f578-aa4f9a4b7ddc">The following XOFs may be advertised by this ACVP compliant crypto module:</p>
+
+<ul id="_494526a0-bd5f-6a7a-f8e5-c4038747543f"><li><p id="_c334529a-eebf-f316-70a5-d5f75f5270a1">cSHAKE-128</p>
+</li>
+<li><p id="_c1a9aaa5-5dee-8585-0057-9e31ab5cd776">cSHAKE-256</p>
+</li>
+<li><p id="_72f0ec2b-f42d-229d-5e80-03dbca586782">parallelHash-128</p>
+</li>
+<li><p id="_8ed2a6d4-6c6b-6e2d-088f-ed4806495a2c">parallelHash-256</p>
+</li>
+<li><p id="_ec147675-dd4d-de6a-6341-b02248c4b35d">tupleHash-128</p>
+</li>
+<li><p id="_3e5ea63c-2b77-7a6a-5090-8afe8002e96e">tupleHash-256</p>
+</li>
+<li><p id="_1f5f4267-54c2-7283-5bfc-fa3c183fb160">KMAC-128</p>
+</li>
+<li><p id="_f9abb563-7b29-9e8b-6ce6-7bbde1882e49">KMAC-256</p>
+</li>
+</ul>
+
+<p id="_f9405fa1-5169-3ac2-361f-d78286a07816">Other XOFs may be advertised by the ACVP elsewhere.</p>
+</clause>
+
+<clause id="testtypes" obligation="normative" displayorder="10">
+<title depth="1">3.<tab/>Test Types and Test Coverage</title>
+<p id="_7de21233-71ab-be5b-c387-488f8d6091ff">This section describes the design of the tests used to validate Extendable Output Function implementations.</p>
+
+<clause id="_test_types" obligation="normative">
+<title depth="2">3.1.<tab/>Test Types</title>
+<p id="_e10504b4-db7a-8e9e-2e77-dc2f3542dd08">This section describes the design of the tests used to validate implementations of XOFs. There are three types of tests for these algorithms: Algorithm Functional Tests (AFT), Monte Carlo Tests (MCT) and MAC Verification Tests (MVT). Each has a specific value to be used in the testType field. The testType field definitions are:</p>
+
+<ul id="_f415f2ac-52bf-c7d0-67e8-29c44fe3f6df"><li><p id="_7403604a-a5cb-6a0c-0b71-70d95bb42ff0">“AFT” — Algorithm Functional Tests. These tests can be processed by the client using a normal ‘encrypt’ or ‘decrypt’ operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or (where applicable) partial blocks. In some cases random data is used, in others, static, predetermined tests are provided.</p>
+</li>
+<li><p id="_5ccc5ad9-5775-784a-ce8c-4fa330166ba8">“MCT” — Monte Carlo Tests. These tests exercise the implementation under test under strenuous circumstances. The implementation under test must process the test vectors according to the correct algorithm and mode in this document. MCTs can help detect potential memory leaks over time, and problems in allocation of resources, addressing variables, error handling and generally improper behavior in response to random inputs. Each MCT processes 100 pseudorandom tests. Not every algorithm and mode combination has an MCT. See <xref target="MC_test">Section 3.2</xref> for implementation details.</p>
+</li>
+<li><p id="_f670b6d3-c8cf-0ad8-4816-80fa4916b8e6">“MVT” — MAC Verification Tests.  XXX</p>
+</li>
+</ul>
+</clause>
+
+<clause id="MC_test" obligation="normative">
+<title depth="2">3.2.<tab/>Monte Carlo tests for XOFs</title>
+<clause id="cSHAKE-MCT" obligation="normative">
+<title depth="3">3.2.1.<tab/>cSHAKE Monte Carlo Test</title>
+<sourcecode id="_a0f7b7d0-8ee4-897b-15c1-9dc7be380069" lang="code"><name>Figure 1</name>INPUT: The initial Msg is the length of the digest size
+
+MCT(Msg, MaxOutLen, MinOutLen, OutLenIncrement)
+{
+  Range = (MaxOutLen – MinOutLen + 1);
+  OutputLen = MaxOutLen;
+  FunctionName = "";
+  Customization = "";
+
+  Output[0] = Msg;
+  for (j = 0; j &#x3c; 100; j++)
+  {
+    for (i = 1; i &#x3c; 1001; i++)
+    {
+      InnerMsg = Left(Output[i-1] || ZeroBits(128), 128);
+      Output[i] = CSHAKE(InnerMsg, OutputLen, FunctionName, Customization);
+      Rightmost_Output_bits = Right(Output[i], 16);
+      OutputLen = MinOutLen + (floor((Rightmost_Output_bits % Range) / OutLenIncrement) * OutLenIncrement);
+      Customization = BitsToString(InnerMsg || Rightmost_Output_bits);
+    }
+
+    OutputJ[j] = Output[1000];
+  }
+
+  return OutputJ;
+}</sourcecode>
+
+</clause>
+
+<clause id="ParallelHash-MCT" obligation="normative">
+<title depth="3">3.2.2.<tab/>ParallelHash Monte Carlo Test</title>
+<sourcecode id="_17b7bc2b-603e-3f66-b83e-e5b7df64524a" lang="code"><name>Figure 2</name>INPUT: The initial Msg is the length of the digest size
+
+MCT(Msg, MaxOutLen, MinOutLen, OutLenIncrement, MaxBlockSize, MinBlockSize)
+{
+  Range = (MaxOutLen – MinOutLen + 1);
+  OutputLen = MaxOutLen;
+  BlockRange = (MaxBlockSize – MinBlockSize + 1);
+  BlockSize = MinBlockSize;
+  Customization = "";
+
+  Output[0] = Msg;
+  for (j = 0; j &#x3c; 100; j++)
+  {
+    for (i = 1; i &#x3c; 1001; i++)
+    {
+      InnerMsg = Left(Output[i-1] || ZeroBits(128), 128);
+      Output[i] = ParallelHash(InnerMsg, OutputLen, BlockSize, FunctionName, Customization);
+      Rightmost_Output_bits = Right(Output[i], 16);
+      OutputLen = MinOutLen + (floor((Rightmost_Output_bits % Range) / OutLenIncrement) * OutLenIncrement);
+      BlockSize = MinBlockSize + Right(Rightmost_Output_bits, 8) % BlockRange;
+      Customization = BitsToString(InnerMsg || Rightmost_Output_bits);
+    }
+
+    OutputJ[j] = Output[1000];
+  }
+
+  return OutputJ;
+}</sourcecode>
+
+</clause>
+
+<clause id="TupleHash-MCT" obligation="normative">
+<title depth="3">3.2.3.<tab/>TupleHash Monte Carlo Test</title>
+<sourcecode id="_0368b966-3aa9-f984-d3c9-a2439b7dedf4" lang="code"><name>Figure 3</name>INPUT: The initial Single-Tuple of a random length between 0 and 65536 bits.
+
+MCT(Tuple, MaxOutLen, MinOutLen, OutLenIncrement)
+{
+  Range = (MaxOutLen – MinOutLen + 1);
+  OutputLen = MaxOutLen;
+  Customization = "";
+
+  T[0][0] = Tuple;
+
+  for (j = 0; j &#x3c; 100; j++)
+  {
+    for (i = 1; i &#x3c; 1001; i++)
+    {
+      workingBits = Left(T[i-1][0] || ZeroBits(288), 288);
+      tupleSize = Left(workingBits, 3) % 4 + 1; // never more than 4 tuples to a round
+      for (k = 0; k &#x3c; tupleSize; k++)
+      {
+        T[i][k] = Substring of workingBits from (k * 288 / tupleSize) to ((k+1) * 288 / tupleSize - 1);
+      }
+      Output[i] = TupleHash(T[i], OutputLen, Customization);
+      Rightmost_Output_bits = Right(Output[i], 16);
+      OutputLen = MinOutLen + (floor((Rightmost_Output_bits % Range) / OutLenIncrement) * OutLenIncrement);
+      Customization = BitsToString(T[i][0] || Rightmost_Output_bits);
+    }
+
+    OutputJ[j] = Output[1000];
+  }
+
+  return OutputJ;
+}</sourcecode>
+
+</clause>
+
+<clause id="_bitstostring_function" obligation="normative">
+<title depth="3">3.2.4.<tab/>BitsToString Function</title>
+<sourcecode id="_2c1fbd8a-fe49-94a8-241d-7e2753af3e82" lang="code"><name>Figure 4</name>BitsToString(bits)
+{
+  string = "";
+  foreach byte in bits
+  {
+      string = string + ASCII((byte % 26) + 65);
+  }
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="_test_coverage" obligation="normative">
+<title depth="2">3.3.<tab/>Test Coverage</title>
+<p id="_a66caec9-7556-8825-f35d-e94b05115285">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="SP800-185" citeas="SP 800-185">[SP 800-185]</eref>.</p>
+
+<clause id="xof-coverage" obligation="normative">
+<title depth="3">3.3.1.<tab/>XOF Requirements Covered</title>
+<p id="_caf0a082-9ef7-eec8-7198-e884b4cecd7a">In TBD.</p>
+</clause>
+
+<clause id="xof-not-coverage" obligation="normative">
+<title depth="3">3.3.2.<tab/>XOF Requirements Not Covered</title>
+<p id="_1879cdfe-4a6c-8f65-a582-81ff9073d463">Some requirements in the outlined specification are not easily tested. Often they are not ideal for black-box testing such as the ACVP. In TBD.</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative" displayorder="11">
+<title depth="1">4.<tab/>Capabilities Registration</title>
+<p id="_03b355b0-654c-ee56-0629-3c475e61c352">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of XOF algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP">[ACVP]</eref> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title depth="2">4.1.<tab/>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Table 1 — Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json"><name>Figure 5</name>"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="xof_caps_reg" obligation="normative">
+<title depth="2">4.2.<tab/>XOF Algorithm Capabilities Registration</title>
+<p id="_af23d11c-a64e-60ae-b2d3-33b86253b9cb">This section describes the constructs for advertising support of XOFs to the ACVP server. ACVP <strong>REQUIRES</strong> cryptographic modules to register their capabilities in a registration. This allows the cryptographic module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.</p>
+
+<p id="_70241821-b6f8-a246-c0d1-8908fd7c2c85">The XOF capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value <strong>MUST</strong> be an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value <strong>MUST</strong> be part of the ‘capability_exchange’ element of the ACVP JSON registration message.</p>
+
+<p id="_464f5f95-b2b0-92b8-7e94-8f85c22577ad">Each XOF algorithm capability advertised <strong>SHALL</strong> be a self-contained JSON object.</p>
+
+<p id="_b57fb788-a000-a935-8f07-9117c9abfeed">Each algorithm capability advertised is a self-contained JSON object.  The following JSON values are used for XOF algorithm capabilities:</p>
+
+<table id="caps_table">
+<name>Table 2 — XOF Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm and mode to be validated.</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use.</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">xof</td>
+<td valign="top" align="left">Implementation has the ability to act as an XOF or a non-XOF algorithm</td>
+<td valign="top" align="left">array of boolean</td>
+</tr><tr><td valign="top" align="left">hexCustomization</td>
+<td valign="top" align="left">An optional feature to the implementation.  When true, “hex” customization strings are supported, otherwise they aren’t.  ASCII strings <strong>SHALL</strong> be tested regardless of the value within the <tt>hexCustomization</tt> property.</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">msgLen</td>
+<td valign="top" align="left">Input length for the XOF</td>
+<td valign="top" align="left">domain</td>
+</tr><tr><td valign="top" align="left">outputLen</td>
+<td valign="top" align="left">Output length for the XOF</td>
+<td valign="top" align="left">domain</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">Supported key lengths</td>
+<td valign="top" align="left">domain</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">Supported MAC lengths</td>
+<td valign="top" align="left">domain</td>
+</tr><tr><td valign="top" align="left">blockSize</td>
+<td valign="top" align="left">blockSize (in bits) to be used with ParallelHash</td>
+<td valign="top" align="left">domain</td>
+</tr></tbody>
+</table>
+
+<p id="_41445804-d31a-232e-5893-432cc2647ecb">The following grid outlines which properties are <strong>REQUIRED</strong>, as well as all the possible values a server <strong>MAY</strong> support for XOF algorithms:</p>
+
+<table id="property_grid">
+<name>Table 3 — XOF Capabilities Applicability Grid</name>
+<thead><tr><th valign="top" align="left">algorithm</th>
+<th valign="top" align="left">xof</th>
+<th valign="top" align="left">hexCustomization</th>
+<th valign="top" align="left">msgLen</th>
+<th valign="top" align="left">outputLen</th>
+<th valign="top" align="left">keyLen</th>
+<th valign="top" align="left">macLen</th>
+<th valign="top" align="left">blockSize</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">cSHAKE-128</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 16, Max: 65536, Increment: any}</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">cSHAKE-256</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 16, Max: 65536, Increment: any}</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">KMAC-128</td>
+<td valign="top" align="left">[true, false]</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 128, Max: 524288, Increment: 8}</td>
+<td valign="top" align="left">{Min: 32, Max: 65536, Increment: 8}</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">KMAC-256</td>
+<td valign="top" align="left">[true, false]</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 128, Max: 524288, Increment: 8}</td>
+<td valign="top" align="left">{Min: 32, Max: 65536, Increment: 8}</td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">ParallelHash-128</td>
+<td valign="top" align="left">[true, false]</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 16, Max: 65536, Increment: any}</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{Min: 1, Max: 128, Increment: 1}</td>
+</tr><tr><td valign="top" align="left">ParallelHash-256</td>
+<td valign="top" align="left">[true, false]</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 16, Max: 65536, Increment: any}</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left">{Min: 1, Max: 128, Increment: 1}</td>
+</tr><tr><td valign="top" align="left">TupleHash-128</td>
+<td valign="top" align="left">[true, false]</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 16, Max: 65536, Increment: any}</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">TupleHash-128</td>
+<td valign="top" align="left">[true, false]</td>
+<td valign="top" align="left">true, false</td>
+<td valign="top" align="left">{Min: 0, Max: 65536, Increment: any}</td>
+<td valign="top" align="left">{Min: 16, Max: 65536, Increment: any}</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr></tbody>
+<note id="_42c9864a-dd0d-6787-0f94-63175e51d0d2"><name>NOTE</name><p id="_2131124c-8b2a-3022-8d4c-19380ef71374">For cSHAKE, ParallelHash, and TupleHash, the value for the outputLen property must consist either of a single range object or a single literal value. This restriction is made to simplify the implementation of the Monte Carlo Tests for these algorithms (see <xref target="MC_test">Section 3.2</xref>).</p>
+</note></table>
+
+
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative" displayorder="12">
+<title depth="1">5.<tab/>Test Vectors</title>
+<p id="_1cb7d4ad-7d97-cb4f-5b2f-887d4138c3f4">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with Extendable Output Function algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Table 4 — Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs">Section 5.1</xref></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json"><name>Figure 6</name>{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title depth="2">5.1.<tab/>Test Groups</title>
+<p id="_b05ccdb8-ff57-78e2-47b8-0251b5c0182c">Test vector sets <strong>MUST</strong> contain one or many test groups, each sharing similar properties. For instance, all test vectors that use the same key size would be grouped together. The testGroups element at the top level of the test vector JSON object <strong>SHALL</strong> be the array of test groups. The Test Group JSON object <strong>MUST</strong> contain meta-data that applies to all test cases within the group. The following table describes the JSON elements that <strong>MUST</strong> appear from the server in the Test Group JSON object:</p>
+
+<table id="vs_tg_table">
+<name>Table 5 — Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test category type. AFT, MCT or MVT as defined in <xref target="testtypes">Section 3</xref></td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">xof</td>
+<td valign="top" align="left">Whether or not the group uses the arbitrary output (XOF) version of the algorithm</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">hexCustomization</td>
+<td valign="top" align="left">Whether or not the group uses customization strings in hex (true) or ASCII (false)</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test case JSON objects, which are defined in <xref target="tcjs">Section 5.2</xref></td>
+<td valign="top" align="left">array of testCase objects</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="tcjs" obligation="normative">
+<title depth="2">5.2.<tab/>Test Case JSON Schema</title>
+<p id="_0377a0ad-a3db-764e-03b3-eb5da752b0ac">Each test group <strong>SHALL</strong> contain an array of one or more test cases. Each test case is a JSON object that represents a single case to be processed by the ACVP client. The following table describes the JSON elements for each test case.</p>
+
+<table id="vs_tc_table">
+<name>Table 6 — Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">len</td>
+<td valign="top" align="left">Length of the message or seed for cSHAKE, KMAC and ParallelHash</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">len</td>
+<td valign="top" align="left">Length of each tuple for TupleHash</td>
+<td valign="top" align="left">array of integer</td>
+</tr><tr><td valign="top" align="left">outLen</td>
+<td valign="top" align="left">Length of the digest</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">functionName</td>
+<td valign="top" align="left">The function name used in the XOF</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">customization</td>
+<td valign="top" align="left">The ASCII customization string used (between 0 and 161 ASCII characters in length)</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">customizationHex</td>
+<td valign="top" align="left">The hex customization string used (between 0 and 322 hex characters in length)</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">msg</td>
+<td valign="top" align="left">Value of the message or seed. Messages are represented as little-endian hex for all SHA3 variations</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">Length of the key used in KMAC</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">key</td>
+<td valign="top" align="left">The key used in KMAC</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">macLen</td>
+<td valign="top" align="left">Length of the MAC</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">mac</td>
+<td valign="top" align="left">The MAC used in KMAC</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">blockSize</td>
+<td valign="top" align="left">The blockSize used in ParallelHash</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tuple</td>
+<td valign="top" align="left">The tuple of messages used in TupleHash</td>
+<td valign="top" align="left">array of hex</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="vector_responses" obligation="normative">
+<title depth="2">5.3.<tab/>Test Vector Responses</title>
+<p id="_70b442a3-af25-63d2-1573-47aa2fd33d57">After the ACVP client downloads and processes a vector set, it <strong>SHALL</strong> send the response vectors back to the ACVP server within the alloted timeframe. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="vr_top_table">
+<name>Table 7 — Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of JSON objects that represent each test vector result, which uses the same JSON schema as defined in <xref target="tcjs">Section 5.2</xref></td>
+<td valign="top" align="left">array of testGroup objects</td>
+</tr></tbody>
+</table>
+
+<p id="_a2abe526-040e-4ca0-d4ed-38a0c3f841f1">The testGroup Response section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in its response. This structure helps accommodate that.</p>
+
+<table id="vr_group_table">
+<name>Table 8 — Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The tests associated to the group specified in tgId</td>
+<td valign="top" align="left">array of testCase objects</td>
+</tr></tbody>
+</table>
+
+<p id="_d3142143-499b-e3a8-5033-7ee38d820d97">Each test case is a JSON object that represents a single test object to be processed by the ACVP client. The following table describes the JSON elements for each test case object.</p>
+
+<table id="vs_tr_table">
+<name>Table 9 — Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">mac</td>
+<td valign="top" align="left">The IUT’s MAC response to an AFT for KMAC</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">The IUT’s reponse to an MVT for KMAC</td>
+<td valign="top" align="left">boolean</td>
+</tr><tr><td valign="top" align="left">md</td>
+<td valign="top" align="left">The IUT’s digest response to an AFT</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">outLen</td>
+<td valign="top" align="left">The output length of the digest</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">resultsArray</td>
+<td valign="top" align="left">Array of JSON objects that represent each iteration of an MCT. Each iteration will contain the md and outLen</td>
+<td valign="top" align="left">array of objects containing the md and outLen</td>
+</tr></tbody>
+<note id="_6e43714b-8a12-7ebc-771b-85566fe30ea0"><name>NOTE</name><p id="_cd71ad7a-0d82-50f9-a5a4-c9f4a08538b3">The tcId <strong>MUST</strong> be included in every test case object sent between the client and the server.</p>
+</note></table>
+
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative" displayorder="13">
+<title depth="1">6.<tab/>Security Considerations</title>
+<p id="_5142d423-3432-10c4-4053-e9cf06525867">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative" displayorder="14">
+<title xref="Appendix A"><strong>Appendix A</strong> — <strong>Terminology</strong></title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><title>A.1.</title><term id="term-prompt"><name>A.1.1.</name><preferred><strong>Prompt</strong></preferred>
+<definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></definition>
+ </term>
+
+<term id="term-registration"><name>A.1.2.</name><preferred><strong>Registration</strong></preferred>
+<definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></definition>
+ </term>
+
+<term id="term-response"><name>A.1.3.</name><preferred><strong>Response</strong></preferred>
+<definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></definition>
+ </term>
+
+<term id="term-test-case"><name>A.1.4.</name><preferred><strong>Test Case</strong></preferred>
+<definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-group"><name>A.1.5.</name><preferred><strong>Test Group</strong></preferred>
+<definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></definition>
+ </term>
+
+<term id="term-test-vector-set"><name>A.1.6.</name><preferred><strong>Test Vector Set</strong></preferred>
+<definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></definition>
+ </term>
+
+<term id="term-validation"><name>A.1.7.</name><preferred><strong>Validation</strong></preferred>
+<definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative" displayorder="15">
+<title xref="Appendix B"><strong>Appendix B</strong> — <strong>Abbreviations and Acronyms</strong></title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative" displayorder="16">
+<title xref="Appendix C"><strong>Appendix C</strong> — <strong>Revision History</strong></title>
+<table id="_8bca2630-77e8-5dfa-3c69-4ee9dc119404"><name>Table C-1</name><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_05cf5982-7c66-0241-45d5-7ef75a3d37fb">2019-01-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_608191da-f61b-805f-0630-3e59815d425c" obligation="normative" displayorder="17">
+<title xref="Appendix D"><strong>Appendix D</strong> — <strong>References</strong></title>
+<references id="_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard"><formattedref>S. Bradner (March 1997) <em>Key words for use in RFCs to Indicate Requirement Levels</em> (Internet Engineering Task Force),  BCP 14, March 1997. RFC 2119. RFC RFC2119. DOI 10.17487/RFC2119. https://www.rfc-editor.org/info/rfc2119.</formattedref><docidentifier type="RFC" primary="true">RFC 2119</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC2119</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC2119</docidentifier></bibitem>
+ <bibitem id="RFC8174" type="standard"><formattedref>B. Leiba (May 2017) <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em> (Internet Engineering Task Force),  BCP 14, May 2017. RFC 8174. RFC RFC8174. DOI 10.17487/RFC8174. https://www.rfc-editor.org/info/rfc8174.</formattedref><docidentifier type="RFC" primary="true">RFC 8174</docidentifier><docidentifier type="RFC" scope="anchor">RFC RFC8174</docidentifier><docidentifier type="DOI">DOI 10.17487/RFC8174</docidentifier></bibitem>
+ <bibitem id="SP800-185" type="standard"><formattedref>John M. Kelsey, Shu-jen H. Chang, Ray A. Perlner (December 2016) <em>SHA-3 Derived Functions — cSHAKE, KMAC, TupleHash, and ParallelHash</em> (Gaithersburg, MD), December 2016. SP 800-185. https://doi.org/10.6028/NIST.SP.800-185.</formattedref><docidentifier type="NIST" primary="true">SP 800-185</docidentifier></bibitem>
+
+<bibitem id="ACVP"><formattedref>Fussell B, Vassilev A, Booth H, Celi C, Hammett R (July 01, 2019) <em>Automatic Cryptographic Validation Protocol</em> (National Institute of Standards and Technology, Gaithersburg, MD), July 01, 2019.</formattedref><docidentifier>ACVP</docidentifier></bibitem>
+</references>
+</annex><annex id="app-reg-ex" obligation="normative" displayorder="18">
+<title xref="Appendix E"><strong>Appendix E</strong> — <strong>Example Capabilities JSON Objects</strong></title>
+<p id="_fd38bea9-a190-3b74-3028-9fc8bf68673d">The following is an example JSON object advertising support for cSHAKE-128.</p>
+
+<sourcecode id="_997279b8-beea-c246-5624-4516d7dd31cb" lang="json"><name>Figure E-1</name>{
+  "algorithm": "CSHAKE-128",
+  "revision": "1.0",
+  "hexCustomization": false,
+  "outputLen": [
+    {
+      "min": 256,
+      "max": 4096,
+      "increment": 1
+    }
+  ],
+  "msgLen": [
+    {
+      "min": 0,
+      "max": 65536,
+      "increment": 1
+    }
+  ]
+}</sourcecode>
+
+
+<p id="_31b4110e-819f-dbea-0fee-e55476a0a1d2">The following is an example JSON object advertising support for KMAC-128.</p>
+
+<sourcecode id="_7b2f6921-06b5-d46f-0866-4317162ee7d2" lang="json"><name>Figure E-2</name>{
+  "algorithm": "KMAC-128",
+  "revision": "1.0",
+  "xof": [true, false],
+  "hexCustomization": false,
+  "msgLen": [
+    {
+      "min": 0,
+      "max": 65536,
+      "increment": 1
+    }
+  ],
+  "keyLen": [
+    {
+      "min": 256,
+      "max": 4096,
+      "increment": 1
+    }
+  ],
+  "macLen": [
+    {
+      "min": 256,
+      "max": 4096,
+      "increment": 1
+    }
+  ]
+}</sourcecode>
+
+
+<p id="_c5c1bd1e-25eb-517e-76b7-2d459dd877b4">The following is an example JSON object advertising support for ParallelHash-128.</p>
+
+<sourcecode id="_2b3ceb8a-20ac-da67-8a13-5dfa482d0624" lang="json"><name>Figure E-3</name>{
+  "algorithm": "ParallelHash-128",
+  "revision": "1.0",
+  "xof": [true, false],
+  "hexCustomization": false,
+  "blockSize": [
+    {
+      "min": 1,
+      "max": 16,
+      "increment": 1
+    }
+  ],
+  "outputLen": [
+    {
+      "min": 256,
+      "max": 4096,
+      "increment": 1
+    }
+  ],
+  "msgLen": [
+    {
+      "min": 0,
+      "max": 65536,
+      "increment": 1
+    }
+  ]
+}</sourcecode>
+
+
+<p id="_80b1ccb1-3101-ccc7-37a5-c6cc3497cac9">The following is an example JSON object advertising support for TupleHash-128.</p>
+
+<sourcecode id="_66ea4400-6cc6-df5b-470b-e0fe08b81fe7" lang="json"><name>Figure E-4</name>{
+  "algorithm": "TupleHash-128",
+  "revision": "1.0",
+  "xof": [true, false],
+  "hexCustomization": false,
+  "outputLen": [
+    {
+      "min": 256,
+      "max": 4096,
+      "increment": 1
+    }
+  ],
+  "msgLen": [
+    {
+      "min": 0,
+      "max": 65536,
+      "increment": 1
+    }
+  ]
+}</sourcecode>
+
+</annex><annex id="app-vs-ex" obligation="normative" displayorder="19">
+<title xref="Appendix F"><strong>Appendix F</strong> — <strong>Example Test Vectors JSON Objects</strong></title>
+<p id="_9e5156f3-5c43-7a8c-b04c-f886701308a0">The following is an example JSON object for cSHAKE test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_ff13a84c-b1de-75a9-1b85-493d3cef81b4" lang="json"><name>Figure F-1</name>[
+{ "acvVersion": &#x3c;acvp-version&#x3e; },
+{
+  "vsId": 0,
+  "algorithm": "CSHAKE-128",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "hexCustomization": false,
+      "tests": [
+        {
+          "tcId": 1,
+          "msg": "",
+          "len": 0,
+          "functionName": "",
+          "customization": "",
+          "outLen": 256
+        },
+        {
+          "tcId": 2,
+          "msg": "",
+          "len": 0,
+          "functionName": "",
+          "customization": "[",
+          "outLen": 323
+        }
+      ]
+    },
+    {
+      "tgId": 2,
+      "testType": "MCT",
+      "hexCustomization": false,
+      "tests": [
+        {
+          "tcId": 251,
+          "msg": "5FB4BAE618DABE000B9FDAB178388671",
+          "len": 128,
+          "functionName": "",
+          "customization": ""
+        }
+      ]
+    }
+  ]
+}
+]</sourcecode>
+
+
+<p id="_631c0ff4-8fec-988f-5ab3-2d827db1c9cb">The following is an example JSON object for KMAC test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_2f066e7f-5328-1626-cd9b-c9ae7efe969c"><name>Figure F-2</name>[
+{ "acvVersion": &#x3c;acvp-version&#x3e; },
+{
+  "vsId": 0,
+  "algorithm": "KMAC-128",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "xof": false,
+      "hexCustomization": false,
+      "tests": [
+        {
+          "tcId": 1,
+          "key": "57F9E51E6EE790EA224F33B09184980EC53D4ADC437269BC64CAD4E0BF43FC72",
+          "keyLen": 256,
+          "msg": "",
+          "msgLen": 0,
+          "macLen": 256,
+          "customization": ""
+        },
+        {
+          "tcId": 2,
+          "key": "BBEA88A07BD90177E199E488D8725CF926F4702A3703E53CF8E4EF19C10B8A6F80",
+          "keyLen": 257,
+          "msg": "C0",
+          "msgLen": 4,
+          "macLen": 264,
+          "customization": "i"
+        }
+      ]
+    },
+    {
+	  "tgId": 3,
+      "testType": "MVT",
+      "xof": false,
+      "hexCustomization": false,
+      "tests": [
+        {
+          "tcId": 501,
+          "key": "4389AD97264009279AD996F6BCFE30BBCF73644DBEFA109A60B3B9E3E3B29520",
+          "keyLen": 256,
+          "msg": "572C482D8B06A9F1493B1DB1D82621D5",
+          "msgLen": 128,
+          "mac": "DF47909B75ADB5DC4B508B8C6CEFB9D2CA28F8C36BC5677CB0FCC06C7F5021...",
+          "macLen": 4089,
+          "customization": ""
+        },
+        {
+          "tcId": 502,
+          "key": "71E9CAE4EA9FE46DA380B387A4F4C6A0E343B1117812E7252FDC73DB8BDC9437",
+          "keyLen": 256,
+          "msg": "7CA0261C96E9FEE41B2A855FC2765D2A",
+          "msgLen": 128,
+          "mac": "CF0A761E9AB2D7A5CB8B6CD437541AB1F1F74FAA28F6D7896631EF9B79E93...",
+          "macLen": 831,
+          "customization": "."
+        }
+      ]
+    }
+  ]
+}
+]</sourcecode>
+
+
+<p id="_e7e4e3d7-f51d-cbf5-cc87-cd30ec786818">The following is an example JSON object for ParallelHash test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_5439f80a-c752-de02-cf3c-96459611b906" lang="json"><name>Figure F-3</name>[
+{ "acvVersion": &#x3c;acvp-version&#x3e; },
+{
+  "vsId": 0,
+  "algorithm": "ParallelHash-128",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "function": "ParallelHash",
+      "xof": true,
+      "hexCustomization": false,
+      "tests": [
+        {
+          "tcId": 1,
+          "msg": "",
+          "len": 0,
+          "blockSize": 64,
+          "customization": "",
+          "outLen": 256
+        },
+        {
+          "tcId": 2,
+          "msg": "8B30",
+          "len": 12,
+          "blockSize": 64,
+          "customization": "O",
+          "outLen": 289
+        }
+      ]
+    },
+    {
+      "tgId": 3,
+      "testType": "MCT",
+      "function": "ParallelHash",
+      "xof": true,
+      "hexCustomization": false,
+      "tests": [
+        {
+          "tcId": 501,
+          "msg": "5ABA124055F84766A91603B7D1B57243",
+          "len": 128
+        }
+      ]
+    }
+  ]
+}
+]</sourcecode>
+
+
+<p id="_a36dfc3f-7e8e-4805-e0b3-9267b6be1eaf">The following is an example JSON object for TupleHash test vectors sent from the ACVP server to the crypto module.</p>
+
+<sourcecode id="_ccc7fb76-4bcf-9de4-6241-034fbd4c43ae" lang="json"><name>Figure F-4</name>[
+{ "acvVersion": &#x3c;acvp-version&#x3e; },
+{
+  "vsId": 0,
+  "algorithm": "TupleHash-128",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "xof": true,
+      "tests": [
+        {
+          "tcId": 1,
+          "tuple": [],
+          "len": [],
+          "customization": "",
+          "outLen": 256
+        },
+        {
+          "tcId": 2,
+          "tuple": [
+            ""
+          ],
+          "len": [
+            0
+          ],
+          "customization": "",
+          "outLen": 256
+        }
+      ]
+    },
+    {
+      "tgId": 3,
+      "testType": "MCT",
+      "xof": true,
+      "tests": [
+        {
+          "tcId": 381,
+          "tuple": [
+            "B1D95CA98C5AB973C5BB25B1880A67EC1AA78582DBC7877EFDAC53EF31516E0ED0E125A5"
+          ],
+          "len": [
+            288
+          ]
+        }
+      ]
+    }
+  ]
+}
+]</sourcecode>
+
+</annex><annex id="app-results-ex" obligation="normative" displayorder="20">
+<title xref="Appendix G"><strong>Appendix G</strong> — <strong>Example Test Results JSON Objects</strong></title>
+<p id="_027672aa-6f6a-27b6-c8e1-0746104af22e">The following is an example JSON object for cSHAKE test results sent from the crypto module to the ACVP server. The JSON objects for ParallelHash and TupleHash match this schema.</p>
+
+<sourcecode id="_d71d07c6-3a5f-e023-2789-a2f7a1c60ffa" lang="json"><name>Figure G-1</name>[
+{ "acvVersion": &#x3c;acvp-version&#x3e; },
+{
+  "vsId": 0,
+  "algorithm": "CSHAKE-128",
+  "revision": "1.0",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "md": "7F9C2BA4E88F827D616045507605853ED73B8093F6EFBC88EB1A6EACFA66EF26",
+          "outLen": 256
+        },
+        {
+          "tcId": 2,
+          "md": "4DF7FFE48F76B1083A35A28D8580B15E9910BBC7C1E55B4986B7C257A1F62E36317180B322D0BFAFC0",
+          "outLen": 323
+        },
+      ]
+    },
+    {
+      "tgId": 2,
+      "tests": [
+        {
+          "tcId": 251,
+          "resultsArray": [
+            {
+              "md": "59A04B1AF85FA05A1B830B04257A382119CCE8815C29C02EFCEA0A...",
+              "outLen": 2864
+            },
+            {
+              "md": "B9C5B6D1CF00B17F39B5D8688F187BF974E567FA42E89221C230EF...",
+              "outLen": 2176
+            },
+            {
+              "md": "FEFAB0000CC69905FF217BA2E8CABB45CE9AE46AC9E8AECAC7BEA5...",
+              "outLen": 1128
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+]</sourcecode>
+
+
+<p id="_2c828863-e403-43a1-bb5b-dad48a45e450">The following is an example JSON object for KMAC test results sent from the crypto module to the ACVP server.</p>
+
+<sourcecode id="_a66bb7a6-3827-55c1-4066-88b5f143e697" lang="json"><name>Figure G-2</name>[
+{ "acvVersion": &#x3c;acvp-version&#x3e; },
+{
+  "vsId": 0,
+  "algorithm": "KMAC-128",
+  "revision": "1.0",
+  "testGroups": [
+    {
+	  "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "mac": "5D3138562EBFFB47C88261CDDD988D077A3010EBE48AD01B75DFE5547F96963A"
+        },
+        {
+          "tcId": 2,
+          "mac": "FFC6F9C7D02D6D9F55434CE9301E5F6E0374EB64D11D2DCB596BEC894EB22E0787"
+        }
+      ]
+    },
+    {
+      "tgId": 4,
+      "tests": [
+        {
+          "tcId": 516,
+          "testPassed": true
+        },
+        {
+          "tcId": 517,
+          "testPassed": false
+        }
+      ]
+    }
+  ]
+}
+]</sourcecode>
+
+</annex>
+</nist-standard>

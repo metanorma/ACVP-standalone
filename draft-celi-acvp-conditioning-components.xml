@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP ConditioningComponents JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP ConditioningComponents</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.CONDITIONING-COMPONENTS</uri><docidentifier type="NIST">ACVP CONDITIONING-COMPONENTS Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol CONDITIONING-COMPONENTS Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.CONDITIONING-COMPONENTS.r-1.eng</docidentifier><docnumber>CONDITIONING-COMPONENTS</docnumber><date type="issued"><on>2020-09-01</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing Conditioning Component implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2020</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_9d8af766-db90-a7f2-cd46-8f0f06708284">This document defines the JSON schema for testing Conditioning Component implementations with the ACVP specification.</p>
+</abstract><foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative">
+<title>Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative">
+<title>Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174"/> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative">
+<title>Executive Summary</title>
+<p id="_1e6b990c-2caa-c739-79f5-542aed67c1d2">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Conditioning Component implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_8f8b58d7-1038-71de-fb28-c1fe71f9f258">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Conditioning Component implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative">
+<title>Supported Conditioning Components</title>
+<p id="_ff88a675-b49f-915f-304d-c3bf23852ab9">Conditioning is an optional process during entropy collection shown in Section 2.2.2 of <eref type="inline" bibitemid="SP800-90B" citeas="SP 800-90B"/>. There are two types of conditioning components supported by <eref type="inline" bibitemid="SP800-90B" citeas="SP 800-90B"/>: vetted and non-vetted. A vetted conditioning component comes from a specific list of options. All <eref type="inline" bibitemid="SP800-90B" citeas="SP 800-90B"/> vetted conditioning components are available via ACVP. This document rounds out the list with options not covered in other algorithm testing.</p>
+
+<p id="_0f7199ec-1ca8-8cff-716f-817fd218c9fc">The following conditioning components <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_28e0b2c3-4fbc-dd21-dfb8-08f3d7c5368c"><li><p id="_a11a974d-a393-44c9-95ae-4d6203a65f9c">ConditioningComponents / AES-CBC-MAC / SP800-90B</p>
+</li>
+<li><p id="_aff3c4a9-090b-7375-0573-75bb39834522">ConditioningComponents / BlockCipher_DF / SP800-90B</p>
+</li>
+<li><p id="_370f7269-c74b-b371-ae18-15435cdc57db">ConditioningComponents / Hash_DF / SP800-90B</p>
+</li>
+</ul>
+
+<clause id="hash_supported" obligation="normative">
+<title>Supported Hash Functions for Hash_DF</title>
+<p id="_b16f458e-c5b6-afd8-e27c-e266a9bc7943">For the Hash Derivation Function, Hash_DF, the following hash functions <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_a70938fe-3b34-dc7a-ad46-291b29da8460"><li><p id="_9ec6e8fe-c97c-24ba-0681-c1a1b8041cad">SHA-1</p>
+</li>
+<li><p id="_0697328e-689f-9f12-dee6-370ab86d5707">SHA2-224</p>
+</li>
+<li><p id="_f443f260-d7ab-5bc4-e002-ce6abdcf3649">SHA2-256</p>
+</li>
+<li><p id="_b64c2783-4b84-9b36-81f0-c256f8a2fc53">SHA2-384</p>
+</li>
+<li><p id="_3e814e5d-2587-cd6c-d1b7-1aba655752a5">SHA2-512</p>
+</li>
+<li><p id="_db024b37-21c1-1e7a-19f0-f4feb548f37e">SHA2-512/224</p>
+</li>
+<li><p id="_137dc5e7-451b-4a74-d838-6b7b6f1c5d1e">SHA2-512/256</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_e8a5d4a1-f500-759c-0f9f-d10009f6083e">This section describes the design of the tests used to validate implementations of Conditioning Components.</p>
+
+<clause id="_test_types" obligation="normative">
+<title>Test Types</title>
+<p id="_56e76630-2e94-bbc3-aa96-38a9045a3a8e">There is one test-type for Conditioning Components: Algorithm Functional Tests. The testType field definitions are:</p>
+
+<ul id="_bb451b92-a709-9fe6-7b71-5b993dc324f2"><li><p id="_eb361221-ef28-9373-86a9-405765876e2f">“AFT” — Algorithm Functional Test. These tests can be processed by the client using a normal ‘MAC’, or ‘derive’ operation. AFTs cause the implementation under test to exercise nomral operations on a single block, multiple blocks, or partial blocks. In all cases,random data is used. The functional tests are designed to verify that the logical components of the cryptographic implementation (block chunking, block padding etc.) are operating correctly.</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_515e29c5-2747-a987-9252-ea2c26da27b0">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of Conditioning Component algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="cipher_caps_reg" obligation="normative">
+<title>Conditioning Component Algorithm Capabilities Registration</title>
+<p id="_2130bb69-cd75-20c2-55fb-96b4e8b46373">This section describes the constructs for advertising support of conditioning component algorithms to the ACVP server.</p>
+
+<clause id="mode_cipher_caps" obligation="normative">
+<title>Block Cipher Based Conditioning Component Capabilities</title>
+<p id="_1b30e75d-e852-55e1-5848-b22dd544cd60">The following ConditioningComponent / AES-CBC-MAC / SP800-90B and ConditioningComponent / BlockCipher_DF / SP800-90B capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="caps_table">
+<name>Block Cipher Conditioning Component Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“ConditioningComponent”</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The specific conditioning component to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“AES-CBC-MAC” or “BlockCipher_DF”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“SP800-90B”</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The length of keys supported in bits</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">[128, 192, 256]</td>
+</tr><tr><td valign="top" align="left">payloadLen</td>
+<td valign="top" align="left">The lengths in bits supported by the IUT</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">[{”min”: 8, “max”: 65536, “inc”: 8}]</td>
+</tr></tbody>
+<note id="_e447bc65-702c-b7fd-67fe-9c02c33e5dfd"><p id="_b1e78aa7-6296-10fb-98fb-5ac967739ac3">For ConditioningComponent / AES-CBC-MAC / SP800-90B, the payload itself is processed through the encryption engine. Therefore the minimum ‘payloadLen’ is 128 bits and the minimum increment is 128 bits. In other words, all values within the ‘payloadLen’ must correspond to complete AES blocks in bits (a multiple of 128).</p>
+</note></table>
+
+
+
+<p id="_b7c203a5-5b0d-e7b7-d64f-a6a22013b002">The following is an example of a registration for ConditioningComponents / AES-CBC-MAC / SP800-90B</p>
+
+<sourcecode id="_e4ece796-cc8f-dfcb-f1d0-d867a5a71d9d" lang="json">{
+  "algorithm": "ConditioningComponent",
+  "mode": "AES-CBC-MAC",
+  "revision": "SP800-90B",
+  "keyLen": [
+    128,
+    192,
+    256
+  ],
+  "payloadLen": [
+    {
+      "min": 128,
+      "max": 65536,
+      "increment": 128
+    }
+  ]
+}</sourcecode>
+
+
+<p id="_5288f93c-9a52-a5f9-2099-7295788ff76f">The following is an example of a registration for ConditioningComponents / BlockCipher_DF / SP800-90B</p>
+
+<sourcecode id="_6c517ed2-1219-d7ab-8bc7-d4e921e89ace" lang="json">{
+  "algorithm": "ConditioningComponent",
+  "mode": "BlockCipher_DF",
+  "revision": "SP800-90B",
+  "keyLen": [
+    128,
+    192,
+    256
+  ],
+  "payloadLen": [
+    {
+      "min": 8,
+      "max": 65536,
+      "increment": 8
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="mode_hash_caps" obligation="normative">
+<title>Hash Based Conditioning Component Capabilities</title>
+<p id="_028fcf37-1a36-c7c0-3edc-3c87636f6b1c">The following ConditioningComponent / Hash_DF / SP800-90B capabilities <strong>MAY</strong> be advertised by the ACVP compliant crypto module:</p>
+
+<table id="hash_caps_table">
+<name>Hash Conditioning Component Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“ConditioningComponent”</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The specific conditioning component to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“Hash_DF”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“SP800-90B”</td>
+</tr><tr><td valign="top" align="left">capabilities</td>
+<td valign="top" align="left">An array of supported capability objects</td>
+<td valign="top" align="left">array of objects</td>
+<td valign="top" align="left">Each element in the array is made of exactly one ‘payloadLen’ field and one ‘hashAlg’ field</td>
+</tr><tr><td valign="top" align="left">payloadLen</td>
+<td valign="top" align="left">The lengths in bits supported by the IUT</td>
+<td valign="top" align="left">domain</td>
+<td valign="top" align="left">[{”min”: 1, “max”: 65536, “inc”: 1}]</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash algorithm that supports the specific lengths</td>
+<td valign="top" align="left">array</td>
+<td valign="top" align="left">Any non-zero number of elements from <xref target="hash_supported"/></td>
+</tr></tbody>
+</table>
+
+<p id="_d597fda8-3e7d-b27e-2319-bd7d2493ab6d">The following is an example of a registration for ConditioningComponents / Hash_DF / SP800-90B</p>
+
+<sourcecode id="_30ba97db-4960-6ada-b1b0-a6d7359bdc8b" lang="json">{
+  "algorithm": "ConditioningComponent",
+  "mode": "Hash_DF",
+  "revision": "SP800-90B",
+  "capabilities": [
+    {
+      "payloadLen": [
+        {
+          "min": 1,
+          "max": 65536,
+          "increment": 1
+        }
+      ],
+      "hashAlg": [
+        "SHA-1",
+        "SHA2-224",
+        "SHA2-256",
+        "SHA2-384",
+        "SHA2-512",
+        "SHA2-512/224",
+        "SHA2-512/256"
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_1a5ae28d-ab3c-3c18-c7b3-3d1a5c42559c">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with Conditioning Component algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+</clause>
+
+<clause id="tgjs" obligation="normative">
+<title>Test Vectors</title>
+<p id="_a6446d13-d0c6-c11d-223b-83ce196f39f3">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual crypto algorithm, such as ConditioningComponent / AES-CBC-MAC / SP800-90B, ConditioningComponent / Hash_DF / SP800-90B, etc. This section describes the JSON schema for a test vector set used with Conditioning Component crypto algorithms.</p>
+
+<p id="_f20358a6-1915-581f-f00b-4b9d90dee7f9">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="conditioningcomponent_vs_top_table">
+<name>Conditioning Component Vector Set JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The mode used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test group JSON objects, which are defined in <xref target="cbc_mac_tgjs"/>, <xref target="bc_df_tgjs"/>, or <xref target="hash_df_tgjs"/> depending on the algorithm</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<clause id="cbc_mac_tgjs" obligation="normative">
+<title>Conditioning Component AES-CBC-MAC Test Groups JSON Schema</title>
+<p id="_f92b0660-8d70-1939-ca77-1fd5dd2fb96f">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the ConditioningComponent / AES-CBC-MAC / SP800-90B JSON elements of the Test Group JSON object.</p>
+
+<table id="cbc_mac_vs_tg_table">
+<name>Conditioning Component AES-CBC-MAC Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The unique group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the test data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The length of the key used in the group</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases, see <xref target="cbc_mac_tvjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_5426e7a2-2bf3-5d04-2e0f-3b1f737eaf8e">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt.</p>
+</clause>
+
+<clause id="cbc_mac_tvjs" obligation="normative">
+<title>Conditioning Component AES-CBC-MAC Test Case JSON Schema</title>
+<p id="_8e2f584d-49c4-065c-4493-0263d9977019">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ConditioningComponent / AES-CBC-MAC / SP800-90B test vector.</p>
+
+<table id="_9b1d32fb-7e74-6e2d-5b73-7127a1facecc">
+<name>Conditioning Component AES-CBC-MAC Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">pt</td>
+<td valign="top" align="left">The plaintext</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">key</td>
+<td valign="top" align="left">The key</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_92323e30-780b-1a3e-9835-fa13a8de6d93">Here is an abbreviated yet fully constructed example of the prompt for ConditioningComponent / AES-CBC-MAC / SP800-90B</p>
+
+<sourcecode id="_fc601153-b387-fb86-41ec-b49838fe9e0d" lang="json">{
+  "vsId": 42,
+  "algorithm": "ConditioningComponent",
+  "mode": "AES-CBC-MAC",
+  "revision": "SP800-90B",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "testType": "AFT",
+      "keyLen": 128,
+      "tests": [
+        {
+          "tcId": 1,
+          "pt": "FE44418EF94E5DA8...",
+          "key": "E618ADF7E7CEBB46465C0B18A924768A"
+        },
+        {
+          "tcId": 2,
+          "pt": "6ABEED30F813C137D47BF1E9E837DAEE",
+          "key": "D1C1B7FFB2CCE0BBF13D4F7B4A246A8D"
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="bc_df_tgjs" obligation="normative">
+<title>Conditioning Component BlockCipher_DF Test Groups JSON Schema</title>
+<p id="_052a3328-2df6-372b-8f5b-aba17fa39255">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the ConditioningComponent / BlockCipher_DF / SP800-90B JSON elements of the Test Group JSON object.</p>
+
+<table id="bc_df_vs_tg_table">
+<name>Conditioning Component BlockCipher_DF Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The unique group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the test data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">keyLen</td>
+<td valign="top" align="left">The length of the key used in the group</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases, see <xref target="bc_df_tvjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_d6a4921e-d650-e95d-d3c9-eda0a324d2ba">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt.</p>
+</clause>
+
+<clause id="bc_df_tvjs" obligation="normative">
+<title>Conditioning Component BlockCipher_DF Test Case JSON Schema</title>
+<p id="_dc9d32ba-932a-fa95-cb10-f259197a86e3">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ConditioningComponent / BlockCipher_DF / SP800-90B test vector.</p>
+
+<table id="_d024490d-96ce-9d44-ee83-a374039e25d9">
+<name>Conditioning Component BlockCipher_DF Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">payload</td>
+<td valign="top" align="left">The input into the derivation function</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">payloadLen</td>
+<td valign="top" align="left">The length in bits of the input</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+</table>
+
+<p id="_2c800bb7-bb54-1d92-a34f-1ec33ec9e5e5">Here is an abbreviated yet fully constructed example of the prompt for ConditioningComponent / BlockCipher_DF / SP800-90B</p>
+
+<sourcecode id="_f9ec3ef5-9f6f-6dbf-db80-1471667dbc11" lang="json">{
+  "vsId": 42,
+  "algorithm": "ConditioningComponent",
+  "mode": "BlockCipher_DF",
+  "revision": "SP800-90B",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "keyLen": 128,
+      "testType": "AFT",
+      "tests": [
+        {
+          "tcId": 1,
+          "payload": "2874215320DADAC...",
+          "payloadLen": 54112
+        },
+        {
+          "tcId": 2,
+          "payload": "36",
+          "payloadLen": 8
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="hash_df_tgjs" obligation="normative">
+<title>Conditioning Component Hash_DF Test Groups JSON Schema</title>
+<p id="_89c2706c-95bb-205f-b412-7129cbec1821">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the ConditioningComponent / Hash_DF / SP800-90B JSON elements of the Test Group JSON object.</p>
+
+<table id="hash_df_vs_tg_table">
+<name>Conditioning Component Hash_DF Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The unique group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Describes the operation the client should perform on the test data</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">hashAlg</td>
+<td valign="top" align="left">The hash algorithm used in the derivation function</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test cases, see <xref target="hash_df_tvjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_169b21c6-4db7-b4cf-1bdb-1545551f1df6">The ‘tgId’, ‘testType’ and ‘tests’ objects <strong>MUST</strong> appear in every test group element communicated from the server to the client as a part of a prompt.</p>
+</clause>
+
+<clause id="hash_df_tvjs" obligation="normative">
+<title>Conditioning Component Hash_DF Test Case JSON Schema</title>
+<p id="_87aec23b-b12a-3177-3ddb-0692869c9013">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ConditioningComponent / Hash_DF / SP800-90B test vector.</p>
+
+<table id="_a9577811-1f5f-18ca-3b01-c548483d89b2">
+<name>Conditioning Component Hash_DF Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">payload</td>
+<td valign="top" align="left">The input into the derivation function</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">payloadLen</td>
+<td valign="top" align="left">The length in bits of the input</td>
+<td valign="top" align="left">integer</td>
+</tr></tbody>
+</table>
+
+<p id="_c0e3e2fc-597b-4a42-93a1-c44e213bff6a">Here is an abbreviated yet fully constructed example of the prompt for ConditioningComponent / Hash_DF / SP800-90B</p>
+
+<sourcecode id="_43b11cee-5a4f-8292-37f0-358a27c95328" lang="json">{
+  "vsId": 42,
+  "algorithm": "ConditioningComponent",
+  "mode": "Hash_DF",
+  "revision": "SP800-90B",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "hashAlg": "SHA2-256",
+      "testType": "AFT",
+      "tests": [
+        {
+          "tcId": 1,
+          "payload": "2874215320DADAC...",
+          "payloadLen": 54112
+        },
+        {
+          "tcId": 2,
+          "payload": "36",
+          "payloadLen": 8
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="vector_responses" obligation="normative">
+<title>Test Vector Responses</title>
+<p id="_049aa42b-4146-9760-0262-b77702639188">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="_68826dcd-1771-1db6-c32e-1ed61d5cea6e">
+<name>Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The version of the protocol</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group data, see <xref target="response_group_table"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_cd544524-432e-bdbe-53fb-9ad5ed2a5abf">An example of this is the following</p>
+
+<sourcecode id="_0a795f20-9da6-763d-2cbe-f763770553aa" lang="json">{
+    "acvVersion": "version",
+    "vsId": 1,
+    "testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_73e19dea-ea1e-09ea-e8c1-c511514f6f0b">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in their response. This structure helps accommodate that. The following is a skeleton for the test group structure. Additional properties may be included at this level depending on the algorithm, mode and revision.</p>
+
+<table id="response_group_table">
+<name>Response Test Group JSON Objects</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case data, depending on the algorithm see <xref target="cbc_mac_vs_tr_table"/>, <xref target="bc_df_vs_tr_table"/>, or <xref target="hash_df_vs_tr_table"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_7a72c26f-9132-3fa7-e28e-1158fdd2a9a9">An example of this is the following</p>
+
+<sourcecode id="_8dc30335-6651-e3dc-9209-1be54d967db3" lang="json">{
+    "tgId": 1,
+    "tests": [ ... ]
+}</sourcecode>
+
+
+<clause id="cbc_mac_responses" obligation="normative">
+<title>Conditioning Component AES-CBC-MAC Test Responses</title>
+<p id="_2c5b1094-2955-d062-5262-0e5568b801bd">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ConditioningComponent / AES-CBC-MAC / SP800-90B test vector.</p>
+
+<p id="_11e9a08d-30d7-ce14-b3e8-baa44ad54176">The following table describes the JSON elements for the test case responses for ConditioningComponent / AES-CBC-MAC / SP800-90B.</p>
+
+<table id="cbc_mac_vs_tr_table">
+<name>Conditioning Component AES-CBC-MAC Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">ct</td>
+<td valign="top" align="left">The ciphertext output</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+<note id="_e1e27133-9cb5-a4eb-af2c-4cf1c3599d1f"><p id="_96872714-c856-cfea-9d5c-708e9c71aee9">In the case of AES-CBC-MAC, the output is always 128-bits regardless of the size of the input.</p>
+</note></table>
+
+
+
+<p id="_46e805f4-1e03-613c-e570-a7edbdb3abff">The following is an example of the response for ConditioningComponent / AES-CBC-MAC / SP800-90B .</p>
+
+<sourcecode id="_9b281d9f-d54d-e0f9-37f5-1d8c5cf49f46" lang="json">{
+  "vsId": 42,
+  "algorithm": "ConditioningComponent",
+  "mode": "AES-CBC-MAC",
+  "revision": "SP800-90B",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "ct": "4A8575F3EA300812C60B19678620CA9F"
+        },
+        {
+          "tcId": 2,
+          "ct": "2F85CD9748F4CEE2F9BAE939874D8321"
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="bc_df_responses" obligation="normative">
+<title>Conditioning Component BlockCipher_DF Test Responses</title>
+<p id="_74e901a8-e636-cb19-501f-ddee18e84881">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ConditioningComponent / BlockCipher_DF / SP800-90B test vector.</p>
+
+<p id="_27559088-b1f9-52cc-e222-d155e59d4cfb">The following table describes the JSON elements for the test case responses for ConditioningComponent / BlockCipher_DF / SP800-90B.</p>
+
+<table id="bc_df_vs_tr_table">
+<name>Conditioning Component BlockCipher_DF Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">requestedBits</td>
+<td valign="top" align="left">The output of the derivation function</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+<note id="_fc388550-7faa-4b36-4af9-2aaa9b6a1fe1"><p id="_6d3e8eda-d64c-5ce5-3218-7541df129c57">In the case of BlockCipher_DF, the output is always 128-bits regardless of the size of the input.</p>
+</note></table>
+
+
+
+<p id="_3e2c21de-a4a1-2a2b-ec4b-febe730d3495">The following is an example of the response for ConditioningComponent / BlockCipher_DF / SP800-90B .</p>
+
+<sourcecode id="_68907889-fee2-5387-a1db-9bbde108ba0d" lang="json">{
+  "vsId": 42,
+  "algorithm": "ConditioningComponent",
+  "mode": "BlockCipher_DF",
+  "revision": "SP800-90B",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "requestedBits": "4A8575F3EA300812C60B19678620CA9F"
+        },
+        {
+          "tcId": 2,
+          "requestedBits": "2F85CD9748F4CEE2F9BAE939874D8321"
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+
+<clause id="hash_df_responses" obligation="normative">
+<title>Conditioning Component Hash_DF Test Responses</title>
+<p id="_4b5633c6-6ae7-b624-c4a0-7fb3883c72d6">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each ConditioningComponent / Hash_DF / SP800-90B test vector.</p>
+
+<p id="_ccc6e5db-51bd-0fa6-9019-1c13de609754">The following table describes the JSON elements for the test case responses for ConditioningComponent / Hash_DF / SP800-90B.</p>
+
+<table id="hash_df_vs_tr_table">
+<name>Conditioning Component Hash_DF Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">requestedBits</td>
+<td valign="top" align="left">The output of the derivation function</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_0e19b3e4-ddc4-f32d-053a-f776a09fafed">The following is an example of the response for ConditioningComponent / Hash_DF / SP800-90B .</p>
+
+<sourcecode id="_c3a2f29a-8781-ef3e-256a-c2019cfab4e1" lang="json">{
+  "vsId": 42,
+  "algorithm": "ConditioningComponent",
+  "mode": "Hash_DF",
+  "revision": "SP800-90B",
+  "testGroups": [
+    {
+      "tgId": 1,
+      "tests": [
+        {
+          "tcId": 1,
+          "requestedBits": "4A8575F3EA300812C60B19678620CA9F"
+        },
+        {
+          "tcId": 2,
+          "requestedBits": "2F85CD9748F4CEE2F9BAE939874D8321"
+        }
+      ]
+    }
+  ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_26e42885-fd06-7cb0-0381-6b9f258267ca">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_8a1ed70c-5c19-da85-1220-cc4eb8321361"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_5667fcf9-a617-2d26-d811-00df5a203d59">2020-09-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_219bcd50-dad1-9b69-deb9-8f937d39dc04" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_8bf4f1ec-81cc-bf05-fdc8-97a1a79d601e">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f2760c4d-df02-193b-b0c9-1bb493e0eb6d">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+ <bibitem id="SP800-90B" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for the Entropy Sources Used for Random Bit Generation</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-90b/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-90B</uri>  <docidentifier type="NIST" primary="true">SP 800-90B</docidentifier>  <date type="published">    <on>2018-01</on>  </date>  <date type="issued">    <on>2018-01</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Dr. Meltem Sönmez Turan</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Elaine B. Barker</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">John M. Kelsey</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Kerry A. McKay</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Mary L. Baish</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Michael Boyle</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2018</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <place>Gaithersburg, MD</place>  <keyword>entropy source</keyword>  <keyword>health testing</keyword>  <keyword>min-entropy</keyword>  <keyword>noise source</keyword>  <keyword>predictors</keyword>  <keyword>Conditioning functions</keyword>  <keyword>random number generators</keyword></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

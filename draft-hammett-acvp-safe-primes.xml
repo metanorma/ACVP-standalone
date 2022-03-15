@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP SafePrimes JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP SafePrimes JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SafePrimes</uri><docidentifier type="NIST">ACVP SafePrimes Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol SafePrimes Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.SafePrimes.r-1.eng</docidentifier><docnumber>SafePrimes</docnumber><date type="issued"><on>2019-06-05</on></date><contributor><role type="author"/><person>
+<name><completename>Russell Hammett</completename></name>
+<affiliation><organization>
+<name>HII Technical Solutions Division</name>
+<address><formattedAddress>302 Sentinel Drive, Suite #300, Annapolis Junction, MD 20701</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing SafePrimes implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_43f724f7-740b-c121-a394-c392e7e32194">This document defines the JSON schema for testing SafePrimes implementations with the ACVP specification.</p>
+</abstract><foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative">
+<title>Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative">
+<title>Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174"/> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative">
+<title>Executive Summary</title>
+<p id="_20153bcc-ab4b-7c77-c059-460b9129ff37">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SafePrimes implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_7994cb31-a549-97d3-7a30-6a7d018f3218">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SafePrimes implementations using ACVP.</p>
+</clause>
+
+<clause id="supported" obligation="normative">
+<title>Supported Safe Prime Functions</title>
+<p id="_dd77fd9b-6c23-c7d8-807f-a50a3b920108">The following Safe Prime operations <strong>MAY</strong> be advertised by the ACVP compliant cryptographic module listed as “algorithm” / “mode” / “revision”:</p>
+
+<ul id="_8e6bbd41-3b1a-2b59-5524-054524840080"><li><p id="_273de7eb-44d4-1334-6821-de190e899b60">safePrimes / keyGen / 1.0</p>
+</li>
+<li><p id="_936b4364-e97a-fc70-b8ec-944f9b51b328">safePrimes / keyVer / 1.0</p>
+</li>
+</ul>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_7ea7e05a-0ed4-4327-8c29-4d2b4f660ce5">The ACVP server performs a set of tests on the specified SafePrimes algorithm in order to assess the correctness and robustness of the implementation. A typical ACVP validation session <strong>SHALL</strong> require multiple tests to be performed for every supported permutation of SafePrimes capabilities. This section describes the design of the tests used to validate implementations of the SafePrimes algorithms.</p>
+
+<clause id="_test_types" obligation="normative">
+<title>Test Types</title>
+<ul id="_2dc55415-c552-2017-1fb1-8bf8cfbe790e"><li><p id="_ee7a5705-331d-e970-1f81-04dd5eebd936">SafePrimes / keyGen / 1.0 “AFT” — Algorithm Functional Test. The IUT is <strong>REQUIRED</strong> for each test case provided, to generate a key pair based on a SafePrime group. The IUT generated key pairs are sent to the ACVP server and are checked for validity against the group.</p>
+</li>
+<li><p id="_ece86d4a-f764-4575-21c2-9897754ec822">SafePrimes / keyVer / 1.0 “AFT” — Algorithm Functional Test. The ACVP server generates a series of key-pairs to communicate to the IUT per safe prime group. The IUT is <strong>REQUIRED</strong> to validate the key-pair satisfies <tt>0 &lt; x &lt; q</tt> and <tt>y = g^x mod p</tt>.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_test_coverage" obligation="normative">
+<title>Test Coverage</title>
+<p id="_979ef262-3e3a-7eea-a0f2-f3a190bc1230">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="SP800-56Ar3" citeas="SP 800-56A Rev. 3"/>, <eref type="inline" bibitemid="RFC3526" citeas="RFC 3526"/>, and <eref type="inline" bibitemid="RFC7919" citeas="RFC 7919"/>.</p>
+
+<clause id="safeprime-coverage" obligation="normative">
+<title>SafePrime Requirements Covered</title>
+<ul id="_64611985-6a81-cef3-16bf-384dc76bd5ed"><li><p id="_41192440-d323-e569-40d6-1d0da1601055">SP800-56Ar3 — Section 5.6.1.1.1 Using the Approved Safe-Prime Groups. This ACVP server specification makes testing available/validatable for use in Safe-Prime Groups key generation for KAS-FFC as specified in <eref type="inline" bibitemid="SP800-56Ar3" citeas="SP 800-56A Rev. 3"/>.</p>
+</li>
+<li><p id="_860b1aca-2e2a-4495-e704-ebdbbc269fdc">RFC3526 — All safe prime groups defined in this document are made available for testing via the ACVP server.</p>
+</li>
+<li><p id="_2c53f507-8d3b-64c5-208a-53912356046a">RFC7919 — All safe prime groups defined in this document are made available for testing via the ACVP server.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="safeprime-not-coverage" obligation="normative">
+<title>SafePrime Requirements Not Covered</title>
+<p id="_119f9c74-15f8-fc3c-0c25-2ba0288b21c1">N/A</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_e793644d-2c06-8c2f-1bc6-59305c9a01c6">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of SafePrimes algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="safe-prime-capabilities" obligation="normative">
+<title>SafePrime Prerequisites</title>
+<p id="_07f98c51-3736-7da2-f6db-215243ad35bb">Each safePrimes / * / * implementation relies on other cryptographic primitives. For example, safePrimes / * / * uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<table id="rereqs_table">
+<name>Required SafePrime Prerequisite Algorithms JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">DRBG, SHA, SHA_OPT2</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">actual number or “same”</td>
+</tr><tr><td valign="top" align="left">prereqAlgVal</td>
+<td valign="top" align="left">prerequistie algorithm validation</td>
+<td valign="top" align="left">object with algorithm and valValue properties</td>
+<td valign="top" align="left">see above</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">prerequistie algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">see above</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="_safeprime_capabilities" obligation="normative">
+<title>SafePrime Capabilities</title>
+<p id="_ee418d96-2a8a-d7e4-1beb-a38dc6bf6e2a">Each algorithm capability advertised is a self-contained JSON object using the following values.</p>
+
+<table id="capabilities_table">
+<name>SafePrime Capabilities JSON Properties</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+<th valign="top" align="left">Valid Values</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm under test</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“safePrimes”</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The SafePrimes mode to be validated</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“keyGen” or “keyVer”</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+<td valign="top" align="left">“1.0”</td>
+</tr><tr><td valign="top" align="left">prereqVals</td>
+<td valign="top" align="left">Prerequisite algorithm validations</td>
+<td valign="top" align="left">array of prereqAlgVal objects</td>
+<td valign="top" align="left">See <xref target="rereqs_table"/></td>
+</tr><tr><td valign="top" align="left">safePrimeGroups</td>
+<td valign="top" align="left">Safe prime groups to test with</td>
+<td valign="top" align="left">array of string</td>
+<td valign="top" align="left">Any non-empty subset of {”MODP-2048”, “MODP-3072”, “MODP-4096”, “MODP-6144”, “MODP-8192”, “ffdhe2048”, “ffdhe3072”, “ffdhe4096”, “ffdhe6144”, “ffdhe8192”}</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="_safe_prime_example_registrations" obligation="normative">
+<title>Safe Prime Example Registrations</title>
+<p id="_c19163be-c423-3650-9b5f-46e341094e7d">A safePrime / keyGen / 1.0 registration looks like the following</p>
+
+<sourcecode id="_95677efb-2af4-6bbf-f8d3-a53d6f7caa56" lang="json">{
+	"algorithm": "safePrimes",
+	"mode": "keyGen",
+	"revision": "1.0",
+	"prereqVals": [{
+		"algorithm": "DRBG",
+		"valValue": "123456"
+	}],
+	"safePrimeGroups": [
+		"ffdhe2048",
+		"MODP-2048"
+	]
+}</sourcecode>
+
+
+<p id="_6a86b73f-2074-e6f2-eaa2-3f12966053fc">A safePrime / keyVer / 1.0 registration looks like the following</p>
+
+<sourcecode id="_6c96c165-f8b5-3eff-5b8f-6237cdabc880" lang="json">{
+    "algorithm": "safePrimes",
+    "mode": "keyVer",
+    "revision": "1.0",
+    "prereqVals": [{
+        "algorithm": "DRBG",
+        "valValue": "123456"
+    }],
+    "safePrimeGroups": [
+        "ffdhe2048",
+        "MODP-2048"
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_23503de1-0fac-fd2a-fe47-c824e95c2882">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SafePrimes algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+</clause>
+
+<clause id="tgjs" obligation="normative">
+<title>Test Vectors</title>
+<p id="_f1102480-09fc-e9a9-eea6-1e11281d1539">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual crypto algorithm, such as SafePrimes / keyVer / 1.0, etc. This section describes the JSON schema for a test vector set used with Safe Primes crypto algorithms.</p>
+
+<p id="_f20358a6-1915-581f-f00b-4b9d90dee7f9">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="rsa_vs_top_table">
+<name>Safe Primes Vector Set JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The algorithm used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">The mode used for the test vectors</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test group JSON objects, which are defined in <xref target="keyGen_test_vectors"/>, or <xref target="keyVer_test_vectors"/> depending on the algorithm</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<clause id="keyGen_test_vectors" obligation="normative">
+<title>SafePrime keyGen Test Vectors</title>
+<clause id="keyGen_tgjs" obligation="normative">
+<title>SafePrime keyGen Test Groups JSON Schema</title>
+<p id="_1c6b7f54-5588-cdf1-c842-d69d39453448">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_474ebe8d-8f44-4409-c0db-b91b1373bff5">The test group for safePrime / keyGen / 1.0 is as follows:</p>
+
+<table id="keyGen_vs_tg_table">
+<name>Safe Prime keyGen Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test operation performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">safePrimeGroup</td>
+<td valign="top" align="left">The safe prime group that the IUT should use for generating keys</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="keyGen_tvjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="keyGen_tvjs" obligation="normative">
+<title>SafePrime keyGen Test Case JSON Schema</title>
+<p id="_baca2fa8-18a0-f867-c96b-e67b91be4441">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each safePrime / keyGen / 1.0 test vector.</p>
+
+<table id="keyGen_vs_tc_table">
+<name>SafePrime keyGen Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">deferred</td>
+<td valign="top" align="left">States that the values are generated by the client</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+<note id="_1c0ea975-3a24-4252-7b20-2e3292ec3df7"><p id="_243557ed-b52b-90fa-8fb1-48e02f4e7727">The client is responsible for generating a key to be verified by the server.</p>
+</note></table>
+
+
+
+<p id="_08d6b382-26f0-e755-b4a2-eb780eb03910">The following is an example JSON object sent from the server to the client for safePrimes / keyGen / 1.0.</p>
+
+<sourcecode id="_1ee793a4-a77c-0471-f946-a13714795d94" lang="json">[
+    {
+        "acvVersion": &lt;acvp-version&gt;
+    },
+    {
+        "vsId": 0,
+        "algorithm": "safePrimes",
+        "mode": "keyGen",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "safePrimeGroup": "ffdhe2048",
+                "testType": "AFT",
+                "tests": [
+                    {
+                        "tcId": 1
+                    },
+                    {
+                        "tcId": 2
+                    },
+                    {
+                        "tcId": 3
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "testType": "AFT",
+                "safePrimeGroup": "MODP-2048",
+                "tests": [
+                    {
+                        "tcId": 4
+                    },
+                    {
+                        "tcId": 5
+                    },
+                    {
+                        "tcId": 6
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="keyVer_test_vectors" obligation="normative">
+<title>SafePrime keyVer Test Vectors</title>
+<clause id="keyVer_tgjs" obligation="normative">
+<title>SafePrime keyVer Test Groups JSON Schema</title>
+<p id="_40ecd5a9-05e0-9b26-2b80-34752ecc9633">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.</p>
+
+<p id="_5bf52b31-46fa-b479-8acc-f8fb1eb517cc">The test group for safePrime / keyVer / 1.0 is as follows:</p>
+
+<table id="keyVer_vs_tg_table">
+<name>Safe Prime keyVer Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">The test operation performed</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">safePrimeGroup</td>
+<td valign="top" align="left">The safe prime group that the IUT should use for validating keys</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test vector JSON objects, which are defined in <xref target="keyVer_tvjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+</clause>
+
+<clause id="keyVer_tvjs" obligation="normative">
+<title>SafePrime keyVer Test Case JSON Schema</title>
+<p id="_54827742-893f-a016-5c81-2e64e54c221d">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each safePrime / keyVer / 1.0 test vector.</p>
+
+<table id="keyVer_vs_tc_table">
+<name>SafePrime keyVer Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">x</td>
+<td valign="top" align="left">The private key component X</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">y</td>
+<td valign="top" align="left">The public key component Y</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_b1cf2b2a-34f6-1870-3893-8e56a71ac7bb">The following is an example JSON object sent from the server to the client for safePrimes / keyVer / 1.0.</p>
+
+<sourcecode id="_ddd8f636-d854-6377-ee5e-5265d44acb9a" lang="json">[
+    {
+        "acvVersion": &lt;acvp-version&gt;
+    },
+    {
+        "vsId": 0,
+        "algorithm": "safePrimes",
+        "mode": "keyVer",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "safePrimeGroup": "ffdhe2048",
+                "testType": "AFT",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "x": "399C088E4A1E1A03...",
+                        "y": "FADA8667E9126779..."
+                    },
+                    {
+                        "tcId": 2,
+                        "x": "1DB3138EF400DDA7...",
+                        "y": "70AACAB9A69AFE62..."
+                    },
+                    {
+                        "tcId": 3,
+                        "x": "099B19789CF2239F...",
+                        "y": "C8F7038CB275E50F..."
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "testType": "AFT",
+                "safePrimeGroup": "MODP-2048",
+                "tests": [
+                    {
+                        "tcId": 4,
+                        "x": "248091D90CB00F58EF...",
+                        "y": "C08BF18980879C066E..."
+                    },
+                    {
+                        "tcId": 5,
+                        "x": "74B61CE8B689BAA23B...",
+                        "y": "8EE385FFA770C9C9BF..."
+                    },
+                    {
+                        "tcId": 6,
+                        "x": "1B73FF75B0A20D99D0...",
+                        "y": "4BF4509C0258E8E484..."
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="responses" obligation="normative">
+<title>Test Vector Responses</title>
+<p id="_049aa42b-4146-9760-0262-b77702639188">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="response_table">
+<name>Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">The ACVP version used</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">The vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">The test group objects in the response, see <xref target="response_group_table"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_cd544524-432e-bdbe-53fb-9ad5ed2a5abf">An example of this is the following</p>
+
+<sourcecode id="_0a795f20-9da6-763d-2cbe-f763770553aa" lang="json">{
+    "acvVersion": "version",
+    "vsId": 1,
+    "testGroups": [ ... ]
+}</sourcecode>
+
+
+<p id="_50fa4032-bf22-9a12-f1eb-86fc711f4e06">The ‘testGroups’ section is used to organize the ACVP client response in a similar manner to how it distributes vectors. Some algorithm / mode / revision combinations might require that additional test group properties are provided in the response.</p>
+
+<table id="response_group_table">
+<name>Response Group Objects</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The test case objects in the response, depending on the algorithm see <xref target="keyGen_vs_tr_table"/> or <xref target="keyVer_vs_tr_table"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_7a72c26f-9132-3fa7-e28e-1158fdd2a9a9">An example of this is the following</p>
+
+<sourcecode id="_8dc30335-6651-e3dc-9209-1be54d967db3">{
+    "tgId": 1,
+    "tests": [ ... ]
+}</sourcecode>
+
+
+<clause id="keyGen_vector_responses" obligation="normative">
+<title>Safe Primes keyGen Test Vector Responses</title>
+<p id="_0168a76f-20c4-e0ea-3f1b-822cc34c8faa">The test groups for SafePrimes / keyGen / 1.0 contain public key properties. The groups can be described using the following table.</p>
+
+<table id="keyGen_group_table">
+<name>Safe Primes keyGen Test Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The individual test cases for the group</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_9a6a1564-498b-9c26-8983-788acdbde984">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each safePrimes / keyGen / 1.0 test vector.</p>
+
+<table id="keyGen_vs_tr_table">
+<name>Safe Primes keyGen Test Case Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">x</td>
+<td valign="top" align="left">The private key component X</td>
+<td valign="top" align="left">hex</td>
+</tr><tr><td valign="top" align="left">y</td>
+<td valign="top" align="left">The public key component Y</td>
+<td valign="top" align="left">hex</td>
+</tr></tbody>
+</table>
+
+<p id="_16639b6b-d7ec-87fc-e6f8-298ddaaa14e1">The following is an example JSON test vector response object for safePrimes / keyGen / 1.0.</p>
+
+<sourcecode id="_2e7775ae-7b91-3f54-f90f-797e0c86d517" lang="json">[
+    {
+        "acvVersion": &lt;acvp-version&gt;
+    },
+    {
+        "vsId": 0,
+        "testGroups": [
+          {
+            "tgId": 1,
+            "tests": [
+              {
+                "tcId": 1,
+                "x": "6316A9021906CB3F9F6...",
+                "y": "8520DE9F113D659F708..."
+              }
+            ]
+          }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="keyVer_vector_responses" obligation="normative">
+<title>Safe Primes keyVer Test Vector Responses</title>
+<p id="_bbe8d55e-a1fb-8e08-b727-c720a5b43559">The test groups for SafePrimes / keyVer / 1.0 contain public key properties. The groups can be described using the following table.</p>
+
+<table id="keyVer_group_table">
+<name>Safe Primes keyVer Test Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The individual test cases for the group</td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_4d4904ee-d530-e582-8bb0-f0e17ac80f61">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each SafePrimes / keyVer / 1.0 test vector.</p>
+
+<table id="keyVer_vs_tr_table">
+<name>Safe Primes keyVer Test Case Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">The test case identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testPassed</td>
+<td valign="top" align="left">Whether or not the key verified</td>
+<td valign="top" align="left">boolean</td>
+</tr></tbody>
+</table>
+
+<p id="_2892805a-c4de-608d-ea27-e82a4c946664">The following is an example JSON test vector response object for SafePrimes / keyVer / 1.0.</p>
+
+<sourcecode id="_ffb30bd8-5866-4cd6-471f-87fa548f4f2d" lang="json">[
+    {
+        "acvVersion": &lt;acvp-version&gt;
+    },
+    {
+        "vsId": 0,
+        "testGroups": [
+          {
+            "tgId": 1,
+            "tests": [
+              {
+                "tcId": 1,
+                "testPassed": true
+              }
+            ]
+          }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_26e42885-fd06-7cb0-0381-6b9f258267ca">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_479c87ad-1122-2fff-56e3-1ae94f21d1bc"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_34eda5c8-1e1a-ca3d-fcf3-1e36f1a455ab">2019-06-05</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_dad460f6-a06d-bf9e-b809-ccaf11188006" obligation="normative">
+<title>References</title>
+<references id="_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC3526" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">More Modular Exponential (MODP) Diffie-Hellman groups for Internet Key Exchange (IKE)</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.3526.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc3526</uri>  <docidentifier type="RFC" primary="true">RFC 3526</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC3526</docidentifier>  <docidentifier type="DOI">10.17487/RFC3526</docidentifier>  <docnumber>RFC3526</docnumber>  <date type="published">    <on>2003-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">T. Kivinen</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">M. Kojo</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_eca20a6b-5683-35ae-efa1-10b82ce1c886">This document defines new Modular Exponential (MODP) Groups for the Internet Key Exchange (IKE) protocol. It documents the well known and used 1536 bit group 5, and also defines new 2048, 3072, 4096, 6144, and 8192 bit Diffie-Hellman groups numbered starting at 14. The selection of the primes for theses groups follows the criteria established by Richard Schroeppel. [STANDARDS-TRACK]</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>3526</number>  </series></bibitem>
+ <bibitem id="RFC7919" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Negotiated Finite Field Diffie-Hellman Ephemeral Parameters for Transport Layer Security (TLS)</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7919.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7919</uri>  <docidentifier type="RFC" primary="true">RFC 7919</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7919</docidentifier>  <docidentifier type="DOI">10.17487/RFC7919</docidentifier>  <docnumber>RFC7919</docnumber>  <date type="published">    <on>2016-08</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">D. Gillmor</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_81a00adc-2fb1-56de-23ff-f3a7a5a1d9b2">Traditional finite-field-based Diffie-Hellman (DH) key exchange during the Transport Layer Security (TLS) handshake suffers from a number of security, interoperability, and efficiency shortcomings. These shortcomings arise from lack of clarity about which DH group parameters TLS servers should offer and clients should accept. This document offers a solution to these shortcomings for compatible peers by using a section of the TLS “Supported Groups Registry” (renamed from “EC Named Curve Registry” by this document) to establish common finite field DH parameters with known structure and a mechanism for peers to negotiate support for these groups.</p>
+    <p id="_4ad444eb-07ad-c489-471c-f831f3788c8b">This document updates TLS versions 1.0 (RFC 2246), 1.1 (RFC 4346), and 1.2 (RFC 5246), as well as the TLS Elliptic Curve Cryptography (ECC) extensions (RFC 4492).</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7919</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_e66e5db0-2bfe-5f71-3c13-164b60814b2b">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_04a5b64f-0b14-6f59-36e8-790bebde6e56">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+ <bibitem id="FIPS186-4" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Digital Signature Standard (DSS)</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/fips/186/4/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.FIPS.186-4</uri>  <docidentifier type="NIST" primary="true">FIPS 186-4</docidentifier>  <date type="published">    <on>2013-07</on>  </date>  <date type="issued">    <on>2013-07</on>  </date>  <contributor>    <role type="author"/>    <organization>      
+<name>National Institute of Standards and Technology</name>
+    </organization>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2013</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">FIPS 186-3</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/fips/186/3/archive/2009-06-25</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>computer security</keyword>  <keyword>cryptography</keyword>  <keyword>Digital Signature Algorithm</keyword>  <keyword>digital signatures</keyword>  <keyword>Elliptic Curve Digital Signature Algorithm</keyword>  <keyword>Federal Information Processing Standard</keyword>  <keyword>public key cryptography</keyword></bibitem>
+ <bibitem id="SP800-56Ar3" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm Cryptography</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56a/rev-3/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.SP.800-56Ar3</uri>  <docidentifier type="NIST" primary="true">SP 800-56A Rev. 3</docidentifier>  <date type="published">    <on>2018-04</on>  </date>  <date type="issued">    <on>2018-04</on>  </date>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Elaine B. Barker</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Lily Chen</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Allen Roginsky</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Apostol Vassilev</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en" script="Latn">Richard Davis</completename>      </name>
+      <affiliation>        <organization>          
+<name>National Security Agency</name>
+          <abbreviation>NSA</abbreviation>        </organization>      </affiliation>    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2018</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">SP 800-56A Rev. 2</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/sp/800-56a/rev-2/archive/2013-06-05</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>Diffie-Hellman</keyword>  <keyword>elliptic curve cryptography</keyword>  <keyword>finite field cryptography</keyword>  <keyword>key agreement</keyword>  <keyword>key confirmation</keyword>  <keyword>key derivation</keyword>  <keyword>key establishment</keyword>  <keyword>MQV</keyword></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SHA</uri><docidentifier type="NIST">ACVP SHA Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol SHA Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.SHA.r-1.eng</docidentifier><docnumber>SHA</docnumber><date type="issued"><on>2018-11-01</on></date><contributor><role type="author"/><person>
+<name><completename>Christopher Celi</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing Secure Hash Algorithm (SHA) implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2018</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_1ded3bed-3610-91c9-5c63-5b53c9e67602">This document defines the JSON schema for testing Secure Hash Algorithm (SHA) implementations with the ACVP specification.</p>
+</abstract><foreword id="_2ec0e566-ba9d-25ab-2eec-bb7fb030b1a2" obligation="informative">
+<title>Foreword</title>
+<p id="_69bdcca8-f693-594d-5f4e-1e7dc7fe21de">The Information Technology Laboratory (ITL) at the National Institute of Standards and Technology (NIST) promotes the U.S. economy and public welfare by providing technical leadership for the Nation’s measurement and standards infrastructure. ITL develops tests, test methods, reference data, proof of concept implementations, and technical analyses to advance the development and productive use of information technology. ITL’s responsibilities include the development of management, administrative, technical, and physical standards and guidelines for the cost-effective security and privacy of other than national security-related information in federal information systems. The Special Publication 800-series reports on ITL’s research, guidelines, and outreach efforts in information system security, and its collaborative activities with industry, government, and academic organizations.</p>
+</foreword><clause id="_audience" obligation="informative">
+<title>Audience</title>
+<p id="_d703bff5-9532-6af8-0477-8938fa6a1371">This document is intended for the users and developers of ACVP.</p>
+</clause><clause id="_conventions" obligation="informative">
+<title>Conventions</title>
+<p id="_3239f539-857d-1eda-6971-e6ce8a49a54c">The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 of <eref type="inline" bibitemid="RFC2119" citeas="RFC 2119"/> and <eref type="inline" bibitemid="RFC8174" citeas="RFC 8174"/> when, and only when, they appear in all capitals, as shown here.</p>
+</clause><acknowledgements id="_acknowledgements" obligation="informative"><title>Acknowledgements</title><p id="_1b3c0a2a-1733-8a7a-fbaf-605dcd79b05d">This document is produced by the Security Testing, Validation and Measurement group under the Automated Cryptographic Validation Testing (ACVT) program.</p>
+</acknowledgements><executivesummary id="_executive_summary" obligation="normative">
+<title>Executive Summary</title>
+<p id="_b29d1b4a-8389-627f-2df8-6a5cb3a6e1fa">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Secure Hash Algorithm (SHA) implementations using ACVP.</p>
+</executivesummary></preface><sections>
+
+
+
+
+
+
+
+
+<clause id="introduction" obligation="normative">
+<title>Introduction</title>
+<p id="_8e1d3c81-93b4-fc2e-2707-8d6e3fc8fb5e">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Secure Hash Algorithm (SHA) implementations using ACVP.</p>
+</clause>
+
+<clause id="supported_algs" obligation="normative">
+<title>Supported Hash Algorithms</title>
+<p id="_55f116f8-90fe-73df-f807-79d0a7a25e40">The following hash algorithms MAY be advertised by the ACVP compliant cryptographic module:</p>
+
+<ul id="_24769237-916a-c116-7b92-e0550afa7c67"><li><p id="_812df865-a1e6-cf93-a57a-02bc4305fcd8">SHA-1</p>
+</li>
+<li><p id="_f7b0dfda-9044-950f-b2ec-a609fdceb925">SHA2-224</p>
+</li>
+<li><p id="_0b5b11d5-1189-0504-1052-788a0db03a1b">SHA2-256</p>
+</li>
+<li><p id="_cc37fa35-6dfc-b04c-a939-c69c733ca0b3">SHA2-384</p>
+</li>
+<li><p id="_68733109-6053-aa55-6d97-b0163cae4d8b">SHA2-512</p>
+</li>
+<li><p id="_d85ce255-77ce-4136-e4ff-3f8e0b930644">SHA2-512/224</p>
+</li>
+<li><p id="_671093c7-0821-173f-c549-1c8659c51c78">SHA2-512/256</p>
+</li>
+</ul>
+</clause>
+
+<clause id="testtypes" obligation="normative">
+<title>Test Types and Test Coverage</title>
+<p id="_3b235bf7-ce04-2893-b71d-dc49def53e93">This section describes the design of the tests used to validate implementations of SHA-1 and SHA-2.</p>
+
+<clause id="_test_types" obligation="normative">
+<title>Test Types</title>
+<p id="_990f187a-2e93-7286-be27-29c77d855367">There are two types of tests for SHA-1 and SHA-2: functional tests and Monte Carlo tests. Each has a specific value to be used in the testType field. The testType field definitions are:</p>
+
+<ul id="_3521274c-0f60-1036-51f7-16c9fba4a0fd"><li><p id="_210df588-edcf-2737-b19a-2014e631cb3e">“AFT” — Algorithm Functional Test. These tests can be processed by the client using a normal ‘hash’ operation.  AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the hash function (block chunking, block padding etc.) are operating correctly.</p>
+</li>
+<li><p id="_53f6d6cf-b5b4-02c9-e074-2b0b2f2b831d">“MCT” — Monte Carlo Test. These tests exercise the implementation under test under stenuous circumstances. The implementation under test must process the test vectors according to the correct algorithm and mode in this document. MCTs can help detect potential memory leaks over time, and problems in allocation of resources, addressing variables, error handling, and generally improper behavior in response to random inputs. Each MCT processes 100 pseudorandom tests. Each algorithm and mode SHOULD have at least one MCT group. See <xref target="MC_test"/> for implementation details.</p>
+</li>
+<li><p id="_97a7b388-44ca-2c59-6c14-e9cd497f61d9">“LDT” — Large Data Test. This test performs the hash function on a message that is multiple gigabytes in length. This pushes the bounds of 32-bit data types to ensure an implementation can handle all types of data. See <eref type="inline" bibitemid="LDT" citeas="LDT"/> for more information motivating the LDT. As a multiple gigabyte message cannot be communicated naturally via ACVP, a specific structure is outlined in <xref target="LD_test"/>.</p>
+</li>
+</ul>
+</clause>
+
+<clause id="MC_test" obligation="normative">
+<title>Monte Carlo tests for SHA-1 and SHA-2</title>
+<p id="_b74e477f-6f4a-42f5-955e-d4625a350381">The MCTs start with an initial condition (SEED which is a single message) and perform a series of chained computations. The algorithm is shown below.</p>
+
+<sourcecode id="_7cc47c32-f9b8-5bec-84db-765929501cba" lang="code">
+<name>SHA-1 and SHA-2 Monte Carlo Test</name>
+For j = 0 to 99
+    A = B = C = SEED
+    For i = 0 to 999
+        MSG = A || B || C
+        MD = SHA(MSG)
+        A = B
+        B = C
+        C = MD
+    Output MD
+    SEED = MD</sourcecode>
+
+</clause>
+
+<clause id="LD_test" obligation="normative">
+<title>Large Data tests for SHA-1 and SHA-2</title>
+<p id="_58a40cdf-7a58-d7b1-1d51-6a37aea3b1b8">The large data tests are intended to test the ability of a module to hash multiple gigabytes of data at once. This much information cannot be communicated via the JSON files as a normal message property. Instead a new type is defined as a large data type. It is an object that contains a small content hex string, a content length in bits, a full length in bits and an expansion technique string. The following is an example of this structure.</p>
+
+<sourcecode id="_265b433e-e0bc-4678-f215-42c4f00abf8a" lang="json">"largeMsg": {
+    "content": "DE26",
+    "contentLength": 16,
+    "fullLength": 42949672960,
+    "expansionTechnique": "repeating"
+}</sourcecode>
+
+
+<p id="_a2756688-c71a-7b8a-4a46-36198b778707">The ‘contentLength’ property describes the number of bits in the ‘content’ property. The ‘content’ property is the hex string that can be expanded to the full large message. The ‘expansionTechnique’ describes the process used to obtain the full large message. The ‘fullLength’ is the final length of the full large message.</p>
+
+<p id="_79d528e3-a295-06d6-ccab-aee7da2134ed">There may be multiple ‘expansionTechnique’ types defined. Here are the types defined for SHA-1 and SHA-2 testing.</p>
+
+<ul id="_4968234d-b3e2-ba5a-e574-b212ef41de64"><li><p id="_b6b71fa4-4261-7933-2592-1e8f6d68673a">“repeating” — Append the number of content bits specified in ‘contentLength’ to itself as many times as needed until a hex string of exactly ‘fullLength’ bits is acquired. In the example shown, the final large message would have the form “DE26DE26DE26…​DE26”.</p>
+</li>
+</ul>
+
+<p id="_89a535e8-3bfe-5567-c959-87b9705cbfaa">There are multiple ways hash functions can be implemented in an IUT. The most common are via a single Hash() call on the message or via a series of Init(), any number of Update(), Final() calls. As noted in <eref type="inline" bibitemid="LDT" citeas="LDT"/>, the difference between these hashing techniques can have consequences in the cryptographic module. If both interfaces are offered and accessible for testing, the IUT <strong>MUST</strong> only utilize a single Update() call for the large message.</p>
+</clause>
+
+<clause id="test_coverage" obligation="normative">
+<title>Test Coverage</title>
+<p id="_75f5291c-dac5-7383-f000-f22d82f7708f">The tests described in this document have the intention of ensuring an implementation is conformant to <eref type="inline" bibitemid="FIPS180-4" citeas="FIPS 180-4"/>.</p>
+
+<clause id="sha-coverage" obligation="normative">
+<title>SHA Requirements Covered</title>
+<p id="_56c9e3ed-d6cc-5a10-dfa9-79df61776c8c">Section 1 in <eref type="inline" bibitemid="FIPS180-4" citeas="FIPS 180-4"/> outlines the maximum message sizes for each hash function. Due to the large size (either 2^64 or 2^128 bits) of these maximums, they are tested by special request in this specification. These tests are performed by the optional LDTs.</p>
+
+<p id="_ef798df3-e287-72ad-dc16-33d54bc99f9a">Sections 3 and 4 in <eref type="inline" bibitemid="FIPS180-4" citeas="FIPS 180-4"/> outline the core functions used within the hash algorithms. Normal AFTs test these operations.</p>
+
+<p id="_1eff69e2-62dc-eddc-8e77-c88acd7e77b7">Section 5 outlines the hash function preprocessing. It is worth noting that not all test cases will cover the message padding process, but through the entire vector set, this operation will be fully tested.</p>
+</clause>
+
+<clause id="sha-not-coverage" obligation="normative">
+<title>SHA Requirements Not Covered</title>
+<p id="_bbb8b173-27a1-9ee3-8b23-21c7449a59ae">Section 7 outlines digest truncation for applications where a shortened digest is needed. These operations are not tested via this specification.</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="capabilities" obligation="normative">
+<title>Capabilities Registration</title>
+<p id="_f13aa24d-7496-eb72-061f-30001213a509">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of SHA algorithms to the ACVP server.</p>
+
+<p id="_e83f2311-d713-25d1-f1d9-e2e8ae4204ff">The algorithm capabilities <strong>MUST</strong> be advertised as JSON objects within the ‘algorithms’ value of the ACVP registration message. The ‘algorithms’ value is an array, where each array element is an individual JSON object defined in this section. The ‘algorithms’ value is part of the ‘capability_exchange’ element of the ACVP JSON registration message. See the ACVP specification <eref type="inline" bibitemid="ACVP" citeas="ACVP"/> for more details on the registration message.</p>
+
+<clause id="prerequisites" obligation="normative">
+<title>Prerequisites</title>
+<p id="_eecbb4b2-6f7f-8408-2ee1-b41ca76bd504">Each algorithm implementation <strong>MAY</strong> rely on other cryptographic primitives.	For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:</p>
+
+<p id="_f7f16e22-e58b-43df-39ba-87d6ba6a7ad2">Prerequisites, if applicable, <strong>MUST</strong> be submitted in the registration as the <tt>prereqVals</tt> JSON property array inside each element of the <tt>algorithms</tt> array. Each element in the <tt>prereqVals</tt> array <strong>MUST</strong> contain the following properties</p>
+
+<table id="_d4322f66-7335-d05d-c9ce-bc8545c49eaa">
+<name>Prerequisite Properties</name>
+<thead><tr><th valign="top" align="left">JSON Property</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">a prerequisite algorithm</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">valValue</td>
+<td valign="top" align="left">algorithm validation number</td>
+<td valign="top" align="left">string</td>
+</tr></tbody>
+</table>
+
+<p id="_ed4b9036-78af-d8f8-7bd2-30af422f6d02">A “valValue” of “same” <strong>SHALL</strong> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.</p>
+
+<p id="_e7955338-40d4-e44b-74b8-1f64ebffc1a4">An example description of prerequisites within a single algorithm capability exchange looks like this</p>
+
+<sourcecode id="_89db1eb0-63dd-71b7-8bda-ebdf011fa2ba" lang="json">"prereqVals":
+[
+  {
+    "algorithm": "Alg1",
+    "valValue": "Val-1234"
+  },
+  {
+    "algorithm": "Alg2",
+    "valValue": "same"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="hash_caps_reg" obligation="normative">
+<title>HASH Algorithm Capabilities Registration</title>
+<p id="_79cef999-c9c6-3208-663e-78f691f2ce2b">This section describes the constructs for advertising support of hash algorithms to the ACVP server.</p>
+
+<table id="caps_table">
+<name>Hash Algorithm Capabilities JSON Values</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">The hash algorithm and mode to be validated.</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">The algorithm testing revision to use.</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">messageLength</td>
+<td valign="top" align="left">The message lengths in bits supported by the IUT. Minimum allowed is 0, maximum allowed is 65535.</td>
+<td valign="top" align="left">domain</td>
+</tr><tr><td valign="top" align="left">performLargeDataTest</td>
+<td valign="top" align="left">Determines if the server should include the large data test group defined in <xref target="LD_test"/>. This property is <strong>OPTIONAL</strong>, and shall include the lengths in GiB being tested. Valid options are {1, 2, 4, 8}.</td>
+<td valign="top" align="left">integer array</td>
+</tr></tbody>
+</table>
+
+<p id="_3f484476-2bbc-11e9-3b8f-e26749649541">The value of the algorithm property <strong>MUST</strong> be one of the elements from the list in <xref target="supported_algs"/>.<note id="_969d081d-d76e-2eb2-82bf-ca5bef858799"><p id="_dfcd12a8-ad08-301c-f1a8-322660149aff">The lengths provided in the ‘performLargeDataTest’ property are in gibibytes. 1GiB is equivalent to 2^30 bytes.</p>
+</note></p>
+
+
+
+<p id="_0ad75220-3aaf-9c2f-20b9-18cec646ab7e">The following is a example JSON object advertising support for SHA-256.</p>
+
+<sourcecode id="_ddff1785-c036-9f8a-64a7-1aeb1ed45657" lang="json">{
+    "algorithm": "SHA2-256",
+    "revision": "1.0",
+    "messageLength": [{"min": 0, "max": 65535, "increment": 1}],
+    "performLargeDataTest": [1, 2]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="test-vectors" obligation="normative">
+<title>Test Vectors</title>
+<p id="_1a0f0df5-ebd0-6af6-a189-a4e719a0c8da">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with Secure Hash Algorithm (SHA) algorithms.</p>
+
+<p id="_0e170b93-f1f9-cd13-7197-acfc2470cd66">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.</p>
+
+<table id="_c0dbfd16-5c5e-4fd2-b91f-8e7383367aa0">
+<name>Top Level Test Vector JSON Elements</name>
+<thead><tr><th valign="top" align="left">JSON Values</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON Type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric vector set identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">algorithm</td>
+<td valign="top" align="left">Algorithm defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">mode</td>
+<td valign="top" align="left">Mode defined in the capability exchange</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">revision</td>
+<td valign="top" align="left">Protocol test revision selected</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of test groups containing test data, see <xref target="tgjs"/></td>
+<td valign="top" align="left">array</td>
+</tr></tbody>
+</table>
+
+<p id="_94c2d2c3-b635-9bd2-3289-0ad59c04f197">An example of this would look like this</p>
+
+<sourcecode id="_7f2d9df0-7240-f758-832b-432668f72a4a" lang="json">{
+  "acvVersion": "version",
+  "vsId": 1,
+  "algorithm": "Alg1",
+  "mode": "Mode1",
+  "revision": "Revision1.0",
+  "testGroups": [ ... ]
+}</sourcecode>
+
+
+<clause id="tgjs" obligation="normative">
+<title>Test Groups</title>
+<p id="_e4314e3c-c8b9-45ca-1a12-e717863cb625">Test vector sets <strong>MUST</strong> contain one or many test groups, each sharing similar properties. For instance, all test vectors that use the same testType would be grouped together. The testGroups element at the top level of the test vector JSON object <strong>SHALL</strong> be the array of test groups. The Test Group JSON object <strong>MUST</strong> contain meta-data that applies to all test cases within the group. The following table describes the JSON elements that <strong>MAY</strong> appear from the server in the Test Group JSON object:</p>
+
+<table id="vs_tg_table">
+<name>Test Group JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">Numeric identifier for the test group, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testType</td>
+<td valign="top" align="left">Test category type (AFT, MCT or LDT). See <xref target="testtypes"/> for more information</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">Array of individual test case JSON objects, which are defined in	<xref target="tcjs"/></td>
+<td valign="top" align="left">array of testCase objects</td>
+</tr></tbody>
+</table>
+
+<p id="_609e25e6-1b5f-acfc-ec6a-9703204ad9ff">All properties described in the previous table MUST appear in the prompt file from the server for every testGroup object.</p>
+</clause>
+
+<clause id="tcjs" obligation="normative">
+<title>Test Case</title>
+<p id="_da86c12c-edcd-be9e-3c39-7a73bedbd7d1">Each test group <strong>SHALL</strong> contain an array of one or more test cases. Each test case is a JSON object that represents a single case to be processed by the ACVP client. The following table describes the JSON elements for each test case.</p>
+
+<table id="vs_tc_table">
+<name>Test Case JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">len</td>
+<td valign="top" align="left">Length of the message or MCT seed</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">msg</td>
+<td valign="top" align="left">Value of the message or MCT seed in big-endian hex</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">largeMsg</td>
+<td valign="top" align="left">Object describing the message for an LDT group</td>
+<td valign="top" align="left">large data object, see <xref target="LD_test"/> for more information</td>
+</tr></tbody>
+</table>
+
+<p id="_fdecde4a-54e5-f690-3cea-19648155adf6">All properties described in the previous table <strong>MUST</strong> appear in the prompt file from the server for every testCase object.</p>
+
+<p id="_2ed74c4b-1957-b4fa-4e14-bad98a87e086">The following is an example JSON object for secure hash test vectors sent from the ACVP server to the crypto module. Note the single bit message is represented as “80”. This complies with SHA1 and SHA2 being big-endian by nature. All hex strings associated with SHA1 and SHA2 <strong>SHALL</strong> be big-endian.</p>
+
+<sourcecode id="_e7611775-b9af-7019-be38-f429bd21a748" lang="json">[
+    { "acvVersion": &lt;acvp-version&gt; },
+    {
+        "vsId": 1564,
+        "algorithm": "SHA2-512/224",
+        "revision": "1.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "testType": "AFT",
+                "tests": [
+                    {
+                        "tcId": 0,
+                        "len": 0,
+                        "msg": "00"
+                    },
+                    {
+                        "tcId": 1,
+                        "len": 1,
+                        "msg": "80"
+                    }
+                ]
+            },
+            {
+                "tgId": 2,
+                "testType": "MCT",
+                "tests": [
+                    {
+                        "tcId": 2175,
+                        "len": 20,
+                        "msg": "331b04d56f6e3ed5af349bf1fd9f9591b6ec886e",
+                    }
+                ]
+            },
+            {
+                "tgId": 3,
+                "testType": "LDT",
+                "tests": [
+                    {
+                        "tcId": 1029,
+                        "largeMsg": {
+                            "content": "DE26",
+                            "contentLength": 16,
+                            "fullLength": 42949672960,
+                            "expansionTechnique": "repeating"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="vector_responses" obligation="normative">
+<title>Test Vector Responses</title>
+<p id="_70b442a3-af25-63d2-1573-47aa2fd33d57">After the ACVP client downloads and processes a vector set, it <strong>SHALL</strong> send the response vectors back to the ACVP server within the alloted timeframe. The following table describes the JSON object that represents a vector set response.</p>
+
+<table id="vr_top_table">
+<name>Vector Set Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">acvVersion</td>
+<td valign="top" align="left">Protocol version identifier</td>
+<td valign="top" align="left">string</td>
+</tr><tr><td valign="top" align="left">vsId</td>
+<td valign="top" align="left">Unique numeric identifier for the vector set</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">testGroups</td>
+<td valign="top" align="left">Array of JSON objects that represent each test vector result, which uses the same JSON schema as defined in <xref target="tcjs"/></td>
+<td valign="top" align="left">array of testGroup objects</td>
+</tr></tbody>
+</table>
+
+<p id="_a2abe526-040e-4ca0-d4ed-38a0c3f841f1">The testGroup Response section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <strong>SHALL</strong> require the client to send back group level properties in its response. This structure helps accommodate that.</p>
+
+<table id="vr_group_table">
+<name>Vector Set Group Response JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tgId</td>
+<td valign="top" align="left">The test group identifier</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">tests</td>
+<td valign="top" align="left">The tests associated to the group specified in tgId</td>
+<td valign="top" align="left">array of testCase objects</td>
+</tr></tbody>
+</table>
+
+<p id="_e2e683b1-23f2-eee0-3b2d-6600af5ab798">Each test case is a JSON object that represents a single test object to be processed by the ACVP client.</p>
+
+<p id="_791655b8-7e72-20f4-509e-cef36d7f45cb">The following table describes the JSON elements for each test case object.</p>
+
+<table id="vs_tr_table">
+<name>Test Case Results JSON Object</name>
+<thead><tr><th valign="top" align="left">JSON Value</th>
+<th valign="top" align="left">Description</th>
+<th valign="top" align="left">JSON type</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">tcId</td>
+<td valign="top" align="left">Numeric identifier for the test case, unique across the entire vector set.</td>
+<td valign="top" align="left">integer</td>
+</tr><tr><td valign="top" align="left">md</td>
+<td valign="top" align="left">The IUT’s message digest response to an AFT or LDT test</td>
+<td valign="top" align="left">string (hex)</td>
+</tr><tr><td valign="top" align="left">resultsArray</td>
+<td valign="top" align="left">Array of JSON objects that represent each iteration of an MCT. Each iteration will output the md</td>
+<td valign="top" align="left">array of objects containing the md</td>
+</tr></tbody>
+</table>
+
+<p id="_b7b0576f-8079-f30b-6c6b-37ecfa4652f1">Note: The tcId <strong>MUST</strong> be included in every test case object sent between the client and the server.</p>
+
+<p id="_f6add189-3ec0-8455-140b-76f7df183413">The following is a example JSON object for secure hash test results sent from the crypto module to the ACVP server. The group identified by tgId 1 is a group of AFTs. The group identified by tgId 2 is a group of MCTs. The group identified by tgId 3 is a group of LDTs.</p>
+
+<sourcecode id="_5c8da472-ee5f-071d-f6c4-ce839a0de222" lang="json">{
+    "vsId": 0,
+    "algorithm": "SHA2-224",
+    "revision": "1.0",
+    "testGroups": [
+        {
+            "tgId": 1,
+            "tests": [
+                {
+                    "tcId": 1,
+                    "md": "D14A028C2A3A2BC9476102BB288234C415A2B01F828EA62AC5B3E42F"
+                },
+                {
+                    "tcId": 2,
+                    "md": "D14A028C2A3A2BC9476102BB288234C415A2B01F828EA62AC5B3E42F"
+                }
+            ]
+        },
+        {
+            "tgId": 2,
+            "tests": [
+                {
+                    "tcId": 1028,
+                    "resultsArray": [
+                        {
+                            "md": "E82B1FA3D510C2E423D03CEDF01F66C995CDD573EB63D5A33FDAE640"
+                        },
+                        {
+                            "md": "00179AE4CE57DCBD156B981A414370B5089FA8E1098A05443DF3CD62"
+                        },
+                        {
+                            "md": "8F6C7F546940352613E8389D4F4B87473A57CACD7E289A27E4F51965"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tgId": 3,
+            "tests": [
+                {
+                    "tcId": 1029,
+                    "md": "E4F8B44B32F5A25D1F4784601BF095CF5F7C6F4E9EAA1005AD19F09A"
+                }
+            ]
+        }
+    ]
+}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="security" obligation="normative">
+<title>Security Considerations</title>
+<p id="_5142d423-3432-10c4-4053-e9cf06525867">There are no additional security considerations outside of those outlined in the ACVP document.</p>
+</clause>
+
+
+
+
+
+
+
+
+</sections><annex id="_a69faed8-72b0-3ba2-8728-4efb8b3de77f" obligation="normative">
+<title>Terminology</title><p id="_0fead3bd-6602-8ff7-26a3-91a6f54a2df7">For the purposes of this document, 
+    the following terms and definitions apply.</p>
+
+<terms id="_terminology" obligation="normative"><term id="term-prompt"><preferred><expression>
+<name>Prompt</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_0b557dee-263e-4f77-95e9-effe4bb7b245">JSON sent from the server to the client describing the tests the client performs</p></verbal-definition></definition>
+ </term>
+
+<term id="term-registration"><preferred><expression>
+<name>Registration</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_fd9d44c2-d80c-b8c9-e54d-a345307c3227">The initial request from the client to the server describing the capabilities of one or several algorithm, mode and revision combinations</p></verbal-definition></definition>
+ </term>
+
+<term id="term-response"><preferred><expression>
+<name>Response</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_7141f0b4-e069-2580-7d4e-58d944b295b4">JSON sent from the client to the server in response to the prompt</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-case"><preferred><expression>
+<name>Test Case</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_f5aa3c23-1c50-23a0-f38f-5661147245cb">An individual unit of work within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-group"><preferred><expression>
+<name>Test Group</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_e293c586-8957-6b9c-bc20-375ddf7ac7b5">A collection of test cases that share similar properties within a prompt or response</p></verbal-definition></definition>
+ </term>
+
+<term id="term-test-vector-set"><preferred><expression>
+<name>Test Vector Set</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_274d6fe2-0abe-6115-5815-7f543599c6cb">A collection of test groups under a specific algorithm, mode, and revision</p></verbal-definition></definition>
+ </term>
+
+<term id="term-validation"><preferred><expression>
+<name>Validation</name>
+</expression>
+</preferred>
+<definition><verbal-definition><p id="_9f021253-06cb-319b-ea31-449b15931bba">JSON sent from the server to the client that specifies the correctness of the response</p></verbal-definition></definition>
+ </term>
+</terms>
+</annex><annex id="_abbreviations_and_acronyms" obligation="normative">
+<title>Abbreviations and Acronyms</title>
+<dl id="_d66f4c46-c5ba-2213-c2a5-b7f607d787ad"><dt>ACVP</dt>
+<dd><p id="_ed531f01-1c98-8f04-b45e-2d823d328d1e">Automated Crypto Validation Protocol</p>
+</dd>
+<dt>JSON</dt>
+<dd><p id="_bd4c53ce-6ff7-b6a0-c505-23ab08e1ae8b">Javascript Object Notation</p>
+</dd>
+</dl>
+</annex><annex id="_revision_history" obligation="normative">
+<title>Revision History</title>
+<table id="_ec556c50-07ac-2797-f3cf-4fc741286bb7"><thead><tr><th valign="top" align="left">Version</th>
+<th valign="top" align="left">Release Date</th>
+<th valign="top" align="left">Updates</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left"><p id="_dd070661-ee3a-67c3-b6d9-1acfa0738831">1</p>
+</td>
+<td valign="top" align="left"><p id="_d3e7190d-db43-db30-34d4-32004be5ae79">2018-11-01</p>
+</td>
+<td valign="top" align="left"><p id="_23bc1989-c26b-f9b7-497a-154aa516bf4f">Initial Release</p>
+</td>
+</tr></tbody>
+</table>
+</annex><annex id="_6f16b423-e9d5-4c1f-da3e-e8970061fd7d" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f1934d05-bf02-c42b-3c26-c0f190e29321">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_8bf4f1ec-81cc-bf05-fdc8-97a1a79d601e">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_f2760c4d-df02-193b-b0c9-1bb493e0eb6d">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+ <bibitem id="FIPS180-4" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Secure Hash Standard (SHS)</title>
+  <uri type="src">https://csrc.nist.gov/publications/detail/fips/180/4/final</uri>  <uri type="doi">https://doi.org/10.6028/NIST.FIPS.180-4</uri>  <docidentifier type="NIST" primary="true">FIPS 180-4</docidentifier>  <date type="published">    <on>2015-08</on>  </date>  <date type="issued">    <on>2015-08</on>  </date>  <contributor>    <role type="author"/>    <organization>      
+<name>National Institute of Standards and Technology</name>
+    </organization>  </contributor>  <language>en</language>  <script>Latn</script>  <status>    <stage>final</stage>    <substage>active</substage>  </status>  <copyright>    <from>2015</from>    <owner>      <organization>        
+<name>National Institute of Standards and Technology</name>
+        <abbreviation>NIST</abbreviation>        <uri>www.nist.gov</uri>      </organization>    </owner>  </copyright>  <relation type="obsoletes">    <description format="text/plain" language="en" script="Latn">supersedes</description>    <bibitem>      <formattedref format="text/plain" language="en" script="Latn">FIPS 180-4</formattedref>      <uri type="src">https://csrc.nist.gov/publications/detail/fips/180/4/archive/2012-03-06</uri>    </bibitem>
+  </relation>  <place>Gaithersburg, MD</place>  <keyword>computer security</keyword>  <keyword>cryptography</keyword>  <keyword>message digest</keyword>  <keyword>hash function</keyword>  <keyword>hash algorithm</keyword>  <keyword>Federal Information Processing Standards</keyword>  <keyword>Secure Hash Standard</keyword></bibitem>
+
+<bibitem id="ACVP">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <title type="main" format="text/plain">Automatic Cryptographic Validation Protocol</title>
+  <docidentifier>ACVP</docidentifier>
+  <date type="published">
+    <on>2019-07-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>B.</initial>
+        <surname>Fussell</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Cisco</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>H.</initial>
+        <surname>Booth</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+
+<bibitem id="SHAVS">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">The Secure Hash Algorithm Validation System (SHAVS)</title>
+  <title type="main" format="text/plain">The Secure Hash Algorithm Validation System (SHAVS)</title>
+  <docidentifier type="NIST">NIST SHAVS</docidentifier>
+  <date type="published">
+    <on>2014</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>L. E.</initial>
+        <surname>Bassham III</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+
+<bibitem id="LDT">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Extending NIST’s CAVP Testing of Cryptographic Hash Function Implementations</title>
+  <title type="main" format="text/plain">Extending NIST’s CAVP Testing of Cryptographic Hash Function Implementations</title>
+  <docidentifier>LDT</docidentifier>
+</bibitem>
+</references>
+</annex>
+</nist-standard>

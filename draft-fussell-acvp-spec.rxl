@@ -1,0 +1,26 @@
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">Automated Cryptographic Validation Protocol (ACVP) JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">Automated Cryptographic Validation Protocol (ACVP) JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SPEC</uri><docidentifier type="NIST">ACVP SPEC Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol SPEC Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.SPEC.r-1.eng</docidentifier><docnumber>SPEC</docnumber><date type="issued"><on>2019-01-01</on></date><contributor><role type="author"/><person>
+<name><completename>Barry Fussell</completename></name>
+<affiliation><organization>
+<name>Cisco Systems, Inc.</name>
+<address><formattedAddress>170 West Tasman Drive, San Jose, California</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="author"/><person>
+<name><completename>Apostol Vassilev</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="author"/><person>
+<name><completename>Harold Booth</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>The ACV Protocol provides a method for communication between a cryptographic module that is embedded inside of a device or otherwise running on a platform accessible via computer network, and an external testing system, using standard network communication interfaces and protocols. This communication protocol can also be used to validate the correctness of the algorithm implementations in the cryptographic module with a validation authority.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>

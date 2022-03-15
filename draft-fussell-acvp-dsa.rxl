@@ -1,0 +1,18 @@
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">ACVP DSA Algorithm JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">ACVP DSA Algorithm JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.DSA</uri><docidentifier type="NIST">ACVP DSA Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol DSA Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.DSA.r-1.eng</docidentifier><docnumber>DSA</docnumber><date type="issued"><on>2016-06-01</on></date><contributor><role type="author"/><person>
+<name><completename>Barry Fussell</completename></name>
+<affiliation><organization>
+<name>Cisco Systems, Inc.</name>
+<address><formattedAddress>170 West Tasman Drive, San Jose, California</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>This document defines the JSON schema for testing FIPS 186-4 DSA implementations with the ACVP specification.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2016</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>

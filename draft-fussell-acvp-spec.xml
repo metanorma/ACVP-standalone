@@ -1,0 +1,2825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nist-standard xmlns="https://www.metanorma.org/ns/nist" type="semantic" version="2.0.5">
+<bibdata type="standard">
+<title language="en" format="text/plain" type="main">Automated Cryptographic Validation Protocol (ACVP) JSON Specification</title>
+
+<title language="en" format="text/plain" type="short-title">Automated Cryptographic Validation Protocol (ACVP) JSON Specification</title>
+<uri type="email">algotest@list.nist.gov</uri><uri type="doi">https://doi.org/10.6028/NIST.CSRC.AVCP.SPEC</uri><docidentifier type="NIST">ACVP SPEC Revision 1</docidentifier><docidentifier type="nist-long">Automated Cryptographic Validation Protocol SPEC Revision 1</docidentifier><docidentifier type="nist-mr">NIST.CSRC.ACVP.SPEC.r-1.eng</docidentifier><docnumber>SPEC</docnumber><date type="issued"><on>2019-01-01</on></date><contributor><role type="author"/><person>
+<name><completename>Barry Fussell</completename></name>
+<affiliation><organization>
+<name>Cisco Systems, Inc.</name>
+<address><formattedAddress>170 West Tasman Drive, San Jose, California</formattedAddress></address></organization></affiliation></person></contributor><contributor><role type="author"/><person>
+<name><completename>Apostol Vassilev</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="author"/><person>
+<name><completename>Harold Booth</completename></name>
+<affiliation><organization>
+<name>Information Technology Laboratory</name>
+<subdivision>Computer Security Division</subdivision></organization></affiliation></person></contributor><contributor><role type="publisher"/><organization>
+<name>National Institute of Standards and Technology</name>
+<subdivision>Computer Security Division, Information Technology Laboratory</subdivision></organization></contributor><edition>Revision 1</edition><language>en</language><script>Latn</script><abstract><p>The ACV Protocol provides a method for communication between a cryptographic module that is embedded inside of a device or otherwise running on a platform accessible via computer network, and an external testing system, using standard network communication interfaces and protocols. This communication protocol can also be used to validate the correctness of the algorithm implementations in the cryptographic module with a validation authority.</p>
+</abstract><status><stage>final</stage><substage>active</substage></status><copyright><from>2019</from><owner><organization>
+<name>National Institute of Standards and Technology</name>
+</organization></owner></copyright><series type="main">
+<title>NIST Cybersecurity Technical Specification</title>
+<abbreviation>NIST CSTS</abbreviation></series><series type="secondary">
+<title>Automated Cryptographic Validation Protocol</title>
+<abbreviation>ACVP</abbreviation></series><keyword>ACVP</keyword><keyword>cryptography</keyword><ext><doctype>standard</doctype></ext></bibdata>
+<boilerplate>
+
+
+  <legal-statement>
+
+<clause id="authority3">
+<title>Disclaimer</title>
+<p id="_863aa6ce-5a57-69b6-7fbf-9ed44a41c5ea">Any mention of commercial products or reference to commercial organizations is for information only; it does not imply recommendation or endorsement by NIST, nor does it imply that the products mentioned are necessarily the best available for the purpose.</p>
+</clause>
+
+<clause id="authority3a">
+  <title>Additional Information</title>
+  <p id="_c686fd53-3de8-7756-9855-01ef6116c4ac">For additional information on NIST’s Cybersecurity programs, projects and publications, visit the <link target="https://csrc.nist.gov">Computer Security Resource Center</link>. Information on other efforts at <link target="https://www.nist.gov">NIST</link> and in the <link target="https://www.nist.gov/itl">Information Technology Laboratory</link> (ITL) is also available.</p>
+</clause>
+</legal-statement>
+
+<feedback-statement>
+  
+
+<clause id="authority5">
+  <p align="center" id="_3c964232-2209-46b9-23ff-8d9dbf50f7e3"><strong>Comments on this publication may be submitted to:</strong></p>
+
+<p align="center" id="_fd3e950b-c15e-6309-a933-da7ca17fced9">National Institute of Standards and Technology <br/>
+  Attn: Computer Security Division, Information Technology Laboratory <br/>
+  100 Bureau Drive (Mail Stop 8930) Gaithersburg, MD 20899-8930 <br/>
+  
+  Email: <link target="mailto:algotest@list.nist.gov"/>
+  </p>
+
+<p align="center" id="_98da11c8-716c-a4a5-0c72-942c806716f3">All comments are subject to release under the Freedom of Information Act (FOIA).</p>
+</clause>
+</feedback-statement>
+</boilerplate>
+<preface><abstract id="_abstract"><title>Abstract</title><p id="_26e6dd0d-adb0-e252-95f2-5818336447a1">The ACV Protocol provides a method for communication between a cryptographic module that is embedded inside of a device or otherwise running on a platform accessible via computer network, and an external testing system, using standard network communication interfaces and protocols. This communication protocol can also be used to validate the correctness of the algorithm implementations in the cryptographic module with a validation authority.</p>
+</abstract></preface><sections>
+<clause id="intro" obligation="normative">
+<title>Introduction</title>
+<p id="_035b6d9c-ace2-c676-936c-2394f5790173">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. It introduces a method to perform cryptographic assessment and validations at a rate which meets typical industry development cycles; providing the ability to deploy validated crypto with CVE fixes much faster than previous methods.</p>
+
+<p id="_2feb12c4-c585-c5ee-e3cf-85e96cdd9f63">The ACVP specification describes how the protocol is structured with respect to the client-server model, messaging, optional features, and flows. It defines how a crypto module communicates with an ACVP server; including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms.</p>
+
+<p id="_eea0f20c-cdd2-97e0-71b4-bad081515264">Unresolved directive in draft-fussell-acvp-spec.adoc — include::/__w/ACVP-standalone/ACVP-standalone/src/common/common-sections/02-conventions.adoc[]</p>
+</clause>
+
+<clause id="caps_reg" obligation="normative">
+<title>Overview</title>
+<p id="_8c2695e3-baa5-498a-91fc-4ceb8d396843">ACVP has the following goals:</p>
+
+<ul id="_0fb822ed-b468-76eb-3416-ac48bfaf4ee7"><li><p id="_c13426f2-3083-c718-6041-e8b55e338629">To work in situations where the testing system is remote from the cryptographic module, e.g. running as a process on a separate device.</p>
+</li>
+<li><p id="_68c9e518-8c41-a276-0ce8-33d840dd2080">To enable automated testing that can take place with a minimum of human interaction.</p>
+</li>
+<li><p id="_6e2a244d-9463-8853-5270-a80b854f844b">To enable the testing system to discover the capabilities of the module being tested; that is, the particular algorithms and parameters that the module supports.</p>
+</li>
+<li><p id="_8efd3261-dce9-108d-fa59-f697e55adc36">To provide extensibility that can be used to introduce tests for new algorithms, and new tests for existing algorithms.</p>
+</li>
+<li><p id="_d5b0084f-d5c8-f27d-c5db-b234253ebb5d">To be compatible with emerging automated validation systems wherever possible, especially the FIPS-140 Cryptographic Algorithm Validation Program.</p>
+</li>
+<li><p id="_43812f88-2e84-99e3-943b-d9ce70788781">To provide a standard communication method so that vendors can utilize the same testing service for FIPS-140, 3rd party crypto verification and product FCS readiness testing.</p>
+</li>
+</ul>
+
+<p id="_d7fec689-baec-ffb9-264e-e39a17a886bd">ACVP defines how to communicate a request (to execute a cryptographic operation) to a cryptographic module, and how to communicate the corresponding response (containing the output of that operation) back to a testing system. It defines a transport (based on HTTP or HTTPS  <eref type="inline" bibitemid="RFC7230" citeas="RFC 7230"/>), an JSON message structure(which is negotiated), and a set of message exchanges. Each vector test set corresponds to a single message exchange driven from the client associated with the module under test. ACVP does not define the cryptographic algorithms, nor does it detail the precise conditions for a response to be acceptable. Instead, it references existing specifications for those algorithms, and defines a mapping between the data on the wire and the algorithm testing specification. ACVP does not define detailed conformance criteria, such as those in FIPS-140. Instead, it aims to be independent of particular conformance criteria, so that it can be used in multiple domains with different (even potentially conflicting) conformance criteria. ACVP does not define an interface that can be used to manage or control a cryptographic module.</p>
+
+<clause id="_audience" obligation="normative">
+<title>Audience</title>
+<p id="_15218c19-6806-86a3-0abe-fd37cae13dba">This document is written to address multiple audiences:</p>
+
+<ul id="_b4c8f68c-0320-1df4-a59b-491bca3ee864"><li><p id="_47f2c108-ded4-491c-314f-27854d66a8d9">Crypto module developers who require validation testing</p>
+</li>
+<li><p id="_643af020-93d3-9f53-708a-97247abb7de3">Crypto module developers who require runtime crypto assessment testing</p>
+</li>
+<li><p id="_cd07d3f1-b346-93d1-5386-23b0c2c9ccac">Crypto validation organizations who will perform validation testing</p>
+</li>
+<li><p id="_033b57c6-2b58-e2b4-d782-719703f28ad6">Crypto module customers that desire validation testing results or verifiable artifacts of testing</p>
+</li>
+</ul>
+</clause>
+
+<clause id="_goals" obligation="normative">
+<title>Goals</title>
+<p id="_fbcd3fa2-d5ab-54ba-4900-1e248563872a">The goals for this document are to provide a messaging protocol that can be used with existing authentication and communication protocols to provide a way to test crypto modules. The following functions are outside the scope of this document:</p>
+
+<ul id="_c9daf9c8-70cb-aa01-65c8-ba5a74544ef2"><li><p id="_74c80709-08f9-7639-6d9b-d105613a9fad">The API to the cryptographic module</p>
+</li>
+<li><p id="_eba7e515-b484-7d34-c6ea-6eca7c53c2b8">How the tests are generated</p>
+</li>
+<li><p id="_27287309-735c-2cb7-753e-1c36cca5565f">How the results/artifacts are stored or managed</p>
+</li>
+<li><p id="_ad9dce29-7121-7b72-32ed-3bfafbf106fc">Authentication used</p>
+</li>
+<li><p id="_ca97694d-2c0a-d72c-e1da-cbe316b16472">Scalability</p>
+</li>
+<li><p id="_ff8db42e-a4a6-49ab-658f-73c0260ceecc">Management interface</p>
+</li>
+</ul>
+
+<p id="_91f4825c-c71b-2817-da1e-325fbca92eff">With that in mind there are several expectations when building a server used as a validation authority. A validation authority <strong>SHALL</strong> use a combination of HTTPS <eref type="inline" bibitemid="RFC7230" citeas="RFC 7230"/>, TLS 1.2 <eref type="inline" bibitemid="RFC5246" citeas="RFC 5246"/> or greater and mutual authentication. Therefore a client that expects to be used with a validation authority <strong>SHALL</strong> have the same requirements. A server, proxy or client developed for the purposes of internal organizational testing only <strong>MAY</strong> choose not to include some of those features.</p>
+</clause>
+</clause>
+
+<clause id="_architecture" obligation="normative">
+<title>Architecture</title>
+<p id="_44412e0a-d4a9-4d40-b694-7ce6027b41bb">A server/client/proxy model is used where the roles are defined as:</p>
+
+<ul id="_b30e19eb-653f-1e05-1a9b-bf26624c640c"><li><p id="_0385b5c2-f486-1a0c-c331-24978d7efcdd">ACV Client — Communicates with the ACV server using Java Script Object Notation (JSON <eref type="inline" bibitemid="RFC7159" citeas="RFC 7159"/>) and collects the test vectors and returns the test results using product specific methods.</p>
+</li>
+<li><p id="_97001e3b-3a59-ef24-d14a-941f190d6168">ACV Server — Sends JSON formatted messaging and test data to the ACV client and processes test responses.</p>
+</li>
+<li><p id="_736ae073-2aab-2e11-dc7b-ee9ef8c5425e">ACV Proxy — Resides between the ACV server and ACV client to proxy the connection for the client. This is particularly useful when the client does not support TLS, key management or have signature capabilities and they are required by the server. An example architecture is provided in Figure 3.</p>
+</li>
+<li><p id="_7b3e9f74-ad6f-20f9-dede-6d555df2e147">Device Under Test — Contains the crypto module under test which can include various algorithms and functions that encrypt/decrypt, generate keys, signatures, perform verifications and DRBG functions. May also contain the ACVP client.</p>
+</li>
+<li><p id="_85051008-64da-9186-780d-6b7f9708c94c">Cryptographic Module API — This is the interface, manual or otherwise, to the crypto module. This interface is environment specific and will vary depending on the crypto module and may not be limited to real-time operation.</p>
+</li>
+</ul>
+
+<clause id="_serverclient_architecturerealtime" obligation="normative">
+<title>Server/Client Architecture(realtime)</title>
+<figure id="xml_figure1a"><pre id="_ac86821d-7c2f-6d03-76dd-017ed7c9bd13" alt="">                           +----------------------------------------+
+                           |                    +-----------------+ |
++----------+               | Entropy ----------&gt;| DRBG----Encrypt | |
+| ACV      |               |                    |         Auth    | |
+| Server   |&lt;=============&gt;| +--------+         |                 | |
++----------+               | | ACV    |&lt;-------&gt;| PKI-----Key Est | |
+                           | | Client |    ^    |         Sign    | |
+                           | +--------+    |    |                 | |
+                           |            Crypto  | Crypto Module   | |
+                           |            Module  +-----------------+ |
+                           |           Realtime                     |
+                           |              API                       |
+                           |                                        |
+                           |        Device Under Test (DUT)         |
+                           +----------------------------------------+
+</pre></figure>
+</clause>
+
+<clause id="_serverclient_architecturenot_realtime" obligation="normative">
+<title>Server/Client Architecture(not realtime)</title>
+<figure id="xml_figure1b"><pre id="_fbbdabf1-6565-f91d-e226-c323482734c6" alt="">                     +------------+
+                     |            |             +-----------------+
++----------+         |            |  Entropy --&gt;| DRBG----Encrypt |
+| ACV      |         |            |             |         Auth    |
+| Server   |&lt;=======&gt;| +--------+ |             |                 |
++----------+         | | ACV    | |             | PKI-----Key Est |
+                     | | Client | | &lt;==========&gt;|         Sign    |
+                     | +--------+ |       ^     |                 |
+                     |            |       |     | Crypto Module   |
+                     +------------+       |     |                 |
+                                          |     +-----------------+
+                                   Manual/Non-Realtime
+                                    Vector Exchange
+</pre></figure>
+</clause>
+
+<clause id="_serverproxy_architecture" obligation="normative">
+<title>Server/Proxy Architecture</title>
+<figure id="xml_figure2"><pre id="_c7467ec1-99fb-0b43-20f7-6620fc95fd0c" alt="">                +--------------------------------------------------+
+                |                      +-------------------------+ |
++----------+    |    +---------+       |                         | |
+| ACV      |    |    | ACV     |       |                         | |
+| Server   |&lt;=======&gt;| Proxy   |&lt;=====&gt;| +--------+   +--------+ | |
++----------+    |    +---------+       | | ACV    |&lt;-&gt;| Crypto | | |
+                |                      | | Client |   | Module | | |
+                |                      | +--------+   +--------+ | |
+                |                      |                         | |
+                |                      |      DUT                | |
+                |                      +-------------------------+ |
+                | Vendor/Customer Premise                          |
+                +--------------------------------------------------+
+</pre></figure>
+</clause>
+
+<clause id="_terminology" obligation="normative">
+<title>Terminology</title>
+<p id="_5fd9a58f-36ba-5b2b-3bac-8b11cdaffbad">The following terms are consistently used throughout this document and <strong>SHOULD</strong> be used throughout its extensions:</p>
+
+<ul id="_08fc2601-8a6e-413a-483a-9279d0609aa5"><li><p id="_24f26209-4029-89fd-d1d6-c41433923788">Test Session — The largest structure of an instance of ACVP. Often generated from a single registration, it will contain many Test Vector Sets for the algorithms defined in the registration.</p>
+</li>
+<li><p id="_bce2e1f8-141f-7975-ddab-4f6fe82c2b43">Test Vector Set — The set of tests and data corresponding to an individual algorithm from within a registration. Uniquely identified throughout an instance of ACVP by the vsId. Contains many Test Groups.</p>
+</li>
+<li><p id="_76b7932c-ebf3-66d5-a9fa-702da8e819b3">Test Group — The set of tests that share common properties within a Test Vector Set.
+Uniquely identified within the Test Vector Set by the tgId. Contains many Test Cases.</p>
+</li>
+<li><p id="_dbe2a537-5f71-a6c8-09a0-91438d1058c1">Test Case — The smallest unit of the tests that represents an individual testable operation as defined by the parent Test Group. Uniquely identified throughout the Test Vector Set by the tcId.</p>
+</li>
+<li><p id="_2386bf8f-fd34-851e-563b-75c3acaf6ba8">Registration — The JSON from the client to the server that describes the algorithms and capabilities for which the client is seeking test cases and a validation. A Registration can submit capabilities for multiple algorithms. Each algorithm will be broken into individual Test Vector Sets.</p>
+</li>
+<li><p id="_21718b87-e22c-ead4-8224-6e59e6da1c06">Request — The JSON sent from the server to the client defining a single Test Vector Set to use as inputs for testing. Exactly one request will exist for each Test Vector Set.</p>
+</li>
+<li><p id="_8025e80d-1512-fd7a-925b-97e6a0a6bf52">Response — The JSON from the client providing the desired cryptographic output for each of the Test Cases defined in the corresponding Request file. These are linked via the Test Vector Set vsId. As exactly one request exists for each vsId, one response will exist for each request.</p>
+</li>
+<li><p id="_caa30d98-452d-195c-628d-c19ec413a9d0">Disposition — The JSON from the server after the Response is submitted by the client detailing the correctness of the Test Cases. A “passed” disposition indicates that the particular algorithm in the Test Vector Set is ready for validation.</p>
+</li>
+<li><p id="_0e5dde6c-0646-1384-fd43-6f652a8eee10">OE — Operational Environment — The specific hardware and/or software the client’s cryptographic implementation uses to run.</p>
+</li>
+<li><p id="_7d9695a4-53ad-0dff-8e75-1401f191fc36">Realtime — For the purposes of this document realtime is defined as the client receiving a vector set and immediately performing the tests and returning the results to the server. In general, this is a case where the ACVP client and crypto module reside in the same box and directly communicate with each other. Non-realtime would refer to the case where the client may gather vector sets from the server and through
+some means introduce them to the crypto module gather the results and send them back to the server.  In general, this is a case where the device hosting the crypto module cannot communicate directly with the ACVP client.</p>
+</li>
+</ul>
+</clause>
+</clause>
+
+<clause id="_acv_protocol" obligation="normative">
+<title>ACV Protocol</title>
+<p id="_4f424ce6-7b3e-2a77-c516-febcc5df6b30">The ACV protocol will utilize existing mechanisms for transport coordinated with JSON formatted messaging.</p>
+
+<figure id="xml_figure3">
+<name>Protocol Layering</name>
+<pre id="_65ed805e-654d-d8d6-1723-b8366e1572b2" alt="">
++-----------------------------------------------+
+| JSON Formatted ACVP request/response messages |
++-----------------------------------------------+
+| HTTP[S] message transfer and signaling        |
++-----------------------------------------------+
+| TLS for transport security(recommended)       |
++-----------------------------------------------+
+| TCP for transport                             |
+|_______________________________________________|
+</pre></figure>
+
+<clause id="uriComposition" obligation="normative">
+<title>HTTP URI Hierarchy</title>
+<figure id="uriDiagram"><pre id="_23f5dcbe-99bc-f0db-abb2-d9a2a3d68b7c" alt="">        +-------------+------------------+-------------------------+
+           server          path prefix          resource
+        +-------------+------------------+-------------------------+
+https://acvts.nist.gov/validation/acvp/v1/testSessions/1
+        +-------------+----------+----+--+-------------------------+
+                         context  API   |
+                                     version
+
+</pre></figure>
+
+<p id="_97150754-ed19-efa5-42fb-15c2f68bf4e0">Note that deployments utilizing ACV Proxy server <strong>MAY</strong> use a different protocol, e.g., HTTP, custom server, context and port number to interact with the DUT.</p>
+</clause>
+
+<clause id="uriResources" obligation="normative">
+<title>HTTP URI Resources</title>
+<p id="_078171e6-ec3b-6093-718c-8b9ff13aabf6">In the table below, any parts of a resource path enclosed in curly braces, { or }, are replaced by an instance of what is described in the braces. For example {testSessionId} could be replaced with 1.</p>
+
+<p id="_17e7007c-4d40-53a3-9b3f-9c87ae70687b">An empty cell for a resource and HTTP Method combination denotes that the server returns an HTTP Status 405 code <em>Method not allowed (405)</em>.</p>
+
+<table id="uri_table">
+<name>Resources and their Available Operations</name>
+<thead><tr><th valign="top" align="left">Resource</th>
+<th valign="top" align="left">GET (read)</th>
+<th valign="top" align="left">POST (create)</th>
+<th valign="top" align="left">PUT (update)</th>
+<th valign="top" align="left">DELETE</th>
+</tr></thead>
+<tbody><tr><td valign="top" align="left">/requests</td>
+<td valign="top" align="left"><xref target="requests_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/requests/{requestId}</td>
+<td valign="top" align="left"><xref target="request_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/vendors</td>
+<td valign="top" align="left"><xref target="vendors_get"/></td>
+<td valign="top" align="left"><xref target="vendors_post"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/vendors/{vendorId}</td>
+<td valign="top" align="left"><xref target="vendor_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"><xref target="vendor_put"/></td>
+<td valign="top" align="left"><xref target="vendor_delete"/></td>
+</tr><tr><td valign="top" align="left">/vendors/{vendorId}/addresses</td>
+<td valign="top" align="left"><xref target="addresses_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/vendors/{vendorId}/addresses/{addressId}</td>
+<td valign="top" align="left"><xref target="address_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/vendors/{vendorId}/contacts</td>
+<td valign="top" align="left"><xref target="contacts_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/persons</td>
+<td valign="top" align="left"><xref target="persons_get"/></td>
+<td valign="top" align="left"><xref target="persons_post"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/persons/{personId}</td>
+<td valign="top" align="left"><xref target="person_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"><xref target="person_put"/></td>
+<td valign="top" align="left"><xref target="person_delete"/></td>
+</tr><tr><td valign="top" align="left">/oes</td>
+<td valign="top" align="left"><xref target="oes_get"/></td>
+<td valign="top" align="left"><xref target="oes_post"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/oes/{oeId}</td>
+<td valign="top" align="left"><xref target="oe_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"><xref target="oe_put"/></td>
+<td valign="top" align="left"><xref target="oe_delete"/></td>
+</tr><tr><td valign="top" align="left">/modules</td>
+<td valign="top" align="left"><xref target="modules_get"/></td>
+<td valign="top" align="left"><xref target="modules_post"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/modules/{moduleId}</td>
+<td valign="top" align="left"><xref target="module_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"><xref target="module_put"/></td>
+<td valign="top" align="left"><xref target="module_delete"/></td>
+</tr><tr><td valign="top" align="left">/dependencies</td>
+<td valign="top" align="left"><xref target="dependencies_get"/></td>
+<td valign="top" align="left"><xref target="dependencies_post"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/dependencies/properties</td>
+<td valign="top" align="left"><xref target="dependencies_properties_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/dependencies/{dependencyId}</td>
+<td valign="top" align="left"><xref target="dependency_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"><xref target="dependency_put"/></td>
+<td valign="top" align="left"><xref target="dependency_delete"/></td>
+</tr><tr><td valign="top" align="left">/algorithms</td>
+<td valign="top" align="left"><xref target="algorithms_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/algorithms/{algorithmId}</td>
+<td valign="top" align="left"><xref target="algorithm_get"/> (Optional)</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/testSessions</td>
+<td valign="top" align="left"><xref target="testSessions_get"/> (Optional)</td>
+<td valign="top" align="left"><xref target="testSessions_post"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/testSessions/{testSessionId}</td>
+<td valign="top" align="left"><xref target="testSession_get"/> (Optional)</td>
+<td valign="top" align="left"/><td valign="top" align="left"><xref target="testSession_put"/></td>
+<td valign="top" align="left"><xref target="testSession_delete"/></td>
+</tr><tr><td valign="top" align="left">/testSessions/{testSessionId}/results</td>
+<td valign="top" align="left"><xref target="testSession_results_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/testSessions/{testSessionId}/vectorSets</td>
+<td valign="top" align="left"><xref target="vectorSets_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr><tr><td valign="top" align="left">/testSessions/{testSessionId}/vectorSets/{vectorSetId}</td>
+<td valign="top" align="left"><xref target="vectorSet_get"/></td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"><xref target="vectorSet_delete"/></td>
+</tr><tr><td valign="top" align="left">/testSessions/{testSessionId}/vectorSets/{vectorSetId}/results</td>
+<td valign="top" align="left"><xref target="vectorSet_results_get"/></td>
+<td valign="top" align="left"><xref target="vectorSet_results_post"/></td>
+<td valign="top" align="left"><xref target="vectorSet_results_put"/></td>
+<td valign="top" align="left"/></tr><tr><td valign="top" align="left">/testSessions/{testSessionId}/vectorSets/{vectorSetId}/expected</td>
+<td valign="top" align="left"><xref target="vectorSet_expected_get"/> (Optional)</td>
+<td valign="top" align="left"/><td valign="top" align="left"/><td valign="top" align="left"/></tr></tbody>
+</table>
+
+<p id="_2be959e5-1783-fac0-d71d-09670d8ccf82">The resource path is appended to the path prefix to form the URI used with an HTTP Method to perform the desired ACVP operation. For example to create a new test session using the “/testSessions” resource is “/acvp/v1/testSessions” (assuming an empty context).  To create a new Test Session, the ACVP client would use the following HTTP request-line:</p>
+
+<p id="_7bd8814c-8f11-6736-49b6-6f973d3b6b0b">POST /acvp/v1/testSessions HTTP/1.1</p>
+
+<p id="_581f9116-a3b5-c4ee-0c38-86c48f425a93">Likewise, to request a specific vector set from the server the ACVP client would use the following request-line:</p>
+
+<p id="_3f1cbf91-748e-f4a8-15f2-c81388cb0c51">GET /acvp/v1/testSessions/1/vectorSets/1 HTTP/1.1</p>
+</clause>
+</clause>
+
+<clause id="_security_considerations" obligation="normative">
+<title>Security Considerations</title>
+<p id="_5328ef71-43ec-81a8-9ec1-b83813effbd3">It is <strong>RECOMMENDED</strong> that HTTPS and TLS 1.2 or greater be used in order to enforce a secure communication method. Not all environments will have TLS so HTTP with some level of authentication may be the only option.</p>
+
+<clause id="_authentication" obligation="normative">
+<title>Authentication</title>
+<p id="_d5713d28-f334-f8d8-2b39-cb5e84679cd5">It is <strong>RECOMMENDED</strong> that an authentication scheme be used. Typically, a JSON Web Token (JWT) is created by the server upon successful client authentication and returned to the client to use as an authorization mechanism for accessing the server resources — see <xref target="jwtToken"/> below for more information. Depending on the target environment and usage objectives, the authentication can be as weak as basic HTTP authentication or as strong as TLS mutual certificate authentication. Definition of an authentication scheme will not be discussed here, but should be agreed upon between the client and server owning entities including the servers owned by the validation authorities. The <xref target="login"/> endpoint will be discussed for the purposes of establishing a test session but how a client is authenticated to the server is not prescribed.</p>
+</clause>
+</clause>
+
+<clause id="_encoding" obligation="normative">
+<title>Encoding</title>
+<p id="_1683228b-64bc-025f-3c25-12cdb1541466">The encoding used for the request/response messaging will be JSON (<eref type="inline" bibitemid="RFC7159" citeas="RFC 7159"/>). The data will be identified by: Content-type: application/json In order to allow environment specific extensions to a particular version of the ACV protocol, a top-level JSON keyword, extensions will be used to extend the OE description and/or the capabilities. Extensions <strong>MAY</strong> be ignored by the ACV server. Vector and vector response data will be JSON encoded.</p>
+</clause>
+
+<clause id="_submission_size_considerations" obligation="normative">
+<title>Submission Size Considerations</title>
+<p id="_5effc806-a19a-1e41-025f-383586715d00">Some server implementations <strong>MAY</strong> require alternative handling for submission sizes that exceed resource limitations of the normal workflow for a <tt>POST</tt> response. Server implementations <strong>MUST</strong> indicate whether the server requires large submission handling and what the maxmimum value for non-large submissions is within the <xref target="login"/> response.</p>
+</clause>
+
+<clause id="login" obligation="normative">
+<title>Login</title>
+<p id="_9259c53e-3bce-a510-1bf8-f46655ff040e">A login endpoint is mentioned throughout the document and although how to authenticate is left up to the server the following description is an example of the login endpoint to establish a session and obtain a <xref target="jwtAuthFlows"/>. See <xref target="largeSubmission"/> for more information on how to handle data which exceeds the <tt>sizeConstraint</tt> in the event the value of <tt>largeEndpointRequired</tt> is <tt>true</tt>.</p>
+
+<ul id="_facb181c-7dcd-5120-1b3d-07721d5fbba4"><li><p id="_b95087ea-88cf-1348-8d03-7698c633bc60"><strong>password</strong> — <tt>string</tt>, a property for providing a password value</p>
+</li>
+<li><p id="_b1f2704c-2534-6054-44d0-95d0f92536a0"><strong>accessToken</strong> — <tt>string</tt>, a JWT associated with the current user for which renewal of the expiration is desired</p>
+</li>
+<li><p id="_eabdba65-bb69-f851-a563-32bce676c9a7"><strong>largeEndpointRequired</strong> — <tt>boolean</tt>, true if the server requires the large endpoint for submissions with a size that exceeds the value found in <strong>sizeConstraint</strong>.</p>
+</li>
+<li><p id="_c6d0b681-1d3a-9aa3-c802-07639f5a44fa"><strong>sizeConstraint</strong> — <tt>number</tt>, provides the maximum value, in bytes, of a submission not required to use the <xref target="largeSubmission"/> or -1 if <tt>largeEndpointRequired</tt> is <tt>false</tt>.</p>
+</li>
+</ul>
+
+<clause id="_request" obligation="normative">
+<title>Request</title>
+<p id="_71c5197a-e7ce-93ef-6ef1-330352d99879">There are two forms of a login request. There is the initial form which just provides the authentication information without any JWT, and there is a renewal login that allows a user to obtain a new JWT containing the claims from an expired JWT in order to access a resource protected with those claims.</p>
+
+<p id="_03ab5a39-d35b-8a16-e97f-e023d4cb1194"><strong>POST /login</strong> (Initial)</p>
+
+<sourcecode id="_f8d91175-5341-3fad-b943-a05d2ad64ecc" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+    "password": "{password}"
+  }
+]</sourcecode>
+
+
+<p id="_979b1990-fdaf-e6d3-afed-9c3383c535b6"><strong>POST /login</strong> (Renewal)</p>
+
+<sourcecode id="_9dff7d4f-af89-3426-f635-41f8d6c35b20" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+    "password": "{password}",
+    "accessToken": "{jwt value}"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response" obligation="normative">
+<title>Response</title>
+<sourcecode id="_f850b9b5-27b9-28a1-921a-67294e5ecaa3" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+    "accessToken": "{jwt value}",
+    "largeEndpointRequired": false,
+    "sizeConstraint": -1
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="multiRefresh" obligation="normative">
+<title>Multi Refresh JWT</title>
+<p id="_007c1ce6-8c4e-45f0-72a6-742d6e8c8d21">This endpoint can be utilized for refreshing multiple JWTs with a single POST.  Because a JWT with claims is issued for each test session created and clients have the option of performing more than one test session at a time, a mechanism for refreshing multiple JWTs across multiple test sessions simultaneously <strong>MAY</strong> be made available.</p>
+
+<clause id="_request_2" obligation="normative">
+<title>Request</title>
+<p id="_29849bfa-87a3-7157-7c6c-8cbfff5991c6"><strong>POST /login/refresh</strong></p>
+
+<sourcecode id="_804adafc-a0de-d1b9-391a-dcc03568c5e7" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+    "password": "{password}",
+    "accessToken": [
+      "{jwt1}",
+      "{jwt2}",
+      "..."
+    ]
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_2" obligation="normative">
+<title>Response</title>
+<sourcecode id="_db5b351a-7866-b251-8cac-1088252abe66" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+    "accessToken": [
+      "{newJwt1}",
+      "{newJwt2}",
+      "..."
+    ],
+    "largeEndpointRequired": false,
+    "sizeConstraint": -1
+  }
+]</sourcecode>
+
+
+<p id="_f55287ef-50e5-557f-017f-51ed44533735">Note the order of JWTs between the request and response is preserved.</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="_versioning" obligation="normative">
+<title>Versioning</title>
+<p id="_d46bdc57-d06b-c61e-5101-5fde85d3db63">The version of the ACVP protocol will be carried with each message and will contain a simple major.minor format. Major version changes will not be backward compatible, however additions and enhancements that do not disrupt compatibility will be indicated with a minor version change. A server <strong>MAY</strong> accept a down-level version from the client if it can process at a lower level. If not, it will reject the session. All subsequent messages will carry the negotiated version value.</p>
+</clause>
+
+<clause id="_messaging_and_workflow" obligation="normative">
+<title>Messaging and Workflow</title>
+<clause id="_product_registrationcapabilities_exchange" obligation="normative">
+<title>Product Registration/Capabilities Exchange</title>
+<p id="_6bf792ee-d777-38af-c0e0-fa5928c420d0">The product registration will utilize the URI resources  <xref target="uriResources"/> to register and provide cryptographic capabilities.  This exchange will consist of several message exchanges and will provide a detailed list of cryptographic algorithms and their options to be tested during the testSession, see <xref target="xml_msgFlows"/>, retrieval of test vectors, submission of test responses, determining test result, and a certification step to associate the product and tested environment information with the completed test. A set URI resources are also available to retrieve and manage the available metadata such as companay name, primary contact, product descriptions, and operational environment descriptions.</p>
+</clause>
+
+<clause id="_test_exchange" obligation="normative">
+<title>Test Exchange</title>
+<p id="_71b0a23b-27d1-88ec-ba14-2d553408fe9b">The test exchange consists of the ACV client requesting a particular vectorSet associated with the testSession. The server responds with the vectorSet. The client <strong>MAY</strong> retreive and process the vectorSets in order and <strong>MAY</strong> retreive a vectorSet and immediately return results or request all of the vectorSets and return results at a later time. The client repeats this process until all of the vectorSets in the testSession list have been processed. Once a vectorSet result has been POSTed to the server the client may request success/failure results from the server at any time, however if vectorSets have not been completed the overall status will be incomplete. A minimal message flow is described below <xref target="xml_msgFlows"/>.</p>
+</clause>
+
+<clause id="jwtToken" obligation="normative">
+<title>JSON Web Token (JWT)</title>
+<p id="_792ff0bb-939a-685a-7bdf-1ada99aab2a9">JSON Web Token is described in <eref type="inline" bibitemid="RFC7519" citeas="RFC 7519"/> and is used as an authorization mechanism for gaining access to different resources.</p>
+
+<sourcecode id="jwt_example_unsigned" lang="json">
+<name>Unsigned JWT</name>
+{
+    "alg" : "none"
+}
+{
+    "iss" : "nist.gov",
+    "nbf": 1598293915,
+    "exp": 1598295715,
+    "iat": 1598293915,
+    "pkey" : "cc74f56acdba635079383a03941d68db55c7b3c2f (truncated)"
+}
+{
+
+}</sourcecode>
+
+
+<p id="_cf5ecbed-b4c2-7764-6d3c-d22fde4e88f6">The JWT can be secured if desired using the header encryption “alg” value defined to HS256(HMAC-SHA256) or one of the other secure values. Key agreement would follow RFC7518.</p>
+
+<sourcecode id="jwt_example_signed" lang="json">
+<name>Signed JWT</name>
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+{
+  "iss" : "nist.gov",
+  "nbf": 1598293915,
+  "exp": 1598295715,
+  "iat": 1598293915,
+  "pkey" : "cc74f56acdba635079383a03941d68db55c7b3c2f (truncated)"
+}
+{
+    "{signature}"
+}</sourcecode>
+
+
+<p id="_50ccf099-79e5-31ea-5d23-e03c92537ae7">where “{signature}” is made up of:</p>
+
+<figure id="_2e3d5dd8-d279-90db-6db2-de0adc0c47f4"><pre id="_758b8c5c-6fc1-7521-d20a-998173fc91b3">HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)</pre></figure>
+
+<p id="_33ed588e-1cd6-bee8-f4c8-527a9cfcabae">and where “HMACSHA256” is the algorithm specified in the JWT header.</p>
+
+<p id="_9b6f7b23-0b91-5faa-606e-ce1467653271">The first four claims are required, however “pkey” is an optional private claim used to pass the key used for encrypting the database at the server. Enabling this option is discussed further in <xref target="testSessions_post"/></p>
+
+<clause id="jwtAuthFlows" obligation="normative">
+<title>Authorization flows with JWT</title>
+<p id="_afa34dab-cf73-2507-d4d0-5d7120e38038">JSON Web Token is described in <eref type="inline" bibitemid="RFC7519" citeas="RFC 7519"/> and is used as an authorization mechanism for gaining access to different resources.</p>
+
+<p id="_2a2c5651-3c0d-b1ba-bfb9-6d7e091758e1">In order to access any resource which requires authorization a client must supply the JWT as an <tt>Authorization</tt> header value as a <tt>Bearer</tt> token. An example header value is:</p>
+
+<figure id="_8f12b2aa-dd70-eb7f-5e24-b8d3fbefdc0b"><pre id="_b440bceb-cccd-d919-6b05-ad0b99b7fdbf" alt="">Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5c (truncated)"
+</pre></figure>
+
+<p id="xml_figureFlows" align="center" type="">Workflow authorization flows. All exchanges shown are over HTTP.</p>
+
+<figure id="_bd56a36b-44da-cbff-7139-4d62d786e6c5"><pre id="_9a4e6284-b84f-ab90-bdc6-9729c46e9ce6">         +--------+---------------------------------+------+--------+
+         | Client |                                 |Server|  Notes |
+         +--------+---------------------------------+------+--------+
+         |        |POST to /login or similar with   |      |        |
+         |        |appropriate credentials          |      |        |
+         |        |--------------------------------&gt;|      |        |
+         |        |                                 |      |        |
+         |        |receive the access token         |      |        |
+         |        |&lt;-  -  -  -  -  -  -  -  -  -  - |      |        |
+         |        |                                 |      |        |
+</pre></figure>
+</clause>
+
+<clause id="jwtExpire" obligation="normative">
+<title>JWT Expiration/Renewal</title>
+<p id="_8d60cf9d-f588-034d-96fd-0a3d3cae3e29">The JWT access tokens received from either the /login server endpoint <strong>SHALL</strong> be set to expire after a pre-defined period. The specific length of the expiration period is out of scope for this specification. However, the expiration period length impacts both the security and protocol overhead. Longer expiration periods reduce the overhead but increase the window for attacks. Attempting to access a service with an expired JWT <strong>SHALL</strong> result in a “401 Unauthorized” HTTP status code.</p>
+
+<p id="_b6561cba-a79d-7b76-8d93-2a7420f4b001">A client may renew an expired JWT access token using the mechanism shown in <xref target="xml_figureRenewalFlows"/>below.</p>
+
+<figure id="xml_figureRenewalFlows">
+<name>JWT access token renewal flows. All exchanges shown are over HTTP.</name>
+<pre id="_61010e2a-206e-a22c-ed54-6ba4ba8f970c" alt="">         +--------+---------------------------------+------+--------+
+         | Client |                                 |Server|  Notes |
+         +--------+---------------------------------+------+--------+
+         |        |POST to /login or similar with   |      |        |
+         |        |appropriate credentials          |      |        |
+         |        |and expired JWT access token     |      |        |
+         |        |--------------------------------&gt;|      |session |
+         |        |                                 |      |or      |
+         |        |                                 |      |login   |
+         |        |                                 |      |JWT     |
+         |        |receive the renewed access token |      |        |
+         |        |&lt;-  -  -  -  -  -  -  -  -  -  - |      |        |
+</pre></figure>
+</clause>
+</clause>
+
+<clause id="flow" obligation="normative">
+<title>Message Flow</title>
+<p id="_aa4e2f9d-4b40-cab3-7406-d295abb8bc90">An example minimum message flow between client and server after receiving the JWT is seen in the figure below.</p>
+
+<figure id="xml_msgFlows">
+<name>An example minimal message flow. All exchanges shown are over HTTP.</name>
+<pre id="_42855779-04d6-2955-2e99-433dc5c088a8" alt="">   +--------+-----------------------------------+------+------------+
+   | Client |                                   |Server|  Notes     |
+   +--------+-----------------------------------+------+------------+
+   |        |POST testSessions                  |      |            |
+   |        |----------------------------------&gt;|      |            |
+   |        |                                   |      |   Submit   |
+   |        |testSessions URL                   |      |Registration|
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |GET                                |      |            |
+   |        |/testSessions/1/vectorSets/1       |      |            |
+   |        |----------------------------------&gt;|      |            |
+   |        |                                   |      |  Retrieve  |
+   |        |send test vectors for vsId 1       |      |  Request   |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |POST results                       |      |   Submit   |
+   |        |----------------------------------&gt;|      |  Response  |
+   |        |                                   |      |            |
+   |        |GET                                |      |            |
+   |        |testSessions/1/vectorSets/1/results|      |            |
+   |        |----------------------------------&gt;|      |            |
+   |        |                                   |      |  Retrieve  |
+   |        |receive results                    |      |Disposition |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |PUT                                |      |            |
+   |        |/testSessions/1                    |      |            |
+   |        |----------------------------------&gt;|      |  Certify   |
+   |        |                                   |      |Test Session|
+   |        |receive request identifier         |      |            |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |GET                                |      |            |
+   |        |/requests/1                        |      |            |
+   |        |----------------------------------&gt;|      |  Retrieve  |
+   |        |                                   |      |  Request   |
+   |        |receive validation identifier      |      |            |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |</pre></figure>
+
+<p id="metadata_msgFlow" align="left" type="">Metadata creation and update example. The list of available metadata endpoints can be found in <xref target="uriResources"/>.</p>
+
+<figure id="_0a2e1f38-549b-0fe6-17bd-cf265b72fb56"><pre id="_2dcc9106-bb97-cc00-4f69-2a121f89d8d7">   +--------+-----------------------------------+------+------------+
+   | Client |                                   |Server|  Notes     |
+   +--------+-----------------------------------+------+------------+
+   |        |POST /vendors                      |      | Create     |
+   |        |----------------------------------&gt;|      | Metadata   |
+   |        |                                   |      |            |
+   |        |receive request identifier         |      |            |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |GET                                |      |            |
+   |        |/requests/1                        |      | Retrieve   |
+   |        |----------------------------------&gt;|      | Request    |
+   |        |                                   |      |            |
+   |        |receive vendor URL                 |      |            |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |PUT /vendors                       |      | Update     |
+   |        |----------------------------------&gt;|      | Metadata   |
+   |        |                                   |      |            |
+   |        |receive request identifier         |      |            |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |GET                                |      |            |
+   |        |/requests/2                        |      |  Retrieve  |
+   |        |----------------------------------&gt;|      |  Request   |
+   |        |                                   |      |            |
+   |        |receive vendor URL                 |      |  updated   |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |  or new    |</pre></figure>
+
+<p id="large_msgFlow" align="left" type="">In the event a submission response exceeds server defined thresholds the following workflow will need to be followed in order to submit the test result. See <xref target="largeSubmission"/> for more information.</p>
+
+<figure id="_4db444f2-2d6e-dc29-d9e2-9727501f8727"><pre id="_ef0653b5-19e0-dd7c-978a-dd6bdc55d4aa">   +--------+-----------------------------------+------+------------+
+   | Client |                                   |Server|  Notes     |
+   +--------+-----------------------------------+------+------------+
+   |        |POST                               |      |            |
+   |        |/large                             |      |            |
+   |        |----------------------------------&gt;|      |            |
+   |        |                                   |      |            |
+   |        |receive large submission URI       |      |            |
+   |        |and JWT access token               |      |            |
+   |        |&lt;-  -  -  -  -  -  -  -  -  -  -  -|      |            |
+   |        |                                   |      |            |
+   |        |POST                               |      |&lt;uri&gt;       |
+   |        |/&lt;uri&gt;                             |      |received    |
+   |        |----------------------------------&gt;|      |from prior  |
+   |        |MUST use specific JWT              |      |step        |</pre></figure>
+</clause>
+
+<clause id="paging" obligation="normative">
+<title>Paging</title>
+<p id="_ff28f625-98d5-17de-bd8f-05105f407496">Some resource operations require paging in order to avoid returning large amounts of data. Each operation that uses paging will indicate that uses paging and what the value for each element will be within the section describing that operation. All paged responses <strong>MUST</strong> follow the format described in <xref target="paging_response"/>. Conversely, clients may navigate pages using the paging parameters described in <xref target="paging_parameters"/>. Server implementations <strong>SHOULD</strong> impose limitations on the page size limit based on resource constraints.</p>
+
+<clause id="paging_parameters" obligation="normative">
+<title>Parameters</title>
+<p id="_6284fb53-87f3-5042-a1f8-a2b6b727a74d">A Server <strong>MUST</strong> accept requests without paging parameters. If not all results are returned, the response <strong>MUST</strong>indicate that not all of the results were provided using the <tt>incomplete</tt> property of a paged response described in <xref target="paging_response"/>. The query parameters clients <strong>MUST</strong> use to specify paging are described below:</p>
+
+<ul id="_a51bf3bf-11ef-821f-0f09-fb29208a6143"><li><p id="_b30869c3-21b4-6440-e0f3-a431ba0b432b"><strong>limit</strong> — <tt>number</tt>, the maximum number of entries to return. Server implementations <strong>MUST</strong> allow requests without a provided value, but the default value is a choice for server implementations.</p>
+</li>
+<li><p id="_565b3ce3-62ff-20e7-b111-dab46f472799"><strong>offset</strong> — <tt>number</tt>, the offset into the list of entries, <strong>MUST</strong> default to <tt>0</tt> if not provided.</p>
+</li>
+</ul>
+
+<p id="_80ba63fb-0d89-1a8a-dd02-5afb511b2240">GET /acvp/v1/vendors?offset=20&amp;limit=20 HTTP/1.1</p>
+</clause>
+
+<clause id="paging_response" obligation="normative">
+<title>Response</title>
+<p id="_b8aa8f87-7ee1-d1e1-eb17-1f947b78567a">A paged response has the following properties:</p>
+
+<ul id="_cc98aae7-95bd-9d75-58d1-c697d5c40e1e"><li><p id="_4f1c669f-1b77-e2f8-b39b-e93c4dd284fc"><strong>totalCount</strong> — <tt>number</tt>, the total number of resources available to return</p>
+</li>
+<li><p id="_c1364619-4801-7e32-291e-6c163de49a34"><strong>incomplete</strong> — <tt>boolean</tt>, true if more resources are avaiable than what is returned in the response</p>
+</li>
+<li><p id="_02574338-b0be-090c-28b6-6614f578e917"><strong>links</strong> — <tt>object</tt>, links to use when navigating the pages</p>
+<ul id="_f5501e83-a317-79a4-66c1-4f3aa86c8fa3"><li><p id="_74eb4416-5ef3-6150-acd5-20b393e14ff6"><strong>first</strong> — <tt>string</tt>, a link to the first page in the result set</p>
+</li>
+<li><p id="_8d4e424d-3d8b-838a-2c46-4f58d37c8cf4"><strong>next</strong> — <tt>string</tt>, a link to the next page in the result set, <tt>null</tt> if no next page is available</p>
+</li>
+<li><p id="_88061584-b374-9770-8ac8-bfcff928cd01"><strong>prev</strong> — <tt>string</tt>, a link to the previous page in the result set, <tt>null</tt> if no previous page is available</p>
+</li>
+<li><p id="_947546b0-fef9-1bf1-6eb9-859ffd7b6585"><strong>last</strong> — <tt>string</tt>, a link to the last page in the result set</p>
+</li>
+</ul>
+</li>
+<li><p id="_8404f055-429c-5bf3-8636-8e99b77fd849"><strong>data</strong> — <tt>array</tt>, contains an array of data appropriate to the resource requested</p>
+</li>
+</ul>
+
+<figure id="_c9114629-8117-832a-da96-fc2e89c2b8f7"><pre id="_3771bbe7-2039-a710-fb67-d829da013c47" alt="">[
+    {"acvVersion": &lt;acvp-version&gt;},
+    {
+        "totalCount" : 22007,
+        "incomplete" : true,
+        "links" : {
+            "first" : "/acvp/v1/&lt;resource&gt;?offset=0&amp;limit=20",
+            "next" : "/acvp/v1/&lt;resource&gt;?offset=20&amp;limit=20",
+            "prev" : null,
+            "last" : "/acvp/v1/&lt;resource&gt;?offset=22000&amp;limit=20"
+        },
+        "data" : [ &lt;resource response&gt; ]
+    }
+]
+</pre></figure>
+</clause>
+</clause>
+
+<clause id="query_parameters" obligation="normative">
+<title>Query Parameters</title>
+<p id="_cf65b41a-7a31-038c-85d7-d0c0ba97e15c">Some of the resource listing operations allow for query parameters to be provided to filter out the returned values. Each resource will list what properties and operations are available but the general format of the query parameter string is consistent across all resources. The format allows for the specification of complex filters with the concept of groups, where all elements in the same group <strong>MUST</strong> be AND’ed together and different groups are OR’ed together. The URL including the parameter values <strong>MUST</strong> conform to <eref type="inline" bibitemid="RFC3986" citeas="RFC 3986"/> and <strong>MUST</strong> use UTF-8 character encoding.</p>
+
+<p id="_90cb8da3-652b-7eba-e1b4-23a4fe2672f4" align="center" type="">General format of a query parameter element.</p>
+
+<figure id="_3f55439e-d2c5-7ab2-2420-d115a9f3a130"><pre id="_34f69de8-6018-715c-09af-077f63ad542c">&lt;property&gt;[&lt;index&gt;]=&lt;operation&gt;:&lt;value&gt;
+</pre></figure>
+
+<ul id="_c7561e3d-5dfd-52b3-d832-3cd8a9000805"><li><p id="_5c641637-917a-8e4d-331e-9e025d03b697"><strong>property</strong> — is the property to be specified</p>
+</li>
+<li><p id="_a1d2fdd5-e1e7-9be6-9efa-974829f1fa69"><strong>index</strong> — is an arbitrary group index, elements with same group index are AND’ed together and elements with different indices are OR’ed togther. <tt>index</tt> <strong>MUST</strong> be between 0 and 99 inclusive.</p>
+</li>
+<li><p id="_52546ef9-8714-6175-db64-e1adce16f1cf"><strong>operation</strong> — is an operation on a property and a value. Not all operations require a value, and not all properties will permit every operation. Available operations are:</p>
+<ul id="_5973d9db-f0c9-2468-433f-336cb40a943d"><li><p id="_36de9218-593f-1d4f-f7b8-b85a24e422c2"><strong>eq</strong> — filter based on property equal to the value</p>
+</li>
+<li><p id="_738ec5f8-84c9-f1b0-199c-bfd2fe515be6"><strong>ne</strong> — filter based on the property not equal to the value</p>
+</li>
+<li><p id="_56419216-244c-dc1e-0921-55ec3d7e15ad"><strong>gt</strong> — filter based on the property greater than the value</p>
+</li>
+<li><p id="_fc826fc3-693c-cc0a-2532-a294cfd92751"><strong>ge</strong> — filter based on the property greater than or equal to the value</p>
+</li>
+<li><p id="_00b7debc-b8e4-fdc6-9566-9cc6760d381f"><strong>lt</strong> — filter based on the property less than the value</p>
+</li>
+<li><p id="_b1a81aa5-d9eb-c269-cfdf-4554e0a3b26d"><strong>le</strong> — filter based on the property less than or equal to the value</p>
+</li>
+<li><p id="_e3b406d9-99cf-f01a-3bb3-8bc0278bc96f"><strong>contains</strong> — filter based on the property containing the value</p>
+</li>
+<li><p id="_1ace4865-2074-a447-66ca-2097896ecafe"><strong>start</strong> — filter based on the property starting with the value</p>
+</li>
+<li><p id="_6d3a3d0a-3912-8cd0-9802-2dc82a29a0a9"><strong>end</strong> — filter based on the property ending with the value</p>
+</li>
+</ul>
+</li>
+<li><p id="_2edc7f9b-86bf-4154-cfb5-974b99801f1a"><strong>value</strong> — the value to filter on, it <strong>MAY</strong> be constrained based on the property</p>
+</li>
+</ul>
+
+<p id="_2e98838f-7140-4677-ceb1-7c3d654f3768" align="center" type="">Example 1</p>
+
+<figure id="_25aab277-37bc-2651-5dd0-e6c9603b3372"><pre id="_70a4cd49-21b5-e2b4-6cff-a63f00486e3f">/resource?property1[0]=eq:foo&amp;property2[0]=eq:foo
+&amp;property1[1]=eq:test&amp;property2[1]=ne:bar</pre></figure>
+
+<p id="_21b84bf9-179a-ad8e-cee4-76495bc24a4d">For the example above the results returned would include resources that have: <tt>property1</tt> equal to <tt>foo</tt> and <tt>property2</tt> equal to <tt>foo</tt> or resources that have <tt>property1</tt> equal to <tt>test</tt> and <tt>property2</tt> not equal to <tt>bar</tt>.</p>
+
+<p id="_92bb5724-fc2a-31d7-2f87-c099c24211e4" align="center" type="">Example 2 based on <xref target="vendors_get"/>.</p>
+
+<figure id="_3950780d-4f66-48ee-b4e4-568c0f65ce8c"><pre id="_dcba7502-7f4d-b05a-5de5-5e42431a9249">/vendors?name[0]=contains:acme&amp;name[1]=contains:test</pre></figure>
+
+<p id="_5986a42d-87ab-a8fc-8302-dd9f671ea21e">For the example above the vendor results returned would include resources that have a <tt>name</tt> property value that contains either <tt>acme</tt> or <tt>test</tt>.</p>
+</clause>
+
+<clause id="requests" obligation="normative">
+<title>Requests</title>
+<p id="_9d1b82c7-80a9-48b6-e036-cbefbfaf5118">Some resource operations make a request to modify or create data. To facilitate an out-of-band approval step, where data can be inspected to insure it meets the business requirements of the validation authority which operates the server, the operations will return a <tt>request</tt> url that can be used to obtain information about the status and disposition of the requested modification. Whether or how an authority implements an approval step is outside the scope of this specification.</p>
+
+<p id="_25d12b5f-2b10-38ae-968e-7967938acb1b">A request resource is not externally updateable, but <strong>SHOULD</strong> update based on server processing. The properties for a request response:</p>
+
+<ul id="_015c3a8f-75ec-0872-02b2-cc8b02c944ac"><li><p id="_5a41cabf-92c3-d22c-f713-9bc837a4e680"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_903219e7-2392-c6cb-adf8-b18b7a95e14b"><strong>status</strong> — <tt>string</tt>, one of:</p>
+<ul id="_96eacd85-db43-1b1d-3e8b-c8d1050f305d"><li><p id="_c840c0fb-d7f5-05b9-fcb4-314ac3cb16b1"><strong>initial</strong> — initial state of the request, created</p>
+</li>
+<li><p id="_73cb4a1a-1eaa-d60b-dbd9-d9089943229f"><strong>processing</strong> — server is processing the request</p>
+</li>
+<li><p id="_7642a1df-ff51-96a0-c0b3-b73ba0fe9d1f"><strong>approved</strong> — the requested operation was successfully processed</p>
+</li>
+<li><p id="_401d23ad-9573-49d4-cdf5-ac65279027f4"><strong>rejected</strong> — the requested operation was rejected and no change was made</p>
+</li>
+</ul>
+</li>
+<li><p id="_af6fab8f-7a5a-70ef-0b08-6ed66e71c8d0"><strong>message</strong> — <tt>string</tt>, a placeholder for any message describing a rejection</p>
+</li>
+<li><p id="_e0706a5f-b975-3097-7fc7-447715791e9e"><strong>approvedUrl</strong> — <tt>string</tt>, a link to the resource which was created or modified as a result of the requested operation</p>
+</li>
+</ul>
+
+<clause id="requests_get" obligation="normative">
+<title>Request Listing</title>
+<p id="_fa2e377a-747b-545e-0c37-e0db0068b843"><strong>GET /requests</strong></p>
+
+<p id="_0a07ec96-c70a-c0a3-19bf-e0ce3021a6ce">Returns a paged listing of requests for the current user. Each element in the <tt>data</tt> array is a <tt>request object</tt> as described in <xref target="request_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+</clause>
+
+<clause id="request_get" obligation="normative">
+<title>Request Information</title>
+<p id="_d77c5d5c-ef17-d157-bc15-1d1682292299"><strong>GET /requests/{requestId}</strong></p>
+
+<p id="_13b4b046-ff75-c545-2b84-2ca0770b82c9">Retrieve Information for a specific request</p>
+
+<clause id="_response_3" obligation="normative">
+<title>Response</title>
+<sourcecode id="_c9b0605c-1f4f-dbed-d95b-fe76c0969c26" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "url": "/acvp/v1/requests/2",
+        "status": "approved",
+        "approvedUrl" : "/acvp/v1/vendors/2"
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="vendors" obligation="normative">
+<title>Vendor Resources</title>
+<p id="_8e7cbb43-418c-2c73-6065-0cc3868e3ce9">The available properties for vendor resources are:</p>
+
+<ul id="_29a979a4-75aa-c3e1-3159-fc2bfb593df2"><li><p id="_318afbb2-08c1-5357-eeeb-74f1aec73c50"><strong>url</strong> — <tt>string</tt>, identifier for the vendor resource within which this property is located</p>
+</li>
+<li><p id="_75ce552c-ab32-07f1-63bd-2965ca4481bb"><strong>name</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_c7c0e549-3f6c-5273-6b06-0e8c87c35e1c"><strong>parentUrl</strong> — a parent vendor identifier, allows for multiple divisions or business units to share a parent company identifier</p>
+</li>
+<li><p id="_0df407ee-05fe-a35c-8478-e29d8d93fd9d"><strong>website</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_72f99892-9e0a-6da9-ecf2-441cbce290a6"><strong>emails</strong> — array of <tt>string</tt></p>
+</li>
+<li><p id="_68bfcd13-2529-17b8-6208-3ace1dafc55a"><strong>phoneNumbers</strong> — array of phone objects,</p>
+<ul id="_e3bf6ae2-fc96-b357-48e1-d31bac85015b"><li><p id="_7cea025e-116f-8af0-ee88-a52abf1f5560"><strong>number</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_6cca030b-c909-47c3-e36c-4b4d95ec2678"><strong>type</strong> — <tt>string</tt>, one of (fax, voice)</p>
+</li>
+</ul>
+</li>
+<li><p id="_400b8b5b-da35-0423-56fa-17a46b4dc61e"><strong>contactsUrl</strong> — <tt>string</tt>, identifier for the list of person resources associated with this vendor</p>
+</li>
+<li><p id="_be47873f-319e-ac00-2434-7922f2d7f953"><strong>addresses</strong> — an address object,</p>
+<ul id="_c5c62822-3922-e306-3305-98d7e48afb95"><li><p id="_bf8bbaf6-0d6a-5038-b7fa-ad523de2178d"><strong>url</strong> — <tt>string</tt>, identifier for the address resource</p>
+</li>
+<li><p id="_8edba163-8fba-3f5c-77f3-c4fcce007854"><strong>street1</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_ce0304fe-12a1-9d8b-6f41-0e54c57176fc"><strong>street2</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_90966ad5-1416-68cd-d1e6-701a8823a5ae"><strong>street3</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_c4bb0ce4-77b2-a0bb-f566-c2ef5a3be125"><strong>locality</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_cf7eef81-088e-4e4f-8046-243d3047cf2d"><strong>region</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_8e8917fd-e12e-e280-5024-26a6aa483bbd"><strong>country</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_c5a93c3f-8c3e-3379-6dc7-dfa46cf4a8a6"><strong>postalCode</strong> — <tt>string</tt></p>
+</li>
+</ul>
+</li>
+</ul>
+
+<clause id="vendors_get" obligation="normative">
+<title>Vendor Listing</title>
+<p id="_8272049d-16f8-a92d-c580-ffa842fcc99e"><strong>GET /vendors</strong></p>
+
+<p id="_50567e45-cef0-9570-673e-0a32bdca5748">Returns a paged listing of vendors. Each element in the <tt>data</tt> array is a <tt>vendor object</tt> as described in <xref target="vendor_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+
+<p id="_0d0eee24-7b6f-383d-6b08-92e0fb3de783">Available <xref target="query_parameters"/>:</p>
+
+<ul id="_2a72ddbd-ed60-6dff-455c-a3821f751dac"><li><p id="_a7186eb4-a49b-6a68-ed24-65a81ad90526"><strong>name</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_c7f0dd90-a2a3-f37d-365b-e3fc1467ba78"><strong>website</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_11588b76-fd52-1c5c-5719-c94d0d671bcd"><strong>email</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_580be847-6040-03f2-8e0b-746a51babc67"><strong>phoneNumber</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+</ul>
+</clause>
+
+<clause id="vendors_post" obligation="normative">
+<title>Create a New Vendor</title>
+<p id="_4572b95d-828b-3d61-4b1a-44ef896396dd"><strong>POST /vendors</strong></p>
+
+<p id="_cd7d62d1-a9a5-3f0d-87c9-345049b411ba">Request the creation of a new Vendor.</p>
+
+<clause id="_request_3" obligation="normative">
+<title>Request</title>
+<p id="_c5730635-9376-2db0-f69d-78e514f754c9"><tt>name</tt> is required and all other defined properties are OPTIONAL. Any additional properties included in the request are ignored.</p>
+
+<sourcecode id="_a57f1f72-c0d3-27e6-fcb4-a60bb19f8005" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+      "name": "Acme, LLC",
+      "website": "www.acme.acme",
+      "emails" : [ "inquiry@acme.acme" ],
+      "phoneNumbers" : [{
+          "number" : "555-555-1234",
+          "type" : "voice"
+      }],
+      "addresses" : [{
+          "street1" : "123 Main Street",
+          "locality" : "Any Town",
+          "region" : "AnyState",
+          "country" : "USA",
+          "postalCode" : "123456"
+      }]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_4" obligation="normative">
+<title>Response</title>
+<p id="_49f1ff00-5c69-fb27-c83a-86f9ea1b26b6">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the vendor resource which was created. The url of any resources created incidental to the creation of the vendor resource would be available through the <xref target="vendor_get"/> operation.</p>
+
+<p id="_f9b8c43a-24fe-5297-595c-3fbb5a629555">Reply is a request response as described in <xref target="requests"/>.</p>
+</clause>
+</clause>
+
+<clause id="vendor_get" obligation="normative">
+<title>Vendor Information</title>
+<p id="_2d63d491-1d16-42e2-72c7-c8830082997c"><strong>GET /vendors/{vendorId}</strong></p>
+
+<p id="_7d586193-6e9a-99a8-a854-f353c2cc2531">Retrieve Information for a specific vendor</p>
+
+<clause id="_response_5" obligation="normative">
+<title>Response</title>
+<sourcecode id="_9c33417c-e2aa-fc08-19b6-9e4f452a7f03" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "url": "/acvp/v1/vendors/2",
+        "name": "Acme, LLC",
+        "website": "www.acme.acme",
+        "emails" : [ "inquiry@acme.acme" ],
+        "phoneNumbers" : [{
+          "number" : "555-555-1234",
+          "type" : "voice"
+        }],
+        "contactsUrl": "/acvp/v1/vendors/2/contacts",
+        "addresses" : [{
+            "url" : "/acvp/v1/vendors/1/addresses/4",
+            "street1" : "123 Main Street",
+            "locality" : "Any Town",
+            "region" : "AnyState",
+            "country" : "USA",
+            "postalCode" : "123456"
+        }]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="vendor_put" obligation="normative">
+<title>Update an existing Vendor</title>
+<p id="_08482234-dadb-92ba-8b0b-6b79b8073a1f"><strong>PUT /vendors/{vendorId}</strong></p>
+
+<p id="_b03b8164-e30a-f97e-81ef-077a16cac925">Update a vendor</p>
+
+<p id="_0ec94101-cea7-794d-b0ca-ef7827f45e20">The <tt>url</tt> property is not updateable.</p>
+
+<clause id="_request_4" obligation="normative">
+<title>Request</title>
+<p id="_d89df17c-a3d7-9684-7fa0-70f53bb10828">Can be any subset of the updateable properties. If a property is not included its value is not changed. A <tt>null</tt> value for a property indicates the value should be removed.</p>
+
+<p id="_41b4602f-f690-a960-9624-f094ed87fbb2">When updating the addresses array, the <tt>url</tt> of every address resource to be kept <strong>MUST</strong> be included. Any missing addresses will be removed and any new addresses will be created.</p>
+
+<sourcecode id="_34ee065e-5fc4-69dd-cfdb-a39873d425db" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "name": "Acme, LLC",
+        "website": "www.acme.acme",
+        "emails" : [ "inquiry@acme.acme" ],
+        "addresses" : [{
+                "url" : "/acvp/v1/vendors/2/addresses/4",
+                "street1" : "123 Main Street",
+                "locality" : "Any Town",
+                "region" : "AnyState",
+                "country" : "USA",
+                "postalCode" : "123456"
+        }]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_6" obligation="normative">
+<title>Response</title>
+<p id="_97fc5745-6d53-6036-11cb-e4488e669ae8">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the vendor resource which was updated. A server implementation <strong>MAY</strong> create a new resource instead of updating the existing resource.</p>
+</clause>
+</clause>
+
+<clause id="vendor_delete" obligation="normative">
+<title>Remove a Vendor</title>
+<p id="_8356f967-e512-3c95-cb73-8beb40f4e704"><strong>DELETE /vendors/{vendorId}</strong></p>
+
+<p id="_10f16c0f-ea14-e6a6-2b6b-10049d920783">Request to delete a specific vendor. Reply is a request response as described in <xref target="requests"/>.</p>
+
+<p id="_c8b75c0c-b59d-9a73-4654-c82e7d6f8b8a">The server is not required to remove the resource but <strong>MUST</strong> return a <tt>rejection`value for the `status</tt> property if the resource will not be removed.</p>
+</clause>
+
+<clause id="contacts_get" obligation="normative">
+<title>Contact Listing for a Vendor</title>
+<p id="_b0cf9422-3e1a-de39-23c3-1bdcaa961266"><strong>GET /vendors/{vendorId}/contacts</strong></p>
+
+<p id="_2e60c8ce-f234-bdc7-dc2d-213866a5c74f">Returns a paged listing of persons specific to the vendor. Each element in the <tt>data</tt> array is a <tt>person object</tt> as described in <xref target="person_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+</clause>
+</clause>
+
+<clause id="addresses" obligation="normative">
+<title>Address Resources</title>
+<p id="_f4ca1bda-8fda-ddaf-7337-e9533ec67966">The available properties for address resources are:</p>
+
+<ul id="_e3fe7bed-0f83-86c7-8d7c-0f39269b3a4f"><li><p id="_2250420d-6d59-dc9a-586e-2a0a0998bce8"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_cdb47f29-d3f5-9d92-d465-0a1c49d9f56c"><strong>street1</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_e1128ac4-93dd-de35-1da4-fac70545125e"><strong>street2</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_c35870c4-174f-fccd-25a9-3f1be2acf6cb"><strong>street3</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_69e4e206-7ce0-e3ab-4bf0-65370783e908"><strong>locality</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_8acdb8ba-4c78-b202-b74a-f13d5d2a5b07"><strong>region</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_f11484b0-c232-9b1c-95d6-6038894966f6"><strong>country</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_ddb7357b-3c33-7055-fc03-cd4bebc5bd65"><strong>postalCode</strong> — <tt>string</tt></p>
+</li>
+</ul>
+
+<clause id="addresses_get" obligation="normative">
+<title>Address Listing</title>
+<p id="_30487ec9-cbfd-997b-26f2-589f831c934a"><strong>GET /vendors/{vendorId}/addresses</strong></p>
+
+<p id="_a0c5a4ad-fc5f-f8cc-373c-ff0a40e8eb55">Returns a paged listing of addresses for the vendor. Each element in the <tt>data</tt> array is an <tt>address object</tt> as described in <xref target="address_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+
+<p id="_b905e20e-b58e-0891-2c6c-0d9403a1afec">The addresses returned are equivalent to the address array returned in <xref target="vendor_get"/> for the same vendor resource.</p>
+</clause>
+
+<clause id="address_get" obligation="normative">
+<title>Address Information</title>
+<p id="_4ac7e08c-8b81-ade2-c18e-309212bd09e5"><strong>GET /vendors/{vendorId}/addresses/{addressId}</strong></p>
+
+<p id="_3fd62d88-09cd-f33b-a9c3-efdc328b9db4">Retrieve Information for a specific address</p>
+
+<clause id="_response_7" obligation="normative">
+<title>Response</title>
+<sourcecode id="_e86aa7ec-b11c-bbba-a1c0-f67e61585aa1" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "url" : "/vendors/2/addresses/4",
+        "street1" : "123 Main Street",
+        "locality" : "Any Town",
+        "region" : "AnyState",
+        "country" : "USA",
+        "postalCode" : "123456"
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="persons" obligation="normative">
+<title>Person Resources</title>
+<p id="_192279d1-f7b3-8181-9adb-ee0a47474a96">The available properties for person resources are:</p>
+
+<ul id="_85ec937d-d44e-5f56-c56c-83b9a615823c"><li><p id="_0d357b9f-5232-985c-11e9-2aa5adf188bf"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_04f94eaf-1f66-6799-8643-a4be18458b94"><strong>fullName</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_7efcf92a-c115-2da7-0529-0207a6bed96d"><strong>vendorUrl</strong> — <tt>string</tt>, identifier for the vendor resource this person is associated with</p>
+</li>
+<li><p id="_85a60e3a-8adc-99e2-c6cf-575295387f19"><strong>emails</strong> — array of <tt>string</tt></p>
+</li>
+<li><p id="_22df507f-d3bc-513f-176a-74ea62e3c2e5"><strong>phoneNumbers</strong> — array of phone objects,</p>
+<ul id="_b2719fee-9ab5-8a0f-323c-1c4accc3ef73"><li><p id="_da38b2c8-e295-ef22-821a-8bfe7586663c"><strong>number</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_5cc4f511-2678-2bca-da01-9719fa6a907b"><strong>type</strong> — <tt>string</tt>, one of (fax, voice)</p>
+</li>
+</ul>
+</li>
+</ul>
+
+<p id="_bc403b5e-9794-1fca-1a20-720b7e22ed87">The email and phone number values are specific to the person resource and are independent of the equivalent information in the vendor resource.</p>
+
+<clause id="persons_get" obligation="normative">
+<title>Person Listing</title>
+<p id="_6b6531de-7015-f986-15a7-9fcfda7357d3"><strong>GET /persons</strong></p>
+
+<p id="_8cd93bcd-4608-7e53-8ced-4af906f4fede">Returns a paged listing of persons. Each element in the <tt>data</tt> array is a <tt>person object</tt> as described in <xref target="person_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+
+<p id="_8fea0d8f-c93c-15f3-f2b6-11f99858a0e6">Available <xref target="query_parameters"/>:</p>
+
+<ul id="_a7232a0c-5477-daff-4152-20a6c498dfc7"><li><p id="_17c00b7a-d5f0-643a-01c1-1d95a88c436e"><strong>fullName</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_0107c892-13f8-4f2f-f6bf-3e0633927cff"><strong>email</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_1305cb7e-d284-7e35-9bca-5a1d376a25b1"><strong>phoneNumber</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_a7ec2474-5cbc-bc5e-276e-a23c9d0401e9"><strong>vendorId</strong>: <tt>eq</tt>, <tt>ne</tt>, <tt>lt</tt>, <tt>le</tt>, <tt>gt</tt>, <tt>ge</tt></p>
+</li>
+</ul>
+</clause>
+
+<clause id="persons_post" obligation="normative">
+<title>Create a New Person</title>
+<p id="_54300c66-b746-ac16-f73f-2b68c6b190ec"><strong>POST /persons</strong></p>
+
+<p id="_2988edd8-0c6f-ec80-8486-7e5eeb661058">Request the creation of a new Person.</p>
+
+<clause id="_request_5" obligation="normative">
+<title>Request</title>
+<p id="_ceb311b4-faae-0161-864b-d3fa3d99594c"><tt>fullName</tt> and <tt>vendorUrl</tt> are required. Other defined resource properties are OPTIONAL. Any additional properties included in the request are ignored.</p>
+
+<sourcecode id="_c6443450-68bf-89cf-d389-6cfbf25f338f" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+      "fullName": "Jane Smith",
+      "vendorUrl" : "/acvp/v1/vendors/2",
+      "emails": ["jane.smith@acme.acme"],
+      "phoneNumbers" : [
+          {
+              "number": "555-555-0001",
+              "type" : "fax"
+          }, {
+              "number": "555-555-0002",
+              "type" : "voice"
+          }
+      ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_8" obligation="normative">
+<title>Response</title>
+<p id="_9db51e5b-c538-055c-2334-27f6f18d7e33">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the person resource which was created.</p>
+</clause>
+</clause>
+
+<clause id="person_get" obligation="normative">
+<title>Person Information</title>
+<p id="_bdead3fe-074d-0ff5-cf1e-a0240bbd5754"><strong>GET /persons/{personId}</strong></p>
+
+<p id="_d58845f7-db65-2d88-79e5-6462701bdbb0">Retrieve Information for a specific person</p>
+
+<clause id="_response_9" obligation="normative">
+<title>Response</title>
+<sourcecode id="_87ace4bf-1c94-b786-3202-c8f612e0c45f" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+      "url": "/acvp/v1/persons/4",
+      "fullName": "Jane Smith",
+      "vendorUrl" : "/acvp/v1/vendors/2"
+      "emails": ["jane.smith@acme.acme"],
+      "phoneNumbers" : [
+          {
+              "number": "555-555-0001",
+              "type" : "fax"
+          }, {
+              "number": "555-555-0002",
+              "type" : "voice"
+          }
+      ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="person_put" obligation="normative">
+<title>Update an existing Person</title>
+<p id="_c3636f29-a333-8cc8-b997-a1ab86f2123b"><strong>PUT /persons/{personId}</strong></p>
+
+<p id="_21e04f02-1d60-68d0-6c8e-d63f24a4ea7f">Update a person</p>
+
+<p id="_fe944804-b35d-af3a-0311-27a0528a8d72">The <tt>url</tt> property is not updateable.</p>
+
+<clause id="_request_6" obligation="normative">
+<title>Request</title>
+<p id="_3f76d9d5-683b-8ede-c5ad-ff8ccdab0f50">Can be any subset of the updateable properties. If a property is not included its value is not changed. A <tt>null</tt> value for a property indicates the value should be removed.</p>
+
+<sourcecode id="_54284b97-05b2-0e31-0d0d-39d6ade6a514" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+      "fullName": "Jane Smith",
+      "emails": ["jane.smith@acme.acme"],
+      "phoneNumbers" : [
+          {
+              "number": "555-555-0001",
+              "type" : "fax"
+          }, {
+              "number": "555-555-0002",
+              "type" : "voice"
+          }
+      ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_10" obligation="normative">
+<title>Response</title>
+<p id="_64c639f3-45af-d730-1424-bbbd0d101fdc">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the person resource which was updated. A server implementation <strong>MAY</strong> create a new resource instead of updating the existing resource.</p>
+</clause>
+</clause>
+
+<clause id="person_delete" obligation="normative">
+<title>Remove a Person</title>
+<p id="_7a3aaa94-2558-5e8d-41e1-0b83c72de265"><strong>DELETE /persons/{personId}</strong></p>
+
+<p id="_13223e29-4f97-c314-3ca2-2cbc1085ee84">Request to delete a specific person. Reply is a request response as described in <xref target="requests"/>.</p>
+
+<p id="_6198b9b1-4fe0-0e2b-1a1d-1885d557d105">The server is not required to remove the resource but <strong>MUST</strong> return a <tt>rejection</tt> value for the <tt>status</tt> property if the resource will not be removed.</p>
+</clause>
+</clause>
+
+<clause id="modules" obligation="normative">
+<title>Modules</title>
+<p id="_f364538d-3b1c-2a0c-7434-649d46ce3f64">The available properties for module resources are:</p>
+
+<ul id="_d62a2d80-c8b9-743b-d5a7-1c6962387f99"><li><p id="_2ddf29fd-e975-277c-e20d-b0771b31cd52"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_86535dac-28ed-e06f-52de-b7479f7619d3"><strong>name</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_5342d5c3-e063-0411-ba74-37739683ca72"><strong>version</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_aa8e3706-ff35-9aec-49ae-4d47e492c35d"><strong>type</strong> — <tt>string</tt>, valid values are:</p>
+<ul id="_9cda0c4e-f414-e239-e756-beb45037a2ec"><li><p id="_0de1939b-dd3e-ada5-785f-24fae110761e"><tt>Software</tt> — software-based modules</p>
+</li>
+<li><p id="_af7848b8-1526-4e89-6a97-054cce30482f"><tt>Hardware</tt> — hardware-based modules</p>
+</li>
+<li><p id="_dc5a497f-df21-c1cb-adfc-81990eb01341"><tt>Firmware</tt> — firmware-based modules</p>
+</li>
+</ul>
+</li>
+<li><p id="_96f0a259-871d-c172-2735-04dde311c242"><strong>website</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_d6d46c22-2dbe-7d93-d495-ab83e6449b9e"><strong>vendorUrl</strong> — <tt>string</tt>,  identifier for a <xref target="vendors"/></p>
+</li>
+<li><p id="_592fa20c-e9e6-3f44-604d-2c6bbbb84249"><strong>addressUrl</strong> — <tt>string</tt>, identifier for an <xref target="addresses"/></p>
+</li>
+<li><p id="_cd47a67f-2aac-09e4-2196-773bf6be2f64"><strong>contactUrls</strong> — <tt>string array</tt>, array of identifiers for a <xref target="persons"/></p>
+</li>
+<li><p id="_c88b676e-52a4-9329-c050-366c7342a235"><strong>description</strong> — <tt>string</tt>, a description of the implementation</p>
+</li>
+</ul>
+
+<clause id="modules_get" obligation="normative">
+<title>List Modules</title>
+<p id="_7fd803dd-e3c0-b052-ee54-16dabcd676ee"><strong>GET /modules</strong></p>
+
+<p id="_ea900742-2afd-97e5-e72b-685459a3d885">Returns a paged listing of modules. Each element in the <tt>data</tt> array is a <tt>module object</tt> as described in <xref target="module_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+
+<p id="_00a6dfbb-69da-324d-5c34-588534dc9f6c">Available <xref target="query_parameters"/>:</p>
+
+<ul id="_80586919-580b-c286-1359-fe62139f4dd7"><li><p id="_8e73f152-ba28-2e61-628a-d1a67e2e6270"><strong>name</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_31711449-0b7e-7e41-f69a-248fdf1b4849"><strong>version</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_7b59d28e-1959-e74c-4bc6-487787b7f721"><strong>website</strong>: <tt>eq</tt>,  <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_f2cc2b8e-2733-cf5f-7692-ded99a6f686f"><strong>type</strong>: <tt>eq</tt>, <tt>ne</tt></p>
+</li>
+<li><p id="_72541b61-0e08-1cf0-be77-6a6785351292"><strong>vendorId</strong>: <tt>eq</tt>, <tt>ne</tt>, <tt>lt</tt>, <tt>le</tt>, <tt>gt</tt>, <tt>ge</tt></p>
+</li>
+<li><p id="_b736d10a-493f-2932-4a13-fecd6b1d5473"><strong>description</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+</ul>
+</clause>
+
+<clause id="modules_post" obligation="normative">
+<title>Register a new Module</title>
+<p id="_db4a980c-8ba4-adc2-1575-75b715bae9a2"><strong>POST /modules</strong></p>
+
+<p id="_55c8c73f-8a4e-158e-9b16-f493cf05480f">Register a new module.</p>
+
+<clause id="_request_7" obligation="normative">
+<title>Request</title>
+<p id="_18f3744d-7f77-1f37-9767-816b997c12a3"><tt>name</tt>, <tt>vendorUrl</tt>, and <tt>description</tt> are required. Other defined resource properties are OPTIONAL. Any additional properties included in the request are ignored.</p>
+
+<sourcecode id="_60cd72bd-64d8-d6ed-12b9-30a9a3c19287" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "name": "ACME ACV Test Module",
+        "version": "3.0",
+        "type": "Software",
+        "vendorUrl": "/acvp/v1/vendors/2",
+        "addressUrl": "/acvp/v1/vendors/2/addresses/4",
+        "contactUrls": ["/acvp/v1/persons/1" ],
+        "description" : "ACME module with more"
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_11" obligation="normative">
+<title>Response</title>
+<p id="_84bf4f21-ab9e-d753-2f5b-3b4aa3b72801">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the module resource which was created. The url of any resources created incidental to the creation of the module resource would be available through the <xref target="module_get"/> operation.</p>
+</clause>
+</clause>
+
+<clause id="module_get" obligation="normative">
+<title>Retrieve information for a Module</title>
+<p id="_7c5217ea-6acb-6bb4-ef2e-23eab54a75b7"><strong>GET /modules/{moduleId}</strong></p>
+
+<p id="_f2e737d6-25c8-6a93-8e90-91c2e4c3076d">Returns information about a specific module.</p>
+
+<clause id="_response_12" obligation="normative">
+<title>Response</title>
+<sourcecode id="_86b38b9a-cb0b-65f0-0e25-4115fdf2fdaf" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "url": "/acvp/v1/modules/2",
+        "name": "ACME ACV Test Module",
+        "version": "2.0",
+        "type": "Software",
+        "website" : "www.acme.acme",
+        "vendorUrl": "/acvp/v1/vendors/2",
+        "addressUrl": "/acvp/v1/vendors/2/addresses/4",
+        "contactUrls": ["/acvp/v1/persons/1" ],
+        "description": "ACME module with features."
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="module_put" obligation="normative">
+<title>Update a Module</title>
+<p id="_1e1aacf3-173e-bfd2-db2a-f51b48644e5f"><strong>PUT /modules/{moduleId}</strong></p>
+
+<p id="_5a7a123b-1254-5e94-3e87-cdb89fd25a01">Update an existing module.</p>
+
+<p id="_c8fc9a2c-e0cd-c812-48eb-3d6b9c665e90">It may not be possible to update all properties of a module once the module has been associated with a test session.</p>
+
+<clause id="_request_8" obligation="normative">
+<title>Request</title>
+<sourcecode id="_dc857717-c740-f0b1-f73c-5a9891b7fca0" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "description" : "ACME module with more"
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_13" obligation="normative">
+<title>Response</title>
+<p id="_a78dfe11-1c89-6222-bca5-df6065db6a58">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the module resource which was updated. A server implementation <strong>MAY</strong> create a new resource instead of updating the existing resource.</p>
+</clause>
+</clause>
+
+<clause id="module_delete" obligation="normative">
+<title>Delete a Module</title>
+<p id="_1b616b6e-d129-dc33-93c7-b88c1f491e6c"><strong>DELETE /modules/{moduleId}</strong></p>
+
+<p id="_cb93db3b-c969-6ba3-e5ec-1b0eba31364c">Request to delete a specific module. Reply is a request response as described in <xref target="requests"/>.</p>
+
+<p id="_c2497504-7850-0a27-b16b-c03e72ea5364">The server is not required to remove the resource but <strong>MUST</strong> return a <tt>rejection</tt> value for the <tt>status</tt> property if the resource will not be removed.</p>
+</clause>
+</clause>
+
+<clause id="oes" obligation="normative">
+<title>Operational Environments (OEs)</title>
+<p id="_7b0694e7-4444-8a1a-664a-29ee3283437f">The available properties for operational environment resources are:</p>
+
+<ul id="_a3d5868c-0399-f567-7c5b-4a784b845812"><li><p id="_8bc162b4-0824-d341-058c-4480e85dcced"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_85761d3e-9307-9909-3df0-29d25354d13f"><strong>name</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_455712a4-6bc1-c461-cdbe-20225b7f5431"><strong>dependencyUrls</strong> — an array of <tt>string</tt> which identify the <xref target="dependencies"/> which comprise this OE.</p>
+</li>
+<li><p id="_7a810a0a-1d69-7347-7afe-3b0c36b60f3f"><strong>dependencies</strong> — an array of <xref target="dependencies"/>s which comprise this OE. Only valid on update or
+create and <strong>MAY</strong> be used in combination with the <tt>dependencyUrls</tt> property.</p>
+</li>
+</ul>
+
+<clause id="oes_get" obligation="normative">
+<title>List Operational Environments</title>
+<p id="_3b4fd2e8-8da2-0002-e453-866252dd9041"><strong>GET /oes</strong></p>
+
+<p id="_3b418fe8-fc7b-d7c6-99a3-d73f0b851cca">Returns a paged listing of available operational environments. Each element in the <tt>data</tt> array is a <tt>operational environment object</tt> as described in <xref target="oe_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+
+<p id="_db07d66e-e1db-3641-e5bd-508ea7e02bd7">Available <xref target="query_parameters"/>:</p>
+
+<ul id="_e3fe5026-0f94-9cb7-35b5-434fcd1cd676"><li><p id="_994a2abb-d7fe-ea3f-f8b3-ea66cbca31c0"><strong>name</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+</ul>
+</clause>
+
+<clause id="oes_post" obligation="normative">
+<title>Create a new Operational Environment</title>
+<p id="_baa64a4a-5382-6e84-34ba-618b8296ad2d"><strong>POST /oes</strong></p>
+
+<p id="_55c218cb-7db8-fe2c-6508-b1feb5d3dde4">Create a new operational environment.</p>
+
+<clause id="_request_9" obligation="normative">
+<title>Request</title>
+<p id="_3ec87fe3-bf7d-63ea-6b2f-d2b224d48c83"><tt>name</tt> is required. Other defined resource properties are OPTIONAL. Any additional properties included in the request are ignored.</p>
+
+<sourcecode id="_04dbaa8d-bcde-0618-9b3b-f97b9bb13196" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "name": "Ubuntu Linux 3.1 on AMD 6272 Opteron Processor
+                 with Acme installed",
+        "dependencyUrls": [
+            "/acvp/v1/dependencies/4",
+            "/acvp/v1/dependencies/5",
+            "/acvp/v1/dependencies/7"
+        ]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_14" obligation="normative">
+<title>Response</title>
+<p id="_989c2496-c147-6876-e9ef-951cf6152a7d">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the operational environment resource which was created. The url of any resources created incidental to the creation of the operational environment resource would be available through the <xref target="vendor_get"/> operation.</p>
+</clause>
+</clause>
+
+<clause id="oe_get" obligation="normative">
+<title>Retrieve information for an Operational Environment</title>
+<p id="_50f527f1-513f-12e2-4562-bc44d109b21f"><strong>GET /oes/{oeId}</strong></p>
+
+<p id="_de6f6846-23dc-ce5b-c0ba-3bc03ca7dfdf">Returns information about a specific operational environment.</p>
+
+<clause id="_response_15" obligation="normative">
+<title>Response</title>
+<sourcecode id="_13078c0b-d596-8356-ee3e-23cef3a036fa" lang="json">[
+  {
+    "acvVersion": "{acvp-version}"
+  },
+  {
+    "url": "/acvp/v1/oes/21495",
+    "name": "Test DMC0428 Inline Ubuntu Linux 3.1 on AMD 6272 Opteron Processor with Acme package installed",
+    "dependencies": [
+      {
+        "url": "/acvp/v1/dependencies/23563",
+        "type": "software",
+        "name": "Linux 3.1 DMC0427 Extra",
+        "description": "Testing0427 cpe-2.3:o:ubuntu:linux:04.27"
+      },
+      {
+        "url": "/acvp/v1/dependencies/23564",
+        "type": "software",
+        "name": "Linux 4.3 DMC0428 A1",
+        "description": "Testing0428 A1 cpe-2.3:o:ubuntu:linux:4.3",
+        "cpe": "cpe-2.3:oa1:ubuntu:linux:4.3"
+      },
+      {
+        "url": "/acvp/v1/dependencies/23565",
+        "type": "software",
+        "name": "Linux 4.3 DMC0428 B1",
+        "description": "Testing0428 B1 cpe-2.3:o:ubuntu:linux:4.3",
+        "cpe": "cpe-2.3:ob1:ubuntu:linux:4.3"
+      },
+      {
+        "url": "/acvp/v1/dependencies/23566",
+        "type": "software",
+        "name": "Linux 4.3 DMC0428 C1",
+        "description": "Testing0428 C1 cpe-2.3:o:ubuntu:linux:4.3",
+        "cpe": "cpe-2.3:oc1:ubuntu:linux:4.3"
+      }
+    ]
+  }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="oe_put" obligation="normative">
+<title>Update an Operational Environment</title>
+<p id="_4e2937e4-f189-1a78-c379-5060d5c95cf4"><strong>PUT /oes/{oeId}</strong></p>
+
+<p id="_4199ca82-6479-a4b1-b006-dd0687f17702">Update an existing operational environment.</p>
+
+<p id="_c7bbf1c5-c4c9-5605-7c3d-8b7b8a5fe8bd">It may not be possible to update all (or any) properties of an operational environment resource once the resource has been associated with a test session.</p>
+
+<clause id="_request_10" obligation="normative">
+<title>Request</title>
+<sourcecode id="_d5ce1912-5f10-ae01-da39-031470faafe5" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "name": "Windows 10 on Intel Xeon 5100 Series Processor",
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_16" obligation="normative">
+<title>Response</title>
+<p id="_ee1558da-43fd-9e3a-57c9-c861feb86d6d">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the operational environment resource which was updated. A server implementation <strong>MAY</strong> create a new resource instead of updating the existing resource.</p>
+</clause>
+</clause>
+
+<clause id="oe_delete" obligation="normative">
+<title>Delete an Operational Environment</title>
+<p id="_3e68a292-1be4-afdf-8290-978b8beb79bc"><strong>DELETE /oes/{oeId}</strong></p>
+
+<p id="_6cc5b335-2126-2445-2279-d94339569d68">Request to delete an operation environment. Reply is a request response as described in <xref target="requests"/>.</p>
+
+<p id="_60ee15e9-8ddf-ee35-80c2-0bdc2935612f">The server is not required to remove the resource but <strong>MUST</strong> return a <tt>rejection</tt> value for the <tt>status</tt> property if the resource will not be removed.</p>
+</clause>
+</clause>
+
+<clause id="dependencies" obligation="normative">
+<title>Dependencies</title>
+<p id="_7272ee2f-2919-ff3f-4aa8-01697f4a36ad">An operational environment is composed of one or more dependencies which fully characterize and describe the operational environment under which a module was tested. An operational environment <strong>MAY</strong> have many different types of dependencies.</p>
+
+<p id="_58126a90-6f4f-db8a-5ac2-9c445e02b8b5">The available properties for dependency resources are:</p>
+
+<ul id="_379be97a-c9dd-e8d9-834c-82addeae20c3"><li><p id="_7a2b235f-c8f5-8674-dbbc-3eac6090ddef"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_d91623d6-de0d-797b-c2f7-b953122384c2"><strong>type</strong> — <tt>string</tt>, the type of the dependency, a non-inclusive list of values that <strong>MAY</strong> be allowed are:</p>
+<ul id="_cae8e076-c9cd-00d7-6d81-65c9318e1a00"><li><p id="_6bb09b13-a071-a8b8-06a8-5ab1cbc3664b"><strong>os</strong> — operating system</p>
+</li>
+<li><p id="_e118806a-bfda-0a93-9ea9-372a534de357"><strong>cpu</strong> — Central Processing Unit (CPU) chip</p>
+</li>
+<li><p id="_6a6cfa26-c0e8-7a47-0c26-55062c7eec6a"><strong>software</strong> — a software dependency</p>
+</li>
+<li><p id="_e7f56dcb-9518-0423-efae-a015fa3b15b7"><strong>firmware</strong> — a firmware dependency</p>
+</li>
+</ul>
+</li>
+<li><p id="_f0456367-e16f-3123-b2cb-c4d63246dfd2"><strong>name</strong> — <tt>string</tt>, a short name of the dependency</p>
+</li>
+<li><p id="_badd53f3-762b-b00a-1dd8-e6e265ef6cf9"><strong>description</strong> — <tt>string</tt>, a longer description of the dependency providing any additional detail that may be useful</p>
+</li>
+<li><p id="_4cb8e50e-df00-4098-c446-e1cf7d35386a"><tt>{varies}</tt> the value of <tt>type</tt> for a dependency <strong>MAY</strong> require or allow for different name/value pairs to be added to a dependency to better describe and define the dependency which in turn describes the operational environment that a module will operate under. The possible name/value pairs for a given value of <tt>type</tt> <strong>MAY</strong> be provided by the response of <xref target="dependencies_properties_get"/>, if the server implements this endpoint.
+Otherwise a server <strong>MAY</strong> choose to restrict or not restrict the range of name/value pairs available, but any
+restrictions <strong>MUST</strong> be clearly documented.</p>
+</li>
+</ul>
+
+<clause id="dependencies_get" obligation="normative">
+<title>List Dependencies</title>
+<p id="_52908563-3317-e40a-e2b6-06f92ad54df5"><strong>GET /dependencies</strong></p>
+
+<p id="_c07b07ff-25cc-80ec-ceaa-1d893517bf5d">Returns a paged listing of available dependencies. Each element in the <tt>data</tt> array is a <tt>dependency object</tt> as described in <xref target="dependency_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+
+<p id="_48e63677-3c12-87d6-0ce4-481677cb9e8d">Available <xref target="query_parameters"/>:</p>
+
+<ul id="_1f02b150-bac3-e348-ddf6-d0aa93d23eb6"><li><p id="_7ad4870c-0118-aa2c-2aea-f5067ab80dde"><strong>name</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_6c084560-9d70-5321-da80-f75bc283d91d"><strong>type</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+<li><p id="_41ec8a8f-a6d8-ac74-2cbb-c65bb4fde6cf"><strong>description</strong>: <tt>eq</tt>, <tt>start</tt>, <tt>end</tt>, <tt>contains</tt></p>
+</li>
+</ul>
+</clause>
+
+<clause id="dependencies_post" obligation="normative">
+<title>Register a new Dependency</title>
+<p id="_45ba7fc1-927b-a2cf-ec0f-5d69fbbe3c3c"><strong>POST /dependencies</strong></p>
+
+<p id="_8bb31dd9-e3d0-d12b-28c9-5d39f7d82e9d">Register a new dependency.</p>
+
+<clause id="_request_11" obligation="normative">
+<title>Request</title>
+<p id="_7d9a4697-c972-dbd5-cce1-765fb68e1880"><tt>name</tt> is required. Other defined resource properties are OPTIONAL. Any additional properties included in the request are ignored.</p>
+
+<sourcecode id="_71cac4ff-5f59-e00a-f53c-5e852501fb53" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "type": "software",
+        "name": "Linux 3.1",
+        "description" : "Ubuntu Linux Distribution 3.1",
+        "cpe": "cpe-2.3:o:ubuntu:linux:3.1"
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_17" obligation="normative">
+<title>Response</title>
+<p id="_1db87b8c-c2a0-d84c-0420-35ecf5ace39c">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the dependency resource which was created.</p>
+</clause>
+</clause>
+
+<clause id="dependencies_properties_get" obligation="normative">
+<title>List Dependency Properties</title>
+<p id="_22ff931e-b436-491b-b2ab-00f00624a2b7">(Optional) <strong>GET /dependencies/properties</strong></p>
+
+<p id="_d6eab498-9213-9cc3-3abf-c96a64296109">Returns a <xref target="paging"/> list of available dependency properties.</p>
+
+<p id="_f5a43a85-464c-24e7-765e-913157645f6b">An array of property objects is returned with the following properties:</p>
+
+<ul id="_d7f29c63-b09c-67b1-d4cb-e4058bc6b272"><li><p id="_b9005afe-3ffe-02ed-6bfa-9197b7892737"><strong>name</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_e3979953-ad8b-232e-ecf0-1287c4dce074"><strong>dataType</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_f1d31d34-1466-65e6-03d2-841ee03d773c"><strong>validTypes</strong> — an array of <tt>string</tt> where each element corresponds to a dependency type value that this property may be used with.</p>
+</li>
+<li><p id="_3833f06e-00b8-5ec4-72e9-5681edd14542"><strong>description</strong> — <tt>string</tt></p>
+</li>
+</ul>
+
+<clause id="_example_dependency_property_elements" obligation="normative">
+<title>Example Dependency Property Elements</title>
+<sourcecode id="_1fe49eed-0dcd-0a1a-2785-6282223be2ae" lang="json">    {
+       "name": "swid",
+       "dataType": "string",
+       "validTypes": ["software"],
+       "description": "A Software identification (SWID) tag as
+        described in ISO/IEC 19770-2:2015. NIST IR 8060,
+        https://csrc.nist.gov/publications/detail/nistir/8060/final,
+        provides guidance on creating and maintaining SWID tags."
+    },
+    {
+       "name": "cpe",
+       "dataType": "string",
+       "validTypes": [
+           "software",
+           "processor"
+       ],
+       "description": "A Common Platform Enumeration (CPE)
+        formatted name according to Version 2.3 of the CPE
+        Naming Specification found in NISTIR 7695,
+        https://csrc.nist.gov/publications/detail/nistir/7695/final."
+    },
+    {
+       "name": "manufacturer",
+       "dataType": "string",
+       "validTypes": ["processor"],
+       "description": "The name of the manufacturer of
+                       the processor dependency."
+    },
+    {
+       "name": "family",
+       "dataType": "string",
+       "validTypes": ["processor"],
+       "description": "The name of the family of the processor."
+    },
+    {
+       "name": "series",
+       "dataType": "string",
+       "validTypes": ["processor"],
+       "description": "The name of the series of the processor."
+    }</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="dependency_get" obligation="normative">
+<title>Retrieve information for a Dependency</title>
+<p id="_3d905a9d-322f-78ff-28ed-99547b312c2f"><strong>GET /dependencies/{dependencyId}</strong></p>
+
+<p id="_72d0dfb2-7e37-6c38-8f7b-a31bfc1554a3">Returns information about a specific dependency.</p>
+
+<clause id="_response_18" obligation="normative">
+<title>Response</title>
+<sourcecode id="_eee00904-7a8d-e166-3764-e6e508fd2779" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "type": "software",
+        "name": "Linux 3.1",
+        "description" : "Ubuntu Linux Distribution 3.1",
+        "cpe": "cpe-2.3:o:ubuntu:linux:3.1"
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="dependency_put" obligation="normative">
+<title>Update a Dependency</title>
+<p id="_0f98c49f-e7b1-3b9d-8334-6cee2f30d323"><strong>PUT /dependencies/{dependencyId}</strong></p>
+
+<p id="_66a42eb6-85f8-d452-cecb-af16130b9fac">Update an existing dependency.</p>
+
+<p id="_783c2881-9ffb-81dd-a956-24db4c3eeb80">It may not be possible to update all (or any) properties of a dependency resource once the resource has been associated with an operational environment.</p>
+
+<clause id="_request_12" obligation="normative">
+<title>Request</title>
+<sourcecode id="_abfe578d-048f-1564-3cd3-d434e0e1e988" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "name": "Linux 3.1.0",
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_19" obligation="normative">
+<title>Response</title>
+<p id="_6345f543-252b-960c-73d7-79973b5d43fb">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the dependency resource which was updated. A server implementation <strong>MAY</strong> create a new resource instead of updating the existing resource.</p>
+</clause>
+</clause>
+
+<clause id="dependency_delete" obligation="normative">
+<title>Delete a Dependency</title>
+<p id="_f496dc34-04f6-859a-9ad6-ce8f06bafa1f"><strong>DELETE /dependencies/{dependencyId}</strong></p>
+
+<p id="_7f7052dd-958b-10c3-09e2-fd1f617a4b26">Request to delete a dependency. Reply is a request response as described in <xref target="requests"/>.</p>
+
+<p id="_d1280580-d767-98a2-c483-f27536360b76">The server is not required to remove the resource but <strong>MUST</strong> return a <tt>rejection</tt> value for the <tt>status</tt> property if the resource will not be removed.</p>
+</clause>
+</clause>
+
+<clause id="algorithms" obligation="normative">
+<title>Algorithms</title>
+<p id="_e2fb5f38-02d7-c472-8db7-cfbddd1e0bb6">The Algorithm resources are informational only.</p>
+
+<clause id="algorithms_get" obligation="normative">
+<title>Algorithms Listing</title>
+<p id="_31382e41-d6ec-fff0-5d7b-25ce8e166de9"><strong>GET /algorithms</strong></p>
+
+<p id="_5dd264e0-bc7b-9d79-c5de-78b9a6351768">Returns a list of available algorithms on the server.</p>
+
+<clause id="_response_20" obligation="normative">
+<title>Response</title>
+<sourcecode id="_89acc137-c621-7333-fe91-663ec8215c9e" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {"algorithms": [
+        {
+            "url": "/acvp/v1/algorithms/2",
+            "name": "AES",
+            "mode": "GCM",
+            "versions": [
+                "{acvp-version1}",
+                "{acvp-version2}"
+            ]
+        },
+        {
+            "url": "/acvp/v1/algorithms/3",
+            "name": "AES",
+            "mode": "ECB",
+            "versions": [
+                "{acvp-version}"
+            ]
+        }
+    ]}
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="algorithm_get" obligation="normative">
+<title>Algorithm Information</title>
+<p id="_b81a8df8-ee07-04ff-42b9-73fd97d2ac3b"><strong>GET /algorithms/{algorithmId}</strong></p>
+
+<p id="_b5b5186d-3f35-f5f6-ff13-9cca7743c463">Retrieve Information for about a specific algorithm.</p>
+
+<clause id="_response_21" obligation="normative">
+<title>Response</title>
+<p id="_5315f50e-455e-8935-4cb5-8d7fdafdacfc">Response may vary from server depending on internal representation.</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="validations" obligation="normative">
+<title>Validations</title>
+<p id="_37bc23c4-a4da-c148-3e9e-f35d93c48d58">The Validations resources are informational only.</p>
+
+<clause id="validation_get" obligation="normative">
+<title>Validation Information</title>
+<p id="_356c5693-621f-7d7a-c52a-5edd67491cb9"><strong>GET /validations/{validationId}</strong></p>
+
+<p id="_8c3ae96e-d639-f866-22bb-26c82ac65ed1">Retrieve information about a specific validation.</p>
+
+<clause id="_response_22" obligation="normative">
+<title>Response</title>
+<p id="_5865689c-1d45-deeb-0c78-1860a85fc9c5">Response <strong>MAY</strong> vary from server depending on internal representation.  Available properties for validations <strong>MAY</strong> include (but are not limited to):</p>
+
+<ul id="_5ba8aa16-e463-2f35-7ef8-bb9117758e39"><li><p id="_3966004a-3df7-184b-a382-db455597e97c"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_b798888a-9cfd-ddfa-11bc-928d4dd61acb"><strong>validationId</strong> — <tt>string</tt>, unique representation of the validation and source.</p>
+</li>
+<li><p id="_d51ed289-d69d-6d71-8dbf-1753d406a716"><strong>moduleUrl</strong> — <tt>string</tt>, the module URL associated with this validation. See <xref target="modules"/></p>
+</li>
+<li><p id="_a85aafee-81df-d9c8-8109-7a32a969fe25"><strong>oeUrls</strong> — <tt>array of string</tt>, the Operational Environments associated with this validation. See <xref target="oes"/></p>
+</li>
+</ul>
+
+<sourcecode id="_0afdb116-7b21-be83-7f7b-9e449c0e686c" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "url": "/acvp/v1/validations/50",
+        "validationId": "A12",
+        "moduleUrl": "/acvp/v1/modules/1",
+        "oeUrls": [
+            "/acvp/v1/oes/1"
+        ]
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="testSessions" obligation="normative">
+<title>Test Sessions</title>
+<p id="_7f80cb12-a378-7d20-6e89-41084f019eaf">The available properties for test session resources are:</p>
+
+<ul id="_e17869aa-69d6-528d-0dc9-b4d5ee38c841"><li><p id="_e0dcd358-3292-b2ad-2fad-228888cc879a"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_6ae6d55c-718b-8c0f-6651-7cc080186e44"><strong>acvpVersion</strong> — <tt>string</tt>, version of ACV protocol used to created the test session.</p>
+</li>
+<li><p id="_72044ddc-dff6-b734-3d13-546e2820fb36"><strong>createdOn</strong> — <xref target="dateType"/></p>
+</li>
+<li><p id="_2ba11b7e-14f1-c28d-7b4d-49d80c11cf2c"><strong>expiresOn</strong> — <xref target="dateType"/></p>
+</li>
+<li><p id="_0a81c850-ab79-f255-d835-be9053ed03b6"><strong>encryptAtRest</strong> — <tt>boolean</tt></p>
+</li>
+<li><p id="_4b5e5309-345c-7a65-3516-d29cd424d11b"><strong>vectorSetsUrl</strong> — <tt>string</tt>, resource for all of the vector sets</p>
+</li>
+<li><p id="_6d545aa0-718f-97d0-a838-bde73d752c97"><strong>publishable</strong>  — <tt>boolean</tt>, indicates whether this test session may be submitted for validation</p>
+</li>
+<li><p id="_d45b4910-5b82-04d8-a52d-f529350deff3"><strong>passed</strong> — <tt>boolean</tt>, indicates whether all of the vector set tests have passed</p>
+</li>
+</ul>
+
+<ul id="_4ee965c4-7d28-ffdb-b186-0e41fb664940"><li><p id="_b6809dac-dd8c-b80f-f604-ecf125b043e2"><strong>isSample</strong> — <tt>boolean</tt>, if true <xref target="vectorSet_expected_get"/> will return expected result values. As well, Test Vector Sets <strong>MAY</strong> contain fewer Test Cases for quicker generation and verification.</p>
+</li>
+</ul>
+
+<clause id="testSessions_get" obligation="normative">
+<title>Test Session Listing (Current User)</title>
+<p id="_b0ad5d1d-dfcb-a8ad-2258-dd7b6d530c48"><strong>GET /testSessions</strong></p>
+
+<p id="_388571a3-00bd-7bcb-d5f8-9fe71c3f5426">This is an OPTIONAL operation.</p>
+
+<p id="_36615aba-225c-5cda-6a05-9bb97f10b4e1">Returns a paged listing of test sessions for the current user. Each element in the <tt>data</tt> array is a <tt>test session object</tt> as described in <xref target="testSession_get"/>. See also <xref target="paging_response"/> for a description of a paged response.</p>
+</clause>
+
+<clause id="testSessions_post" obligation="normative">
+<title>Create a New Test Session</title>
+<p id="_d9f76923-837b-cd3f-5971-0ed90ce90839"><strong>POST /testSessions</strong></p>
+
+<p id="_9fae468b-f4f1-8a63-6e38-cd612447e233">Create a new Test Session.</p>
+
+<clause id="_request_13" obligation="normative">
+<title>Request</title>
+<p id="_0bf73aae-8373-9fd8-1a9b-c0ece39b727c"><tt>algorithms</tt> is an array of algorithm objects. Each algorithm object has the following available properties:</p>
+
+<ul id="_54054989-a6ef-b544-0874-befc9493a935"><li><p id="_fdb7c044-37e3-169e-da6e-6ea5bbe6532d"><strong>algorithm</strong> — <tt>string</tt>, required</p>
+</li>
+</ul>
+
+<p id="_bf21f2a9-3990-5023-f515-c34f6c97387c">Additional properties for each algorithm are based on the algorithm definition available in each sub-specification.</p>
+
+<p id="_0366220d-216d-b497-c9e2-b51f467991e9">If not provided <tt>isSample</tt>, and <tt>encryptAtRest</tt> default to <tt>false</tt>.</p>
+
+<sourcecode id="_050fc441-ebee-63e7-0f44-6f8524c82b4a" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+    "isSample" : true,
+    "algorithms": [{
+        "algorithm": "TEST_ALGO_1",
+        "property1": true,
+        "property2": ["operation1", "operation2"]
+    }]}
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_23" obligation="normative">
+<title>Response</title>
+<p id="_0006c4f6-4920-c267-293b-a20c637001e9"><tt>accessToken</tt> is a <eref type="inline" bibitemid="RFC7519" citeas="RFC 7519"/> which <strong>MUST</strong> be supplied as described in <xref target="jwtToken"/> in order to access the Test Session.</p>
+
+<sourcecode id="_cfae3e99-00f8-9393-7671-d7dd29f3ecdf" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "url": "/acvp/v1/testSessions/2",
+        "acvpVersion": "{acvp-version}",
+        "createdOn": "2018-05-31T12:03:43Z",
+        "expiresOn": "2018-06-30T12:03:43Z",
+        "encryptAtRest": false,
+        "vectorSetsUrl": "/acvp/v1/testSessions/2/vectorSets",
+        "publishable": false,
+        "passed": true,
+        "isSample": true,
+        "accessToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6Ik (truncated)"
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="testSession_get" obligation="normative">
+<title>Test Session Information</title>
+<p id="_790ca94a-dd46-dffc-f649-19b72c4a2dd3"><strong>GET /testSessions/{testSessionId}</strong></p>
+
+<p id="_acb55330-4c33-a93c-1fed-ec50ca2142d0">Returns information about the specific Test Session</p>
+
+<clause id="_response_24" obligation="normative">
+<title>Response</title>
+<sourcecode id="_26455095-d7ae-2ce0-58f9-401b6eacc4ce" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "url": "/acvp/v1/testSessions/2",
+        "acvpVersion": "{acvp-version}",
+        "createdOn": "2018-05-31T12:03:43Z",
+        "expiresOn": "2018-06-30T12:03:43Z",
+        "encryptAtRest": false,
+        "vectorSetsUrl": "/acvp/v1/testSessions/2/vectorSets",
+        "publishable": false,
+        "passed": true,
+        "isSample": true
+    }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="testSession_put" obligation="normative">
+<title>Submit For Validation</title>
+<p id="_d4bdc06a-e30d-3a28-1880-a44bbd304b27"><strong>PUT /testSessions/{testSessionId}</strong></p>
+
+<p id="_7ae6b8a1-6f97-3cf8-a7f9-d0212b957a01">Certify the Test Session for validation.</p>
+
+<p id="_1811cad3-7b76-2628-bf64-f157c65a989a">Associates all of the testing information with the test session. The test session <strong>MUST</strong> be have both <tt>publishable</tt> and <tt>passed</tt> set to <tt>true</tt>.</p>
+
+<clause id="_request_14" obligation="normative">
+<title>Request</title>
+<p id="_8dc041fa-9efe-5ac5-ac3b-1ba679229e2f">Available properties:</p>
+
+<ul id="_2986650b-7544-331a-16cd-0efa96b772ab"><li><p id="_93be643e-9726-c5d0-4443-5a7cb78d2cd8"><strong>moduleUrl</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_a940e679-1226-09a1-e2a2-0ea4ad463672"><strong>module</strong> — a <xref target="modules"/>, <strong>MAY</strong> be used instead of <tt>moduleUrl</tt>, but <strong>SHOULD</strong> only be used when the goal is to create a new module resource, otherwise use <tt>moduleUrl</tt> to use an existing module.</p>
+</li>
+<li><p id="_3e6a61a9-975c-d57e-bbd6-fcf6aa948b5c"><strong>oeUrl</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_862d2ddf-922e-67f9-27a0-570bfee3d892"><strong>oe</strong> — an <xref target="oes"/>, <strong>MAY</strong> be used instead of <tt>oeUrl</tt>, but <strong>SHOULD</strong> only be used when the goal is to create a new operating environment resource, otherwise use <tt>oeUrl</tt> to use an existing operating environment.</p>
+</li>
+<li><p id="_6e59877e-7491-3d09-49d6-6509f928a3c3"><strong>algorithmPrerequisites</strong> — array of algorithm prerequiste objects, optional, for any algorithm that has a prerequisite that was not included in testing, the prerequisite <strong>MUST</strong> be provided by adding an element to this array</p>
+<ul id="_87b81213-e77e-e1df-861c-870c8ef4fed8"><li><p id="_af91d537-b3a2-6166-5327-441b5903872c"><strong>algorithm</strong> — <tt>string</tt>, name of the algorithm</p>
+</li>
+<li><p id="_ecd53864-1429-bdd2-4d0b-3dbf0b491387"><strong>mode</strong> — <tt>string</tt>, mode of the algorithm, optional, not all algorithms have a mode</p>
+</li>
+<li><p id="_69d21162-7ecb-db32-3130-03fa44a21b88"><strong>prerequisites</strong> — <tt>string</tt>, array of prerequiste objects</p>
+</li>
+</ul>
+</li>
+</ul>
+
+<ul id="_367cd429-4a4b-b8e6-ad7d-e6213e8cccbd"><li><p id="_b124ca9f-aeee-ef51-2412-03cf4e7858c9"><strong>algorithm</strong> — <tt>string</tt>, required</p>
+</li>
+<li><p id="_376c3e4a-2c03-f202-758e-744be3922392"><strong>validationId</strong> — <tt>string</tt>, required</p>
+</li>
+</ul>
+
+<sourcecode id="_4162dab1-8d1e-cc57-5082-9b29c3113145" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "moduleUrl": "/acvp/v1/modules/20",
+        "oeUrl": "/acvp/v1/oes/60",
+        "algorithmPrerequisites": [{
+            "algorithm": "TEST_ALGO_1",
+            "prerequisites": [
+                {
+                    "algorithm": "TEST_ALGO_0",
+                    "validationId": "123456"
+                },
+                {
+                    "algorithm": "TEST_ALGO_0.1",
+                    "validationId": "123456"
+                }
+            ]
+        }]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_25" obligation="normative">
+<title>Response</title>
+<p id="_e331709e-4007-7221-084a-9cc01503682d">Reply is a request response as described in <xref target="requests"/>. If <tt>status</tt> is <tt>approved</tt> the <tt>approvedUrl</tt> returned will be the identifier of the validation resource which was created or updated as a result of this certification.</p>
+</clause>
+</clause>
+
+<clause id="testSession_delete" obligation="normative">
+<title>Cancel Test Session</title>
+<p id="_8fb0f4af-f09d-7ea2-16bf-7b2793487d0f"><strong>DELETE /testSessions/{testSessionId}</strong></p>
+
+<p id="_ee9f9ae8-3fa5-e816-69c8-02d53023783e">Delete a test session.</p>
+
+<p id="_a0bc05b0-cc46-0117-87f9-538dd5e08d46">Marks a test session as being cancelled and may be deleted by the server. Further operations with the test session resource may return 404 HTTP Status.</p>
+</clause>
+
+<clause id="testSession_results_get" obligation="normative">
+<title>Request Validation Results</title>
+<p id="_6a36692d-ab2d-6d09-70ab-bb6c32b32ddb"><strong>GET /testSessions/{testSessionId}/results</strong></p>
+
+<p id="_b7b8eebc-5006-a95e-0427-4709036e7f13">Request Validation Results for a Test Session</p>
+
+<clause id="_response_26" obligation="normative">
+<title>Response</title>
+<sourcecode id="_7eebb554-660b-3104-9510-14be6ba04307" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+    "passed": false,
+    "results": [
+        {
+          "vectorSetUrl": "/acvp/v1/testSessions/2/vectorSets/1",
+          "status": "incomplete"
+        },
+        {
+           "vectorSetUrl": "/acvp/v1/testSessions/2/vectorSets/2",
+           "status": "passed"
+        }
+    ]
+  }
+]</sourcecode>
+
+</clause>
+</clause>
+</clause>
+
+<clause id="vectorSet" obligation="normative">
+<title>Vector Sets</title>
+<p id="_6f77892b-12e1-51e5-d17e-6b0d587613a6">The <strong>REQUIRED</strong> properties for vector set resources are:</p>
+
+<ul id="_fcfa57ce-7d7f-b1bc-7c75-750189799c2a"><li><p id="_0de71644-1071-f4f3-f30a-6d11dfb4d10c"><strong>url</strong> — <tt>string</tt>, identifier for this resource</p>
+</li>
+<li><p id="_5fdeab33-3f31-db0e-866e-72b1cca98a6a"><strong>vsId</strong> — <tt>number</tt></p>
+</li>
+<li><p id="_179a91de-0457-58dd-4c67-3d31a6ab2ffb"><strong>algorithm</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_2033adcb-b746-b21b-a15a-ba14d75dfdd8"><strong>mode</strong> — <tt>string</tt></p>
+</li>
+<li><p id="_804db010-5c08-abff-7289-64f0a11c3760"><strong>testGroups</strong> — array of test group objects,</p>
+<ul id="_37aaabdf-5788-1298-fa34-08c5596e3c37"><li><p id="_2f59328e-d6cc-ba4a-a1f7-3286df936d0d"><tt>{varies}</tt> — based on the values of <tt>algorithm</tt> and <tt>mode</tt> there are zero or more test group properties.</p>
+</li>
+<li><p id="_7c801f82-9a48-3b27-34f9-5de0e52c1b30"><strong>testType</strong> — string defined in algorithm extensions outlining the procedure to complete the corresponding test cases.</p>
+</li>
+<li><p id="_fe17b020-a93f-57b9-a269-31582720a1ac"><strong>tgId</strong> — <tt>number</tt></p>
+</li>
+<li><p id="_20b5987a-4857-807e-83c6-5f852d1ed2e1"><strong>tests</strong> — array of test objects,</p>
+<ul id="_8882ecfb-b90f-b82f-c128-5b8e46b25298"><li><p id="_291d648e-8a3e-3a6d-34b8-ff2a0bfb790a"><strong>tcId</strong> — <tt>number</tt></p>
+</li>
+<li><p id="_482fd9f0-4581-8425-7247-166fbf6d30d6"><tt>{varies}</tt> — based on the values of <tt>algorithm</tt> and <tt>mode</tt> there are zero or more test properties.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<clause id="vectorSets_get" obligation="normative">
+<title>Vectors Set Listing</title>
+<p id="_b7a34eb2-83f0-3249-4222-aa94f9da6bb1"><strong>GET /testSessions/{testSessionId}/vectorSets</strong></p>
+
+<p id="_755c7717-2f5e-53c3-0a5f-09f97d76b760">Returns a list of Vector Sets for the specific Test Session.</p>
+
+<p id="_4ffce59d-0f5b-e84e-0369-0f748b60ec8c">The property returned is:</p>
+
+<ul id="_fa9bfe26-8319-ae84-471d-b78c884b0825"><li><p id="_2ea89d1c-33ae-f237-5f06-b5cfb776621b"><strong>vectorSetUrls</strong> — array of <tt>string</tt></p>
+</li>
+</ul>
+
+<clause id="_response_27" obligation="normative">
+<title>Response</title>
+<sourcecode id="_01c31497-cf29-7975-9b64-746c27195e3f" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {"vectorSetUrls": [
+        "/acvp/v1/testSessions/2/vectorSets/1",
+        "/acvp/v1/testSessions/2/vectorSets/2"
+    ]}
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="vectorSet_get" obligation="normative">
+<title>Vector Set Download</title>
+<p id="_140c719a-d09c-4944-7065-637fe79a9bd6"><strong>GET /testSessions/{testSessionId}/vectorSets/{vectorSetId}</strong></p>
+
+<p id="_43997579-7712-f847-c3cf-901a064418e6">Vector Set download request.</p>
+
+<p id="_63baac72-0e6f-883d-5414-42e02014cfd2">The server will respond with the vector set associated with the vsId for the client to process. The test group content contained in the response will vary depending on the specific sub-specification of the algorithm and testType being tested.</p>
+
+<clause id="_response_28" obligation="normative">
+<title>Response</title>
+<sourcecode id="_b84b92cc-340a-023e-0b5e-02eb5b629b3c" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "vsId": 1,
+        "algorithm": "TEST_ALGO_1",
+        "revision": "1.0.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "testGroupProperty1": 1,
+                "testType": "type1",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "testCaseProperty1": 1,
+                        "testCaseProperty2": "2"
+                    },
+                    {
+                        "tcId": 2,
+                        "testCaseProperty1": 3,
+                        "testCaseProperty2": "4"
+                    }
+                    ... additional tests ...
+                ]
+            },
+            ... additional test groups ...
+            {
+                "tgId": 3,
+                "testGroupProperty1": 2,
+                "testType": "type2",
+                "tests": [{
+                    "tcId": 2139,
+                    "testCaseProperty3": 10
+                }]
+            }
+            ... additional test groups ...
+        ]
+    }
+]</sourcecode>
+
+
+<p id="_2ae61683-71e0-8dcf-cda4-838cd357cae8">If the server did not have enough time to generate the vector set for a given test session, the server may reply:</p>
+
+<sourcecode id="_d8b2a928-aa21-fa90-b0b6-762391450261" lang="json">[
+  { "acvVersion": "{acvp-version}" },
+  { "vsId": 1,
+    "retry" : 30
+  }
+]</sourcecode>
+
+
+<p id="_9b586087-9ba4-e058-4004-400fe19c37c1">Where:</p>
+
+<ul id="_66382fb9-4668-b7bb-ec5b-bad35f68e4c5"><li><p id="_a01fdfc8-cd64-0f2e-231d-393b85278c72"><strong>retry</strong> — represents the number of seconds for the client to wait before retrying the request.</p>
+</li>
+</ul>
+
+<p id="_83638097-2a95-4dba-25e1-68f5b0894867">The server may set the <tt>retry</tt> value based on the current server load and expected processing time to generate the vector set.</p>
+</clause>
+</clause>
+
+<clause id="vectorSet_delete" obligation="normative">
+<title>Cancel Testing of a Vector Set</title>
+<p id="_12b925e6-4505-ce8b-46ff-78a3894d88bf"><strong>DELETE /testSessions/{testSessionId}/vectorSets/{vectorSetId}</strong></p>
+
+<p id="_bcf8e6c8-9a0a-9067-b70c-82e4519a177e">Cancel testing for a specific Vector Set.</p>
+
+<p id="_da7ecd0a-01fc-1826-fcb1-745bdb7f4dc6">There may be cases where a particular vector set may not be cancelled and the entire Test Session will need to be cancelled instead.</p>
+</clause>
+
+<clause id="vectorSet_results_get" obligation="normative">
+<title>Request Validation Results</title>
+<p id="_2d347fb6-0335-750d-d542-d2a8da7b65dc"><strong>GET /testSessions/{testSessionId}/vectorSets/{vectorSetId}/results</strong></p>
+
+<p id="_793e9ba0-4168-225f-e0fc-e7de601814f5">Request Validation Results for a Vector Set.</p>
+
+<p id="_a0eec0ac-579f-bcc2-6803-9fff5dcff77e">When <tt>showExpected</tt> was set to true from a POST/PUT under <xref target="vectorSet_results_post"/>, additional information is provided back to the client for any failing test cases.  The additional information includes an “expected” as well as “provided” object that <strong>MAY</strong> be useful in diagnosing issues within the vector set validation.</p>
+
+<clause id="_response_29" obligation="normative">
+<title>Response</title>
+<p id="_82024658-a747-08d8-42df-d084d6f87491">The client will send this request to learn the validation results for an individual vector set. Properties are:</p>
+
+<ul id="_584843ff-9845-d22d-6544-12d311e46de5"><li><p id="_d6c307b8-dad5-696e-45d7-8b6d89a73469"><strong>vsId</strong> — <tt>number</tt></p>
+</li>
+<li><p id="_53a104c3-b691-b99e-b2cd-7b9c15a80c9e"><strong>disposition</strong> — <tt>string</tt>, the overall result for the vector set with:</p>
+<ul id="_bafafe26-3e7d-497f-3f9b-5d39ad14b34d"><li><p id="_b5f5fd13-2b57-f10d-fc1a-3e87eace0caf"><tt>fail</tt> — indicates at least one test case has failed.</p>
+</li>
+<li><p id="_d2e894ed-622d-ddaf-a232-1e4026755fba"><tt>unreceived</tt> — indicates the server has not received responses from the client for all the test cases.</p>
+</li>
+<li><p id="_0cc2b977-3a67-ba8c-1a94-0f73a416cc70"><tt>incomplete</tt> — indicates not all tests have been processed by the server, however none have failed thus far.</p>
+</li>
+<li><p id="_07211d95-4435-d201-10c1-2a397bb0a89c"><tt>expired</tt> — indicates not all the test case responses were received from the client prior to expiry.</p>
+</li>
+<li><p id="_c1e6fa44-bdde-f155-a552-01148dbbd6a9"><tt>passed</tt> — indicates all test cases have been processed by the server and have passed.</p>
+</li>
+</ul>
+</li>
+<li><p id="_723bbffe-aacf-7b6d-7b0f-8f06b126b30a"><strong>tests</strong> — array of test result objects</p>
+<ul id="_37eaf8d0-58bb-1bf8-cdd4-1560df9cf5b6"><li><p id="_728ad9f2-3f87-7f10-2965-356915ccd0bf"><strong>tcId</strong> — <tt>number</tt></p>
+</li>
+<li><p id="_b463fd87-75d8-281d-550d-15353600d7de"><strong>result</strong> — <tt>string</tt>, the result for a test case with:</p>
+<ul id="_6040416b-2ae3-310d-f4c3-47e927182902"><li><p id="_36b18064-1167-a4a3-2291-e5118fb1a85e"><tt>fail</tt> — indicates the test case has failed.</p>
+</li>
+<li><p id="_6b7c040f-fbfa-5a09-8966-03ede87ee50a"><tt>unreceived</tt> — indicates the server has not received a response from the client for the test case.</p>
+</li>
+<li><p id="_2f0558bf-d744-f6e3-5b3a-aea67d6da118"><tt>incomplete</tt> — indicates the server has not processed the test case.</p>
+</li>
+<li><p id="_ff0ed685-30b6-5f0e-525d-4ec331486b7e"><tt>expired</tt> — indicates the client did not send the test case response to the server prior to expiry.</p>
+</li>
+<li><p id="_6627b4d9-e088-4ba8-f249-504175751c4e"><tt>passed</tt> — indicates the test case passed.</p>
+</li>
+</ul>
+</li>
+<li><p id="_92093cc4-c204-25f7-1237-74f55cb45602"><strong>reason</strong> — <tt>string</tt>, provides additional detail in case of a <tt>failed</tt> <tt>result</tt> value.</p>
+</li>
+<li><p id="_c5195df8-cd13-710b-05b2-6b9826ab7a3a"><strong>expected</strong> — <tt>object</tt>, provides the value(s) the server expected for the test case.</p>
+</li>
+<li><p id="_f3aea5b5-4b1e-8825-86a7-4fd3a5e356d1"><strong>provided</strong> — <tt>object</tt>, provides the value(s) the client provided for the test case.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+<sourcecode id="_c5469483-665d-c119-1f2f-de258c5b6090" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {"results": {
+        "vsId": 1437,
+        "disposition": "incomplete",
+        "tests": [
+            {
+                "tcId": 12340,
+                "result": "passed",
+                "reason": ""
+            },
+            {
+                "tcId": 12341,
+                "result": "incomplete",
+                "reason": ""
+            },
+            {
+                "tcId": 12342,
+                "result": "failed",
+                "reason": "Algorithm reason XXX"
+            }
+        ]
+    }}
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="vectorSet_results_post" obligation="normative">
+<title>Submit Results</title>
+<p id="_21c3ce5b-2d22-5794-4b0e-0e5e053b46d5"><strong>POST /testSessions/{testSessionId}/vectorSets/{vectorSetId}/results</strong></p>
+
+<p id="_fa3f5e70-7c95-2024-ee7f-5a69dad9ac81">Initial Submission of Vector Set Test Results.</p>
+
+<clause id="_request_15" obligation="normative">
+<title>Request</title>
+<p id="_88c819c4-deb9-50aa-564a-ae14e33f31b5">The client will send this request to submit the test results for an individual vector set. Similar to the vector set download the format will vary depending on the specific sub-specification of the algorithm and testType being tested.</p>
+
+<sourcecode id="_d312456f-3e36-63d4-6295-fcf5f55bf37b" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+    "vsId": 1437,
+    "revision": "1.0.0",
+    "showExpected": true,
+    "testGroups": [{
+      "tgId": 1,
+      "tests": [{
+          "tcId": 12340,
+          "testCaseProperty1": "ABCD",
+          "testCaseProperty2": "1234"
+        },
+        {
+          "tcId": 12341,
+          "testCaseProperty1": "5678",
+          "testCaseProperty2": "FEDC"
+        }, ...
+      ]
+    }, ...
+    ]
+  }
+]</sourcecode>
+
+
+<p id="_b0202594-d0c2-7450-30ac-ccfbfa3a3ad5">The <tt>showExpected</tt> property is optional; when included (and set to true) the ACVP server will include additional information within the validation response file described in <xref target="vectorSet_results_get"/>.</p>
+</clause>
+
+<clause id="_response_30" obligation="normative">
+<title>Response</title>
+<p id="_389b96fa-1d8d-3c38-2882-c0b3b1606748">No content response. Standard HTTP status codes will indicate success or failure of the submission, but do not indicated the disposition of the tests.</p>
+</clause>
+</clause>
+
+<clause id="vectorSet_results_put" obligation="normative">
+<title>Update Results Submission</title>
+<p id="_3121c5aa-c07c-49ab-36c2-ff30b0513c30"><strong>PUT /testSessions/{testSessionId}/vectorSets/{vectorSetId}/results</strong></p>
+
+<p id="_63cda205-fd15-b256-55af-58b8616fbc6a">Update Vector Set Test Results Submission.</p>
+
+<p id="_0a3271b8-3393-524c-6d21-2fa4504d2b72">When one or more test cases fails, the client will need to correct the issue in the crypto module and send the responses again. The resending of responses for failed test cases will occur for an entire vector set. Therefore, even if only a single test case in the vector set failed, the client will need to download, process, and upload responses to the server for the entire vector set (presumably after the problem has been corrected in the implementation). The resending of vector set responses <strong>MUST</strong> occur prior to expiry.</p>
+
+<clause id="_request_16" obligation="normative">
+<title>Request</title>
+<p id="_fa645c2f-7002-08da-8d01-2a5e31c50e40">The request content is identical to the request content described in <xref target="vectorSet_results_post"/>.</p>
+</clause>
+</clause>
+
+<clause id="vectorSet_expected_get" obligation="normative">
+<title>Retrieve Expected Results</title>
+<p id="_03314b03-4856-5d21-f74e-ed2ea47af9a2"><strong>GET /testSessions/{testSessionId}/vectorSets/{vectorSetId}/expected</strong></p>
+
+<p id="_f7a53c82-6403-6264-3e53-355bd2194234">Expected Test Results. Expected test results <strong>SHALL</strong> be generated by the server if the isSample test session resource equals true. See <xref target="testSessions"/>.</p>
+
+<clause id="_response_31" obligation="normative">
+<title>Response</title>
+<p id="_e61d22c2-e488-d0f6-3cf2-5cc8fb9b80dc">The response is identical to the request content described in <xref target="vectorSet_results_post"/>.</p>
+</clause>
+</clause>
+</clause>
+</clause>
+
+<clause id="largeSubmission" obligation="normative">
+<title>Large Submission</title>
+<p id="_123051cd-d479-12fe-4114-54c57947361f">When clients have a response which exceeds the <tt>sizeConstraint</tt> in <xref target="login"/>, this endpoint <strong>MUST</strong> be used to obtain a URI in order to submit the results. The URI <strong>MAY</strong> be a one-time use URI and clients <strong>SHOULD</strong> only attempt to use this URI once regardless of success or failure in submitting. If resubmission is required clients <strong>MUST</strong> re-POST to the /large endpoint in order to obtain the URI to use.</p>
+
+<p id="_c17953f2-7b7c-918a-db08-6ee26b97f2ac">The available properties for large submissions:</p>
+
+<ul id="_fdf0f4ff-a64d-885b-d0a1-189dcaa1ef97"><li><p id="_d1f44d54-119c-c8b5-2026-5424ea7cd61e"><strong>submissionSize</strong> — <tt>number</tt>, the maximum size in bytes of the desired submission.</p>
+</li>
+<li><p id="_82565314-242a-a8e6-4e44-cbaa17b36e98"><strong>vectorSetUrl</strong> — <tt>string</tt>, an identifier of the vector set that will be uploaded as a large submission.</p>
+</li>
+<li><p id="_433d773b-647e-b61e-87b1-354832f3e9da"><strong>url</strong> — <tt>string</tt>, a one-time use url value to use for a large submission.</p>
+</li>
+<li><p id="_8ce7be7c-a497-c08f-7690-6ed5e17b73dd"><strong>accessToken</strong> — <tt>string</tt>, an optional JWT, that if provided, clients <strong>MUST</strong> use when accessing the <tt>url</tt>. If not provided, clients <strong>MUST</strong> use their current <tt>accessToken</tt> when accessing the <tt>url</tt>.</p>
+</li>
+</ul>
+
+<clause id="_request_17" obligation="normative">
+<title>Request</title>
+<p id="_5d7e7fb7-cbfd-08f9-5bab-04f02f0103da"><strong>POST /large</strong></p>
+
+<sourcecode id="_d61d1732-8926-613d-29d8-0ab541b9edfa" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+      "submissionSize": 5000000,
+      "vectorSetUrl" : "/acvp/v1/testSessions/1/vectorSets/10"
+  }
+]</sourcecode>
+
+</clause>
+
+<clause id="_response_32" obligation="normative">
+<title>Response</title>
+<sourcecode id="_98476e7b-66b1-83cd-63f6-86f781a0d51c" lang="json">[
+  {"acvVersion": "{acvp-version}"},
+  {
+      "url": "https://acvts.authority.org:3954/large/QWERTY123",
+      "accessToken" : "&lt;jwt token&gt;"
+  }
+]</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="_vector_set_expiration" obligation="normative">
+<title>Vector Set Expiration</title>
+<p id="_66c1e523-0264-0cf3-5c72-e71e82cf901b">Vector sets can expire. For example, in terms of a validation authority use, the vector sets are one-time use only. Old vector sets can never be reused to obtain a new validation certificate for an algorithm implementation or to update an existing certificate. Expiration is a server specific definition which depends on database costs, need for artifacts, etc. If the vector set has expired, the server will reply with an expired response when the client attempts to download the vector set:</p>
+
+<sourcecode id="_faffab1f-4761-bdc2-86f9-5ee1c759fa66" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "vsId": 42,
+        "status": "expired"
+    }
+]</sourcecode>
+
+
+<p id="_13573b86-206f-af7d-8df6-4abeec0ed2f7">The ACVP protocol requires server implementations to generate test values and retain the data while the ACVP client processes and returns the results. Some crypto modules implementing the client-side ACVP protocol may not return results immediately. The ACVP protocol design implies the server must retain the test values to verify the client test responses at some time in the future. However, some test vector sets are fairly large, which could place significant storage requirements on ACVP server implementations. To alleviate long term storage requirements, ACVP allows for an expiration timestamp to be set when a test vector set is generated by the server.</p>
+
+<p id="_b193b637-1840-25af-8c14-fda7f54a7009">The vector set expiration timestamp must be included by the server in the vector set when the client downloads the vector set. The server may change the expiration timestamp of a previously issued vector set to extend its lifetime subject to server policy. The expiration timestamp must be in the ‘expiry’ JSON value, which is included in the JSON encoded vector set. The expiry JSON value will be a string value of the UTC timestamp using form “YYYY-MM-DD HH:MM:SS”. The following figure shows a partial JSON encoded vector set that contains the expiry value.</p>
+
+<sourcecode id="_e5a20951-2e76-d3c3-45b2-499c90c8a485" lang="json">[
+    {"acvVersion": "{acvp-version}"},
+    {
+        "vsId": 1437,
+        "expiry": "2018-12-31 23:59:59",
+        "algorithm": "TEST_ALGO_1",
+        "revision": "1.0.0",
+        "testGroups": [
+            {
+                "tgId": 1,
+                "testGroupProperty1": 1,
+                "testType": "type1",
+                "tests": [
+                    {
+                        "tcId": 1,
+                        "testCaseProperty1": 1,
+                        "testCaseProperty2": "2"
+                    },
+                    {
+                        "tcId": 2,
+                        "testCaseProperty1": 3,
+                        "testCaseProperty2": "4"
+                    },
+            .
+            .
+            .
+            &lt;remainder of vector set omitted from figure&gt;
+            .
+            .
+            .
+            ]
+        }]
+    }
+]</sourcecode>
+
+</clause>
+
+<clause id="_error_codes" obligation="normative">
+<title>Error Codes</title>
+<p id="_b709eb35-19f5-81ba-e0fd-5b287cf7ccfc">Errors will follow HTTP[S] numbering scheme. In addition errors as well as 200 messages may carry JSON encoded information that describes in detail the error and any associated troubleshooting information. Examples of client and server error messages are in Appendix B.</p>
+</clause>
+
+<clause id="_algorithm_test_extensions" obligation="normative">
+<title>Algorithm Test Extensions</title>
+<p id="_25d5471e-eebe-4233-44f5-fdc055c7aaa2">ACVP is intended to be an extensible protocol that supports testing of a large number of cryptographic  algorithms from several different classes defined by the community. All algorithm identifiers intended for public use <strong>SHALL</strong> be documented by IANA in the ACVP IANA Registry <eref type="inline" bibitemid="acvp-iana" citeas="ACVP IANA Registry"/>.</p>
+
+<p id="_064bd676-2277-81b8-c78d-5e1d82597923">To add testing for a new algorithm first try to find an algorithm of the same type that is already supported by the protocol.</p>
+
+<p id="_67eca2d5-8c30-5aca-f34d-580153549591">If it belongs to an already-supported type, check the test specification for the similar algorithm. Typically, similar algorithms share similar testing methodology.</p>
+
+<p id="_ace049ab-a3ee-7945-6277-5d95b2644ce8">For example, the testing of symmetric block ciphers is comprised of two test types: Algorithm Functional Tests and Monte Carlo Tests — see <eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/>.</p>
+
+<p id="_53c62b4a-e4cf-08b3-6f81-f4c2b37e9c36">Assuming that the existing test types provide sufficient test coverage for the new algorithm, one needs to add the new block cipher algorithm to the symmertic block cipher specification <eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/>, including the JSON schema for the corresponding test data exchanges between the validation server and the client. See in particular Section “Adding new algorithms” in the corresponding algorithm specification.</p>
+
+<p id="_3876d119-4f4f-a0d5-c72e-39537e67c2bf">Next, one needs to update the IANA registry with the new algorithm by adding it to the corresponding namespace and subject to the policies stated in <eref type="inline" bibitemid="acvp-iana" citeas="ACVP IANA Registry"/>.</p>
+
+<p id="_ef8e9898-1c4e-2645-52fb-0aa50c0da864">Once this is completed and the corresponding server test generation and validation for that algorithm are implemented, testing can commence. Clients implementing that algorithm may register it for testing as described in Section “Capabilities Registration” in <eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/>, process the test vectors generated by the validation server and return the results for validation.</p>
+
+<p id="_c13f45d6-6d39-1016-89da-5825cb1836f3">If the available test types for an algorithm, existing or new, in a given class do not provide good test coverage of the algorithm, one could develop a new test type and incorporate it into the corresponding test specification for the that algorithm. See for example Section “Adding new algorithms” in <eref type="inline" bibitemid="sub-symmetric" citeas="ACVP-Symmetric"/> for how to add a new test type. Note that this action would require modifications of the corresponding algorithm test specification and would result in a new version of that test specification to be reflected in the IANA registry <eref type="inline" bibitemid="acvp-iana" citeas="ACVP IANA Registry"/>.</p>
+</clause>
+
+<clause id="_custom_specification_objects" obligation="normative">
+<title>Custom Specification Objects</title>
+<clause id="dateType" obligation="normative">
+<title>Date</title>
+<p id="_8e5c1507-a035-c7b6-7208-d4d09c45ca85">A date type is a time <tt>string</tt> formatted according to the rules of <eref type="inline" bibitemid="RFC3339" citeas="RFC 3339"/>; all date/times must use UTC time denoted by ‘Z’ suffix with no local timezone adjustment. Example is <tt>2018-06-01T20:10:33Z</tt></p>
+</clause>
+
+<clause id="_bitstring" obligation="normative">
+<title>BitString</title>
+<p id="_f8128ea2-c61c-8594-4836-3572964feaf6">Bitstrings are used to communicate a string of bits between the ACVP server and IUT.</p>
+
+<clause id="_endianness" obligation="normative">
+<title>Endianness</title>
+<p id="_92eb123d-ca46-d309-6f93-48fa2bec09cb">BitStrings <strong>SHALL</strong> be considered in big endian order, unless otherwise specified by the algorithm.</p>
+
+<p id="_6751f68c-d655-49b1-1872-0cc267207d01">The hex string “FA” (assuming all bits are considered) <strong>SHALL</strong> represent the bits 11111010 (in MSb) or the value 250.</p>
+</clause>
+
+<clause id="_hex_to_bitstring_parsing" obligation="normative">
+<title>Hex to Bitstring Parsing</title>
+<p id="_bd423b0f-f7f3-da33-3c76-434a9c10250a">“valueLen” will be used as the example, but it can apply to any bit length registration/vector set/etc parameters.</p>
+
+<p id="_b5ac89c6-f9d2-9d02-cc3a-996036f213db">When a “value” is provided along with a “valueLen”, the “valueLen” <strong>MUST</strong> be considered when parsing the hex string represented in “value”, <strong>EXCEPT</strong> in empty bitstring cases, which <strong>MUST</strong> be represented as an empty string “”. Parsing Hex strings into Bit strings is especially important for algorithms such as the SHA variations that may only include a portion of bits from the provided hex string. When only a portion of bits from a Hex string are considered, bits for use in the bitstring <strong>SHALL</strong> be taken from the most significant bits, meaning the lesser significant bits are the bits that are dropped.</p>
+
+<clause id="_hex_string_parsing_examples" obligation="normative">
+<title>Hex string parsing examples</title>
+<ul id="_32fc6315-79e4-b2f3-0cfe-3e126669dfc8"><li><p id="_05c09e24-9bfd-df63-e0fc-df8573364ef7">valueLen: 8, value: “FA”, <strong>SHALL</strong> be parsed as the bits 11111010, or the value 250.</p>
+</li>
+<li><p id="_c933e986-19b7-8ee5-eeaa-280ebd284b5e">valueLen: 7, value: “FA”, <strong>SHALL</strong> be parsed as the bits 1111101, or the value 125.</p>
+</li>
+<li><p id="_5717c196-58b6-47c7-df9a-6940f3731e7a">valueLen: 5, value: “FA”, <strong>SHALL</strong> be parsed as the bits 11111, or the value 31.</p>
+</li>
+<li><p id="_e730dcdf-298f-68ff-728b-0c401d856ddf">valueLen: 3, value: “FA”, <strong>SHALL</strong> be parsed as the bits 111, or the value 7.</p>
+</li>
+<li><p id="_30ec3f5d-d7ec-18d4-b407-7dbd1387cd6e">valueLen: 0, value: “”, <strong>SHALL</strong> be interpreted as an empty bit string.</p>
+</li>
+</ul>
+</clause>
+</clause>
+</clause>
+
+<clause id="_range" obligation="normative">
+<title>Range</title>
+<p id="_8493fbca-0b22-ed07-7fa8-8d6642c49210">The Range object can be used to convey a range of values. It contains its own set of properties made up of “min”, “max”, and “increment”. “inc” may be used as a shorthand for “increment.” If the “increment” property is omitted, a default value of 1 <strong>SHALL</strong> be used.</p>
+
+<clause id="_range_json_examples" obligation="normative">
+<title>Range JSON examples</title>
+<p id="_5d0015f2-3a64-a1c0-9da9-89f224fca127">A range object specifying a minimum of 1, a maximum of 8, with an increment of 1. This range object includes the values 1, 2, 3, 4, 5, 6, 7, and 8.</p>
+
+<sourcecode id="_2c2c11eb-e87f-4d5e-70f9-9d69c20ab241" lang="json">{"myRange": {
+    "min": 1,
+    "max": 8,
+    "increment": 1
+}}</sourcecode>
+
+
+<p id="_ee49005b-aa01-cafc-7e77-cb44e57891d9">A range object specifying a minimum of 0, a maximum of 8, with an increment of 2. This range object includes the values 0, 2, 4, 6, and 8.</p>
+
+<sourcecode id="_05eeb3cf-ee71-2bec-a528-8b44dd2fe5d1" lang="json">{"myRange": {
+    "min": 0,
+    "max": 8,
+    "increment": 2
+}}</sourcecode>
+
+</clause>
+</clause>
+
+<clause id="_domain" obligation="normative">
+<title>Domain</title>
+<p id="_60290a33-de94-064e-61d4-a39d5d6ad923">The Domain object can be used to specify a set of values similar to Range, albeit with more control. A domain can be made up of an array of objects, where those objects can be literal values, and/or Range objects.</p>
+
+<clause id="_domain_json_examples" obligation="normative">
+<title>Domain JSON examples</title>
+<p id="_0f925376-2d9f-cf1b-05bb-5f0142c4f0c2">Several sample domain objects that state 0, 8, 16, 32, 96, 128, 192, and 256 are valid values.</p>
+
+<sourcecode id="_38f05f0a-fcb1-0fb1-64f8-9fe9407f5c63" lang="json">{"myDomain": [
+    {
+        "min": 0,
+        "max": 16,
+        "increment": 8
+    },
+    32,
+    96,
+    {
+        "min": 128,
+        "max": 256,
+        "increment": 64
+    }
+]}</sourcecode>
+
+
+<sourcecode id="_73c6be36-767c-e719-a997-a600cd86da40" lang="json">{"myDomain": [ 0, 8, 16, 32, 96, 128, 192, 256 ]}</sourcecode>
+
+</clause>
+
+<clause id="_additional_domain_information" obligation="normative">
+<title>Additional Domain Information</title>
+<p id="_501987ed-15a2-5379-b882-b9cbb04f4365">Because the Domain is an array of objects consisting of (potentially) both literals and ranges, algorithms that use an array of integers can be used interchangably with the Domain object.</p>
+</clause>
+</clause>
+</clause>
+
+<clause id="_other_considerations" obligation="normative">
+<title>Other Considerations</title>
+<p id="_a9cb8c77-fe29-125f-9600-b04fca5138dc">When an ACVP client is attached to a cryptographic module that is in use, access to ACVP <strong>MUST</strong> be controlled so that only an administrator or other authorized user can send and receive ACVP messages. This is because an attacker that has access to ACVP can potentially use it to probe for weaknesses in the cryptographic module.</p>
+</clause>
+
+<clause id="CONTRIBUTORS" obligation="normative">
+<title>Contributors</title>
+<p id="_6427dae3-e133-5f7a-3c1b-caea2f264528">Original ACV Protocol created by David McGrew, Bill Hudson and Anthony Grieco of Cisco Systems. Additional contributions made by Sam Farthing, Ellie Daw and Philip Perricone from Cisco Systems and Christopher Celi and Russell Hammett from NIST.</p>
+</clause>
+
+
+
+<clause id="app-reg-ex" obligation="normative">
+<title>JSON Formatting Guidelines</title>
+<p id="_07c93e4f-2e57-6cc5-af1a-e070f921c8ed">All JSON keywords <strong>SHALL</strong> use lower camelCase format with no underscores or hyphens and use the following characters only a-z, A-Z, 0-9. Keywords SHALL abbreviate common words and phrases wherever possible for brevity.</p>
+
+<p id="_9b107add-6a5a-e232-e7c0-d60de2d2d3cb">For example: password length — pwLen plain text length — ptLen</p>
+
+<p id="_e26e54cd-73b7-2733-da00-dd4ca4fce864">Keywords <strong>SHOULD</strong> be chosen such that they are informative and brief, for example:</p>
+
+<sourcecode id="_e0d1d701-0088-0643-8cae-40d096aaf3fe" lang="json">[
+    { "acvVersion": "{acvp-version}" },
+    { "results" : { "disposition" : "incomplete" } }
+]</sourcecode>
+
+
+<p id="_6d77e6bf-8ec5-3bce-2c2e-7777fd4e0a04">Metadata assigned to the keyword may use any format which best reflects the information being represented including hyphens, underscores alternating case, numbers, etc. However, brevity should be a major consideration, for example:</p>
+
+<sourcecode id="_3896b251-6388-f01b-4ec3-921685c85d0b" lang="json">{
+    "algorithms" : [
+        { "algorithm" : "ACVP-AES-GCM", "mode" : "modes", "ivGen" : "internal", "ivGenMode" : "8.2.1" }
+    ]
+}</sourcecode>
+
+
+<p id="_64a8fe69-d07a-63b0-80df-9dab44ddb5dd">All metadata representing strings or big numbers <strong>SHALL</strong> use double quotes at both ends. Big numbers require conversion from strings to whatever format is used by the DUT. Numerical values of integer size or with decimal points may use quotations if those values are generally used as a string, for example the acvVersion would generally be used in displaying information not in any mathematical operations. Something like keyLen or ptLen values would be better used without quotes to avoid having to convert the string to an integer for use in the code.</p>
+</clause>
+
+<clause id="app-reg-ex2" obligation="normative">
+<title>Error Messages</title>
+<p id="_49b0f1b0-6a5e-7400-010b-56267fdd2aa0">General or registration errors detected by the server <strong>SHALL</strong> result in an HTML error and description of the problem, for example:</p>
+
+<figure id="_ad5d771c-5627-7150-e79b-20ec8c459606"><pre id="_64c72721-06f0-2267-7d1b-15e33d131fd1" alt="">
+    HTTP response: 400
+    "error" : "Incorrectly formatted JSON (51:18):
+               expected field name was not provided: inBit"</pre></figure>
+
+<p id="_02f2fe8a-abcd-4166-a09b-ce6be534b8af">Errors detected by the client <strong>SHOULD</strong> trigger an indication of the operation that failed and a detailed error description. This information can be sent to the clients local logging facility to provide traceability of communication issues, for example:</p>
+
+<figure id="_3209b81a-9719-a896-cf8d-7d78d98a610a"><pre id="_837ed17c-01f3-f2ae-6dcf-3ddaa206b455" alt="">    ACV Operation: SHA-512
+    Error: Unsupported hash algorithm</pre></figure>
+</clause>
+</sections><annex id="_90e668d5-9d9a-3374-7723-16f235d7c27e" obligation="normative">
+<title>References</title>
+<references id="_normative_references" normative="true" obligation="informative"> <bibitem id="RFC2119" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Key words for use in RFCs to Indicate Requirement Levels</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2119.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc2119</uri>  <docidentifier type="RFC" primary="true">RFC 2119</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC2119</docidentifier>  <docidentifier type="DOI">10.17487/RFC2119</docidentifier>  <docnumber>RFC2119</docnumber>  <date type="published">    <on>1997-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">S. Bradner</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_603f4302-3ed3-eb82-0400-5a63f88d2c36">In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2119</number>  </series></bibitem>
+ <bibitem id="RFC3339" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Date and Time on the Internet: Timestamps</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.3339.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc3339</uri>  <docidentifier type="RFC" primary="true">RFC 3339</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC3339</docidentifier>  <docidentifier type="DOI">10.17487/RFC3339</docidentifier>  <docnumber>RFC3339</docnumber>  <date type="published">    <on>2002-07</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">G. Klyne</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">C. Newman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_2677cd1f-77a3-1d92-a06a-f14ecb81bbdb">This document defines a date and time format for use in Internet protocols that is a profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>3339</number>  </series></bibitem>
+ <bibitem id="RFC3986" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Uniform Resource Identifier (URI): Generic Syntax</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.3986.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc3986</uri>  <docidentifier type="RFC" primary="true">RFC 3986</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC3986</docidentifier>  <docidentifier type="DOI">10.17487/RFC3986</docidentifier>  <docnumber>RFC3986</docnumber>  <date type="published">    <on>2005-01</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">T. Berners-Lee</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">R. Fielding</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">L. Masinter</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_96a364dc-0b4a-c87b-5fff-1ff5bd1a34d6">A Uniform Resource Identifier (URI) is a compact sequence of characters that identifies an abstract or physical resource. This specification defines the generic URI syntax and a process for resolving URI references that might be in relative form, along with guidelines and security considerations for the use of URIs on the Internet. The URI syntax defines a grammar that is a superset of all valid URIs, allowing an implementation to parse the common components of a URI reference without knowing the scheme-specific requirements of every possible identifier. This specification does not define a generative grammar for URIs; that task is performed by the individual specifications of each URI scheme. [STANDARDS-TRACK]</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">STD</title>
+    <number>66</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>3986</number>  </series></bibitem>
+ <bibitem id="RFC5246" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The Transport Layer Security (TLS) Protocol Version 1.2</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.5246.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc5246</uri>  <docidentifier type="RFC" primary="true">RFC 5246</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC5246</docidentifier>  <docidentifier type="DOI">10.17487/RFC5246</docidentifier>  <docnumber>RFC5246</docnumber>  <date type="published">    <on>2008-08</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">T. Dierks</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">E. Rescorla</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_a0d23211-112c-ce7e-13c8-334b0c86cd59">This document specifies Version 1.2 of the Transport Layer Security (TLS) protocol. The TLS protocol provides communications security over the Internet. The protocol allows client/server applications to communicate in a way that is designed to prevent eavesdropping, tampering, or message forgery. [STANDARDS-TRACK]</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>5246</number>  </series></bibitem>
+ <bibitem id="RFC7159" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The JavaScript Object Notation (JSON) Data Interchange Format</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7159.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7159</uri>  <docidentifier type="RFC" primary="true">RFC 7159</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7159</docidentifier>  <docidentifier type="DOI">10.17487/RFC7159</docidentifier>  <docnumber>RFC7159</docnumber>  <date type="published">    <on>2014-03</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="editor"/>    <person>      
+<name>        <completename language="en">T. Bray</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_b6c9b6e3-288e-cd8c-77ff-35f70fc2f11d">JavaScript Object Notation (JSON) is a lightweight, text-based, language-independent data interchange format. It was derived from the ECMAScript Programming Language Standard. JSON defines a small set of formatting rules for the portable representation of structured data.</p>
+    <p id="_1b1ca904-a43e-be48-214a-61bebc5bd9af">This document removes inconsistencies with other specifications of JSON, repairs specification errors, and offers experience-based interoperability guidance.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7159</number>  </series></bibitem>
+ <bibitem id="RFC7230" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7230.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7230</uri>  <docidentifier type="RFC" primary="true">RFC 7230</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7230</docidentifier>  <docidentifier type="DOI">10.17487/RFC7230</docidentifier>  <docnumber>RFC7230</docnumber>  <date type="published">    <on>2014-06</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="editor"/>    <person>      
+<name>        <completename language="en">R. Fielding</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="editor"/>    <person>      
+<name>        <completename language="en">J. Reschke</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_cf1ab069-ce66-e610-2c9b-c614d54bb47c">The Hypertext Transfer Protocol (HTTP) is a stateless application-level protocol for distributed, collaborative, hypertext information systems. This document provides an overview of HTTP architecture and its associated terminology, defines the “http” and “https” Uniform Resource Identifier (URI) schemes, defines the HTTP/1.1 message syntax and parsing requirements, and describes related security concerns for implementations.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7230</number>  </series></bibitem>
+ <bibitem id="RFC7519" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">JSON Web Token (JWT)</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7519.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7519</uri>  <docidentifier type="RFC" primary="true">RFC 7519</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7519</docidentifier>  <docidentifier type="DOI">10.17487/RFC7519</docidentifier>  <docnumber>RFC7519</docnumber>  <date type="published">    <on>2015-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">M. Jones</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">J. Bradley</completename>      </name>
+    </person>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">N. Sakimura</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_97f003d2-629f-8353-a745-171eab1d9db5">JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object that is used as the payload of a JSON Web Signature (JWS) structure or as the plaintext of a JSON Web Encryption (JWE) structure, enabling the claims to be digitally signed or integrity protected with a Message Authentication Code (MAC) and/or encrypted.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7519</number>  </series></bibitem>
+ <bibitem id="RFC7991" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">The “xml2rfc” Version 3 Vocabulary</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.7991.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc7991</uri>  <docidentifier type="RFC" primary="true">RFC 7991</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC7991</docidentifier>  <docidentifier type="DOI">10.17487/RFC7991</docidentifier>  <docnumber>RFC7991</docnumber>  <date type="published">    <on>2016-12</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">P. Hoffman</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_5d367bf9-f9d3-48ed-6c0b-a92ac329a03f">This document defines the “xml2rfc” version 3 vocabulary: an XML-based language used for writing RFCs and Internet-Drafts. It is heavily derived from the version 2 vocabulary that is also under discussion. This document obsoletes the v2 grammar described in RFC 7749.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>7991</number>  </series></bibitem>
+ <bibitem id="RFC8174" type="standard">  <fetched>2022-03-15</fetched>  
+<title format="text/plain" language="en" script="Latn">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8174.xml</uri>  <uri type="src">https://www.rfc-editor.org/info/rfc8174</uri>  <docidentifier type="RFC" primary="true">RFC 8174</docidentifier>  <docidentifier type="RFC" scope="anchor">RFC8174</docidentifier>  <docidentifier type="DOI">10.17487/RFC8174</docidentifier>  <docnumber>RFC8174</docnumber>  <date type="published">    <on>2017-05</on>  </date>  <contributor>    <role type="publisher"/>    <organization>      
+<name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>    </organization>  </contributor>  <contributor>    <role type="author"/>    <person>      
+<name>        <completename language="en">B. Leiba</completename>      </name>
+    </person>  </contributor>  <language>en</language>  <script>Latn</script>  <abstract format="text/html" language="en" script="Latn">    <p id="_a2b56ddf-2c3c-0a8f-32d5-e0e759b38b2b">RFC 2119 specifies common key words that may be used in protocol specifications. This document aims to reduce the ambiguity by clarifying that only UPPERCASE usage of the key words have the defined special meanings.</p>
+  </abstract>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">BCP</title>
+    <number>14</number>  </series>  <series type="main">    
+<title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8174</number>  </series></bibitem>
+
+<bibitem id="acvp-iana">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">ACVP IANA Registry</title>
+  <title type="main" format="text/plain">ACVP IANA Registry</title>
+  <docidentifier type="NIST">NIST ACVP IANA Registry</docidentifier>
+  <date type="published">
+    <on>2018-11-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>NIST</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+</bibitem>
+
+<bibitem id="cavp">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">Cryptographic Algorithm Validation Program</title>
+  <title type="main" format="text/plain">Cryptographic Algorithm Validation Program</title>
+  <docidentifier type="NIST">NIST CAVP</docidentifier>
+  <date type="published">
+    <on>2018-02</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>A.</initial>
+        <surname>Vassilev</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>NIST</name>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+</bibitem>
+
+<bibitem id="sub-symmetric">
+  <fetched>2022-03-15</fetched>
+  <title type="title-main" format="text/plain">ACVP Symmetric Algorithm JSON Specification</title>
+  <title type="main" format="text/plain">ACVP Symmetric Algorithm JSON Specification</title>
+  <docidentifier>ACVP-Symmetric</docidentifier>
+  <date type="published">
+    <on>2020-12-10</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>C.</initial>
+        <surname>Celi</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>NIST</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <initial>R.</initial>
+        <surname>Hammett</surname>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Huntington Ingalls Industries</name>
+          <abbreviation>HII</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
+      <abbreviation>NIST</abbreviation>
+    </organization>
+  </contributor>
+</bibitem>
+</references>
+</annex>
+</nist-standard>
